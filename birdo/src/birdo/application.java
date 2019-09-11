@@ -15,7 +15,7 @@ public class application
   private void initUI()
   {
     add(new main());
-    setSize(500, 525);
+    setSize(800, 525);
     setResizable(false);
     setTitle("birdo");
     setDefaultCloseOperation(3);

@@ -113,14 +113,34 @@ public class main extends JPanel implements ActionListener {
 					state = "sky";
 			}
 			
+			if (state == "woods") {
+				if (key == KeyEvent.VK_UP)
+					woods.player.dy = -4;
+				if (key == KeyEvent.VK_LEFT)
+					woods.player.dx = -4;
+				if (key == KeyEvent.VK_DOWN)
+					woods.player.dy = 4;
+				if (key == KeyEvent.VK_RIGHT)
+					woods.player.dx = 4;
+				if (key == KeyEvent.VK_ESCAPE)
+					state = "levelSelect";
+		}
+			
 		
 
 		}
 
 		public void keyReleased(KeyEvent e) {
 			int key = e.getKeyCode();
-		
-		}
+			if (key == KeyEvent.VK_UP && woods.player.dy != 2)
+				woods.player.dy = 0;
+			if (key == KeyEvent.VK_LEFT && woods.player.dx != 2)
+				woods.player.dx = 0;
+			if (key == KeyEvent.VK_DOWN && woods.player.dy != -2)
+				woods.player.dy = 0;
+			if (key == KeyEvent.VK_RIGHT && woods.player.dx != -2)
+				woods.player.dx = 0;
+	}
 	}
 
 	private class MAdapter extends MouseAdapter {
@@ -143,3 +163,6 @@ public class main extends JPanel implements ActionListener {
 		}
 	}
 }
+
+
+
