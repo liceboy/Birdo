@@ -1,4 +1,5 @@
 package birdo;
+
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -19,10 +20,14 @@ public class main extends JPanel implements ActionListener {
 	private Timer timer;
 	private final int DELAY = 10;
 	String state;
-	
-	title t;
-	levelSelect ls;
-	
+
+	title title;
+	levelSelect levelSelect;
+	woods woods;
+	city city;
+	beach beach;
+	sky sky;
+
 	public main() {
 		addKeyListener(new KAdapter());
 		addMouseListener(new MAdapter());
@@ -30,16 +35,18 @@ public class main extends JPanel implements ActionListener {
 		setFocusable(true);
 		setBackground(Color.WHITE);
 
-		setFont(new Font("Arial", 0, 16));
+		setFont(new Font("Arial", 1, 16));
 
-		this.timer = new Timer(DELAY, this);
-		this.timer.start();
+		timer = new Timer(DELAY, this);
+		timer.start();
 
-		this.state = "title";
-		
-		t = new title();
-		ls = new levelSelect();
-
+		state = "title";
+		title = new title();
+		levelSelect = new levelSelect();
+		woods = new woods();
+		beach = new beach();
+		city = new city();
+		sky = new sky();
 	}
 
 	public void paintComponent(Graphics g) {
@@ -50,16 +57,33 @@ public class main extends JPanel implements ActionListener {
 	}
 
 	private void doDrawing(Graphics g) {
-		if(state == "title") t.draw(g);
-		if(state == "levelSelect") ls.draw(g);
+
+		if (state == "title")
+			title.draw(g);
+
+		if (state == "levelSelect")
+			levelSelect.draw(g);
+		
+		if (state == "woods")
+			woods.draw(g);
+		
+		if (state == "city")
+			city.draw(g);
+		
+		if (state == "levelSelect")
+			beach.draw(g);
+		
+		if (state == "levelSelect")
+			sky.draw(g);
 	}
 
 	public void actionPerformed(ActionEvent e) {
+		if (state == "woods") woods.move();
+		if (state == "city") city.move();
+		if (state == "beach") beach.move();
+		if (state == "sky") sky.move();
 		
-		if(state == "title") t.move();
-		if(state == "levelSelect") ls.move();
 
-		
 		repaint();
 	}
 
@@ -71,20 +95,32 @@ public class main extends JPanel implements ActionListener {
 		public void keyPressed(KeyEvent e) {
 			int key = e.getKeyCode();
 			
-		
+			if (state == "title") {
+				if (key == KeyEvent.VK_SPACE)
+					state = "levelSelect";
+			}
 			
+			if (state == "levelSelect") {
+				if (key == KeyEvent.VK_ESCAPE)
+					state = "title";
+				if (key == KeyEvent.VK_1)
+					state = "woods";
+				if (key == KeyEvent.VK_2)
+					state = "city";
+				if (key == KeyEvent.VK_3)
+					state = "beach";
+				if (key == KeyEvent.VK_4)
+					state = "sky";
+			}
+			
+		
+
 		}
 
 		public void keyReleased(KeyEvent e) {
 			int key = e.getKeyCode();
-			
-			if(state == "title") {
-				if(key == KeyEvent.VK_SPACE) state = "levelSelect";
-			}
-			
-			if (state == "levelSelect") {
-				if(key == KeyEvent.VK_ESCAPE) state = "title";
-			}
+		
+		}
 	}
 
 	private class MAdapter extends MouseAdapter {
