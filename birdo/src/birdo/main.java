@@ -70,10 +70,10 @@ public class main extends JPanel implements ActionListener {
 		if (state == "city")
 			city.draw(g);
 		
-		if (state == "levelSelect")
+		if (state == "beach")
 			beach.draw(g);
 		
-		if (state == "levelSelect")
+		if (state == "sky")
 			sky.draw(g);
 	}
 
@@ -124,6 +124,10 @@ public class main extends JPanel implements ActionListener {
 					woods.player.dx = 4;
 				if (key == KeyEvent.VK_ESCAPE)
 					state = "levelSelect";
+				if(key == KeyEvent.VK_Z)
+					woods.player.shootFeather();
+				if(key == KeyEvent.VK_X)
+					woods.player.poop();
 		}
 			
 		
@@ -132,6 +136,7 @@ public class main extends JPanel implements ActionListener {
 
 		public void keyReleased(KeyEvent e) {
 			int key = e.getKeyCode();
+			if (state == "woods") {
 			if (key == KeyEvent.VK_UP && woods.player.dy != 2)
 				woods.player.dy = 0;
 			if (key == KeyEvent.VK_LEFT && woods.player.dx != 2)
@@ -140,7 +145,9 @@ public class main extends JPanel implements ActionListener {
 				woods.player.dy = 0;
 			if (key == KeyEvent.VK_RIGHT && woods.player.dx != -2)
 				woods.player.dx = 0;
+			
 	}
+		}
 	}
 
 	private class MAdapter extends MouseAdapter {

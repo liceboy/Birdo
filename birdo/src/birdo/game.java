@@ -6,7 +6,7 @@ import java.awt.Graphics;
 
 public abstract class game {
 	
-	object player = new object (130, 130, 30, 30, Color.BLUE);
+	player player = new player (130, 130, 30, 30, Color.BLUE);
 	// rectangle representing birdo
 	
 	int score = 0;
