@@ -10,9 +10,11 @@ public abstract class game {
 	player player = new player (130, 130, 30, 30, Color.BLUE);
 	ArrayList<enemy> enemies;
 	// rectangle representing birdo
-	
 	int score = 0;
 	// player score
+	String state;
+	
+	
 	
 	public game() {
 		enemies = new ArrayList <enemy>(); 
@@ -36,16 +38,32 @@ public abstract class game {
 		for (enemy e: enemies) {
 			e.draw(g);
 			e.shootFeather();
-			if (player.checkFeatherHits(e))
-				enemies.remove(e);
-			if (player.checkEggHits(e))
-				enemies.remove(e);
 		}
+		check();
 		g.setFont(new Font("Arial", 1, 16));
 		g.setColor(Color.BLACK);
 		g.drawString("Score: " + score, 650, 40);
 		g.drawString("Health: " + player.health, 25, 40);
 		
+	}
+	
+	public void check () {
+		for (int x = 0; x != enemies.size(); x++) {
+			if (enemies.get(x).x < -40) {
+				enemies.remove(x);
+				x--;
+			}
+		}
+		player e;
+		for (int x = 0; x != enemies.size(); x++) {
+			e = enemies.get(x);
+			player.checkFeatherHits(e);
+			player.checkEggHits(e);
+			if (e.health <= 0) {
+				e.isDead = true;
+				enemies.remove(e);
+			}
+	}
 	}
 	
 	
