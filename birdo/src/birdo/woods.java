@@ -1,6 +1,8 @@
 package birdo;
 
 import java.awt.Color;
+import java.awt.Graphics;
+import java.util.ArrayList;
 
 public class woods extends game{
 	public woods() {
@@ -9,5 +11,4 @@ public class woods extends game{
 	public void move() {
 		super.move();
 	}
-
 }

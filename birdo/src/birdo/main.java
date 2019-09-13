@@ -124,10 +124,6 @@ public class main extends JPanel implements ActionListener {
 					woods.player.dx = 4;
 				if (key == KeyEvent.VK_ESCAPE)
 					state = "levelSelect";
-				if(key == KeyEvent.VK_Z)
-					woods.player.shootFeather();
-				if(key == KeyEvent.VK_X)
-					woods.player.poop();
 		}
 			
 		

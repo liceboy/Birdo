@@ -3,30 +3,48 @@ package birdo;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.util.ArrayList;
 
 public abstract class game {
 	
 	player player = new player (130, 130, 30, 30, Color.BLUE);
+	ArrayList<enemy> enemies;
 	// rectangle representing birdo
 	
 	int score = 0;
 	// player score
 	
 	public game() {
-		
+		enemies = new ArrayList <enemy>(); 
+		for (int x = 0; x < 20; x++) {
+			enemy e = new enemy (750, (int) (Math.random() * 450) + 50, 30, 30, Color.BLACK);
+			enemies.add(e);
+		}
 	}
 	
 	public void move() {
 		player.move();
+		for (enemy e: enemies)
+			e.move();
 		collision();
 	}
 	
 	public void draw(Graphics g) {
 		player.draw(g);
-		
+		player.shootFeather();
+		player.poop();
+		for (enemy e: enemies) {
+			e.draw(g);
+			e.shootFeather();
+			if (player.checkFeatherHits(e))
+				enemies.remove(e);
+			if (player.checkEggHits(e))
+				enemies.remove(e);
+		}
 		g.setFont(new Font("Arial", 1, 16));
 		g.setColor(Color.BLACK);
-		g.drawString("Score: " + score, 10, 440);
+		g.drawString("Score: " + score, 650, 40);
+		g.drawString("Health: " + player.health, 25, 40);
 		
 	}
 	
