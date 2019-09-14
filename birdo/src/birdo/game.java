@@ -69,6 +69,9 @@ public abstract class game {
 			e = enemies.get(x);
 			player.checkFeatherHits(e);
 			player.checkEggHits(e);
+			player.checkCollisionHits(e);
+			if (player.checkCollisionHits(e) == true)
+				
 			if (e.health <= 0) {
 				e.isDead = true;
 				enemies.remove(e);

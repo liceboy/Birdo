@@ -20,6 +20,9 @@ public class player extends object{
 	// checks if character is birdo
 	boolean isDead;
 	// checks if the character is dead
+	boolean invulnerable;
+	// checks if invulnerable
+	int invulnerablecooldown;
 	int[] stats = { health, damage, moveSpeed};
 	ArrayList<feather> feathers;
 	ArrayList<egg> eggs;
@@ -33,6 +36,8 @@ public class player extends object{
 		isGood = true;
 		feathers = new ArrayList<feather>();
 		eggs = new ArrayList<egg>();
+		invulnerable = false;
+		invulnerablecooldown = 0;
 	}
 	
 
@@ -127,6 +132,35 @@ public class player extends object{
 		}
 		return check;
 		// returns success of attack
+	}
+	
+	public boolean checkCollisionHits(player c) {
+		if (c.isDead)
+			return false;
+		// doesn't check hits if dead
+		Rectangle hb = c.getHitBox();
+		// creates enemy hitbox
+		boolean check = false;
+		// will automatically return false (no hit)
+		Rectangle phb = this.getHitBox();
+			if (hb.intersects(phb)) {
+				// check if collided with enemy
+				check = true;
+				// will return true (hit confirmed)
+				this.health -= damage;
+				// adjust enemy health
+		}
+		return check;
+		// returns success of attack
+	}
+	
+	public void isInvulnerable() {
+		if (this.invulnerablecooldown == 0) {
+			this.invulnerable = true;
+			
+			this.invulnerablecooldown = 100;
+		}
+		poopcount--; 
 	}
 	
 }
