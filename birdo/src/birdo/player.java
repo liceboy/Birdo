@@ -53,7 +53,7 @@ public class player extends object{
 		for (egg e: eggs) e.move();
 	}
 	
-	public void shootFeather() {
+	public void shootFeather() { // shoots automatically with cooldown
 		if (shootcount == 0) {
 		if (!isDead) {
 			feathers.add(new feather(this.x , this.y , 15, 10, Color.BLUE, true)); 
@@ -63,7 +63,7 @@ public class player extends object{
 		}
 		shootcount--;
 	}
-	public void poop() {
+	public void poop() { // poops automatically with cooldown
 		if (poopcount == 0) {
 			if(!isDead) {
 				eggs.add(new egg (this.x, this.y, 15,15, Color.YELLOW));

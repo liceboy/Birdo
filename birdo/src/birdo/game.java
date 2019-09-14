@@ -7,12 +7,14 @@ import java.util.ArrayList;
 
 public abstract class game {
 	
-	player player = new player (130, 130, 30, 30, Color.BLUE);
-	ArrayList<enemy> enemies;
+	player player = new player (130, 130, 30, 30, Color.BLUE); 
 	// rectangle representing birdo
+	ArrayList<enemy> enemies;
+	// arraylist holding enemies
 	int score = 0;
 	// player score
 	String state;
+	// state of game
 	
 	public game() {
 		enemies = new ArrayList <enemy>(); 
@@ -35,7 +37,7 @@ public abstract class game {
 			player.shootFeather();
 			player.poop();
 		}
-		for (enemy e: enemies) {
+		for (enemy e: enemies) { 
 			e.draw(g);
 			e.shootFeather();
 			e.checkFeatherHits(player);
@@ -47,7 +49,7 @@ public abstract class game {
 		g.drawString("Health: " + player.health, 25, 40);
 		if (player.health <= 0) {
 			player.dx = 0; // if gameover, play this death animation and display these strings, new state
-			player.dy = 7; // level will continue to play
+			player.dy = 7; // level will continue to play :)
 			g.drawString("Game Over!", 300, 150);
 			g.drawString("Continue: SPACEBAR", 300, 175);
 			g.drawString("Quit: SHIFT", 300, 200);

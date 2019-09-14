@@ -100,7 +100,7 @@ public class main extends JPanel implements ActionListener {
 					state = "levelSelect";
 			}
 			
-			if (woods.state == "GameOver") {
+			if (woods.state == "GameOver") { // if gameover, new hotkeys, resets game state
 				if (key == KeyEvent.VK_SPACE) {
 					state = "woods";
 					woods = new woods();
