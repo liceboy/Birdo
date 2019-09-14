@@ -14,8 +14,6 @@ public abstract class game {
 	// player score
 	String state;
 	
-	
-	
 	public game() {
 		enemies = new ArrayList <enemy>(); 
 		for (int x = 0; x < 20; x++) {
@@ -38,12 +36,16 @@ public abstract class game {
 		for (enemy e: enemies) {
 			e.draw(g);
 			e.shootFeather();
+			e.checkFeatherHits(player);
 		}
 		check();
 		g.setFont(new Font("Arial", 1, 16));
 		g.setColor(Color.BLACK);
 		g.drawString("Score: " + score, 650, 40);
 		g.drawString("Health: " + player.health, 25, 40);
+		player.checkDead();
+		if (player.isDead == true)
+			g.drawString("Game Over!", 425, 150);
 		
 	}
 	
@@ -65,8 +67,7 @@ public abstract class game {
 			}
 	}
 	}
-	
-	
+
 	public void collision() {
 		
 		if(player.x < 0) player.x = 0;

@@ -29,6 +29,7 @@ public class player extends object{
 		damage = 1;
 		moveSpeed = 4;
 		shootcount = 0;
+		isDead = false;
 		isGood = true;
 		feathers = new ArrayList<feather>();
 		eggs = new ArrayList<egg>();
@@ -126,6 +127,12 @@ public class player extends object{
 		}
 		return check;
 		// returns success of attack
+	}
+	
+	public void checkDead () {
+		if (this.health <= 0)
+			this.isDead = true;
+		this.isDead = false;
 	}
 	
 }
