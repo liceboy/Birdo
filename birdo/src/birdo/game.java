@@ -31,8 +31,10 @@ public abstract class game {
 	
 	public void draw(Graphics g) {
 		player.draw(g);
-		player.shootFeather();
-		player.poop();
+		if (player.health > 0) {
+			player.shootFeather();
+			player.poop();
+		}
 		for (enemy e: enemies) {
 			e.draw(g);
 			e.shootFeather();
