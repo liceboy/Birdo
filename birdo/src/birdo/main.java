@@ -101,36 +101,52 @@ public class main extends JPanel implements ActionListener {
 			}
 			
 			if (woods.state == "GameOver") {
-				if (key == KeyEvent.VK_SPACE)
+				if (key == KeyEvent.VK_SPACE) {
 					state = "woods";
-				if (key == KeyEvent.VK_SHIFT)
+					woods = new woods();
+				}
+				if (key == KeyEvent.VK_SHIFT) {
+					woods = new woods();
 					state = "title";
+				}
 				woods.state = " ";
 			}
 			
 			if (city.state == "GameOver") {
-				if (key == KeyEvent.VK_SPACE)
+				if (key == KeyEvent.VK_SPACE) {
+					city = new city();
 					state = "city";
-				if (key == KeyEvent.VK_SHIFT)
+				}
+				if (key == KeyEvent.VK_SHIFT) {
+					city = new city();
 					state = "title";
+				}
 				city.state = " ";
 			}
 			
 			
 			if (beach.state == "GameOver") {
-				if (key == KeyEvent.VK_SPACE)
+				if (key == KeyEvent.VK_SPACE) {
+					beach = new beach();
 					state = "beach";
-				if (key == KeyEvent.VK_SHIFT)
+				}
+				if (key == KeyEvent.VK_SHIFT) {
+					beach = new beach();
 					state = "title";
+				}
 				beach.state = " ";
 			}
 			
 			
 			if (sky.state == "GameOver") {
-				if (key == KeyEvent.VK_SPACE)
+				if (key == KeyEvent.VK_SPACE) {
+					sky = new sky();
 					state = "sky";
-				if (key == KeyEvent.VK_SHIFT)
+				}
+				if (key == KeyEvent.VK_SHIFT) {
+					sky = new sky();
 					state = "title";
+				}
 				sky.state = " ";
 			}
 			
