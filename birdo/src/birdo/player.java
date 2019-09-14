@@ -129,10 +129,4 @@ public class player extends object{
 		// returns success of attack
 	}
 	
-	public void checkDead () {
-		if (this.health <= 0)
-			this.isDead = true;
-		this.isDead = false;
-	}
-	
 }

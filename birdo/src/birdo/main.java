@@ -100,6 +100,14 @@ public class main extends JPanel implements ActionListener {
 					state = "levelSelect";
 			}
 			
+			if (woods.state == "GameOver") {
+				if (key == KeyEvent.VK_SPACE)
+					state = "woods";
+				if (key == KeyEvent.VK_SHIFT)
+					state = "title";
+				woods.state = " ";
+			}
+			
 			if (state == "levelSelect") {
 				if (key == KeyEvent.VK_ESCAPE)
 					state = "title";
@@ -126,6 +134,44 @@ public class main extends JPanel implements ActionListener {
 					state = "levelSelect";
 		}
 			
+			if (state == "city") {
+				if (key == KeyEvent.VK_UP)
+					city.player.dy = -4;
+				if (key == KeyEvent.VK_LEFT)
+					city.player.dx = -4;
+				if (key == KeyEvent.VK_DOWN)
+					city.player.dy = 4;
+				if (key == KeyEvent.VK_RIGHT)
+					city.player.dx = 4;
+				if (key == KeyEvent.VK_ESCAPE)
+					state = "levelSelect";
+		}
+			
+			if (state == "beach") {
+				if (key == KeyEvent.VK_UP)
+					beach.player.dy = -4;
+				if (key == KeyEvent.VK_LEFT)
+					beach.player.dx = -4;
+				if (key == KeyEvent.VK_DOWN)
+					beach.player.dy = 4;
+				if (key == KeyEvent.VK_RIGHT)
+					beach.player.dx = 4;
+				if (key == KeyEvent.VK_ESCAPE)
+					state = "levelSelect";
+		}
+			
+			if (state == "sky") {
+				if (key == KeyEvent.VK_UP)
+					sky.player.dy = -4;
+				if (key == KeyEvent.VK_LEFT)
+					sky.player.dx = -4;
+				if (key == KeyEvent.VK_DOWN)
+					sky.player.dy = 4;
+				if (key == KeyEvent.VK_RIGHT)
+					sky.player.dx = 4;
+				if (key == KeyEvent.VK_ESCAPE)
+					state = "levelSelect";
+		}
 		
 
 		}
@@ -141,6 +187,45 @@ public class main extends JPanel implements ActionListener {
 				woods.player.dy = 0;
 			if (key == KeyEvent.VK_RIGHT && woods.player.dx != -2)
 				woods.player.dx = 0;
+			
+	}
+			
+		
+			if (state == "city") {
+			if (key == KeyEvent.VK_UP && city.player.dy != 2)
+				city.player.dy = 0;
+			if (key == KeyEvent.VK_LEFT && city.player.dx != 2)
+				city.player.dx = 0;
+			if (key == KeyEvent.VK_DOWN && city.player.dy != -2)
+				city.player.dy = 0;
+			if (key == KeyEvent.VK_RIGHT && city.player.dx != -2)
+				city.player.dx = 0;
+			
+	}
+			
+			
+			if (state == "beach") {
+			if (key == KeyEvent.VK_UP && beach.player.dy != 2)
+				beach.player.dy = 0;
+			if (key == KeyEvent.VK_LEFT && beach.player.dx != 2)
+				beach.player.dx = 0;
+			if (key == KeyEvent.VK_DOWN && beach.player.dy != -2)
+				beach.player.dy = 0;
+			if (key == KeyEvent.VK_RIGHT && beach.player.dx != -2)
+				beach.player.dx = 0;
+			
+	}
+			
+			
+			if (state == "sky") {
+			if (key == KeyEvent.VK_UP && sky.player.dy != 2)
+				sky.player.dy = 0;
+			if (key == KeyEvent.VK_LEFT && sky.player.dx != 2)
+				sky.player.dx = 0;
+			if (key == KeyEvent.VK_DOWN && sky.player.dy != -2)
+				sky.player.dy = 0;
+			if (key == KeyEvent.VK_RIGHT && sky.player.dx != -2)
+				sky.player.dx = 0;
 			
 	}
 		}

@@ -43,10 +43,12 @@ public abstract class game {
 		g.setColor(Color.BLACK);
 		g.drawString("Score: " + score, 650, 40);
 		g.drawString("Health: " + player.health, 25, 40);
-		player.checkDead();
-		if (player.isDead == true)
-			g.drawString("Game Over!", 425, 150);
-		
+		if (player.health <= 0) {
+			g.drawString("Game Over!", 300, 150);
+			g.drawString("Continue: SPACEBAR", 300, 175);
+			g.drawString("Quit: SHIFT", 300, 200);
+			state = "GameOver";
+		}
 	}
 	
 	public void check () {
@@ -64,6 +66,7 @@ public abstract class game {
 			if (e.health <= 0) {
 				e.isDead = true;
 				enemies.remove(e);
+				score += 100;
 			}
 	}
 	}
