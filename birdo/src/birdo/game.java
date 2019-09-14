@@ -38,14 +38,14 @@ public abstract class game {
 			e.shootFeather();
 			e.checkFeatherHits(player);
 		}
-		check();
+		check(); // player check for removing enemies 
 		g.setFont(new Font("Arial", 1, 16));
 		g.setColor(Color.BLACK);
 		g.drawString("Score: " + score, 650, 40);
 		g.drawString("Health: " + player.health, 25, 40);
 		if (player.health <= 0) {
-			player.dx = 0;
-			player.dy = 7;
+			player.dx = 0; // if gameover, play this death animation and display these strings, new state
+			player.dy = 7; // level will continue to play
 			g.drawString("Game Over!", 300, 150);
 			g.drawString("Continue: SPACEBAR", 300, 175);
 			g.drawString("Quit: SHIFT", 300, 200);
@@ -69,6 +69,7 @@ public abstract class game {
 				e.isDead = true;
 				enemies.remove(e);
 				score += 100;
+				x--;
 			}
 	}
 	}
