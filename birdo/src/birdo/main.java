@@ -108,6 +108,33 @@ public class main extends JPanel implements ActionListener {
 				woods.state = " ";
 			}
 			
+			if (city.state == "GameOver") {
+				if (key == KeyEvent.VK_SPACE)
+					state = "city";
+				if (key == KeyEvent.VK_SHIFT)
+					state = "title";
+				city.state = " ";
+			}
+			
+			
+			if (beach.state == "GameOver") {
+				if (key == KeyEvent.VK_SPACE)
+					state = "beach";
+				if (key == KeyEvent.VK_SHIFT)
+					state = "title";
+				beach.state = " ";
+			}
+			
+			
+			if (sky.state == "GameOver") {
+				if (key == KeyEvent.VK_SPACE)
+					state = "sky";
+				if (key == KeyEvent.VK_SHIFT)
+					state = "title";
+				sky.state = " ";
+			}
+			
+			
 			if (state == "levelSelect") {
 				if (key == KeyEvent.VK_ESCAPE)
 					state = "title";
