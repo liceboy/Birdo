@@ -70,8 +70,12 @@ public abstract class game {
 			player.checkFeatherHits(e);
 			player.checkEggHits(e);
 			player.checkCollisionHits(e);
-			if (player.checkCollisionHits(e) == true)
-				
+			if (player.checkCollisionHits(e) == true && player.invulnerablecooldown == 0)
+				player.invulnerable = true;
+			if (e.checkFeatherHits(player) == true && player.invulnerablecooldown == 0)
+				player.invulnerable = true;
+			if (e.checkEggHits(player) == true && player.invulnerablecooldown == 0)
+				player.invulnerable = true;
 			if (e.health <= 0) {
 				e.isDead = true;
 				enemies.remove(e);
