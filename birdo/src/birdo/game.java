@@ -18,8 +18,8 @@ public abstract class game {
 	
 	public game() {
 		enemies = new ArrayList <enemy>(); 
-		for (int x = 0; x < 20; x++) {
-			enemy e = new enemy (750, (int) (Math.random() * 450) + 50, 30, 30, Color.BLACK);
+		for (int x = 0; x < 1; x++) {
+			enemy e = new enemy (750, 130, 30, 30, Color.BLACK);
 			enemies.add(e);
 		}
 	}
@@ -34,7 +34,7 @@ public abstract class game {
 	public void draw(Graphics g) {
 		player.draw(g);
 		if (player.health > 0) {
-			player.shootFeather();
+		
 			player.poop();
 		}
 		for (enemy e: enemies) { 
@@ -63,18 +63,14 @@ public abstract class game {
 				x--;
 			}
 		}
-		player e;
+		enemy e;
 		for (int x = 0; x != enemies.size(); x++) {
 			e = enemies.get(x);
-			player.checkFeatherHits(e);
-			player.checkEggHits(e);
-			player.checkCollisionHits(e);
-			if (player.checkCollisionHits(e) == true && player.invulnerablecooldown == 0)
-				player.invulnerable = true;
-			if (e.checkFeatherHits(player) == true && player.invulnerablecooldown == 0)
-				player.invulnerable = true;
-			if (e.checkEggHits(player) == true && player.invulnerablecooldown == 0)
-				player.invulnerable = true;
+			player.CheckAllHits(e);
+			if (e.CheckAllHits(player) == true && player.invulnerablecooldown == 0) {
+				player.invulnerable = true; 
+				player.invulnerablecooldown = 300;
+			}
 			if (e.health <= 0) {
 				e.isDead = true;
 				enemies.remove(e);

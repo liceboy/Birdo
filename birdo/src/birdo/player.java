@@ -80,52 +80,16 @@ public class player extends object{
 		poopcount--; 
 		}
 		
-	
-	
-	public boolean checkFeatherHits(player c) {
+	public boolean CheckAllHits(player c) {
 		if (c.isDead)
 			return false;
-		// doesn't check hits if dead
-		if (c.invulnerable) {
-			c.invulnerablecooldown--;
-			if (c.invulnerablecooldown == 0)
-				c.invulnerable = false;
+		if (this.invulnerable) {
+			this.invulnerablecooldown--;
+			if (this.invulnerablecooldown == 0)
+				this.invulnerable = false;
 			return false;
-		}
-		Rectangle hb = c.getHitBox();
-		// creates enemy hitbox
-		boolean check = false;
-		// will automatically return false (no hit)
-		for (int x = 0; x != feathers.size(); x++) {
-			feather a = feathers.get(x);
-			// gets an attack
-			if (hb.intersects(a.getHitBox())) {
-				// checks if attack hit enemy
-				check = true;
-				// will return true (hit confirmed)
-				c.health -= damage;
-				// adjust enemy health
-				feathers.remove(x);
-				// removes attack from attacks
-				x--;
-				// decrements
-			}
 		}
 		
-		return check;
-		// returns success of attack
-	}
-	
-	public boolean checkEggHits(player c) {
-		if (c.isDead)
-			return false;
-		// doesn't check hits if dead
-		if (c.invulnerable) {
-			c.invulnerablecooldown--;
-			if (c.invulnerablecooldown == 0)
-				c.invulnerable = false;
-			return false;
-		}
 		Rectangle hb = c.getHitBox();
 		// creates enemy hitbox
 		boolean check = false;
@@ -145,37 +109,34 @@ public class player extends object{
 				// decrements
 			}
 		}
-	
-		return check;
-		// returns success of attack
-	}
-	
-	public boolean checkCollisionHits(player c) {
-		if (c.isDead)
-			return false;
-		// doesn't check hits if dead
-		if (this.invulnerable) {
-			this.invulnerablecooldown--;
-			if (this.invulnerablecooldown == 0)
-				this.invulnerable = false;
-			return false;
-		}
-		Rectangle hb = c.getHitBox();
-		// creates enemy hitbox
-		boolean check = false;
-		// will automatically return false (no hit)
-		Rectangle phb = this.getHitBox();
-			if (hb.intersects(phb)) {
-				// check if collided with enemy
+		
+		for (int x = 0; x != feathers.size(); x++) {
+			feather a = feathers.get(x);
+			// gets an attack
+			if (hb.intersects(a.getHitBox())) {
+				// checks if attack hit enemy
 				check = true;
 				// will return true (hit confirmed)
-				this.health -= damage;
+				c.health -= damage;
 				// adjust enemy health
+				feathers.remove(x);
+				// removes attack from attacks
+				x--;
+				// decrements
+			}
 		}
-			
+		
+		Rectangle phb = this.getHitBox();
+		if (hb.intersects(phb)) {
+			// check if collided with enemy
+			check = true;
+			// will return true (hit confirmed)
+			c.health -= damage;
+			// adjust enemy health
+	}
+		
 		return check;
 		// returns success of attack
-		
 	}
 	
 }

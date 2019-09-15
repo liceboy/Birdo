@@ -173,8 +173,10 @@ public class main extends JPanel implements ActionListener {
 					woods.player.dy = 4;
 				if (key == KeyEvent.VK_RIGHT)
 					woods.player.dx = 4;
-				if (key == KeyEvent.VK_ESCAPE)
+				if (key == KeyEvent.VK_ESCAPE) {
 					state = "levelSelect";
+					woods = new woods();
+				}
 		}
 			
 			if (state == "city") {
@@ -186,8 +188,10 @@ public class main extends JPanel implements ActionListener {
 					city.player.dy = 4;
 				if (key == KeyEvent.VK_RIGHT)
 					city.player.dx = 4;
-				if (key == KeyEvent.VK_ESCAPE)
+				if (key == KeyEvent.VK_ESCAPE) {
 					state = "levelSelect";
+					city = new city();
+				}
 		}
 			
 			if (state == "beach") {
@@ -199,8 +203,10 @@ public class main extends JPanel implements ActionListener {
 					beach.player.dy = 4;
 				if (key == KeyEvent.VK_RIGHT)
 					beach.player.dx = 4;
-				if (key == KeyEvent.VK_ESCAPE)
+				if (key == KeyEvent.VK_ESCAPE) {
 					state = "levelSelect";
+					beach = new beach();
+				}
 		}
 			
 			if (state == "sky") {
@@ -212,8 +218,10 @@ public class main extends JPanel implements ActionListener {
 					sky.player.dy = 4;
 				if (key == KeyEvent.VK_RIGHT)
 					sky.player.dx = 4;
-				if (key == KeyEvent.VK_ESCAPE)
+				if (key == KeyEvent.VK_ESCAPE) {
 					state = "levelSelect";
+					sky = new sky();
+				}
 		}
 		
 
