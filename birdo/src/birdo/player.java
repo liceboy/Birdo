@@ -85,7 +85,9 @@ public class player extends object{
 			return false;
 		// doesn't check hits if dead
 		if (this.invulnerable) {
-			this.invulnerablecooldown = 300;
+			this.invulnerablecooldown--;
+			if (this.invulnerablecooldown == 0)
+				this.invulnerable = false;
 			return false;
 		}
 		Rectangle hb = c.getHitBox();
@@ -107,7 +109,7 @@ public class player extends object{
 				// decrements
 			}
 		}
-		this.invulnerablecooldown--;
+		
 		return check;
 		// returns success of attack
 	}
@@ -117,7 +119,9 @@ public class player extends object{
 			return false;
 		// doesn't check hits if dead
 		if (this.invulnerable) {
-			this.invulnerablecooldown = 300;
+			this.invulnerablecooldown--;
+			if (this.invulnerablecooldown == 0)
+				this.invulnerable = false;
 			return false;
 		}
 		Rectangle hb = c.getHitBox();
@@ -139,7 +143,7 @@ public class player extends object{
 				// decrements
 			}
 		}
-		this.invulnerablecooldown--;
+	
 		return check;
 		// returns success of attack
 	}
@@ -149,7 +153,9 @@ public class player extends object{
 			return false;
 		// doesn't check hits if dead
 		if (this.invulnerable) {
-			this.invulnerablecooldown = 300;
+			this.invulnerablecooldown--;
+			if (this.invulnerablecooldown == 0)
+				this.invulnerable = false;
 			return false;
 		}
 		Rectangle hb = c.getHitBox();
@@ -164,7 +170,7 @@ public class player extends object{
 				this.health -= damage;
 				// adjust enemy health
 		}
-		this.invulnerablecooldown--;	
+			
 		return check;
 		// returns success of attack
 		

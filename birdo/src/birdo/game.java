@@ -55,6 +55,7 @@ public abstract class game {
 			g.drawString("Quit: SHIFT", 300, 200);
 			state = "GameOver";
 		}
+		g.drawString("cooldown"+player.invulnerablecooldown, 300, 150);
 	}
 	
 	public void check () {
@@ -67,15 +68,18 @@ public abstract class game {
 		player e;
 		for (int x = 0; x != enemies.size(); x++) {
 			e = enemies.get(x);
-			player.checkFeatherHits(e);
-			player.checkEggHits(e);
-			player.checkCollisionHits(e);
-			if (player.checkCollisionHits(e) == true && player.invulnerablecooldown == 0)
+			if (player.checkCollisionHits(e) == true && player.invulnerablecooldown == 0) {
+				player.invulnerablecooldown = 300;
 				player.invulnerable = true;
-			if (e.checkFeatherHits(player) == true && player.invulnerablecooldown == 0)
+			}
+			if (e.checkFeatherHits(player) == true && player.invulnerablecooldown == 0) {
+				player.invulnerablecooldown= 300;
 				player.invulnerable = true;
-			if (e.checkEggHits(player) == true && player.invulnerablecooldown == 0)
+			}
+			if (e.checkEggHits(player) == true && player.invulnerablecooldown == 0) {
+				player.invulnerablecooldown = 300;
 				player.invulnerable = true;
+			}
 			if (e.health <= 0) {
 				e.isDead = true;
 				enemies.remove(e);
