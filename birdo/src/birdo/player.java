@@ -50,6 +50,8 @@ public class player extends object{
 			e.draw(g);
 		super.draw(g);
 		// draws self
+		
+		g.drawString("invulnerable "+ invulnerable, 10, 200);
 	}
 	
 	public void move() {
@@ -84,10 +86,10 @@ public class player extends object{
 		if (c.isDead)
 			return false;
 		// doesn't check hits if dead
-		if (this.invulnerable) {
-			this.invulnerablecooldown--;
-			if (this.invulnerablecooldown == 0)
-				this.invulnerable = false;
+		if (c.invulnerable) {
+			c.invulnerablecooldown--;
+			if (c.invulnerablecooldown == 0)
+				c.invulnerable = false;
 			return false;
 		}
 		Rectangle hb = c.getHitBox();
@@ -118,10 +120,10 @@ public class player extends object{
 		if (c.isDead)
 			return false;
 		// doesn't check hits if dead
-		if (this.invulnerable) {
-			this.invulnerablecooldown--;
-			if (this.invulnerablecooldown == 0)
-				this.invulnerable = false;
+		if (c.invulnerable) {
+			c.invulnerablecooldown--;
+			if (c.invulnerablecooldown == 0)
+				c.invulnerable = false;
 			return false;
 		}
 		Rectangle hb = c.getHitBox();
