@@ -11,8 +11,7 @@ public class title {
 	
 	public void draw(Graphics g) {
 		g.setColor(Color.BLACK);
-		g.drawString("birdo", 100, 100);
-		g.drawString("Start Game: Space", 100, 130);
+		g.drawString("okay boomer", 100, 100);
 	}
 	
 	public void move() {
