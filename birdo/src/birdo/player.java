@@ -51,7 +51,6 @@ public class player extends object{
 		super.draw(g);
 		// draws self
 		
-		g.drawString("invulnerable "+ invulnerable, 10, 200);
 	}
 	
 	public void move() {

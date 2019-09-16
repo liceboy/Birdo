@@ -54,6 +54,7 @@ public abstract class game {
 			g.drawString("Quit: SHIFT", 300, 200);
 			state = "GameOver";
 		}
+		g.drawString("invulnerable "+ player.invulnerable, 10, 200);
 	}
 	
 	public void check () {
