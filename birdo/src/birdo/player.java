@@ -88,6 +88,12 @@ public class player extends object{
 				this.invulnerable = false;
 			return false;
 		}
+		if (c.invulnerable) {
+			c.invulnerablecooldown--;
+			if (c.invulnerablecooldown == 0)
+				c.invulnerable = false;
+			return false;
+		}
 		
 		Rectangle hb = c.getHitBox();
 		// creates enemy hitbox
