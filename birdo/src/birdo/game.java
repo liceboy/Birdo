@@ -18,8 +18,8 @@ public abstract class game {
 	
 	public game() {
 		enemies = new ArrayList <enemy>(); 
-		for (int x = 0; x < 1; x++) {
-			enemy e = new enemy (750, 130, 30, 30, Color.BLACK);
+		for (int x = 0; x < 5; x++) {
+			enemy e = new enemy (750, (int) (Math.random() * 300 ) + 100, 30, 30, Color.BLACK);
 			enemies.add(e);
 		}
 	}
@@ -34,7 +34,7 @@ public abstract class game {
 	public void draw(Graphics g) {
 		player.draw(g);
 		if (player.health > 0) {
-		
+			player.shootFeather();
 			player.poop();
 		}
 		for (enemy e: enemies) { 

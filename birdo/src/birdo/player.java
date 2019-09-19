@@ -78,6 +78,11 @@ public class player extends object{
 		}
 		poopcount--; 
 		}
+	
+	public void roll() {
+		this.invulnerable = true;
+		this.c = Color.RED;
+	}
 		
 	public boolean CheckAllHits(player c) {
 		if (c.isDead)
