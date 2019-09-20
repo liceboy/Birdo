@@ -173,6 +173,8 @@ public class main extends JPanel implements ActionListener {
 					woods.player.dy = 4;
 				if (key == KeyEvent.VK_RIGHT)
 					woods.player.dx = 4;
+				if (key == KeyEvent.VK_SPACE) 
+					woods.player.roll();
 				if (key == KeyEvent.VK_ESCAPE) {
 					state = "levelSelect";
 					woods = new woods();
