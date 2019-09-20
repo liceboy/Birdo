@@ -33,5 +33,9 @@ public class chargingEnemy extends enemy{
 	public void shootFeather() {
 		return;
 	}
+	
+	public void poop() {
+		return;
+	}
 
 }
