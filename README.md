@@ -22,7 +22,7 @@ as birdo progresses, will shoot more feathers, shoot faster, shoot more eggs, eg
 when birdo is killed, play a death animation while the game is still running for around 3-5 seconds, then game over screen. when other birds are killed, play animation where they plummet. when boss dies, play its animation which will be similar to birdo's - then he zooms off and cuts to a powerup choose screen or proceeds directly to the next level, (some kind of zoomy transition). once victory has been obtained (entire game beaten). display score and various stats, such as enemies defeated, feathers shot, etc. possible leaderboard for high scores or best scores. 
 
 the game will progressively become more difficult in each level. final sky boss should be retarded hard. possible space level in future. 
-each boss has its own patterns and unique attacks. will probably need more sprites for some. take a few extra seconds before the boss, once the boss enters, have his hp bar animate up to full while he flexes and then begin fight. could have some cool feather shot patterns. 
+each boss has its own patterns and unique attacks. will probably need more sprites for some. take a few extra seconds before the boss, once the boss enters, have his hp bar animate up to full while he flexes and then begin fight. could have some cool feather shot patterns. bosses can have multiple phases, possible invicibility at certain times, and certain mechanics in order to disable and be able to hurt him. we can go nuts and add disabling effects like blindness, stun, paralyze, etc. 
 
 for the ui, Im thinking feathers for each hp, cool looking score, a timer. pause button. 
 
