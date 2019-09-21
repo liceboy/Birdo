@@ -4,20 +4,17 @@ import java.awt.Color;
 import java.util.ArrayList;
 
 public class enemy extends player{
-
-	public enemy(int x, int y, int w, int h, Color c) {
-		super(x, y, w, h, c);
-		health = 1;
-	}
 	
-	@Override
-	public void move() {
+	player p;
+	
+	public enemy(int x, int y, Color c) {
+		super(x, y, c);
+		health = 1;
 		this.dx = -3;
 		this.dy = 0; 
-		super.move();
 	}
 	
-	@Override
+	
 	public void shootFeather() {
 		if (shootcount == 0) {
 			if (!isDead) {
