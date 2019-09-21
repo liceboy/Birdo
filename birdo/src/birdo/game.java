@@ -22,9 +22,9 @@ public abstract class game {
 		for (int x = 0; x < 100; x++) {
 			enemy e = null;
 
-			e = new chargingEnemy (x * 50 + 800 + (int) (Math.random() * 100), (int) (Math.random() * 300 ) + 100, Color.DARK_GRAY);
+			//e = new chargingEnemy (x * 50 + 800 + (int) (Math.random() * 100), (int) (Math.random() * 300 ) + 100, Color.DARK_GRAY);
 
-			enemies.add(e);
+			//enemies.add(e);
 		}
 	}
 	
@@ -42,7 +42,6 @@ public abstract class game {
 		
 		for (enemy e: enemies)
 			e.draw(g);
-		
 		g.setColor(Color.BLACK);
 		g.drawString("Score: " + score, 650, 40);
 		g.drawString("Health: " + player.health, 25, 40);
@@ -65,6 +64,7 @@ public abstract class game {
 			player.invulnerablecooldown--;
 			if(player.invulnerablecooldown == 0) {
 				player.invulnerable = false;
+				player.playercanshoot = true;
 				player.c = Color.BLUE;
 			}
 		}

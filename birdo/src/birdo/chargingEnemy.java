@@ -27,7 +27,6 @@ public class chargingEnemy extends enemy{
 		this.dy = -1 * (int)(8 * Math.sin(theta));
 		
 		super.move();
-		System.out.println(dx + " " + dy);
 	}
 	
 	public void shootFeather() {
