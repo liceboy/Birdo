@@ -22,9 +22,9 @@ public abstract class game {
 		for (int x = 0; x < 100; x++) {
 			enemy e = null;
 
-			//e = new chargingEnemy (x * 50 + 800 + (int) (Math.random() * 100), (int) (Math.random() * 300 ) + 100, Color.DARK_GRAY);
+			e = new chargingEnemy (x * 50 + 800 + (int) (Math.random() * 100), (int) (Math.random() * 300 ) + 100, Color.DARK_GRAY);
 
-			//enemies.add(e);
+			enemies.add(e);
 		}
 	}
 	
