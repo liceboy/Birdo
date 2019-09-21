@@ -19,10 +19,10 @@ public abstract class game {
 	public game() {
 		player = new player (130, 130, Color.BLUE); 
 		enemies = new ArrayList <enemy>(); 
-		for (int x = 0; x < 100; x++) {
+		for (int x = 0; x < 30; x++) {
 			enemy e = null;
 
-			e = new chargingEnemy (x * 50 + 800 + (int) (Math.random() * 100), (int) (Math.random() * 300 ) + 100, Color.DARK_GRAY);
+			e = new homingPooper (x * 50 + 800 + (int) (Math.random() * 100), (int) (Math.random() * 300 ) + 100, Color.DARK_GRAY);
 
 			enemies.add(e);
 		}
