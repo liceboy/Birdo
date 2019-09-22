@@ -22,7 +22,7 @@ public abstract class game {
 		for (int x = 0; x < 30; x++) {
 			enemy e = null;
 
-			e = new homingPooper (x * 50 + 800 + (int) (Math.random() * 100), (int) (Math.random() * 300 ) + 100, Color.DARK_GRAY);
+			e = new strafeRunPooper (x * 50 + 800 + (int) (Math.random() * 100), (int) (Math.random() * 300 ) + 100, Color.DARK_GRAY);
 
 			enemies.add(e);
 		}

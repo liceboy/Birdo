@@ -1,0 +1,56 @@
+~Enemy Patterns and File Reading~
+
+After designing a handful of enemies, we can create enemy patterns
+These can be mixed and matched to build our levels
+All patterns will be stored in a text file (probably patterns.txt)
+
+Using BufferedReader or Scanner (haven't chosen yet), we will read this file...
+And create the enemies based on the instructions of the file
+Here's what the syntax is going to look like
+
+	<name of pattern>
+	<enemy type> <x> <y> <dx> <dy>
+	<enemy type> <x> <y> <dx> <dy>
+	...
+
+File reading goes one line at a time and we use while loops to handle this reading
+Once the reader reaches the right pattern name, that's where things start
+Each line following <name of pattern> will be split into 5 components
+Strings in Java have a split() method, returns an array based on the split string)
+
+Once those five values have been obtained, creating a new enemy is simple
+
+	<enemy type> 
+		The type of enemy. Is it a basic enemy, is it a homing enemy, etc.
+	<x> <y> 
+		The starting coordinates. Enemies should always start off screen.
+	<dx> <dy> 
+		The starting movement. These will last until the enemy reaches the screen.
+		Once the enemy gets on screen, it can do whatever its behavior tells it to.
+		Basic enemies will just keep the same dx/dy though.
+
+In fact, we can have another text file (probably levels.txt) that...
+will function very similarly to the pattern text file
+It'll look something like this
+
+	<name of level>
+	<first pattern>
+	<second pattern>
+	...
+	
+Once one pattern clears, then the game moves on to the next pattern
+Easy right?
+	
+--EXAMPLES OF PATTERNS--
+
+basic 600 800 -4 -4
+	A basic enemy that rise up from the bottom of the screen
+	
+homing 1600 200 -4 0
+homing 1600 300 -4 0
+homing 1600 400 -4 0
+	A trio of homing enemies coming in from the right
+	
+charging 600 -300 -4 4
+charging 600 800 -4 -4
+	A pair of charging enemies that from the top and bottom
