@@ -2,10 +2,6 @@
 
 currently, need to finsish roll ability to go invincible for short period, but cannot shoot. 	this roll ability will be integrated alot in boss fights, where boss will probably shoot some undodgeable move. 
 
-need to figure out making enemies spawn in patterns
-
-need to make more enemies
-
 need to make bosses
 
 need to make condition that if all enemies are dead check if enough score is earned. if enough, win!!! else lose 
