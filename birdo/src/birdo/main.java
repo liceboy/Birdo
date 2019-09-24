@@ -63,26 +63,29 @@ public class main extends JPanel implements ActionListener {
 
 		if (state == "levelSelect")
 			levelSelect.draw(g);
-		
+
 		if (state == "woods")
 			woods.draw(g);
-		
+
 		if (state == "city")
 			city.draw(g);
-		
+
 		if (state == "beach")
 			beach.draw(g);
-		
+
 		if (state == "sky")
 			sky.draw(g);
 	}
 
 	public void actionPerformed(ActionEvent e) {
-		if (state == "woods") woods.move();
-		if (state == "city") city.move();
-		if (state == "beach") beach.move();
-		if (state == "sky") sky.move();
-		
+		if (state == "woods")
+			woods.move();
+		if (state == "city")
+			city.move();
+		if (state == "beach")
+			beach.move();
+		if (state == "sky")
+			sky.move();
 
 		repaint();
 	}
@@ -94,12 +97,12 @@ public class main extends JPanel implements ActionListener {
 
 		public void keyPressed(KeyEvent e) {
 			int key = e.getKeyCode();
-			
+
 			if (state == "title") {
 				if (key == KeyEvent.VK_SPACE)
 					state = "levelSelect";
 			}
-			
+
 			if (woods.state == "GameOver") { // if gameover, new hotkeys, resets game state
 				if (key == KeyEvent.VK_SPACE) {
 					state = "woods";
@@ -111,7 +114,7 @@ public class main extends JPanel implements ActionListener {
 				}
 				woods.state = " ";
 			}
-			
+
 			if (city.state == "GameOver") {
 				if (key == KeyEvent.VK_SPACE) {
 					city = new city();
@@ -123,8 +126,7 @@ public class main extends JPanel implements ActionListener {
 				}
 				city.state = " ";
 			}
-			
-			
+
 			if (beach.state == "GameOver") {
 				if (key == KeyEvent.VK_SPACE) {
 					beach = new beach();
@@ -136,8 +138,7 @@ public class main extends JPanel implements ActionListener {
 				}
 				beach.state = " ";
 			}
-			
-			
+
 			if (sky.state == "GameOver") {
 				if (key == KeyEvent.VK_SPACE) {
 					sky = new sky();
@@ -149,8 +150,7 @@ public class main extends JPanel implements ActionListener {
 				}
 				sky.state = " ";
 			}
-			
-			
+
 			if (state == "levelSelect") {
 				if (key == KeyEvent.VK_ESCAPE)
 					state = "title";
@@ -163,7 +163,7 @@ public class main extends JPanel implements ActionListener {
 				if (key == KeyEvent.VK_4)
 					state = "sky";
 			}
-			
+
 			if (state == "woods") {
 				if (key == KeyEvent.VK_UP)
 					woods.player.dy = -4;
@@ -173,14 +173,14 @@ public class main extends JPanel implements ActionListener {
 					woods.player.dy = 4;
 				if (key == KeyEvent.VK_RIGHT)
 					woods.player.dx = 4;
-				if (key == KeyEvent.VK_SPACE) 
+				if (key == KeyEvent.VK_SPACE)
 					woods.player.roll();
 				if (key == KeyEvent.VK_ESCAPE) {
 					state = "levelSelect";
 					woods = new woods();
 				}
-		}
-			
+			}
+
 			if (state == "city") {
 				if (key == KeyEvent.VK_UP)
 					city.player.dy = -4;
@@ -194,8 +194,8 @@ public class main extends JPanel implements ActionListener {
 					state = "levelSelect";
 					city = new city();
 				}
-		}
-			
+			}
+
 			if (state == "beach") {
 				if (key == KeyEvent.VK_UP)
 					beach.player.dy = -4;
@@ -209,8 +209,8 @@ public class main extends JPanel implements ActionListener {
 					state = "levelSelect";
 					beach = new beach();
 				}
-		}
-			
+			}
+
 			if (state == "sky") {
 				if (key == KeyEvent.VK_UP)
 					sky.player.dy = -4;
@@ -224,63 +224,90 @@ public class main extends JPanel implements ActionListener {
 					state = "levelSelect";
 					sky = new sky();
 				}
-		}
-		
+			}
 
 		}
 
 		public void keyReleased(KeyEvent e) {
 			int key = e.getKeyCode();
 			if (state == "woods") {
-			if (key == KeyEvent.VK_UP && woods.player.dy != 2)
-				woods.player.dy = 0;
-			if (key == KeyEvent.VK_LEFT && woods.player.dx != 2)
-				woods.player.dx = 0;
-			if (key == KeyEvent.VK_DOWN && woods.player.dy != -2)
-				woods.player.dy = 0;
-			if (key == KeyEvent.VK_RIGHT && woods.player.dx != -2)
-				woods.player.dx = 0;
-			
-	}
-			
-		
+				
+				if (key == KeyEvent.VK_Q) {
+					enemy temp = new enemy (850, (int) (Math.random() * 300 ) + 100, Color.BLACK);
+					woods.enemies.add(temp);
+				}
+				
+				if (key == KeyEvent.VK_W) {
+					enemy temp = new homingEnemy (850, (int) (Math.random() * 300 ) + 100, Color.DARK_GRAY);
+					woods.enemies.add(temp);
+				}
+				
+				if (key == KeyEvent.VK_E) {
+					enemy temp = new chargingEnemy (850, (int) (Math.random() * 300 ) + 100, Color.GRAY);
+					woods.enemies.add(temp);
+				}
+				
+				if (key == KeyEvent.VK_R) {
+					enemy temp = new bigEnemy (850, (int) (Math.random() * 300 ) + 100, Color.MAGENTA);
+					woods.enemies.add(temp);
+				}
+				
+				if (key == KeyEvent.VK_T) {
+					enemy temp = new homingPooper (850, (int) (Math.random() * 300 ) + 100, Color.GREEN);
+					woods.enemies.add(temp);
+				}
+				
+				if (key == KeyEvent.VK_Y) {
+					enemy temp = new strafeRunPooper (850, (int) (Math.random() * 300 ) + 100, Color.ORANGE);
+					woods.enemies.add(temp);
+				}
+				
+				if (key == KeyEvent.VK_UP && woods.player.dy != 2)
+					woods.player.dy = 0;
+				if (key == KeyEvent.VK_LEFT && woods.player.dx != 2)
+					woods.player.dx = 0;
+				if (key == KeyEvent.VK_DOWN && woods.player.dy != -2)
+					woods.player.dy = 0;
+				if (key == KeyEvent.VK_RIGHT && woods.player.dx != -2)
+					woods.player.dx = 0;
+
+			}
+
 			if (state == "city") {
-			if (key == KeyEvent.VK_UP && city.player.dy != 2)
-				city.player.dy = 0;
-			if (key == KeyEvent.VK_LEFT && city.player.dx != 2)
-				city.player.dx = 0;
-			if (key == KeyEvent.VK_DOWN && city.player.dy != -2)
-				city.player.dy = 0;
-			if (key == KeyEvent.VK_RIGHT && city.player.dx != -2)
-				city.player.dx = 0;
-			
-	}
-			
-			
+				if (key == KeyEvent.VK_UP && city.player.dy != 2)
+					city.player.dy = 0;
+				if (key == KeyEvent.VK_LEFT && city.player.dx != 2)
+					city.player.dx = 0;
+				if (key == KeyEvent.VK_DOWN && city.player.dy != -2)
+					city.player.dy = 0;
+				if (key == KeyEvent.VK_RIGHT && city.player.dx != -2)
+					city.player.dx = 0;
+
+			}
+
 			if (state == "beach") {
-			if (key == KeyEvent.VK_UP && beach.player.dy != 2)
-				beach.player.dy = 0;
-			if (key == KeyEvent.VK_LEFT && beach.player.dx != 2)
-				beach.player.dx = 0;
-			if (key == KeyEvent.VK_DOWN && beach.player.dy != -2)
-				beach.player.dy = 0;
-			if (key == KeyEvent.VK_RIGHT && beach.player.dx != -2)
-				beach.player.dx = 0;
-			
-	}
-			
-			
+				if (key == KeyEvent.VK_UP && beach.player.dy != 2)
+					beach.player.dy = 0;
+				if (key == KeyEvent.VK_LEFT && beach.player.dx != 2)
+					beach.player.dx = 0;
+				if (key == KeyEvent.VK_DOWN && beach.player.dy != -2)
+					beach.player.dy = 0;
+				if (key == KeyEvent.VK_RIGHT && beach.player.dx != -2)
+					beach.player.dx = 0;
+
+			}
+
 			if (state == "sky") {
-			if (key == KeyEvent.VK_UP && sky.player.dy != 2)
-				sky.player.dy = 0;
-			if (key == KeyEvent.VK_LEFT && sky.player.dx != 2)
-				sky.player.dx = 0;
-			if (key == KeyEvent.VK_DOWN && sky.player.dy != -2)
-				sky.player.dy = 0;
-			if (key == KeyEvent.VK_RIGHT && sky.player.dx != -2)
-				sky.player.dx = 0;
-			
-	}
+				if (key == KeyEvent.VK_UP && sky.player.dy != 2)
+					sky.player.dy = 0;
+				if (key == KeyEvent.VK_LEFT && sky.player.dx != 2)
+					sky.player.dx = 0;
+				if (key == KeyEvent.VK_DOWN && sky.player.dy != -2)
+					sky.player.dy = 0;
+				if (key == KeyEvent.VK_RIGHT && sky.player.dx != -2)
+					sky.player.dx = 0;
+
+			}
 		}
 	}
 
@@ -304,6 +331,3 @@ public class main extends JPanel implements ActionListener {
 		}
 	}
 }
-
-
-
