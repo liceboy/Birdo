@@ -173,8 +173,6 @@ public class main extends JPanel implements ActionListener {
 					woods.player.dy = 4;
 				if (key == KeyEvent.VK_RIGHT)
 					woods.player.dx = 4;
-				if (key == KeyEvent.VK_SPACE)
-					woods.player.roll();
 				if (key == KeyEvent.VK_ESCAPE) {
 					state = "levelSelect";
 					woods = new woods();
@@ -262,6 +260,15 @@ public class main extends JPanel implements ActionListener {
 					woods.enemies.add(temp);
 				}
 				
+				if (key == KeyEvent.VK_U) {
+					enemy temp = new rapidShooter (850, (int) (Math.random() * 300 ) + 100, Color.CYAN);
+					woods.enemies.add(temp);
+				}
+				
+				if (key == KeyEvent.VK_I) {
+					enemy temp = new suicideBomber (850, (int) (Math.random() * 300 ) + 100, Color.GREEN);
+					woods.enemies.add(temp);
+				}
 				if (key == KeyEvent.VK_UP && woods.player.dy != 2)
 					woods.player.dy = 0;
 				if (key == KeyEvent.VK_LEFT && woods.player.dx != 2)

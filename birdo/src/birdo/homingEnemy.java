@@ -29,5 +29,9 @@ public class homingEnemy extends enemy{
 			}
 			shootcount--;
 	}
+	
+	public void poop () {
+		return;
+	}
 
 }

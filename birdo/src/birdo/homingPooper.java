@@ -15,7 +15,7 @@ public class homingPooper extends enemy {
 	
 	public void poop() {
 		if (poopcount == 0) {
-			if(!isDead && this.playercanshoot == true) {
+			if(!isDead) {
 				eggs.add(new egg (this.x, this.y, 15,15, Color.YELLOW));
 				poopcount = 250;
 			}

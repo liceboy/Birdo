@@ -64,7 +64,6 @@ public abstract class game {
 			player.invulnerablecooldown--;
 			if(player.invulnerablecooldown == 0) {
 				player.invulnerable = false;
-				player.playercanshoot = true;
 				player.c = Color.BLUE;
 			}
 		}

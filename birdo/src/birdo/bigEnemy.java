@@ -6,6 +6,7 @@ public class bigEnemy extends enemy {
 
 	public bigEnemy(int x, int y, Color c) {
 		super(x, y, c);
+		w = 60; h = 60;
 		health = 5;
 	}
 	
