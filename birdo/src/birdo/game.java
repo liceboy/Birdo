@@ -86,7 +86,7 @@ public abstract class game {
 				if(!player.invulnerable) {
 					player.health--;
 					player.invulnerable = true;
-					player.invulnerablecooldown = 100;
+					player.invulnerablecooldown = 75;
 				}
 			}
 			
@@ -98,7 +98,7 @@ public abstract class game {
 					if(!player.invulnerable) {
 						player.health--;
 						player.invulnerable = true;
-						player.invulnerablecooldown = 100;
+						player.invulnerablecooldown = 75;
 					}
 					e.feathers.remove(j);
 					j--;
@@ -117,7 +117,7 @@ public abstract class game {
 					if(!player.invulnerable) {
 						player.health--;
 						player.invulnerable = true;
-						player.invulnerablecooldown = 100;
+						player.invulnerablecooldown = 75;
 					}
 					e.eggs.remove(k);
 					k--;
