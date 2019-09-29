@@ -11,7 +11,8 @@ public class chargingEnemy extends enemy{
 	}
 	
 	public void move() {
-		
+		if (!isDead) {
+			
 		if(x > 800) {
 			dx = -3;
 			super.move();
@@ -27,6 +28,11 @@ public class chargingEnemy extends enemy{
 		this.dy = -1 * (int)(8 * Math.sin(theta));
 		
 		super.move();
+		
+		}
+		
+		if (isDead)
+			super.move();
 	}
 	
 	public void shootFeather() {

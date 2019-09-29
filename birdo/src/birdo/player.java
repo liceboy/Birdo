@@ -79,4 +79,14 @@ public class player extends object{
 		poopcount--; 
 		}
 	
+	public boolean checkisDead() {
+		if (health <= 0) {
+			isDead = true;
+			dx= 0;
+			dy= 7;
+			return true;
+		}
+		return false;
+	}
+	
 }

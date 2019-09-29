@@ -46,27 +46,27 @@ public class suicideBomber extends enemy{
 	}
 
 	public void move() {
-		if(x > 800) {
-			dx = -3;
+		if (!isDead) {
+			
+			if(x > 800) {
+				dx = -3;
+				super.move();
+				return; 
+			}
+			
+			int deltaX = p.x - x;
+			int deltaY = p.y - y;
+			
+			double theta = Math.atan((double) deltaY/(double) deltaX);
+			
+			this.dx = -1 * (int)(2 * Math.cos(theta));
+			this.dy = -1 * (int)(2 * Math.sin(theta));
+			
 			super.move();
-			return; 
-		}
-		
-		if (x != p.x || y != p.y) {
-		
-		int deltaX = p.x - x;
-		int deltaY = p.y - y;
-		
-		double theta = Math.atan((double) deltaY/(double) deltaX);
-		
-		this.dx = -1 * (int)(2 * Math.cos(theta));
-		this.dy = -1 * (int)(2 * Math.sin(theta));
-		
-		super.move();
-		
-		}
-		dx = 0;
-		dy = 0;
-		
+			
+			}
+			
+			if (isDead)
+				super.move();
 	}
 }

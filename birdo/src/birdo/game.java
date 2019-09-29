@@ -45,9 +45,7 @@ public abstract class game {
 		g.setColor(Color.BLACK);
 		g.drawString("Score: " + score, 650, 40);
 		g.drawString("Health: " + player.health, 25, 40);
-		if (player.health <= 0) {
-			player.dx = 0; // if game over, play this death animation and display these strings, new state
-			player.dy = 7; // level will continue to play :)
+		if (player.checkisDead()) {
 			g.drawString("Game Over!", 300, 150);
 			g.drawString("Continue: SPACEBAR", 300, 175);
 			g.drawString("Quit: SHIFT", 300, 200);
@@ -66,14 +64,13 @@ public abstract class game {
 				player.invulnerable = false;
 				player.c = Color.BLUE;
 			}
-		}
+		}  
 		
 		// SCREEN BORDERS
 		
 		if(player.x < 0) player.x = 0;
 		if(player.x > 800 - player.w) player.x = 800 - player.w;
 		if(player.y < 0) player.y = 0;
-		if(player.y > 500 - player.h) player.y = 500 - player.h;
 		
 		// PLAYER HITBOXES
 		
@@ -165,10 +162,10 @@ public abstract class game {
 				}
 			}
 			
-			if (e.health <= 0) {
-				e.isDead = true;
+			e.checkisDead();
+			
+			if (e.y > 800) {
 				enemies.remove(i);
-				score += 100;
 				i--;
 			}
 		}
