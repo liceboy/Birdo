@@ -10,7 +10,7 @@ public class boomerangShooter extends enemy {
 	}
 	
 	public void shootFeather() {
-		
+		return;
 	}
 	
 	public void poop() {

@@ -104,11 +104,11 @@ public class main extends JPanel implements ActionListener {
 			}
 
 			if (woods.state == "GameOver") { // if gameover, new hotkeys, resets game state
-				if (key == KeyEvent.VK_SPACE) {
+				if (key == KeyEvent.VK_F1) {
 					state = "woods";
 					woods = new woods();
 				}
-				if (key == KeyEvent.VK_SHIFT) {
+				if (key == KeyEvent.VK_F2) {
 					woods = new woods();
 					state = "title";
 				}
@@ -116,11 +116,11 @@ public class main extends JPanel implements ActionListener {
 			}
 
 			if (city.state == "GameOver") {
-				if (key == KeyEvent.VK_SPACE) {
+				if (key == KeyEvent.VK_F1) {
 					city = new city();
 					state = "city";
 				}
-				if (key == KeyEvent.VK_SHIFT) {
+				if (key == KeyEvent.VK_F2) {
 					city = new city();
 					state = "title";
 				}
@@ -128,11 +128,11 @@ public class main extends JPanel implements ActionListener {
 			}
 
 			if (beach.state == "GameOver") {
-				if (key == KeyEvent.VK_SPACE) {
+				if (key == KeyEvent.VK_F1) {
 					beach = new beach();
 					state = "beach";
 				}
-				if (key == KeyEvent.VK_SHIFT) {
+				if (key == KeyEvent.VK_F2) {
 					beach = new beach();
 					state = "title";
 				}
@@ -140,11 +140,11 @@ public class main extends JPanel implements ActionListener {
 			}
 
 			if (sky.state == "GameOver") {
-				if (key == KeyEvent.VK_SPACE) {
+				if (key == KeyEvent.VK_F1) {
 					sky = new sky();
 					state = "sky";
 				}
-				if (key == KeyEvent.VK_SHIFT) {
+				if (key == KeyEvent.VK_F2) {
 					sky = new sky();
 					state = "title";
 				}
@@ -277,7 +277,9 @@ public class main extends JPanel implements ActionListener {
 					woods.player.dy = 0;
 				if (key == KeyEvent.VK_RIGHT && woods.player.dx != -2)
 					woods.player.dx = 0;
-
+				if (key == KeyEvent.VK_SPACE) {
+					woods.player.poop(); 
+				}
 			}
 
 			if (state == "city") {
@@ -289,6 +291,9 @@ public class main extends JPanel implements ActionListener {
 					city.player.dy = 0;
 				if (key == KeyEvent.VK_RIGHT && city.player.dx != -2)
 					city.player.dx = 0;
+				if (key == KeyEvent.VK_SPACE) {
+					city.player.poop(); 
+				}
 
 			}
 
@@ -301,7 +306,9 @@ public class main extends JPanel implements ActionListener {
 					beach.player.dy = 0;
 				if (key == KeyEvent.VK_RIGHT && beach.player.dx != -2)
 					beach.player.dx = 0;
-
+				if (key == KeyEvent.VK_SPACE) {
+					beach.player.poop(); 
+				}
 			}
 
 			if (state == "sky") {
@@ -313,6 +320,9 @@ public class main extends JPanel implements ActionListener {
 					sky.player.dy = 0;
 				if (key == KeyEvent.VK_RIGHT && sky.player.dx != -2)
 					sky.player.dx = 0;
+				if (key == KeyEvent.VK_SPACE) {
+					sky.player.poop(); 
+				}
 
 			}
 		}

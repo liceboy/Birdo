@@ -30,6 +30,8 @@ public abstract class game {
 	
 	public void move() {
 		player.move();
+		for (egg e: player.eggs)
+			e.move();
 		for (enemy e: enemies) {
 			e.p = player;
 			e.move();
@@ -39,16 +41,18 @@ public abstract class game {
 	
 	public void draw(Graphics g) {
 		player.draw(g);
-		
+		for (egg e: player.eggs) 
+			e.draw(g);
 		for (enemy e: enemies)
 			e.draw(g);
 		g.setColor(Color.BLACK);
 		g.drawString("Score: " + score, 650, 40);
 		g.drawString("Health: " + player.health, 25, 40);
+		g.drawString("Eggs x" + player.ammo, 25, 55);
 		if (player.checkisDead()) {
 			g.drawString("Game Over!", 300, 150);
-			g.drawString("Continue: SPACEBAR", 300, 175);
-			g.drawString("Quit: SHIFT", 300, 200);
+			g.drawString("Continue: F1", 300, 175);
+			g.drawString("Quit: F2", 300, 200);
 			state = "GameOver";
 		}
 	}
@@ -155,8 +159,23 @@ public abstract class game {
 				egg p = player.eggs.get(k);
 				if(e.getHitBox().intersects(p.getHitBox())) {
 					e.health = e.health-5;
+					p.explode();
+					for (int z = 0; z != p.scattershots.size(); z++) {
+						scattershot s = p.scattershots.get(z);
+						if (e.getHitBox().intersects(s.getHitBox())) {
+							e.health = e.health-1;
+							p.scattershots.remove(z);
+							z--;
+						}
+						if (s.y > 500 || s.y < 0) 
+							p.scattershots.remove(z);
+						if (s.x < 0 || s.x > 800)
+							p.scattershots.remove(z);
+						
+					}
 					player.eggs.remove(k);
 					k--;
+					
 				}
 				if(p.y > 500) {
 					player.eggs.remove(k);
@@ -168,6 +187,7 @@ public abstract class game {
 			
 			if (e.y > 800) {
 				enemies.remove(i);
+				score += e.score;
 				i--;
 			}
 		}

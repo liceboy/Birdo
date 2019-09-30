@@ -21,6 +21,8 @@ public class player extends object{
 	boolean invulnerable;
 	// checks if invulnerable
 	int invulnerablecooldown;
+	// poop ammo
+	int ammo; 
 	int[] stats = { health, damage, moveSpeed};
 	ArrayList<feather> feathers;
 	ArrayList<egg> eggs;
@@ -30,6 +32,8 @@ public class player extends object{
 		damage = 1;
 		moveSpeed = 4;
 		shootcount = 0;
+		poopcount = 0;
+		ammo = 3;
 		isDead = false;
 		feathers = new ArrayList<feather>();
 		eggs = new ArrayList<egg>();
@@ -56,7 +60,7 @@ public class player extends object{
 		for(feather f:feathers) f.move();
 		for (egg e: eggs) e.move();
 		if(x < 800) shootFeather();
-		if(x < 800) poop();
+	
 	}
 	
 	public void shootFeather() { // shoots automatically with cooldown
@@ -70,13 +74,12 @@ public class player extends object{
 		shootcount--;
 	}
 	public void poop() { // poops automatically with cooldown
-		if (poopcount == 0) {
+		if (ammo > 0) {
 			if(!isDead) {
 				eggs.add(new egg (this.x, this.y, 15,15, Color.YELLOW));
-				poopcount = 100;
+				ammo--;
 			}
 		}
-		poopcount--; 
 		}
 	
 	public boolean checkisDead() {

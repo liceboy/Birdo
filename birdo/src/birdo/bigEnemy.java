@@ -8,6 +8,7 @@ public class bigEnemy extends enemy {
 		super(x, y, c);
 		w = 60; h = 60;
 		health = 5;
+		score = 250;
 	}
 	
 	public void move() {
