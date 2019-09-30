@@ -71,6 +71,8 @@ public abstract class game {
 		if(player.x < 0) player.x = 0;
 		if(player.x > 800 - player.w) player.x = 800 - player.w;
 		if(player.y < 0) player.y = 0;
+		if (player.isDead == false)
+			if (500 - player.h < player.y) player.y = 500 - player.h;
 		
 		// PLAYER HITBOXES
 		
