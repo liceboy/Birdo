@@ -154,7 +154,7 @@ public abstract class game {
 			for(int k = 0; k != player.eggs.size(); k++) {
 				egg p = player.eggs.get(k);
 				if(e.getHitBox().intersects(p.getHitBox())) {
-					e.health--;
+					e.health = e.health-5;
 					player.eggs.remove(k);
 					k--;
 				}
