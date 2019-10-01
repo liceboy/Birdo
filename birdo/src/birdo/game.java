@@ -41,7 +41,7 @@ public abstract class game {
 	
 	public void draw(Graphics g) {
 		player.draw(g);
-		for (egg e: player.eggs) 
+		for (egg e: player.eggs) // calls egg draw method so scattershots can be drawn?
 			e.draw(g);
 		for (enemy e: enemies)
 			e.draw(g);
@@ -155,7 +155,7 @@ public abstract class game {
 			
 			// enemy hit my egg? take damage
 			
-			for(int k = 0; k != player.eggs.size(); k++) {
+			for(int k = 0; k != player.eggs.size(); k++) { // when the player egg hits an enemy, it should explode into multiple scattershots
 				egg p = player.eggs.get(k);
 				if(e.getHitBox().intersects(p.getHitBox())) {
 					e.health = e.health-5;

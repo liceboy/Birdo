@@ -41,8 +41,6 @@ public class player extends object{
 		invulnerablecooldown = 0;
 	}
 	
-
-
 	public void draw(Graphics g) {
 		for (feather a : feathers)
 			a.draw(g);
