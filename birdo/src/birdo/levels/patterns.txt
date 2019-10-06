@@ -25,6 +25,10 @@ enemy 860 135
 enemy 815 225
 enemy 860 315
 enemy 815 405
+suicideBomber 1000 45
+suicideBomber 1000 80
+suicideBomber 1000 120
+suicideBomber 1000 160
 end
 
 chargingArmy

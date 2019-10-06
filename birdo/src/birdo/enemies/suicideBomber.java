@@ -10,6 +10,7 @@ public class suicideBomber extends enemy {
 	public suicideBomber(int x, int y) {
 		super(x, y);
 		health = 2;
+		c = Color.GREEN;
 	}
 
 	public void shootFeather() {
@@ -62,8 +63,8 @@ public class suicideBomber extends enemy {
 
 			double theta = Math.atan((double) deltaY / (double) deltaX);
 
-			this.dx = -1 * (int) (2 * Math.cos(theta));
-			this.dy = -1 * (int) (2 * Math.sin(theta));
+			this.dx = -1 * (int) (3 * Math.cos(theta));
+			this.dy = -1 * (int) (3 * Math.sin(theta));
 
 			super.move();
 

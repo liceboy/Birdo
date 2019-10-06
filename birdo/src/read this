@@ -1,0 +1,19 @@
+possible features to be added in the future:
+	eggs should have AOE / scattershot
+	player should be getting stronger each section/level, maybe we will just make a player that extends the first player 
+	suicideBomber: shoots only when dead, will also be considered dead when close enough to the player, thus shooting
+	healthbar of whatever is being shot in the top middle 
+	miniboss: simpler boss with like 15 health with 1 - 2 attk patterns
+	boss: should have multiple phases based on health, maybe one method that runs through all his phases? 
+	hazards: woods: tree branches/snakes dangling from trees (lmao), hunter that shoots after an indicator
+			 city:  power lines, smoke that slows you down, reduces vision, and/or damages you
+			 beach: kinda dont know, aquatic creatures/ big waves?
+			 sky: rain, lightning, wind, pretty much all weather effects could be implemented
+some things to think about:
+	shooting enemies should almost always be some kind of homing shooter unless in specific situations
+	enemies should sometimes be stalling out, not every enemy should just run across the screen at dx = -3
+	i'm thinking of making a enemy in which we can just manipulate its dx/dy, need a collision enemy besides chargingEnemy
+	should we be making the window bigger?
+	should enemy feathers be slower? everything feels sort of cancerous to dodge 
+	
+	

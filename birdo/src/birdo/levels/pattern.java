@@ -9,11 +9,14 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import birdo.enemies.bigEnemy;
+import birdo.enemies.burstShooter;
 import birdo.enemies.chargingEnemy;
 import birdo.enemies.homingEnemy;
 import birdo.enemies.homingPooper;
 import birdo.enemies.rapidShooter;
+import birdo.enemies.steadyShooter;
 import birdo.enemies.strafeRunPooper;
+import birdo.enemies.suicideBomber;
 import birdo.utilities.enemy;
 
 public class pattern {
@@ -74,8 +77,14 @@ public class pattern {
 			temp = new homingPooper(0, 0);
 		if (type.equals("strafeRunPooper"))
 			temp = new strafeRunPooper(0, 0);
+		if (type.equals("suicideBomber"))
+			temp = new suicideBomber(0, 0);
 		if (type.equals("rapidShooter"))
 			temp = new rapidShooter(0, 0);
+		if (type.equals("burstShooter"))
+			temp = new burstShooter(0,0);
+		if (type.equals("steadyShooter"))
+			temp = new steadyShooter(0,0);
 		return temp;
 	}
 }
