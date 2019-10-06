@@ -31,10 +31,18 @@ public class steadyShooter extends enemy {
 
 				feathers.add(f);
 				// adds a feather if alive
-				shootcount = 40;
+				shootcount = 30;
 			}
 		}
 		shootcount--;
+	}
+	
+	public void move () {
+		if (x > 700)
+			dx = -3;
+		if (x < 700)
+			dx = 0;
+		super.move();
 	}
 
 }

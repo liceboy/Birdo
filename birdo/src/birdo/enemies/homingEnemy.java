@@ -37,5 +37,13 @@ public class homingEnemy extends enemy {
 	public void poop() {
 		return;
 	}
+	
+	public void move() {
+		if (x > 800) 
+			dx = -3;
+		if (x < 800)
+			dx = -1;
+		super.move();
+	}
 
 }

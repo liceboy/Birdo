@@ -25,10 +25,6 @@ enemy 860 135
 enemy 815 225
 enemy 860 315
 enemy 815 405
-suicideBomber 1000 45
-suicideBomber 1000 80
-suicideBomber 1000 120
-suicideBomber 1000 160
 end
 
 chargingArmy
@@ -43,9 +39,9 @@ chargingEnemy 1515 405
 end
 
 strafingTrio
-strafeRunPooper 815 0
-strafeRunPooper 1115 0
-strafeRunPooper 1415 0
+strafeRunPooper 815 15
+strafeRunPooper 1115 15
+strafeRunPooper 1415 15
 end
 
 homingArmy
@@ -66,4 +62,30 @@ rapidShooter 815 180
 rapidShooter 815 315
 rapidShooter 815 360
 rapidShooter 815 405
+end
+
+bigEnemies
+bigEnemy 815 135
+bigEnemy 815 360
+end
+
+burstShooters
+burstShooter 815 180
+burstShooter 815 360
+end
+
+shooterGang
+burstShooter 815 180 
+burstShooter 815 360
+homingEnemy 915 90
+homingEnemy 915 270
+homingEnemy 915 450
+end
+
+comboAttack
+bigEnemy 815 270
+steadyShooter 1015 225
+steadyShooter 1015 315
+homingEnemy 915 360
+homingEnemy 915 180
 end

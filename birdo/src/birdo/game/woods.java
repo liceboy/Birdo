@@ -16,7 +16,11 @@ public class woods extends game{
 		layout.add("strafingTrio");
 		layout.add("homingArmy");
 		layout.add("rapidBar");
-		
+		layout.add("bigEnemies");
+		layout.add("burstShooters");
+		layout.add("chargingArmy");
+		layout.add("shooterGang");
+		layout.add("comboAttack");
 	}
 	public void move() {
 		super.move();
