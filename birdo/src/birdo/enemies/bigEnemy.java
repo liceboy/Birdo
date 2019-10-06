@@ -7,8 +7,9 @@ import birdo.utilities.feather;
 
 public class bigEnemy extends enemy {
 
-	public bigEnemy(int x, int y, Color c) {
-		super(x, y, c);
+	public bigEnemy(int x, int y) {
+		super(x, y);
+		c = Color.MAGENTA;
 		w = 60;
 		h = 60;
 		health = 5;
@@ -27,9 +28,9 @@ public class bigEnemy extends enemy {
 		if (shootcount == 0)
 			if (!isDead) {
 
-				feather f = new feather(this.x, this.y, 30, 20, Color.BLACK, false);
-				feather f1 = new feather(this.x, this.y, 30, 20, Color.BLACK, false);
-				feather f2 = new feather(this.x, this.y, 30, 20, Color.BLACK, false);
+				feather f = new feather(this.x, this.y, 15, 10, Color.BLACK, false);
+				feather f1 = new feather(this.x, this.y, 15, 10, Color.BLACK, false);
+				feather f2 = new feather(this.x, this.y, 15, 10, Color.BLACK, false);
 
 				f.dx = -5;
 

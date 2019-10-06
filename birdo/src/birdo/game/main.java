@@ -234,44 +234,40 @@ public class main extends JPanel implements ActionListener {
 			if (state == "woods") {
 
 				if (key == KeyEvent.VK_Q) {
-					enemy temp = new enemy(850, (int) (Math.random() * 300) + 100, Color.BLACK);
+					enemy temp = new enemy(850, (int) (Math.random() * 300) + 100);
 					woods.enemies.add(temp);
 				}
 
 				if (key == KeyEvent.VK_W) {
-					enemy temp = new homingEnemy(850, (int) (Math.random() * 300) + 100, Color.DARK_GRAY);
+					enemy temp = new homingEnemy(850, (int) (Math.random() * 300) + 100);
 					woods.enemies.add(temp);
 				}
 
 				if (key == KeyEvent.VK_E) {
-					enemy temp = new chargingEnemy(850, (int) (Math.random() * 300) + 100, Color.GRAY);
+					enemy temp = new chargingEnemy(850, (int) (Math.random() * 300) + 100);
 					woods.enemies.add(temp);
 				}
 
 				if (key == KeyEvent.VK_R) {
-					enemy temp = new bigEnemy(850, (int) (Math.random() * 300) + 100, Color.MAGENTA);
+					enemy temp = new bigEnemy(850, (int) (Math.random() * 300) + 100);
 					woods.enemies.add(temp);
 				}
 
 				if (key == KeyEvent.VK_T) {
-					enemy temp = new homingPooper(850, (int) (Math.random() * 300) + 100, Color.GREEN);
+					enemy temp = new homingPooper(850, (int) (Math.random() * 300) + 100);
 					woods.enemies.add(temp);
 				}
 
 				if (key == KeyEvent.VK_Y) {
-					enemy temp = new strafeRunPooper(850, (int) (Math.random() * 300) + 100, Color.ORANGE);
+					enemy temp = new strafeRunPooper(850, (int) (Math.random() * 300) + 100);
 					woods.enemies.add(temp);
 				}
 
 				if (key == KeyEvent.VK_U) {
-					enemy temp = new rapidShooter(850, (int) (Math.random() * 300) + 100, Color.CYAN);
+					enemy temp = new rapidShooter(850, (int) (Math.random() * 300) + 100);
 					woods.enemies.add(temp);
 				}
-
-				if (key == KeyEvent.VK_I) {
-					enemy temp = new suicideBomber(850, (int) (Math.random() * 300) + 100, Color.GREEN);
-					woods.enemies.add(temp);
-				}
+				
 				if (key == KeyEvent.VK_UP && woods.player.dy != 2)
 					woods.player.dy = 0;
 				if (key == KeyEvent.VK_LEFT && woods.player.dx != 2)

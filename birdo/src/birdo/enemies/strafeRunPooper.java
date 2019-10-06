@@ -7,8 +7,9 @@ import birdo.utilities.enemy;
 
 public class strafeRunPooper extends enemy {
 
-	public strafeRunPooper(int x, int y, Color c) {
-		super(x, y, c);
+	public strafeRunPooper(int x, int y) {
+		super(x, y);
+		c = Color.ORANGE;
 		health = 1;
 	}
 

@@ -8,8 +8,9 @@ import birdo.utilities.feather;
 
 public class homingEnemy extends enemy {
 
-	public homingEnemy(int x, int y, Color c) {
-		super(x, y, c);
+	public homingEnemy(int x, int y) {
+		super(x, y);
+		c = Color.DARK_GRAY;
 		health = 1;
 	}
 

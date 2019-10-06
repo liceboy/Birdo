@@ -7,8 +7,8 @@ import birdo.utilities.feather;
 
 public class suicideBomber extends enemy {
 
-	public suicideBomber(int x, int y, Color c) {
-		super(x, y, c);
+	public suicideBomber(int x, int y) {
+		super(x, y);
 		health = 2;
 	}
 

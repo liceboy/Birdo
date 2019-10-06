@@ -7,8 +7,9 @@ import birdo.utilities.enemy;
 
 public class homingPooper extends enemy {
 
-	public homingPooper(int x, int y, Color c) {
-		super(x, y, c);
+	public homingPooper(int x, int y) {
+		super(x, y);
+		c = Color.GREEN;
 		health = 1;
 	}
 

@@ -7,8 +7,8 @@ public class enemy extends player {
 	public player p;
 	public int score;
 
-	public enemy(int x, int y, Color c) {
-		super(x, y, c);
+	public enemy(int x, int y) {
+		super(x, y, Color.BLACK);
 		health = 1;
 		score = 100;
 		this.dx = -3;

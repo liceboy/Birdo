@@ -1,10 +1,20 @@
+// ENEMY PATTERNS
+// format them like:
+// <name>
+// <type> <x> <y>
+// <type> <x> <y>
+// ...
+// end
+
 starter
 homingEnemy 815 125
 homingEnemy 815 250
 homingEnemy 815 375
 homingEnemy 815 500
+end
 
 charge
 chargingEnemy 900 175
 chargingEnemy 900 350
+end
 

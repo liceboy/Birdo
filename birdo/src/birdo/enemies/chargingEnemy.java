@@ -7,8 +7,9 @@ import birdo.utilities.enemy;
 
 public class chargingEnemy extends enemy {
 
-	public chargingEnemy(int x, int y, Color c) {
-		super(x, y, c);
+	public chargingEnemy(int x, int y) {
+		super(x, y);
+		c = Color.GRAY;
 		health = 1;
 	}
 

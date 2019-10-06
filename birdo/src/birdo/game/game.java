@@ -5,6 +5,7 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.util.ArrayList;
 
+import birdo.levels.pattern;
 import birdo.utilities.*;
 
 public abstract class game {
@@ -17,6 +18,9 @@ public abstract class game {
 	// player score
 	String state;
 	// state of game
+	
+	ArrayList<String> layout = new ArrayList<String>();
+	int patternNum = 0;
 	
 	public game() {
 		player = new player (130, 130, Color.BLUE); 
@@ -39,6 +43,7 @@ public abstract class game {
 			e.move();
 		}
 		collision();
+		genPattern();
 	}
 	
 	public void draw(Graphics g) {
@@ -140,6 +145,8 @@ public abstract class game {
 		for(int i = 0; i != enemies.size(); i++) {
 			enemy e = enemies.get(i);
 			
+			if(e.x > 800) continue;
+			
 			// enemy hit my feather? take damage
 			
 			for(int j = 0; j != player.feathers.size(); j++) {
@@ -158,6 +165,7 @@ public abstract class game {
 			// enemy hit my egg? take damage
 			
 			for(int k = 0; k != player.eggs.size(); k++) { // when the player egg hits an enemy, it should explode into multiple scattershots
+				
 				egg p = player.eggs.get(k);
 				if(e.getHitBox().intersects(p.getHitBox())) {
 					e.health = e.health-5;
@@ -178,10 +186,26 @@ public abstract class game {
 				score += e.score;
 				i--;
 			}
+			
+			if (e.x < -60) {
+				enemies.remove(i);
+				score += e.score;
+				i--;
+			}
 		}
 		
 		
 
+	}
+	
+	public void genPattern() {
+		System.out.println(layout.size() + " " + patternNum + " " + enemies.size());
+		
+		if(enemies.size() == 0 && patternNum != layout.size()) {
+			ArrayList<enemy> toAdd = new pattern(layout.get(patternNum)).enemies;
+			for(enemy e:toAdd) enemies.add(e);
+			patternNum++;
+		}
 	}
 	
 	

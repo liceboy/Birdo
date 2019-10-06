@@ -7,8 +7,9 @@ import birdo.utilities.feather;
 
 public class rapidShooter extends enemy {
 
-	public rapidShooter(int x, int y, Color c) {
-		super(x, y, c);
+	public rapidShooter(int x, int y) {
+		super(x, y);
+		c = Color.CYAN;
 	}
 
 	public void shootFeather() {
