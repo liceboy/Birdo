@@ -199,7 +199,6 @@ public abstract class game {
 	}
 	
 	public void genPattern() {
-		System.out.println(layout.size() + " " + patternNum + " " + enemies.size());
 		
 		if(enemies.size() == 0 && patternNum != layout.size()) {
 			ArrayList<enemy> toAdd = new pattern(layout.get(patternNum)).enemies;

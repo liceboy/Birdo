@@ -6,15 +6,60 @@
 // ...
 // end
 
-starter
-homingEnemy 815 125
-homingEnemy 815 250
-homingEnemy 815 375
-homingEnemy 815 500
+template (for symmetric positioning)
+... 815 45
+... 815 90
+... 815 135
+... 815 180
+... 815 225
+... 815 270
+... 815 315
+... 815 360
+... 815 405
+... 815 450
 end
 
-charge
-chargingEnemy 900 175
-chargingEnemy 900 350
+enemyStaggered
+enemy 815 45
+enemy 860 135
+enemy 815 225
+enemy 860 315
+enemy 815 405
 end
 
+chargingArmy
+chargingEnemy 815 135
+chargingEnemy 915 225
+chargingEnemy 1015 315
+chargingEnemy 1115 405
+chargingEnemy 1215 135
+chargingEnemy 1315 225
+chargingEnemy 1415 315
+chargingEnemy 1515 405
+end
+
+strafingTrio
+strafeRunPooper 815 0
+strafeRunPooper 1115 0
+strafeRunPooper 1415 0
+end
+
+homingArmy
+homingEnemy 815 135
+homingEnemy 915 225
+homingEnemy 1015 315
+homingEnemy 1115 405
+homingEnemy 1215 135
+homingEnemy 1315 225
+homingEnemy 1415 315
+homingEnemy 1515 405
+end
+
+rapidBar
+rapidShooter 815 90
+rapidShooter 815 135
+rapidShooter 815 180
+rapidShooter 815 315
+rapidShooter 815 360
+rapidShooter 815 405
+end

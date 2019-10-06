@@ -11,10 +11,11 @@ public class woods extends game{
 	public woods() {
 		super();
 		
-		layout.add("charge");
-		layout.add("starter");
-		layout.add("charge");
-		layout.add("starter");
+		layout.add("enemyStaggered");
+		layout.add("chargingArmy");
+		layout.add("strafingTrio");
+		layout.add("homingArmy");
+		layout.add("rapidBar");
 		
 	}
 	public void move() {
