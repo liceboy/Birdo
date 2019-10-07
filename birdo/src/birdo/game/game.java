@@ -157,7 +157,8 @@ public abstract class game {
 					j--;
 				}
 				if(f.x > 800) {
-					player.feathers.remove(j);
+					if(j >= 0)
+						player.feathers.remove(j);
 					j--;
 				}
 			}
@@ -174,7 +175,8 @@ public abstract class game {
 					
 				}
 				if(p.y > 500) {
-					player.eggs.remove(k);
+					if(k >= 0)
+						player.eggs.remove(k);
 					k--;
 				}
 			}
