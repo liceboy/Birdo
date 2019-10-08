@@ -20,7 +20,7 @@ public class hoverEnemy extends enemy {
 	public void poop() {
 		if (poopcount == 0) {
 			if (!isDead) {
-				eggs.add(new egg(this.x, this.y, 15, 15, Color.YELLOW));
+				eggs.add(new egg(this.x, this.y));
 				poopcount = 250;
 			}
 		}

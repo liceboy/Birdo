@@ -29,7 +29,7 @@ public class player extends object {
 	public ArrayList<egg> eggs;
 
 	public player(int x, int y, Color c) {
-		super(x, y, 30, 30, c);
+		super(x, y, 20, 20, c);
 		health = 10;
 		damage = 1;
 		moveSpeed = 4;
@@ -70,7 +70,7 @@ public class player extends object {
 	public void shootFeather() { // shoots automatically with cooldown
 		if (shootcount == 0) {
 			if (!isDead) {
-				feathers.add(new feather(this.x, this.y, 15, 10, Color.BLUE, true));
+				feathers.add(new feather(this.x, this.y, true));
 				// adds a feather if alive
 				shootcount = 20;
 			}
@@ -81,7 +81,7 @@ public class player extends object {
 	public void poop() { // poops automatically with cooldown
 		if (ammo > 0) {
 			if (!isDead) {
-				eggs.add(new egg(this.x, this.y, 15, 15, Color.YELLOW));
+				eggs.add(new egg(this.x, this.y));
 				ammo--;
 			}
 		}

@@ -11,14 +11,14 @@ public class enemy extends player {
 		super(x, y, Color.BLACK);
 		health = 1;
 		score = 100;
-		this.dx = -3;
+		this.dx = -2;
 		this.dy = 0;
 	}
 
 	public void shootFeather() {
 		if (shootcount == 0) {
 			if (!isDead) {
-				feathers.add(new feather(this.x, this.y, 15, 10, Color.BLACK, false));
+				feathers.add(new feather(this.x, this.y, false));
 				// adds a feather if alive
 				shootcount = 100;
 			}
@@ -29,7 +29,7 @@ public class enemy extends player {
 	public void poop() {
 		if (poopcount == 0) {
 			if (!isDead) {
-				eggs.add(new egg(this.x, this.y, 15, 15, Color.YELLOW));
+				eggs.add(new egg(this.x, this.y));
 				poopcount = 100;
 			}
 		}

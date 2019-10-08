@@ -24,7 +24,5 @@ public class woods extends game{
 		layout.add("woodsBossFight");
 	
 	}
-	public void move() {
-		super.move();
-	}
+
 }

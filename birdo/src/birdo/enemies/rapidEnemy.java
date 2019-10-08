@@ -15,7 +15,7 @@ public class rapidEnemy extends enemy {
 	public void shootFeather() {
 		if (shootcount == 0) {
 			if (!isDead) {
-				feathers.add(new feather(this.x, this.y, 15, 10, Color.BLACK, false));
+				feathers.add(new feather(this.x, this.y, false));
 				// adds a feather if alive
 				shootcount = 10;
 			}

@@ -11,7 +11,6 @@ public class burstEnemy extends enemy{
 		super(x, y);
 		c = Color.CYAN;
 		shootcount1 = 0;
-		// TODO Auto-generated constructor stub
 	}
 	
 	public void poop () {
@@ -21,13 +20,13 @@ public class burstEnemy extends enemy{
 	public void shootFeather() {
 		if (shootcount == 0) {
 			if (!isDead) {
-				feather f = new feather(this.x, this.y, 15, 10, Color.BLACK, false);
+				feather f = new feather(this.x, this.y, false);
 				int deltaX = p.x - x;
 				int deltaY = p.y - y;
 
 				double theta = Math.atan((double) deltaY / (double) deltaX);
-				f.dx = -1 * (int) (10 * Math.cos(theta));
-				f.dy = -1 * (int) (10 * Math.sin(theta));
+				f.dx = -1 * (int) (5 * Math.cos(theta));
+				f.dy = -1 * (int) (5 * Math.sin(theta));
 
 				feathers.add(f);
 				// adds a feather if alive
@@ -35,24 +34,24 @@ public class burstEnemy extends enemy{
 			}
 		}
 		if (shootcount == 90) {
-			feather f = new feather(this.x, this.y, 15, 10, Color.BLACK, false);
+			feather f = new feather(this.x, this.y, false);
 			int deltaX = p.x - x;
 			int deltaY = p.y - y;
 
 			double theta = Math.atan((double) deltaY / (double) deltaX);
-			f.dx = -1 * (int) (10 * Math.cos(theta));
-			f.dy = -1 * (int) (10 * Math.sin(theta));
+			f.dx = -1 * (int) (5 * Math.cos(theta));
+			f.dy = -1 * (int) (5 * Math.sin(theta));
 
 			feathers.add(f);
 		}
 		if (shootcount == 80) {
-			feather f = new feather(this.x, this.y, 15, 10, Color.BLACK, false);
+			feather f = new feather(this.x, this.y, false);
 			int deltaX = p.x - x;
 			int deltaY = p.y - y;
 
 			double theta = Math.atan((double) deltaY / (double) deltaX);
-			f.dx = -1 * (int) (10 * Math.cos(theta));
-			f.dy = -1 * (int) (10 * Math.sin(theta));
+			f.dx = -1 * (int) (5 * Math.cos(theta));
+			f.dy = -1 * (int) (5 * Math.sin(theta));
 
 			feathers.add(f);
 		}

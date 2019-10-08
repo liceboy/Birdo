@@ -14,18 +14,17 @@ public class woodsBoss extends enemy {
 			w = 40;
 			h = 40;
 			movecount = 300;
-			
 	}
 	
 	public void shootFeather() {
 		if (shootcount == 0) {
 			if (!isDead && health > 8) {
-				feather f = new feather(this.x, this.y, 15, 10, Color.BLACK, false);
-				feather f1 = new feather(this.x, this.y, 15, 10, Color.BLACK, false);
-				feather f2 = new feather(this.x, this.y, 15, 10, Color.BLACK, false);
-				feather f3 = new feather(this.x, this.y, 15, 10, Color.BLACK, false);
-				feather f4 = new feather(this.x, this.y, 15, 10, Color.BLACK, false);
-				feather f5 = new feather(this.x, this.y, 15, 10, Color.BLACK, false);
+				feather f = new feather(this.x, this.y, false);
+				feather f1 = new feather(this.x, this.y, false);
+				feather f2 = new feather(this.x, this.y, false);
+				feather f3 = new feather(this.x, this.y, false);
+				feather f4 = new feather(this.x, this.y, false);
+				feather f5 = new feather(this.x, this.y, false);
 				
 				f1.dx = -1 * (int) (5 * Math.cos(Math.PI / 8));
 				f1.dy = -1 * (int) (5 * Math.sin(Math.PI / 8));
@@ -51,9 +50,9 @@ public class woodsBoss extends enemy {
 				shootcount = 100;
 			}
 			if (!isDead && health <= 7) {
-				feather f = new feather(this.x, this.y, 15, 10, Color.BLACK, false);
-				feather f1 = new feather(this.x, this.y, 15, 10, Color.BLACK, false);
-				feather f2 = new feather(this.x, this.y, 15, 10, Color.BLACK, false);
+				feather f = new feather(this.x, this.y, false);
+				feather f1 = new feather(this.x, this.y, false);
+				feather f2 = new feather(this.x, this.y, false);
 				f.dx = (int) (5 * Math.cos(Math.PI));
 				f.dy = (int) (5 * Math.sin(Math.PI));
 				f1.dx = -1 *(int) (5 * Math.cos(15 *Math.PI / 180));

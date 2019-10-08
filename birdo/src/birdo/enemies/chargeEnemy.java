@@ -27,8 +27,8 @@ public class chargeEnemy extends enemy {
 
 			double theta = Math.atan((double) deltaY / (double) deltaX);
 
-			this.dx = -1 * (int) (8 * Math.cos(theta));
-			this.dy = -1 * (int) (8 * Math.sin(theta));
+			this.dx = -1 * (int) (6 * Math.cos(theta));
+			this.dy = -1 * (int) (6 * Math.sin(theta));
 
 			super.move();
 

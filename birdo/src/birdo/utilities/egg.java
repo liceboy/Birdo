@@ -6,10 +6,10 @@ import java.util.ArrayList;
 
 public class egg extends object {
 
-	public egg(int x, int y, int w, int h, Color c) {
-		super(x, y, w, h, c);
+	public egg(int x, int y) {
+		super(x, y, 12, 12, Color.YELLOW);
 		dx = 0;
-		dy = 10;
+		dy = 8;
 	}
 
 }

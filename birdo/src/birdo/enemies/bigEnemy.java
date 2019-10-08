@@ -10,15 +10,13 @@ public class bigEnemy extends enemy {
 	public bigEnemy(int x, int y) {
 		super(x, y);
 		c = Color.MAGENTA;
-		w = 60;
-		h = 60;
+		w = 30;
+		h = 30;
 		health = 5;
 		score = 250;
 	}
 
 	public void move() {
-		if (x > 800)
-			dx = -3;
 		if (x < 800)
 			dx = -1;
 		super.move();
@@ -28,9 +26,9 @@ public class bigEnemy extends enemy {
 		if (shootcount == 0)
 			if (!isDead) {
 
-				feather f = new feather(this.x, this.y, 15, 10, Color.BLACK, false);
-				feather f1 = new feather(this.x, this.y, 15, 10, Color.BLACK, false);
-				feather f2 = new feather(this.x, this.y, 15, 10, Color.BLACK, false);
+				feather f = new feather(this.x, this.y, false);
+				feather f1 = new feather(this.x, this.y, false);
+				feather f2 = new feather(this.x, this.y, false);
 
 				f.dx = -5;
 

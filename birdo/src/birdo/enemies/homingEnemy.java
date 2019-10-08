@@ -18,13 +18,13 @@ public class homingEnemy extends enemy {
 		if (shootcount == 0) {
 			if (!isDead) {
 
-				feather f = new feather(this.x, this.y, 15, 10, Color.BLACK, false);
+				feather f = new feather(this.x, this.y, false);
 				int deltaX = p.x - x;
 				int deltaY = p.y - y;
 
 				double theta = Math.atan((double) deltaY / (double) deltaX);
-				f.dx = -1 * (int) (10 * Math.cos(theta));
-				f.dy = -1 * (int) (10 * Math.sin(theta));
+				f.dx = -1 * (int) (5 * Math.cos(theta));
+				f.dy = -1 * (int) (5 * Math.sin(theta));
 
 				feathers.add(f);
 				// adds a feather if alive
@@ -43,6 +43,8 @@ public class homingEnemy extends enemy {
 			dx = -3;
 		if (x < 800)
 			dx = -1;
+		if (x < p.x) 
+			dx = -3;
 		super.move();
 	}
 
