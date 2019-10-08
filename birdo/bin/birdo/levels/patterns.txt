@@ -1,0 +1,96 @@
+// ENEMY PATTERNS
+// format them like:
+// <name>
+// <type> <x> <y>
+// <type> <x> <y>
+// ...
+// end
+
+template (for symmetric positioning)
+... 815 45
+... 815 90
+... 815 135
+... 815 180
+... 815 225
+... 815 270
+... 815 315
+... 815 360
+... 815 405
+... 815 450
+end
+
+enemyStaggered
+enemy 815 45
+enemy 860 135
+enemy 815 225
+enemy 860 315
+enemy 815 405
+end
+
+chargingArmy
+chargeEnemy 815 135
+chargeEnemy 915 225
+chargeEnemy 1015 315
+chargeEnemy 1115 405
+chargeEnemy 1215 135
+chargeEnemy 1315 225
+chargeEnemy 1415 315
+chargeEnemy 1515 405
+end
+
+strafingTrio
+strafeEnemy 815 15
+strafeEnemy 1115 15
+strafeEnemy 1415 15
+end
+
+homingArmy
+homingEnemy 815 135
+homingEnemy 915 225
+homingEnemy 1015 315
+homingEnemy 1115 405
+homingEnemy 1215 135
+homingEnemy 1315 225
+homingEnemy 1415 315
+homingEnemy 1515 405
+end
+
+rapidBar
+rapidEnemy 815 90
+rapidEnemy 815 135
+rapidEnemy 815 180
+rapidEnemy 815 315
+rapidEnemy 815 360
+rapidEnemy 815 405
+end
+
+bigEnemies
+bigEnemy 815 135
+bigEnemy 815 360
+end
+
+burstShooters
+burstEnemy 815 180
+burstEnemy 815 360
+end
+
+shooterGang
+burstEnemy 815 180 
+burstEnemy 815 360
+homingEnemy 915 90
+homingEnemy 915 270
+homingEnemy 915 450
+end
+
+comboAttack
+bigEnemy 815 270
+steadyEnemy 1015 225
+steadyEnemy 1015 315
+homingEnemy 915 360
+homingEnemy 915 180
+end
+
+woodsBossFight
+woodsBoss 815 360
+end
+

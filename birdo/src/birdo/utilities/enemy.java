@@ -25,7 +25,7 @@ public class enemy extends player {
 		}
 		shootcount--;
 	}
-
+   
 	public void poop() {
 		if (poopcount == 0) {
 			if (!isDead) {
@@ -39,8 +39,6 @@ public class enemy extends player {
 	public void move() {
 		if (x < 800)
 			poop();
-		if (x < p.x) 
-			dx = -3;
 		super.move();
 	}
 }
