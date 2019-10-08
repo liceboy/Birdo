@@ -209,6 +209,7 @@ public abstract class game {
 			powerup p = powerups.get(t);
 			if (p.type == "fillEggs") {
 				if (p.getHitBox().intersects(p.getHitBox())) {
+					powerups.remove(t);
 					for (int y = 0; y != player.maxammo; y++) {
 						player.ammo++;
 					}
