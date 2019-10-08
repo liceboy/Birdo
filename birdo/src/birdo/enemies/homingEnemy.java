@@ -43,8 +43,6 @@ public class homingEnemy extends enemy {
 			dx = -3;
 		if (x < 800)
 			dx = -1;
-		if (x < p.x) 
-			dx = -3;
 		super.move();
 	}
 

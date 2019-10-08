@@ -37,8 +37,10 @@ public class enemy extends player {
 	}
 
 	public void move() {
-		super.move();
 		if (x < 800)
 			poop();
+		if (x < p.x) 
+			dx = -3;
+		super.move();
 	}
 }
