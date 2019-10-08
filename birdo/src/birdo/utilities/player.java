@@ -23,6 +23,7 @@ public class player extends object {
 	public int invulnerablecooldown;
 	// poop ammo
 	public int ammo;
+	public int maxammo;
 	public int[] stats = { health, damage, moveSpeed };
 	public ArrayList<feather> feathers;
 	public ArrayList<egg> eggs;
@@ -35,6 +36,7 @@ public class player extends object {
 		shootcount = 0;
 		poopcount = 0;
 		ammo = 3;
+		maxammo = 3;
 		isDead = false;
 		feathers = new ArrayList<feather>();
 		eggs = new ArrayList<egg>();

@@ -17,6 +17,7 @@ import birdo.enemies.rapidShooter;
 import birdo.enemies.steadyShooter;
 import birdo.enemies.strafeRunPooper;
 import birdo.enemies.suicideBomber;
+import birdo.enemies.woodsminiboss;
 import birdo.utilities.enemy;
 
 public class pattern {
@@ -85,6 +86,8 @@ public class pattern {
 			temp = new burstShooter(0,0);
 		if (type.equals("steadyShooter"))
 			temp = new steadyShooter(0,0);
+		if (type.equals("woodsminiboss"))
+			temp = new woodsminiboss(0,0);
 		return temp;
 	}
 }

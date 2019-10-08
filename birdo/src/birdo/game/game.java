@@ -14,6 +14,7 @@ public abstract class game {
 	// rectangle representing birdo
 	ArrayList<enemy> enemies;
 	// array list holding enemies
+	ArrayList<powerup> powerups;
 	int score = 0;
 	// player score
 	String state;
@@ -25,6 +26,7 @@ public abstract class game {
 	public game() {
 		player = new player (130, 130, Color.BLUE); 
 		enemies = new ArrayList <enemy>(); 
+		powerups = new ArrayList<powerup>();
 		for (int x = 0; x < 30; x++) {
 			enemy e = null;
 
@@ -42,6 +44,9 @@ public abstract class game {
 			e.p = player;
 			e.move();
 		}
+		for (powerup p: powerups) {
+			p.move();
+		}
 		collision();
 		genPattern();
 	}
@@ -52,6 +57,8 @@ public abstract class game {
 			e.draw(g);
 		for (enemy e: enemies)
 			e.draw(g);
+		for (powerup p: powerups)
+			p.draw(g);
 		g.setColor(Color.BLACK);
 		g.drawString("Score: " + score, 650, 40);
 		g.drawString("Health: " + player.health, 25, 40);
@@ -183,7 +190,7 @@ public abstract class game {
 			
 			e.checkisDead();
 			
-			if (e.y > 800) {
+			if (e.y > 500) {
 				enemies.remove(i);
 				score += e.score;
 				i--;
@@ -191,9 +198,28 @@ public abstract class game {
 			
 			if (e.x < -60) {
 				enemies.remove(i);
-				score += e.score;
 				i--;
 			}
+		}
+		
+		// powerup hitboxes and conditions
+		for (int t = 0; t != powerups.size(); t++) {
+			powerup p = powerups.get(t);
+			if (p.type == "fillEggs") {
+				if (p.getHitBox().intersects(p.getHitBox())) {
+					for (int y = 0; y != player.maxammo; y++) {
+						player.ammo++;
+					}
+				}
+					
+			}
+			
+			if (p.x < -60) {
+				powerups.remove(t);
+				t--;
+			}
+			
+			
 		}
 		
 		

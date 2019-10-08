@@ -89,3 +89,8 @@ steadyShooter 1015 315
 homingEnemy 915 360
 homingEnemy 915 180
 end
+
+woodsminibossFight
+woodsminiboss 815 360
+end
+
