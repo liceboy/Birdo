@@ -5,9 +5,9 @@ import birdo.utilities.feather;
 
 import java.awt.Color;
 
-public class burstShooter extends enemy{
+public class burstEnemy extends enemy{
 	int shootcount1;
-	public burstShooter(int x, int y) {
+	public burstEnemy(int x, int y) {
 		super(x, y);
 		c = Color.CYAN;
 		shootcount1 = 0;

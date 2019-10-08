@@ -8,16 +8,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import birdo.enemies.bigEnemy;
-import birdo.enemies.burstShooter;
-import birdo.enemies.chargingEnemy;
-import birdo.enemies.homingEnemy;
-import birdo.enemies.homingPooper;
-import birdo.enemies.rapidShooter;
-import birdo.enemies.steadyShooter;
-import birdo.enemies.strafeRunPooper;
-import birdo.enemies.suicideBomber;
-import birdo.enemies.woodsminiboss;
+import birdo.enemies.*;
 import birdo.utilities.enemy;
 
 public class pattern {
@@ -70,24 +61,24 @@ public class pattern {
 			temp = new enemy(0, 0);
 		if (type.equals("homingEnemy"))
 			temp = new homingEnemy(0, 0);
-		if (type.equals("chargingEnemy"))
-			temp = new chargingEnemy(0, 0);
+		if (type.equals("chargeEnemy"))
+			temp = new chargeEnemy(0, 0);
 		if (type.equals("bigEnemy"))
 			temp = new bigEnemy(0, 0);
-		if (type.equals("homingPooper"))
-			temp = new homingPooper(0, 0);
-		if (type.equals("strafeRunPooper"))
-			temp = new strafeRunPooper(0, 0);
-		if (type.equals("suicideBomber"))
-			temp = new suicideBomber(0, 0);
-		if (type.equals("rapidShooter"))
-			temp = new rapidShooter(0, 0);
-		if (type.equals("burstShooter"))
-			temp = new burstShooter(0,0);
-		if (type.equals("steadyShooter"))
-			temp = new steadyShooter(0,0);
-		if (type.equals("woodsminiboss"))
-			temp = new woodsminiboss(0,0);
+		if (type.equals("hoverEnemy"))
+			temp = new hoverEnemy(0, 0);
+		if (type.equals("strafeEnemy"))
+			temp = new strafeEnemy(0, 0);
+		if (type.equals("suicideEnemy"))
+			temp = new suicideEnemy(0, 0);
+		if (type.equals("rapidEnemy"))
+			temp = new rapidEnemy(0, 0);
+		if (type.equals("burstEnemy"))
+			temp = new burstEnemy(0,0);
+		if (type.equals("steadyEnemy"))
+			temp = new steadyEnemy(0,0);
+		if (type.equals("woodsBoss"))
+			temp = new woodsBoss(0,0);
 		return temp;
 	}
 }

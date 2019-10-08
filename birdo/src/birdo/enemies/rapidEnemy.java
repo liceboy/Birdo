@@ -5,9 +5,9 @@ import java.awt.Color;
 import birdo.utilities.enemy;
 import birdo.utilities.feather;
 
-public class rapidShooter extends enemy {
+public class rapidEnemy extends enemy {
 
-	public rapidShooter(int x, int y) {
+	public rapidEnemy(int x, int y) {
 		super(x, y);
 		c = Color.CYAN;
 	}

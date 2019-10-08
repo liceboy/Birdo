@@ -5,9 +5,9 @@ import java.awt.Color;
 import birdo.utilities.enemy;
 import birdo.utilities.feather;
 
-public class woodsminiboss extends enemy {
+public class woodsBoss extends enemy {
 	int movecount;
-	public woodsminiboss(int x, int y) {
+	public woodsBoss(int x, int y) {
 		super(x, y);
 			health = 15;
 			score = 1500;

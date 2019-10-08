@@ -5,9 +5,9 @@ import java.awt.Color;
 import birdo.utilities.enemy;
 import birdo.utilities.feather;
 
-public class steadyShooter extends enemy {
+public class steadyEnemy extends enemy {
 
-	public steadyShooter(int x, int y) {
+	public steadyEnemy(int x, int y) {
 		super(x, y);
 		c = Color.DARK_GRAY;
 		// TODO Auto-generated constructor stub

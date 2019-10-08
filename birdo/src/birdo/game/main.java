@@ -232,42 +232,6 @@ public class main extends JPanel implements ActionListener {
 		public void keyReleased(KeyEvent e) {
 			int key = e.getKeyCode();
 			if (state == "woods") {
-
-				if (key == KeyEvent.VK_Q) {
-					enemy temp = new enemy(850, (int) (Math.random() * 300) + 100);
-					woods.enemies.add(temp);
-				}
-
-				if (key == KeyEvent.VK_W) {
-					enemy temp = new homingEnemy(850, (int) (Math.random() * 300) + 100);
-					woods.enemies.add(temp);
-				}
-
-				if (key == KeyEvent.VK_E) {
-					enemy temp = new chargingEnemy(850, (int) (Math.random() * 300) + 100);
-					woods.enemies.add(temp);
-				}
-
-				if (key == KeyEvent.VK_R) {
-					enemy temp = new bigEnemy(850, (int) (Math.random() * 300) + 100);
-					woods.enemies.add(temp);
-				}
-
-				if (key == KeyEvent.VK_T) {
-					enemy temp = new homingPooper(850, (int) (Math.random() * 300) + 100);
-					woods.enemies.add(temp);
-				}
-
-				if (key == KeyEvent.VK_Y) {
-					enemy temp = new strafeRunPooper(850, (int) (Math.random() * 300) + 100);
-					woods.enemies.add(temp);
-				}
-
-				if (key == KeyEvent.VK_U) {
-					enemy temp = new rapidShooter(850, (int) (Math.random() * 300) + 100);
-					woods.enemies.add(temp);
-				}
-				
 				if (key == KeyEvent.VK_UP && woods.player.dy != 2)
 					woods.player.dy = 0;
 				if (key == KeyEvent.VK_LEFT && woods.player.dx != 2)

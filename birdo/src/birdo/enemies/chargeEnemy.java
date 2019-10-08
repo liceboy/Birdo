@@ -5,9 +5,9 @@ import java.util.ArrayList;
 
 import birdo.utilities.enemy;
 
-public class chargingEnemy extends enemy {
+public class chargeEnemy extends enemy {
 
-	public chargingEnemy(int x, int y) {
+	public chargeEnemy(int x, int y) {
 		super(x, y);
 		c = Color.GRAY;
 		health = 1;

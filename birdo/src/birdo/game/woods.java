@@ -21,7 +21,7 @@ public class woods extends game{
 		layout.add("chargingArmy");
 		layout.add("shooterGang");
 		layout.add("comboAttack");
-		layout.add("woodsminibossFight");
+		layout.add("woodsBossFight");
 	
 	}
 	public void move() {

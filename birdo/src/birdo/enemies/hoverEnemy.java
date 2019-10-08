@@ -5,9 +5,9 @@ import java.awt.Color;
 import birdo.utilities.egg;
 import birdo.utilities.enemy;
 
-public class homingPooper extends enemy {
+public class hoverEnemy extends enemy {
 
-	public homingPooper(int x, int y) {
+	public hoverEnemy(int x, int y) {
 		super(x, y);
 		c = Color.GREEN;
 		health = 1;

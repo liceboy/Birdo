@@ -5,9 +5,9 @@ import java.awt.Color;
 import birdo.utilities.egg;
 import birdo.utilities.enemy;
 
-public class strafeRunPooper extends enemy {
+public class strafeEnemy extends enemy {
 
-	public strafeRunPooper(int x, int y) {
+	public strafeEnemy(int x, int y) {
 		super(x, y);
 		c = Color.ORANGE;
 		health = 1;

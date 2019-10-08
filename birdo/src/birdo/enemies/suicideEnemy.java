@@ -5,9 +5,9 @@ import java.awt.Color;
 import birdo.utilities.enemy;
 import birdo.utilities.feather;
 
-public class suicideBomber extends enemy {
+public class suicideEnemy extends enemy {
 
-	public suicideBomber(int x, int y) {
+	public suicideEnemy(int x, int y) {
 		super(x, y);
 		health = 2;
 		c = Color.GREEN;
