@@ -98,6 +98,10 @@ public class woodsBoss extends enemy {
 			if (y > p.y)
 				dy = -2;
 		}
+		if (isDead) {
+			dx = 0;
+			dy = 7;
+		}
 		super.move();
 	}
 
