@@ -12,6 +12,16 @@ public class hoverEnemy extends enemy {
 		c = Color.GREEN;
 		health = 1;
 	}
+	
+	public void move() {
+		if (x > p.x) // homing poopers should always spawn at y = 30;
+			dx = -3;
+		if (x < p.x)
+			dx = 3;
+		if (x == p.x)
+			dx = 0;
+		super.move();
+	}
 
 	public void shootFeather() {
 		return;
@@ -25,16 +35,6 @@ public class hoverEnemy extends enemy {
 			}
 		}
 		poopcount--;
-	}
-
-	public void move() {
-		if (x > p.x) // homing poopers should always spawn at y = 30;
-			dx = -3;
-		if (x < p.x)
-			dx = 3;
-		if (x == p.x)
-			dx = 0;
-		super.move();
 	}
 
 }

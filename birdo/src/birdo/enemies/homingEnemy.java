@@ -11,7 +11,17 @@ public class homingEnemy extends enemy {
 	public homingEnemy(int x, int y) {
 		super(x, y);
 		c = Color.DARK_GRAY;
-		health = 1;
+		health = 2;
+	}
+	
+	public void move() {
+		if (x > 800) 
+			dx = -3;
+		if (x < 800)
+			dx = -1;
+		if (x < p.x) 
+			dx = -3;
+		super.move();
 	}
 
 	public void shootFeather() {
@@ -36,16 +46,6 @@ public class homingEnemy extends enemy {
 
 	public void poop() {
 		return;
-	}
-	
-	public void move() {
-		if (x > 800) 
-			dx = -3;
-		if (x < 800)
-			dx = -1;
-		if (x < p.x) 
-			dx = -3;
-		super.move();
 	}
 
 }

@@ -9,7 +9,15 @@ public class steadyEnemy extends enemy {
 
 	public steadyEnemy(int x, int y) {
 		super(x, y);
-		c = Color.DARK_GRAY;
+		c = Color.MAGENTA;
+	}
+	
+	public void move () {
+		if (x < 700)
+			dx = 0;
+		if (shootcount > 100)
+			dx = -3;
+		super.move();
 	}
 	
 	public void poop () {
@@ -17,7 +25,7 @@ public class steadyEnemy extends enemy {
 	}
 	
 	public void shootFeather () {
-		if (shootcount == 0) {
+		if (shootcount % 30 == 0) {
 			if (!isDead) {
 
 				feather f = new feather(this.x, this.y, false);
@@ -30,18 +38,9 @@ public class steadyEnemy extends enemy {
 
 				feathers.add(f);
 				// adds a feather if alive
-				shootcount = 30;
 			}
 		}
-		shootcount--;
-	}
-	
-	public void move () {
-		if (x > 700)
-			dx = -3;
-		if (x < 700)
-			dx = 0;
-		super.move();
+		shootcount++;
 	}
 
 }

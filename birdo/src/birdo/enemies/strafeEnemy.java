@@ -9,6 +9,7 @@ public class strafeEnemy extends enemy {
 
 	public strafeEnemy(int x, int y) {
 		super(x, y);
+		dx = -6;
 		c = Color.ORANGE;
 		health = 1;
 	}
@@ -25,11 +26,6 @@ public class strafeEnemy extends enemy {
 			}
 		}
 		poopcount--;
-	}
-
-	public void move() {
-		dx = -6; // strafe poopers should always spawn at y = 30
-		super.move();
 	}
 
 }

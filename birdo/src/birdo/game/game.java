@@ -192,13 +192,13 @@ public abstract class game {
 			
 			e.checkisDead();
 			
-			if (e.y > 500) {
+			if (e.y > 600) {
 				enemies.remove(i);
 				score += e.score;
 				i--;
 			}
 			
-			if (e.x < -60) {
+			if (e.x < -100) {
 				enemies.remove(i);
 				i--;
 			}

@@ -5,19 +5,24 @@ import birdo.utilities.feather;
 
 import java.awt.Color;
 
-public class burstEnemy extends enemy{
-	int shootcount1;
+public class burstEnemy extends enemy {
+
 	public burstEnemy(int x, int y) {
 		super(x, y);
 		c = Color.CYAN;
-		shootcount1 = 0;
 	}
-	
-	public void poop () {
-		return;
+
+	public void move() {
+		if (x > 700)
+			dx = -3;
+		if (x < 700)
+			dx = 0;
+		super.move();
 	}
-	
+
 	public void shootFeather() {
+		if (x > 700)
+			return;
 		if (shootcount == 0) {
 			if (!isDead) {
 				feather f = new feather(this.x, this.y, false);
@@ -57,13 +62,9 @@ public class burstEnemy extends enemy{
 		}
 		shootcount--;
 	}
-	
-	public void move () {
-		if (x > 700)
-			dx = -3;
-		if (x < 700)
-			dx = 0;
-		super.move();
+
+	public void poop() {
+		return;
 	}
 
 }

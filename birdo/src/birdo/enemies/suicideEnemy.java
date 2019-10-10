@@ -63,8 +63,8 @@ public class suicideEnemy extends enemy {
 
 			double theta = Math.atan((double) deltaY / (double) deltaX);
 
-			this.dx = -1 * (int) (3 * Math.cos(theta));
-			this.dy = -1 * (int) (3 * Math.sin(theta));
+			dx = -1 * (int) (3 * Math.cos(theta));
+			dy = -1 * (int) (3 * Math.sin(theta));
 
 			super.move();
 
