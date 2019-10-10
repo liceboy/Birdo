@@ -63,8 +63,7 @@ public abstract class game {
 		g.drawString("Score: " + score, 550, 40);
 		g.drawString("Layout: " + layout.get(patternNum - 1), 550, 55);
 		g.drawString("Health: " + player.health, 25, 40);
-		g.drawString("Eggs x" + player.ammo, 25, 55);
-		
+		g.drawString("Powerup: "+player.poweruptype+ "x" + player.ammo, 25, 55);
 		if (player.checkisDead()) {
 			g.drawString("Game Over!", 300, 150);
 			g.drawString("Continue: F1", 300, 175);
@@ -207,12 +206,11 @@ public abstract class game {
 		// powerup hitboxes and conditions
 		for (int t = 0; t != powerups.size(); t++) {
 			powerup p = powerups.get(t);
-			if (p.type == "fillEggs") {
 				if (p.getHitBox().intersects(p.getHitBox())) {
+					if (p.type == "Eggs") { // if player gets eggs, they will receive 3 eggs
+					player.poweruptype = "Eggs";
 					powerups.remove(t);
-					for (int y = 0; y != player.maxammo; y++) {
-						player.ammo++;
-					}
+					player.ammo = 3;
 				}
 					
 			}

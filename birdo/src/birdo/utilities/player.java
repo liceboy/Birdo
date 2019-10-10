@@ -22,6 +22,7 @@ public class player extends object {
 	// checks if invulnerable
 	public int invulnerablecooldown;
 	// poop ammo
+	public String poweruptype; // string keeps track of what powerup the player is holding
 	public int ammo;
 	public int maxammo;
 	public int[] stats = { health, damage, moveSpeed };
@@ -42,6 +43,7 @@ public class player extends object {
 		eggs = new ArrayList<egg>();
 		invulnerable = false;
 		invulnerablecooldown = 0;
+		poweruptype = "None"; // default powerup is always none
 	}
 
 	public void draw(Graphics g) {
@@ -78,13 +80,25 @@ public class player extends object {
 		shootcount--;
 	}
 
-	public void poop() { // poops automatically with cooldown
+	public void poop() { // poops 
 		if (ammo > 0) {
 			if (!isDead) {
 				eggs.add(new egg(this.x, this.y));
 				ammo--;
 			}
 		}
+	}
+	
+	public void usePowerup() { // uses the powerup based on string type, add powerups as you feel 
+		if (poweruptype == "None")
+			return;
+		if (poweruptype == "Eggs") {
+			if (ammo > 0)
+			poop();
+			if (ammo == 0)
+			poweruptype = "None";
+		}
+		
 	}
 
 	public boolean checkisDead() {

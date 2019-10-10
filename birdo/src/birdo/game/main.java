@@ -241,7 +241,7 @@ public class main extends JPanel implements ActionListener {
 				if (key == KeyEvent.VK_RIGHT && woods.player.dx != -2)
 					woods.player.dx = 0;
 				if (key == KeyEvent.VK_SPACE) {
-					woods.player.poop();
+					woods.player.usePowerup();
 				}
 			}
 
@@ -255,7 +255,7 @@ public class main extends JPanel implements ActionListener {
 				if (key == KeyEvent.VK_RIGHT && city.player.dx != -2)
 					city.player.dx = 0;
 				if (key == KeyEvent.VK_SPACE) {
-					city.player.poop();
+					city.player.usePowerup();
 				}
 
 			}
@@ -270,7 +270,7 @@ public class main extends JPanel implements ActionListener {
 				if (key == KeyEvent.VK_RIGHT && beach.player.dx != -2)
 					beach.player.dx = 0;
 				if (key == KeyEvent.VK_SPACE) {
-					beach.player.poop();
+					beach.player.usePowerup();
 				}
 			}
 
@@ -284,7 +284,7 @@ public class main extends JPanel implements ActionListener {
 				if (key == KeyEvent.VK_RIGHT && sky.player.dx != -2)
 					sky.player.dx = 0;
 				if (key == KeyEvent.VK_SPACE) {
-					sky.player.poop();
+					sky.player.usePowerup();
 				}
 
 			}
