@@ -36,7 +36,7 @@ public class player extends object {
 		moveSpeed = 4;
 		shootcount = 0;
 		poopcount = 0;
-		ammo = 3;
+		ammo = 0;
 		maxammo = 3;
 		isDead = false;
 		feathers = new ArrayList<feather>();

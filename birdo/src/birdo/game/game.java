@@ -63,7 +63,7 @@ public abstract class game {
 		g.drawString("Score: " + score, 550, 40);
 		g.drawString("Layout: " + layout.get(patternNum - 1), 550, 55);
 		g.drawString("Health: " + player.health, 25, 40);
-		g.drawString("Powerup: "+player.poweruptype+ "x" + player.ammo, 25, 55);
+		g.drawString("Powerup: "+player.poweruptype+ " x" + player.ammo, 25, 55);
 		if (player.checkisDead()) {
 			g.drawString("Game Over!", 300, 150);
 			g.drawString("Continue: F1", 300, 175);
