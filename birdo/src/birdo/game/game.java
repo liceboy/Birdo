@@ -38,8 +38,6 @@ public abstract class game {
 	
 	public void move() {
 		player.move();
-		for (egg e: player.eggs)
-			e.move();
 		for (enemy e: enemies) {
 			e.p = player;
 			e.move();
@@ -53,7 +51,7 @@ public abstract class game {
 	
 	public void draw(Graphics g) {
 		player.draw(g);
-		for (egg e: player.eggs) // calls egg draw method so scattershots can be drawn?
+		for (egg e: player.eggs) 
 			e.draw(g);
 		for (enemy e: enemies)
 			e.draw(g);

@@ -77,6 +77,8 @@ public class pattern {
 			temp = new burstEnemy(0,0);
 		if (type.equals("steadyEnemy"))
 			temp = new steadyEnemy(0,0);
+		if (type.equals("trueHomingEnemy"))
+			temp = new trueHomingEnemy(0,0);
 		if (type.equals("woodsBoss"))
 			temp = new woodsBoss(0,0);
 		return temp;

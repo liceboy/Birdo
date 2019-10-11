@@ -11,6 +11,7 @@ public class woods extends game{
 	public woods() {
 		super();
 		
+		layout.add("trueHomingTest");
 		layout.add("enemyStaggered");
 		layout.add("chargingArmy");
 		layout.add("strafingTrio");
