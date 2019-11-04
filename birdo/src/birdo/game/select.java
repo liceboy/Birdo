@@ -3,9 +3,9 @@ package birdo.game;
 import java.awt.Color;
 import java.awt.Graphics;
 
-public class levelSelect {
+public class select {
 
-	public levelSelect() {
+	public select() {
 
 	}
 

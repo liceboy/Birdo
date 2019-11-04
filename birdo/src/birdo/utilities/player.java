@@ -27,7 +27,6 @@ public class player extends object {
 	public int maxammo;
 	public int[] stats = { health, damage, moveSpeed };
 	public ArrayList<feather> feathers;
-	public ArrayList<truehomingFeather> truehomingFeathers;
 	public ArrayList<egg> eggs;
 	public player p;
 

@@ -90,11 +90,6 @@ homingEnemy 915 360
 homingEnemy 915 180
 end
 
-trueHomingTest
-trueHomingEnemy 815 260
-trueHomingEnemy 815 300
-end
-
 woodsBossFight
 woodsBoss 815 360
 end

@@ -16,6 +16,7 @@ import javax.swing.Timer;
 
 import birdo.utilities.*;
 import birdo.enemies.*;
+import birdo.levels.*;
 
 public class main extends JPanel implements ActionListener {
 
@@ -25,11 +26,8 @@ public class main extends JPanel implements ActionListener {
 	public String state;
 
 	public title title;
-	public levelSelect levelSelect;
-	public woods woods;
-	public city city;
-	public beach beach;
-	public sky sky;
+	public select select;
+	public level level;
 
 	public main() {
 		addKeyListener(new KAdapter());
@@ -45,11 +43,8 @@ public class main extends JPanel implements ActionListener {
 
 		state = "title";
 		title = new title();
-		levelSelect = new levelSelect();
-		woods = new woods();
-		beach = new beach();
-		city = new city();
-		sky = new sky();
+		select = new select();
+		level = new level();
 	}
 
 	public void paintComponent(Graphics g) {
@@ -64,31 +59,16 @@ public class main extends JPanel implements ActionListener {
 		if (state == "title")
 			title.draw(g);
 
-		if (state == "levelSelect")
-			levelSelect.draw(g);
+		if (state == "select")
+			select.draw(g);
 
-		if (state == "woods")
-			woods.draw(g);
-
-		if (state == "city")
-			city.draw(g);
-
-		if (state == "beach")
-			beach.draw(g);
-
-		if (state == "sky")
-			sky.draw(g);
+		if (state == "level")
+			level.draw(g);
 	}
 
 	public void actionPerformed(ActionEvent e) {
-		if (state == "woods")
-			woods.move();
-		if (state == "city")
-			city.move();
-		if (state == "beach")
-			beach.move();
-		if (state == "sky")
-			sky.move();
+		if (state == "level")
+			level.move();
 
 		repaint();
 	}
@@ -103,127 +83,40 @@ public class main extends JPanel implements ActionListener {
 
 			if (state == "title") {
 				if (key == KeyEvent.VK_SPACE)
-					state = "levelSelect";
+					state = "select";
 			}
 
-			if (woods.state == "GameOver") { // if gameover, new hotkeys, resets game state
+			if (level.state == "GameOver") { // if gameover, new hotkeys, resets game state
 				if (key == KeyEvent.VK_F1) {
-					state = "woods";
-					woods = new woods();
+					state = "level";
+					level = new level();
 				}
 				if (key == KeyEvent.VK_F2) {
-					woods = new woods();
+					level = new level();
 					state = "title";
 				}
-				woods.state = " ";
+				level.state = " ";
 			}
 
-			if (city.state == "GameOver") {
-				if (key == KeyEvent.VK_F1) {
-					city = new city();
-					state = "city";
-				}
-				if (key == KeyEvent.VK_F2) {
-					city = new city();
-					state = "title";
-				}
-				city.state = " ";
-			}
-
-			if (beach.state == "GameOver") {
-				if (key == KeyEvent.VK_F1) {
-					beach = new beach();
-					state = "beach";
-				}
-				if (key == KeyEvent.VK_F2) {
-					beach = new beach();
-					state = "title";
-				}
-				beach.state = " ";
-			}
-
-			if (sky.state == "GameOver") {
-				if (key == KeyEvent.VK_F1) {
-					sky = new sky();
-					state = "sky";
-				}
-				if (key == KeyEvent.VK_F2) {
-					sky = new sky();
-					state = "title";
-				}
-				sky.state = " ";
-			}
-
-			if (state == "levelSelect") {
+			if (state == "select") {
 				if (key == KeyEvent.VK_ESCAPE)
 					state = "title";
 				if (key == KeyEvent.VK_1)
-					state = "woods";
-				if (key == KeyEvent.VK_2)
-					state = "city";
-				if (key == KeyEvent.VK_3)
-					state = "beach";
-				if (key == KeyEvent.VK_4)
-					state = "sky";
+					state = "level";
 			}
 
-			if (state == "woods") {
+			if (state == "level") {
 				if (key == KeyEvent.VK_UP)
-					woods.player.dy = -4;
+					level.player.dy = -4;
 				if (key == KeyEvent.VK_LEFT)
-					woods.player.dx = -4;
+					level.player.dx = -4;
 				if (key == KeyEvent.VK_DOWN)
-					woods.player.dy = 4;
+					level.player.dy = 4;
 				if (key == KeyEvent.VK_RIGHT)
-					woods.player.dx = 4;
+					level.player.dx = 4;
 				if (key == KeyEvent.VK_ESCAPE) {
-					state = "levelSelect";
-					woods = new woods();
-				}
-			}
-
-			if (state == "city") {
-				if (key == KeyEvent.VK_UP)
-					city.player.dy = -4;
-				if (key == KeyEvent.VK_LEFT)
-					city.player.dx = -4;
-				if (key == KeyEvent.VK_DOWN)
-					city.player.dy = 4;
-				if (key == KeyEvent.VK_RIGHT)
-					city.player.dx = 4;
-				if (key == KeyEvent.VK_ESCAPE) {
-					state = "levelSelect";
-					city = new city();
-				}
-			}
-
-			if (state == "beach") {
-				if (key == KeyEvent.VK_UP)
-					beach.player.dy = -4;
-				if (key == KeyEvent.VK_LEFT)
-					beach.player.dx = -4;
-				if (key == KeyEvent.VK_DOWN)
-					beach.player.dy = 4;
-				if (key == KeyEvent.VK_RIGHT)
-					beach.player.dx = 4;
-				if (key == KeyEvent.VK_ESCAPE) {
-					state = "levelSelect";
-					beach = new beach();
-				}
-			}
-
-			if (state == "sky") {
-				if (key == KeyEvent.VK_UP)
-					sky.player.dy = -4;
-				if (key == KeyEvent.VK_LEFT)
-					sky.player.dx = -4;
-				if (key == KeyEvent.VK_DOWN)
-					sky.player.dy = 4;
-				if (key == KeyEvent.VK_RIGHT)
-					sky.player.dx = 4;
-				if (key == KeyEvent.VK_ESCAPE) {
-					state = "levelSelect";
-					sky = new sky();
+					state = "select";
+					level = new level();
 				}
 			}
 
@@ -231,63 +124,20 @@ public class main extends JPanel implements ActionListener {
 
 		public void keyReleased(KeyEvent e) {
 			int key = e.getKeyCode();
-			if (state == "woods") {
-				if (key == KeyEvent.VK_UP && woods.player.dy != 2)
-					woods.player.dy = 0;
-				if (key == KeyEvent.VK_LEFT && woods.player.dx != 2)
-					woods.player.dx = 0;
-				if (key == KeyEvent.VK_DOWN && woods.player.dy != -2)
-					woods.player.dy = 0;
-				if (key == KeyEvent.VK_RIGHT && woods.player.dx != -2)
-					woods.player.dx = 0;
+			if (state == "level") {
+				if (key == KeyEvent.VK_UP && level.player.dy != 2)
+					level.player.dy = 0;
+				if (key == KeyEvent.VK_LEFT && level.player.dx != 2)
+					level.player.dx = 0;
+				if (key == KeyEvent.VK_DOWN && level.player.dy != -2)
+					level.player.dy = 0;
+				if (key == KeyEvent.VK_RIGHT && level.player.dx != -2)
+					level.player.dx = 0;
 				if (key == KeyEvent.VK_SPACE) {
-					woods.player.usePowerup();
+					level.player.usePowerup();
 				}
 			}
 
-			if (state == "city") {
-				if (key == KeyEvent.VK_UP && city.player.dy != 2)
-					city.player.dy = 0;
-				if (key == KeyEvent.VK_LEFT && city.player.dx != 2)
-					city.player.dx = 0;
-				if (key == KeyEvent.VK_DOWN && city.player.dy != -2)
-					city.player.dy = 0;
-				if (key == KeyEvent.VK_RIGHT && city.player.dx != -2)
-					city.player.dx = 0;
-				if (key == KeyEvent.VK_SPACE) {
-					city.player.usePowerup();
-				}
-
-			}
-
-			if (state == "beach") {
-				if (key == KeyEvent.VK_UP && beach.player.dy != 2)
-					beach.player.dy = 0;
-				if (key == KeyEvent.VK_LEFT && beach.player.dx != 2)
-					beach.player.dx = 0;
-				if (key == KeyEvent.VK_DOWN && beach.player.dy != -2)
-					beach.player.dy = 0;
-				if (key == KeyEvent.VK_RIGHT && beach.player.dx != -2)
-					beach.player.dx = 0;
-				if (key == KeyEvent.VK_SPACE) {
-					beach.player.usePowerup();
-				}
-			}
-
-			if (state == "sky") {
-				if (key == KeyEvent.VK_UP && sky.player.dy != 2)
-					sky.player.dy = 0;
-				if (key == KeyEvent.VK_LEFT && sky.player.dx != 2)
-					sky.player.dx = 0;
-				if (key == KeyEvent.VK_DOWN && sky.player.dy != -2)
-					sky.player.dy = 0;
-				if (key == KeyEvent.VK_RIGHT && sky.player.dx != -2)
-					sky.player.dx = 0;
-				if (key == KeyEvent.VK_SPACE) {
-					sky.player.usePowerup();
-				}
-
-			}
 		}
 	}
 

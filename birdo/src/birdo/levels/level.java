@@ -1,17 +1,16 @@
-package birdo.game;
+package birdo.levels;
 
 import java.awt.Color;
 import java.awt.Graphics;
 import java.util.ArrayList;
 
-import birdo.levels.pattern;
-import birdo.utilities.enemy;
+import birdo.levels.*;
+import birdo.utilities.*;
 
-public class woods extends game{
-	public woods() {
+public class level extends game{
+	public level() {
 		super();
 		
-		layout.add("trueHomingTest");
 		layout.add("enemyStaggered");
 		layout.add("chargingArmy");
 		layout.add("strafingTrio");
@@ -23,7 +22,7 @@ public class woods extends game{
 		layout.add("shooterGang");
 		layout.add("comboAttack");
 		layout.add("woodsBossFight");
-	
+		this.powerups.add(new powerup(800, 300, "eggs"));
 	}
 
 }
