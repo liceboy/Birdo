@@ -10,7 +10,7 @@ public class woodsBoss extends enemy {
 
 	public woodsBoss(int x, int y) {
 		super(x, y);
-		health = 15;
+		health = 10;
 		score = 1500;
 		w = 40;
 		h = 40;
@@ -18,7 +18,7 @@ public class woodsBoss extends enemy {
 	}
 
 	public void shootFeather() {
-		if (shootcount == 0) {
+		if (shootcount <= 0) {
 			if (!isDead && health > 8) {
 				feather f = new feather(this.x, this.y, false);
 				feather f1 = new feather(this.x, this.y, false);
@@ -63,8 +63,10 @@ public class woodsBoss extends enemy {
 				feathers.add(f);
 				feathers.add(f1);
 				feathers.add(f2);
+				
 				// adds a feather if alive
 				shootcount = 50;
+				System.out.println("ben is penis");
 			}
 		}
 		shootcount--;
