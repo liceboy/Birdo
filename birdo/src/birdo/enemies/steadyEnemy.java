@@ -5,6 +5,8 @@ import java.awt.Color;
 import birdo.utilities.enemy;
 import birdo.utilities.feather;
 
+// enemy that steadily shoots homing shots and pauses on the right edge for a short time
+
 public class steadyEnemy extends enemy {
 
 	public steadyEnemy(int x, int y) {
@@ -15,7 +17,7 @@ public class steadyEnemy extends enemy {
 	public void move () {
 		if (x < 700)
 			dx = 0;
-		if (shootcount > 100)
+		if (shootcount > 200)
 			dx = -3;
 		super.move();
 	}
@@ -25,20 +27,8 @@ public class steadyEnemy extends enemy {
 	}
 	
 	public void shootFeather () {
-		if (shootcount % 30 == 0) {
-			if (!isDead) {
-
-				feather f = new feather(this.x, this.y, false);
-				int deltaX = p.x - x;
-				int deltaY = p.y - y;
-
-				double theta = Math.atan((double) deltaY / (double) deltaX);
-				f.dx = -1 * (int) (5 * Math.cos(theta));
-				f.dy = -1 * (int) (5 * Math.sin(theta));
-
-				feathers.add(f);
-				// adds a feather if alive
-			}
+		if (shootcount % 30 == 0 && !isDead) {
+				customShot("homing");
 		}
 		shootcount++;
 	}

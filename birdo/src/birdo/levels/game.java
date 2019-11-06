@@ -5,6 +5,7 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.util.ArrayList;
 
+import birdo.enemies.*;
 import birdo.levels.pattern;
 import birdo.utilities.*;
 
@@ -52,7 +53,8 @@ public abstract class game {
 			p.draw(g);
 		g.setColor(Color.BLACK);
 		g.drawString("Score: " + score, 550, 40);
-		g.drawString("Layout: " + layout.get(patternNum - 1), 550, 55);
+		if(patternNum != 0)
+			g.drawString("Layout: " + layout.get(patternNum - 1), 550, 55);
 		g.drawString("Health: " + player.health, 25, 40);
 		g.drawString("Powerup: " + player.poweruptype + " x" + player.ammo, 25, 55);
 		if (player.checkisDead()) {
@@ -64,7 +66,8 @@ public abstract class game {
 	}
 
 	public void collision() {
-
+	// good luck trying to understand this
+		
 		// INVULNERABILITY
 
 		if (player.invulnerable) {
@@ -239,6 +242,34 @@ public abstract class game {
 				enemies.add(e);
 			patternNum++;
 		}
+	}
+	
+	public void createEnemy(String type, int x, int y) {
+
+		enemy temp = null;
+		if (type.equals("enemy"))
+			temp = new enemy(x, y);
+		if (type.equals("homing"))
+			temp = new homingEnemy(x, y);
+		if (type.equals("charge"))
+			temp = new chargeEnemy(x, y);
+		if (type.equals("big"))
+			temp = new bigEnemy(x, y);
+		if (type.equals("hover"))
+			temp = new hoverEnemy(x, y);
+		if (type.equals("strafe"))
+			temp = new strafeEnemy(x, y);
+		if (type.equals("suicide"))
+			temp = new suicideEnemy(x, y);
+		if (type.equals("rapid"))
+			temp = new rapidEnemy(x, y);
+		if (type.equals("pulse"))
+			temp = new pulseEnemy(x, y);
+		if (type.equals("steady"))
+			temp = new steadyEnemy(x, y);
+		if (type.equals("miniBoss1"))
+			temp = new miniBoss1(x, y);
+		enemies.add(temp);
 	}
 
 }

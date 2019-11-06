@@ -1,9 +1,10 @@
 package birdo.enemies;
 
 import java.awt.Color;
-
 import birdo.utilities.egg;
 import birdo.utilities.enemy;
+
+// enemy that hovers over the player and poops... slowly
 
 public class hoverEnemy extends enemy {
 

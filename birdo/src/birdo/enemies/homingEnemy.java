@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import birdo.utilities.enemy;
 import birdo.utilities.feather;
 
+// simple enemy that shoots homing shots
+
 public class homingEnemy extends enemy {
 
 	public homingEnemy(int x, int y) {
@@ -27,17 +29,7 @@ public class homingEnemy extends enemy {
 	public void shootFeather() {
 		if (shootcount == 0) {
 			if (!isDead) {
-
-				feather f = new feather(this.x, this.y, false);
-				int deltaX = p.x - x;
-				int deltaY = p.y - y;
-
-				double theta = Math.atan((double) deltaY / (double) deltaX);
-				f.dx = -1 * (int) (5 * Math.cos(theta));
-				f.dy = -1 * (int) (5 * Math.sin(theta));
-
-				feathers.add(f);
-				// adds a feather if alive
+				customShot("homing");
 				shootcount = 100;
 			}
 		}

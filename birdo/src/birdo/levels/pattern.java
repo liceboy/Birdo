@@ -59,26 +59,26 @@ public class pattern {
 		enemy temp = null;
 		if (type.equals("enemy"))
 			temp = new enemy(0, 0);
-		if (type.equals("homingEnemy"))
+		if (type.equals("homing"))
 			temp = new homingEnemy(0, 0);
-		if (type.equals("chargeEnemy"))
+		if (type.equals("charge"))
 			temp = new chargeEnemy(0, 0);
-		if (type.equals("bigEnemy"))
+		if (type.equals("big"))
 			temp = new bigEnemy(0, 0);
-		if (type.equals("hoverEnemy"))
+		if (type.equals("hover"))
 			temp = new hoverEnemy(0, 0);
-		if (type.equals("strafeEnemy"))
+		if (type.equals("strafe"))
 			temp = new strafeEnemy(0, 0);
-		if (type.equals("suicideEnemy"))
+		if (type.equals("suicide"))
 			temp = new suicideEnemy(0, 0);
-		if (type.equals("rapidEnemy"))
+		if (type.equals("rapid"))
 			temp = new rapidEnemy(0, 0);
-		if (type.equals("burstEnemy"))
-			temp = new burstEnemy(0,0);
-		if (type.equals("steadyEnemy"))
+		if (type.equals("burst"))
+			temp = new pulseEnemy(0,0);
+		if (type.equals("steady"))
 			temp = new steadyEnemy(0,0);
-		if (type.equals("woodsBoss"))
-			temp = new woodsBoss(0,0);
+		if (type.equals("miniBoss1"))
+			temp = new miniBoss1(0,0);
 		return temp;
 	}
 }

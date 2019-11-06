@@ -1,9 +1,9 @@
 package birdo.enemies;
 
 import java.awt.Color;
+import birdo.utilities.*;
 
-import birdo.utilities.enemy;
-import birdo.utilities.feather;
+// large, slow enemy that shoots triple shots
 
 public class bigEnemy extends enemy {
 
@@ -25,23 +25,7 @@ public class bigEnemy extends enemy {
 	public void shootFeather() {
 		if (shootcount == 0)
 			if (!isDead) {
-
-				feather f = new feather(this.x, this.y, false);
-				feather f1 = new feather(this.x, this.y, false);
-				feather f2 = new feather(this.x, this.y, false);
-
-				f.dx = -5;
-
-				f1.dx = -1 * (int) (5 * Math.cos(Math.PI / 4));
-				f1.dy = -1 * (int) (5 * Math.sin(Math.PI / 4));
-
-				f2.dx = -1 * (int) (5 * Math.cos(-1 * Math.PI / 4));
-				f2.dy = -1 * (int) (5 * Math.sin(-1 * Math.PI / 4));
-
-				feathers.add(f);
-				feathers.add(f1);
-				feathers.add(f2);
-
+				customShot("tripleShot");
 				shootcount = 200;
 			}
 		shootcount--;

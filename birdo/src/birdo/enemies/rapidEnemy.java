@@ -5,6 +5,8 @@ import java.awt.Color;
 import birdo.utilities.enemy;
 import birdo.utilities.feather;
 
+// enemy that shoots very, very quickly
+
 public class rapidEnemy extends enemy {
 
 	public rapidEnemy(int x, int y) {
@@ -15,8 +17,7 @@ public class rapidEnemy extends enemy {
 	public void shootFeather() {
 		if (shootcount == 0) {
 			if (!isDead) {
-				feathers.add(new feather(this.x, this.y, false));
-				// adds a feather if alive
+				customShot("normal");
 				shootcount = 20;
 			}
 		}

@@ -28,69 +28,69 @@ enemy 815 405
 end
 
 chargingArmy
-chargeEnemy 815 135
-chargeEnemy 915 225
-chargeEnemy 1015 315
-chargeEnemy 1115 405
-chargeEnemy 1215 135
-chargeEnemy 1315 225
-chargeEnemy 1415 315
-chargeEnemy 1515 405
+charge 815 135
+charge 915 225
+charge 1015 315
+charge 1115 405
+charge 1215 135
+charge 1315 225
+charge 1415 315
+charge 1515 405
 end
 
 strafingTrio
-strafeEnemy 815 15
-strafeEnemy 1115 15
-strafeEnemy 1415 15
+strafe 815 15
+strafe 1115 15
+strafe 1415 15
 end
 
 homingArmy
-homingEnemy 815 135
-homingEnemy 915 225
-homingEnemy 1015 315
-homingEnemy 1115 405
-homingEnemy 1215 135
-homingEnemy 1315 225
-homingEnemy 1415 315
-homingEnemy 1515 405
+homing 815 135
+homing 915 225
+homing 1015 315
+homing 1115 405
+homing 1215 135
+homing 1315 225
+homing 1415 315
+homing 1515 405
 end
 
 rapidBar
-rapidEnemy 815 90
-rapidEnemy 815 135
-rapidEnemy 815 180
-rapidEnemy 815 315
-rapidEnemy 815 360
-rapidEnemy 815 405
+rapid 815 90
+rapid 815 135
+rapid 815 180
+rapid 815 315
+rapid 815 360
+rapid 815 405
 end
 
 bigEnemies
-bigEnemy 815 135
-bigEnemy 815 360
+big 815 135
+big 815 360
 end
 
-burstShooters
-burstEnemy 815 180
-burstEnemy 815 360
+pulseShooters
+pulse 815 180
+pulse 815 360
 end
 
 shooterGang
-burstEnemy 815 180 
-burstEnemy 815 360
-homingEnemy 915 90
-homingEnemy 915 270
-homingEnemy 915 450
+pulse 815 180 
+pulse 815 360
+homing 915 90
+homing 915 270
+homing 915 450
 end
 
 comboAttack
-bigEnemy 815 270
-steadyEnemy 1015 225
-steadyEnemy 1015 315
-homingEnemy 915 360
-homingEnemy 915 180
+big 815 270
+steady 1015 225
+steady 1015 315
+homing 915 360
+homing 915 180
 end
 
-woodsBossFight
-woodsBoss 815 360
+miniBoss1Fight
+miniBoss1 815 360
 end
 
