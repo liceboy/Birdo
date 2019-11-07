@@ -107,17 +107,17 @@ public class enemy extends player {
 			feather f2 = new feather(this.x, this.y, false);
 			feather f3 = new feather(this.x, this.y, false);
 			
-				f.dx = -1 * (int) (5*Math.cos(shotmultiplier * Math.PI / 6));
-				f.dy = -1 * (int) (5*Math.sin(shotmultiplier * Math.PI / 6));	
+				f.dx = -1 * (int) (5*Math.cos(shotmultiplier * Math.PI / 12));
+				f.dy = -1 * (int) (5*Math.sin(shotmultiplier * Math.PI / 12));	
 				
-				f1.dx = -1 * (int) (5*Math.cos((shotmultiplier * Math.PI / 6)+ Math.PI/2));
-				f1.dy = -1 * (int) (5*Math.sin((shotmultiplier * Math.PI / 6)+ Math.PI/2));	
+				f1.dx = -1 * (int) (5*Math.cos((shotmultiplier * Math.PI / 12)+ Math.PI/2));
+				f1.dy = -1 * (int) (5*Math.sin((shotmultiplier * Math.PI / 12)+ Math.PI/2));	
 				
-				f2.dx = -1 * (int) (5*Math.cos((shotmultiplier * Math.PI / 6)+ Math.PI));
-				f2.dy = -1 * (int) (5*Math.sin((shotmultiplier * Math.PI / 6)+ Math.PI));	
-				
-				f3.dx = -1 * (int) (5*Math.cos((shotmultiplier * Math.PI / 6)+ 3*Math.PI/2));
-				f3.dy = -1 * (int) (5*Math.sin((shotmultiplier * Math.PI / 6)+ 3*Math.PI/2));	
+				f2.dx = -1 * (int) (5*Math.cos((shotmultiplier * Math.PI / 12)+ Math.PI));
+				f2.dy = -1 * (int) (5*Math.sin((shotmultiplier * Math.PI / 12)+ Math.PI));	
+				 
+				f3.dx = -1 * (int) (5*Math.cos((shotmultiplier * Math.PI / 12)+ 3*Math.PI/2));
+				f3.dy = -1 * (int) (5*Math.sin((shotmultiplier * Math.PI / 12)+ 3*Math.PI/2));	
 		
 			shotmultiplier++;
 			

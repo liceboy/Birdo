@@ -31,9 +31,9 @@ public class miniBoss2 extends enemy {
 		if (!isDead && health < 10) {
 			if (shootcount <= 0) {
 				customShot("spinShot");
-				shootcount = 10;
+				shootcount = 15;
+				}
 			}
-		}
 		shootcount--;
 	}
 
