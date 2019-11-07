@@ -6,6 +6,7 @@ public class enemy extends player {
 
 	public player p;
 	public int score;
+	int shotmultiplier;
 
 	public enemy(int x, int y) {
 		super(x, y, Color.BLACK);
@@ -13,6 +14,7 @@ public class enemy extends player {
 		score = 100;
 		this.dx = -2;
 		this.dy = 0;
+		shotmultiplier = 0;
 	}
 
 	public void shootFeather() {
@@ -58,7 +60,73 @@ public class enemy extends player {
 			feathers.add(f1);
 			feathers.add(f2);
 		}
-		if(type == "buckshot") {
+		if(type == "bloomShot") {
+			feather f = new feather(this.x+this.w/2, this.y+this.h/2, false);
+			feather f1 = new feather(this.x+this.w/2, this.y+this.h/2, false);
+			feather f2 = new feather(this.x+this.w/2, this.y+this.h/2, false);
+			feather f3 = new feather(this.x+this.w/2, this.y+this.h/2, false);
+			feather f4 = new feather(this.x+this.w/2, this.y+this.h/2, false);
+			feather f5 = new feather(this.x+this.w/2, this.y+this.h/2, false);
+			feather f6 = new feather(this.x+this.w/2, this.y+this.h/2, false);
+			feather f7 = new feather(this.x+this.w/2, this.y+this.h/2, false);
+
+			f.dx = -5;
+			f.dy = 0;
+			f3.dx = 5;
+			f3.dy = 0;
+
+			f1.dx = -1 * (int) (-5 * Math.cos(Math.PI / 4));
+			f1.dy = -1 * (int) (-5 * Math.sin(Math.PI / 4));
+
+			f2.dx = -1 * (int) (-5 * Math.cos(7 * Math.PI / 4));
+			f2.dy = -1 * (int) (-5 * Math.sin(7 * Math.PI / 4));
+			
+			f4.dx = (int) (-5 * Math.cos(Math.PI / 4));
+			f4.dy = (int) (-5 * Math.sin(Math.PI / 4));
+			
+			f5.dx = (int) (-5 * Math.cos(7 * Math.PI / 4));
+			f5.dy = (int) (-5 * Math.sin(7 * Math.PI / 4));
+			
+			f6.dx = 0;
+			f6.dy = -5;
+			f7.dx = 0;
+			f7.dy = 5;
+
+			feathers.add(f);
+			feathers.add(f1);
+			feathers.add(f2);
+			feathers.add(f3);
+			feathers.add(f4);
+			feathers.add(f5);
+			feathers.add(f6);
+			feathers.add(f7);
+		}
+		if(type == "spinShot") {
+			feather f = new feather(this.x, this.y, false);
+			feather f1 = new feather(this.x, this.y, false);
+			feather f2 = new feather(this.x, this.y, false);
+			feather f3 = new feather(this.x, this.y, false);
+			
+				f.dx = -1 * (int) (5*Math.cos(shotmultiplier * Math.PI / 6));
+				f.dy = -1 * (int) (5*Math.sin(shotmultiplier * Math.PI / 6));	
+				
+				f1.dx = -1 * (int) (5*Math.cos((shotmultiplier * Math.PI / 6)+ Math.PI/2));
+				f1.dy = -1 * (int) (5*Math.sin((shotmultiplier * Math.PI / 6)+ Math.PI/2));	
+				
+				f2.dx = -1 * (int) (5*Math.cos((shotmultiplier * Math.PI / 6)+ Math.PI));
+				f2.dy = -1 * (int) (5*Math.sin((shotmultiplier * Math.PI / 6)+ Math.PI));	
+				
+				f3.dx = -1 * (int) (5*Math.cos((shotmultiplier * Math.PI / 6)+ 3*Math.PI/2));
+				f3.dy = -1 * (int) (5*Math.sin((shotmultiplier * Math.PI / 6)+ 3*Math.PI/2));	
+		
+			shotmultiplier++;
+			
+			feathers.add(f);
+			feathers.add(f1);
+			feathers.add(f2);
+			feathers.add(f3);
+		}
+		if(type == "buckShot") {
 			feather f = new feather(this.x, this.y, false);
 			feather f1 = new feather(this.x, this.y, false);
 			feather f2 = new feather(this.x, this.y, false);

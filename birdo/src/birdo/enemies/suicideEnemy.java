@@ -18,7 +18,7 @@ public class suicideEnemy extends enemy {
 	public void shootFeather() {
 		if (shootcount == 0) {
 			if (!isDead) {
-				customShot("tripleShot");
+				customShot("bloomShot");
 				shootcount = 100;
 			}
 		}

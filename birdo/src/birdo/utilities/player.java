@@ -75,7 +75,7 @@ public class player extends object {
 			if (!isDead) {
 				feathers.add(new feather(this.x, this.y, true));
 				// adds a feather if alive
-				shootcount = 20;
+				shootcount = 15;
 			}
 		}
 		shootcount--;

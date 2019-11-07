@@ -22,7 +22,7 @@ public class miniBoss1 extends enemy {
 	public void shootFeather() {
 		if (shootcount <= 0) {
 			if (!isDead && health > 8) {
-				customShot("buckshot");
+				customShot("buckShot");
 				shootcount = 100;
 			}
 			if (!isDead && health <= 7) {

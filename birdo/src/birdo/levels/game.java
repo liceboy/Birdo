@@ -269,6 +269,8 @@ public abstract class game {
 			temp = new steadyEnemy(x, y);
 		if (type.equals("miniBoss1"))
 			temp = new miniBoss1(x, y);
+		if (type.equals("miniBoss2"))
+			temp = new miniBoss2(x, y);
 		enemies.add(temp);
 	}
 

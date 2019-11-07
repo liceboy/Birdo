@@ -5,14 +5,12 @@ import java.awt.Color;
 import birdo.utilities.enemy;
 import birdo.utilities.feather;
 
-
-
 public class miniBoss2 extends enemy {
 	int movecount;
 
 	public miniBoss2(int x, int y) {
 		super(x, y);
-		health = 10;
+		health = 20;
 		score = 1500;
 		w = 40;
 		h = 40;
@@ -20,16 +18,21 @@ public class miniBoss2 extends enemy {
 	}
 
 	public void shootFeather() {
-		if 
-		if (shootcount == 0 && !isDead) {
-			customShot("normal");
-			shootcount = 100;
+		if (!isDead && health >= 10) {
+			if (shootcount <= 0 && !isDead) {
+				customShot("normal");
+				shootcount = 100;
+			}
+			if (shootcount % 10 == 0 && (shootcount / 10) < 8) {
+				if(shootcount / 10 < 5) customShot("normal");
+				else customShot("homing");
+			}
 		}
-		if (shootcount == 90) {
-			customShot("normal");
-		}
-		if (shootcount == 80) {
-			customShot("normal");
+		if (!isDead && health < 10) {
+			if (shootcount <= 0) {
+				customShot("spinShot");
+				shootcount = 10;
+			}
 		}
 		shootcount--;
 	}
@@ -42,7 +45,7 @@ public class miniBoss2 extends enemy {
 		if (!isDead) {
 			if (x > 700)
 				dx = -3;
-			if (x < 700) {
+			if (x < 700 && health >= 10) {
 				if (movecount > 150) {
 					dx = 0;
 					dy = -2;
@@ -55,6 +58,18 @@ public class miniBoss2 extends enemy {
 					movecount = 300;
 				}
 				movecount--;
+			}
+			if (health < 10) {
+				if (x > 400)
+					dx = -3;
+				if (y < 250)
+					dy = 3;
+				if (y > 250)
+					dy = -3;
+				if (x <= 400)
+					dx = 0;
+				if (y == 250)
+					dy = 0;
 			}
 		}
 		if (isDead) {
