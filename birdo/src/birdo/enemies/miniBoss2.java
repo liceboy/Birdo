@@ -12,8 +12,8 @@ public class miniBoss2 extends enemy {
 		super(x, y);
 		health = 20;
 		score = 1500;
-		w = 40;
-		h = 40;
+		w = 20;
+		h = 20;
 		movecount = 300;
 	}
 
@@ -24,16 +24,18 @@ public class miniBoss2 extends enemy {
 				shootcount = 100;
 			}
 			if (shootcount % 10 == 0 && (shootcount / 10) < 8) {
-				if(shootcount / 10 < 5) customShot("normal");
-				else customShot("homing");
+				if (shootcount / 10 < 5)
+					customShot("normal");
+				else
+					customShot("homing");
 			}
 		}
 		if (!isDead && health < 10) {
 			if (shootcount <= 0) {
 				customShot("spinShot");
-				shootcount = 15;
-				}
+				shootcount = 10;
 			}
+		}
 		shootcount--;
 	}
 
@@ -42,39 +44,15 @@ public class miniBoss2 extends enemy {
 	}
 
 	public void move() {
-		if (!isDead) {
-			if (x > 700)
-				dx = -3;
-			if (x < 700 && health >= 10) {
-				if (movecount > 150) {
-					dx = 0;
-					dy = -2;
-				}
-				if (movecount < 150) {
-					dx = 0;
-					dy = 2;
-				}
-				if (movecount <= 0) {
-					movecount = 300;
-				}
-				movecount--;
-			}
-			if (health < 10) {
-				if (x > 400)
-					dx = -3;
-				if (y < 250)
-					dy = 3;
-				if (y > 250)
-					dy = -3;
-				if (x <= 400)
-					dx = 0;
-				if (y == 250)
-					dy = 0;
-			}
+		customMove("moveOut");
+		if (x < 700 && health >= 10) {
+			customMove("upDown");
+		}
+		if (health < 10) {
+			customMove("moveCenter");
 		}
 		if (isDead) {
-			dx = 0;
-			dy = 7;
+			customMove("die");
 		}
 		super.move();
 	}

@@ -7,6 +7,8 @@ public class enemy extends player {
 	public player p;
 	public int score;
 	int shotmultiplier;
+	int movecount;
+	int timeInterval;
 
 	public enemy(int x, int y) {
 		super(x, y, Color.BLACK);
@@ -15,6 +17,8 @@ public class enemy extends player {
 		this.dx = -2;
 		this.dy = 0;
 		shotmultiplier = 0;
+		movecount = 300;
+		timeInterval = 0;
 	}
 
 	public void shootFeather() {
@@ -61,14 +65,14 @@ public class enemy extends player {
 			feathers.add(f2);
 		}
 		if(type == "bloomShot") {
-			feather f = new feather(this.x+this.w/2, this.y+this.h/2, false);
-			feather f1 = new feather(this.x+this.w/2, this.y+this.h/2, false);
-			feather f2 = new feather(this.x+this.w/2, this.y+this.h/2, false);
-			feather f3 = new feather(this.x+this.w/2, this.y+this.h/2, false);
-			feather f4 = new feather(this.x+this.w/2, this.y+this.h/2, false);
-			feather f5 = new feather(this.x+this.w/2, this.y+this.h/2, false);
-			feather f6 = new feather(this.x+this.w/2, this.y+this.h/2, false);
-			feather f7 = new feather(this.x+this.w/2, this.y+this.h/2, false);
+			feather f = new feather(this.x+this.w/2-6, this.y+this.h/2-4, false);
+			feather f1 = new feather(this.x+this.w/2-6, this.y+this.h/2-4, false);
+			feather f2 = new feather(this.x+this.w/2-6, this.y+this.h/2-4, false);
+			feather f3 = new feather(this.x+this.w/2-6, this.y+this.h/2-4, false);
+			feather f4 = new feather(this.x+this.w/2-6, this.y+this.h/2-4, false);
+			feather f5 = new feather(this.x+this.w/2-6, this.y+this.h/2-4, false);
+			feather f6 = new feather(this.x+this.w/2-6, this.y+this.h/2-4, false);
+			feather f7 = new feather(this.x+this.w/2-6, this.y+this.h/2-4, false);
 
 			f.dx = -5;
 			f.dy = 0;
@@ -102,10 +106,10 @@ public class enemy extends player {
 			feathers.add(f7);
 		}
 		if(type == "spinShot") {
-			feather f = new feather(this.x, this.y, false);
-			feather f1 = new feather(this.x, this.y, false);
-			feather f2 = new feather(this.x, this.y, false);
-			feather f3 = new feather(this.x, this.y, false);
+			feather f = new feather(this.x+this.w/2-6, this.y+this.h/2-4, false);
+			feather f1 = new feather(this.x+this.w/2-6, this.y+this.h/2-4, false);
+			feather f2 = new feather(this.x+this.w/2-6, this.y+this.h/2-4, false);
+			feather f3 = new feather(this.x+this.w/2-6, this.y+this.h/2-4, false);
 			
 				f.dx = -1 * (int) (5*Math.cos(shotmultiplier * Math.PI / 12));
 				f.dy = -1 * (int) (5*Math.sin(shotmultiplier * Math.PI / 12));	
@@ -170,6 +174,51 @@ public class enemy extends player {
 		if (x < 800)
 			poop();
 		super.move();
+	}
+	
+	public void customMove(String type) {
+		if (type == "moveOut") {
+			if (x > 700)
+				dx = -3;
+		}
+		if (type == "upDown") {
+			if (!isDead) {
+				dx = 0;
+				if (dy == 0)
+					dy = -3;
+				if (y > 400) {
+					dy = -3;
+				}
+				if (y < 100)
+					dy = 3;
+			}
+		}
+		if (type == "moveCenter") {
+			if (Math.abs(x - w / 2 - 400) < 3 && Math.abs(y - h / 2 - 250) < 3) {
+				dx = 0; dy = 0;
+				return;
+			}
+			
+			if (x > 400)
+				dx = -3;
+			if (y < 250)
+				dy = 3;
+			if (y > 250)
+				dy = -3;
+			if (x <= 400)
+				dx = 0;
+			if (y == 250)
+				dy = 0;
+		}
+		if (type == "moveCircleSmall") {
+			
+		}
+		if (type == "die") {
+			dx = 0;
+			dy = 5;
+		}
+			
+				
 	}
 	
 }

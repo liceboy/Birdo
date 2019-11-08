@@ -11,7 +11,7 @@ public class level extends game{
 	public level() {
 		super();
 		
-		createEnemy("miniBoss2", 800, 300);
+		createEnemy("miniBoss2", 800, 400);
 		
 		// layout.add("woodsBossFight");
 	}
