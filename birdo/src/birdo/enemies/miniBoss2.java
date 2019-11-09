@@ -16,13 +16,13 @@ public class miniBoss2 extends enemy {
 	}
 
 	public void move() {
-		if (x < 700 && health >= 10) 
+		if (x < 700 && health >= 10)
 			customMove("upDown");
-		if (health < 10) 
+		if (health < 10)
 			customMove("moveCenter");
 		super.move();
 	}
-	
+
 	public void shootFeather() {
 		if (health >= 10) {
 			if (shootcount <= 0) {
@@ -36,7 +36,7 @@ public class miniBoss2 extends enemy {
 					customShot("homing");
 			}
 		}
-		
+
 		if (health < 10 && Math.abs(x - 400) < 3 && Math.abs(y - 250) < 3) {
 			if (shootcount <= 0) {
 				customShot("spinShot");

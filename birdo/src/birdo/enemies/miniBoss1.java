@@ -5,8 +5,6 @@ import java.awt.Color;
 import birdo.utilities.enemy;
 import birdo.utilities.feather;
 
-
-
 public class miniBoss1 extends enemy {
 
 	public miniBoss1(int x, int y) {
@@ -22,12 +20,12 @@ public class miniBoss1 extends enemy {
 			customMove("upDown");
 		super.move();
 	}
-	
+
 	public void shootFeather() {
 		if (shootcount <= 0) {
-			if (health > 15) 
+			if (health > 15)
 				customShot("buckShot");
-			if (health <= 15) 
+			if (health <= 15)
 				customShot("tripleShot");
 			shootcount = 30;
 		}

@@ -7,10 +7,10 @@ import java.util.ArrayList;
 import birdo.levels.*;
 import birdo.utilities.*;
 
-public class level extends game{
+public class level extends game {
 	public level() {
 		super();
-		
+
 		layout.add("enemyStaggered");
 		layout.add("chargingArmy");
 		layout.add("strafingTrio");
@@ -21,7 +21,7 @@ public class level extends game{
 		layout.add("comboAttack");
 		layout.add("miniBoss1Fight");
 		layout.add("miniBoss2Fight");
-		
+
 	}
 
 }

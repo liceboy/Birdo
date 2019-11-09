@@ -13,7 +13,7 @@ public class rapidEnemy extends enemy {
 		super(x, y);
 		c = Color.PINK;
 	}
-	
+
 	public void move() {
 		customMove("default");
 		super.move();

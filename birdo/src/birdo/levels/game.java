@@ -53,7 +53,7 @@ public abstract class game {
 			p.draw(g);
 		g.setColor(Color.BLACK);
 		g.drawString("Score: " + score, 550, 40);
-		if(patternNum != 0)
+		if (patternNum != 0)
 			g.drawString("Layout: " + layout.get(patternNum - 1), 550, 55);
 		g.drawString("Health: " + player.health, 25, 40);
 		g.drawString("Powerup: " + player.poweruptype + " x" + player.ammo, 25, 55);
@@ -66,8 +66,8 @@ public abstract class game {
 	}
 
 	public void collision() {
-	// good luck trying to understand this
-		
+		// good luck trying to understand this
+
 		// INVULNERABILITY
 
 		if (player.invulnerable) {
@@ -153,10 +153,10 @@ public abstract class game {
 		// ENEMY HITBOXES
 
 		for (int i = 0; i != enemies.size(); i++) {
-			
+
 			if (i == -1)
 				continue;
-			
+
 			enemy e = enemies.get(i);
 
 			if (e.x > 800)
@@ -201,10 +201,10 @@ public abstract class game {
 			}
 
 			e.checkisDead();
-			
+
 			boolean removeEnemy = false;
 			boolean addScore = false;
-			
+
 			if (e.y > 800) {
 				removeEnemy = true;
 				addScore = true;
@@ -217,33 +217,35 @@ public abstract class game {
 			}
 			// an enemy who moves beyond the left bound
 			// should be removed
-			
-			if(!removeEnemy) continue;
+
+			if (!removeEnemy)
+				continue;
 			// no reason to remove? no reason to go through removal
-			
+
 			boolean onScreen = false;
-			
+
 			for (feather f : e.feathers) {
-				if(f.x > 0 && f.y > 0 && f.y < 500) {
+				if (f.x > 0 && f.y > 0 && f.y < 500) {
 					onScreen = true;
 					break;
 				}
 			}
-			
+
 			for (egg eg : e.eggs) {
-				if(eg.x > 0 && eg.y > 0 && eg.y < 500) {
+				if (eg.x > 0 && eg.y > 0 && eg.y < 500) {
 					onScreen = true;
 					break;
 				}
 			}
-			
+
 			// if feathers or eggs are still onscreen, don't remove enemy yet
-			
-			if(onScreen) continue;
-			
+
+			if (onScreen)
+				continue;
+
 			enemies.remove(i);
 			i--;
-			
+
 		}
 
 		// powerup hitboxes and conditions
@@ -274,16 +276,16 @@ public abstract class game {
 
 		boolean onScreen = false;
 		for (enemy e : enemies) {
-			if(e.x > 0 && e.y > 0 && e.y < 500) {
+			if (e.x > 0 && e.y > 0 && e.y < 500) {
 				onScreen = true;
 				break;
 			}
 		}
-		
+
 		// if all enemies are offscreen (not necessarily feathers)
 		// and there exists more patterns,
 		// bring on another pattern
-		
+
 		if (!onScreen && patternNum != layout.size()) {
 			ArrayList<enemy> toAdd = new pattern(layout.get(patternNum)).enemies;
 			for (enemy e : toAdd)
@@ -291,7 +293,7 @@ public abstract class game {
 			patternNum++;
 		}
 	}
-	
+
 	public void createEnemy(String type, int x, int y) {
 
 		enemy temp = null;

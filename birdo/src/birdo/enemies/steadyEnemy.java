@@ -13,22 +13,22 @@ public class steadyEnemy extends enemy {
 		super(x, y);
 		c = Color.MAGENTA;
 	}
-	
-	public void move () {
+
+	public void move() {
 		if (x < 700)
 			dx = 0;
 		if (shootcount > 200)
 			dx = -3;
 		super.move();
 	}
-	
-	public void poop () {
+
+	public void poop() {
 		return;
 	}
-	
-	public void shootFeather () {
-		if (shootcount % 30 == 0) 
-				customShot("homing");
+
+	public void shootFeather() {
+		if (shootcount % 30 == 0)
+			customShot("homing");
 		shootcount++;
 	}
 

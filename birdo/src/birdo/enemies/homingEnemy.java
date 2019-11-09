@@ -15,7 +15,7 @@ public class homingEnemy extends enemy {
 		c = Color.DARK_GRAY;
 		health = 2;
 	}
-	
+
 	public void move() {
 		customMove("default");
 		super.move();

@@ -19,7 +19,7 @@ public class powerup extends object {
 	}
 
 	public void move() {
-		
+
 		super.move();
 	}
 

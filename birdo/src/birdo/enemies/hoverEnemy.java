@@ -13,7 +13,7 @@ public class hoverEnemy extends enemy {
 		c = Color.GREEN;
 		health = 1;
 	}
-	
+
 	public void move() {
 		customMove("hover");
 		super.move();

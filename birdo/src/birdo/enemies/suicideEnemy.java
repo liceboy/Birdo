@@ -14,7 +14,7 @@ public class suicideEnemy extends enemy {
 		health = 2;
 		c = Color.GREEN;
 	}
-	
+
 	public void move() {
 		if (x < 800)
 			customMove("homing");
