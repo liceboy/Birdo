@@ -65,21 +65,16 @@ public class enemy extends player {
 		}
 		
 		if (type == "moveCenter") {
-			if (Math.abs(x - w / 2 - 400) < 3 && Math.abs(y - h / 2 - 250) < 3) {
-				dx = 0; dy = 0;
-				return;
-			}
+			dx = 0; dy = 0;
 			
-			if (x > 400)
+			if (x - 400 > 3)
 				dx = -3;
-			if (y < 250)
-				dy = 3;
-			if (y > 250)
+			if (x - 400 < -3)
+				dx = 3;
+			if (y - 250 > 3)
 				dy = -3;
-			if (x <= 400)
-				dx = 0;
-			if (y == 250)
-				dy = 0;
+			if (y - 250 < -3)
+				dy = 3;
 		}
 		
 		if (type == "charge") {

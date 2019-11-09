@@ -9,7 +9,7 @@ public class miniBoss2 extends enemy {
 
 	public miniBoss2(int x, int y) {
 		super(x, y);
-		health = 20;
+		health = 10;
 		score = 1500;
 		w = 20;
 		h = 20;
@@ -27,20 +27,20 @@ public class miniBoss2 extends enemy {
 		if (health >= 10) {
 			if (shootcount <= 0) {
 				customShot("homing");
-				shootcount = 100;
+				shootcount = 200;
 			}
-			if (shootcount % 10 == 0 && (shootcount / 10) < 80) {
-				if (shootcount / 10 < 5)
+			if (shootcount % 20 == 0 && (shootcount / 20) < 80) {
+				if (shootcount / 20 < 5)
 					customShot("normal");
 				else
 					customShot("homing");
 			}
 		}
 		
-		if (health < 10) {
+		if (health < 10 && Math.abs(x - 400) < 3 && Math.abs(y - 250) < 3) {
 			if (shootcount <= 0) {
 				customShot("spinShot");
-				shootcount = 10;
+				shootcount = 15;
 			}
 		}
 		shootcount--;

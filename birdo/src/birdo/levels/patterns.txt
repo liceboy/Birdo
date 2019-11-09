@@ -6,6 +6,18 @@
 // ...
 // end
 
+- enemyStaggered
+- chargingArmy
+- strafingTrio
+- homingArmy
+- rapidBar
+- bigDuo
+- pulseDuo
+- shooterGang
+- comboAttack
+- miniBoss1Fight
+- miniBoss2Fight
+
 template (for symmetric positioning)
 ... 815 45
 ... 815 90
@@ -64,12 +76,12 @@ rapid 815 360
 rapid 815 405
 end
 
-bigEnemies
+bigDuo
 big 815 135
 big 815 360
 end
 
-pulseShooters
+pulseDuo
 pulse 815 180
 pulse 815 360
 end
@@ -92,5 +104,9 @@ end
 
 miniBoss1Fight
 miniBoss1 815 360
+end
+
+miniBoss2Fight
+miniBoss2 815 360
 end
 

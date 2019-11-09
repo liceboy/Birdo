@@ -73,12 +73,14 @@ public class pattern {
 			temp = new suicideEnemy(0, 0);
 		if (type.equals("rapid"))
 			temp = new rapidEnemy(0, 0);
-		if (type.equals("burst"))
+		if (type.equals("pulse"))
 			temp = new pulseEnemy(0,0);
 		if (type.equals("steady"))
 			temp = new steadyEnemy(0,0);
 		if (type.equals("miniBoss1"))
 			temp = new miniBoss1(0,0);
+		if (type.equals("miniBoss2"))
+			temp = new miniBoss2(0,0);
 		return temp;
 	}
 }
