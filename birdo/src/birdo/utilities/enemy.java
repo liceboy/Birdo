@@ -8,7 +8,6 @@ public class enemy extends player {
 	public int score;
 	int shotmultiplier;
 	int movecount;
-	int timeInterval;
 
 	public enemy(int x, int y) {
 		super(x, y, Color.BLACK);
@@ -18,7 +17,6 @@ public class enemy extends player {
 		this.dy = 0;
 		shotmultiplier = 0;
 		movecount = 300;
-		timeInterval = 0;
 	}
 
 	public void shootFeather() {
