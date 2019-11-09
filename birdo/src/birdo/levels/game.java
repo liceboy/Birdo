@@ -153,6 +153,10 @@ public abstract class game {
 		// ENEMY HITBOXES
 
 		for (int i = 0; i != enemies.size(); i++) {
+			
+			if (i == -1)
+				continue;
+			
 			enemy e = enemies.get(i);
 
 			if (e.x > 800)
@@ -197,17 +201,49 @@ public abstract class game {
 			}
 
 			e.checkisDead();
-
-			if (e.y > 600) {
-				enemies.remove(i);
-				score += e.score;
-				i--;
+			
+			boolean removeEnemy = false;
+			boolean addScore = false;
+			
+			if (e.y > 800) {
+				removeEnemy = true;
+				addScore = true;
 			}
+			// an enemy who falls below the lower bound
+			// should be removed and add to score
 
-			if (e.x < -100) {
-				enemies.remove(i);
-				i--;
+			if (e.x < -300) {
+				removeEnemy = true;
 			}
+			// an enemy who moves beyond the left bound
+			// should be removed
+			
+			if(!removeEnemy) continue;
+			// no reason to remove? no reason to go through removal
+			
+			boolean onScreen = false;
+			
+			for (feather f : e.feathers) {
+				if(f.x > 0 && f.y > 0 && f.y < 500) {
+					onScreen = true;
+					break;
+				}
+			}
+			
+			for (egg eg : e.eggs) {
+				if(eg.x > 0 && eg.y > 0 && eg.y < 500) {
+					onScreen = true;
+					break;
+				}
+			}
+			
+			// if feathers or eggs are still onscreen, don't remove enemy yet
+			
+			if(onScreen) continue;
+			
+			enemies.remove(i);
+			i--;
+			
 		}
 
 		// powerup hitboxes and conditions
@@ -236,7 +272,19 @@ public abstract class game {
 
 	public void genPattern() {
 
-		if (enemies.size() == 0 && patternNum != layout.size()) {
+		boolean onScreen = false;
+		for (enemy e : enemies) {
+			if(e.x > 0 && e.y > 0 && e.y < 500) {
+				onScreen = true;
+				break;
+			}
+		}
+		
+		// if all enemies are offscreen (not necessarily feathers)
+		// and there exists more patterns,
+		// bring on another pattern
+		
+		if (!onScreen && patternNum != layout.size()) {
 			ArrayList<enemy> toAdd = new pattern(layout.get(patternNum)).enemies;
 			for (enemy e : toAdd)
 				enemies.add(e);

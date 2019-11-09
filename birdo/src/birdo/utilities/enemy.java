@@ -6,8 +6,6 @@ public class enemy extends player {
 
 	public player p;
 	public int score;
-	int shotmultiplier;
-	int movecount;
 
 	public enemy(int x, int y) {
 		super(x, y, Color.BLACK);
@@ -15,8 +13,6 @@ public class enemy extends player {
 		score = 100;
 		this.dx = -2;
 		this.dy = 0;
-		shotmultiplier = 0;
-		movecount = 300;
 	}
 	
 	public void move() {
@@ -100,7 +96,9 @@ public class enemy extends player {
 		
 		if (type == "die") {
 			dx = 0;
-			dy = 5;
+			dy = 7;
+			if(y < 500)
+				dy = 2;
 		}
 	}
 
@@ -116,6 +114,9 @@ public class enemy extends player {
 	}
 	
 	public void customShot(String type) {
+		if (isDead)
+			return;
+		
 		if(type == "normal"){
 			feathers.add(new feather(this.x, this.y, false));
 		}
@@ -244,11 +245,11 @@ public class enemy extends player {
 	}
    
 	public void poop() {
+		if (isDead) return;
+		
 		if (poopcount == 0) {
-			if (!isDead) {
-				eggs.add(new egg(this.x, this.y));
-				poopcount = 100;
-			}
+			eggs.add(new egg(this.x, this.y));
+			poopcount = 100;
 		}
 		poopcount--;
 	}
