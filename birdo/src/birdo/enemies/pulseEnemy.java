@@ -20,17 +20,14 @@ public class pulseEnemy extends enemy {
 	}
 
 	public void shootFeather() {
-
 		if (shootcount == 0) {
 			customShot("homing");
 			shootcount = 100;
 		}
-		if (shootcount == 90) {
+		if (shootcount == 90)
 			customShot("homing");
-		}
-		if (shootcount == 80) {
+		if (shootcount == 80)
 			customShot("homing");
-		}
 		shootcount--;
 	}
 

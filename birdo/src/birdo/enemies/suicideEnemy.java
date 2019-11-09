@@ -14,6 +14,12 @@ public class suicideEnemy extends enemy {
 		health = 2;
 		c = Color.GREEN;
 	}
+	
+	public void move() {
+		if (x < 800)
+			customMove("homing");
+		super.move();
+	}
 
 	public void shootFeather() {
 		if (shootcount == 0) {
@@ -25,14 +31,5 @@ public class suicideEnemy extends enemy {
 
 	public void poop() {
 		return;
-	}
-
-	public void move() {
-
-		if (x < 800)
-			customMove("homing");
-
-		super.move();
-
 	}
 }

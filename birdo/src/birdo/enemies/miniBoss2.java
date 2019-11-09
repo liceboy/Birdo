@@ -6,7 +6,6 @@ import birdo.utilities.enemy;
 import birdo.utilities.feather;
 
 public class miniBoss2 extends enemy {
-	int movecount;
 
 	public miniBoss2(int x, int y) {
 		super(x, y);
@@ -14,12 +13,19 @@ public class miniBoss2 extends enemy {
 		score = 1500;
 		w = 20;
 		h = 20;
-		movecount = 300;
 	}
 
+	public void move() {
+		if (x < 700 && health >= 10) 
+			customMove("upDown");
+		if (health < 10) 
+			customMove("moveCenter");
+		super.move();
+	}
+	
 	public void shootFeather() {
-		if (!isDead && health >= 10) {
-			if (shootcount <= 0 && !isDead) {
+		if (health >= 10) {
+			if (shootcount <= 0) {
 				customShot("homing");
 				shootcount = 100;
 			}
@@ -31,7 +37,7 @@ public class miniBoss2 extends enemy {
 			}
 		}
 		
-		if (!isDead && health < 10) {
+		if (health < 10) {
 			if (shootcount <= 0) {
 				customShot("spinShot");
 				shootcount = 10;
@@ -42,17 +48,6 @@ public class miniBoss2 extends enemy {
 
 	public void poop() {
 		return;
-	}
-
-	public void move() {
-
-		if (x < 700 && health >= 10) 
-			customMove("upDown");
-		
-		if (health < 10) 
-			customMove("moveCenter");
-
-		super.move();
 	}
 
 }

@@ -15,10 +15,7 @@ public class chargeEnemy extends enemy {
 	}
 
 	public void move() {
-
-		if (x < 800) 
-			customMove("charge");
-		
+		customMove("charge");
 		super.move();
 	}
 

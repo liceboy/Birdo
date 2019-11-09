@@ -15,6 +15,11 @@ public class strafeEnemy extends enemy {
 		c = Color.ORANGE;
 		health = 1;
 	}
+	
+	public void move() {
+		customMove("default");
+		super.move();
+	}
 
 	public void shootFeather() {
 		return;

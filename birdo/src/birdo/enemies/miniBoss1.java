@@ -17,28 +17,25 @@ public class miniBoss1 extends enemy {
 		h = 20;
 	}
 
+	public void move() {
+		if (x < 700)
+			customMove("upDown");
+		super.move();
+	}
+	
 	public void shootFeather() {
 		if (shootcount <= 0) {
-			if (health > 15) {
+			if (health > 15) 
 				customShot("buckShot");
-				shootcount = 30;
-			}
-			if (health <= 15) {
+			if (health <= 15) 
 				customShot("tripleShot");
-				shootcount = 30;
-			}
+			shootcount = 30;
 		}
 		shootcount--;
 	}
 
 	public void poop() {
 		return;
-	}
-
-	public void move() {
-		if (x < 700)
-			customMove("upDown");
-		super.move();
 	}
 
 }
