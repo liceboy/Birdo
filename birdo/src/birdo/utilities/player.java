@@ -47,7 +47,7 @@ public class player extends object {
 		invulnerable = false;
 		invulnerablecooldown = 0;
 		shotmultiplier = 0;
-		poweruptype = "None"; // default powerup is always none
+		poweruptype = "none"; // default powerup is always none
 	}
 
 	public void draw(Graphics g) {
@@ -211,14 +211,18 @@ public class player extends object {
 	}
 
 	public void usePowerup() { // uses the powerup based on string type, add powerups as you feel
-		if (poweruptype == "None")
+		if (poweruptype == "none")
 			return;
-		if (poweruptype == "Eggs") {
-			if (ammo > 0)
-				poop();
-			if (ammo == 0)
-				poweruptype = "None";
-		}
+		if (poweruptype == "eggs")
+			poop();
+		if (poweruptype == "buckShot")
+			customShot("buckShot");
+		if (poweruptype == "tripleShot")
+			customShot("tripleShot");
+
+		ammo--;
+		if (ammo == 0)
+			poweruptype = "none";
 
 	}
 

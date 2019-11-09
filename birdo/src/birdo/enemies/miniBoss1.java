@@ -9,10 +9,10 @@ public class miniBoss1 extends enemy {
 
 	public miniBoss1(int x, int y) {
 		super(x, y);
-		health = 30;
+		health = 20;
 		score = 1500;
-		w = 20;
-		h = 20;
+		w = 30;
+		h = 30;
 	}
 
 	public void move() {
@@ -23,9 +23,9 @@ public class miniBoss1 extends enemy {
 
 	public void shootFeather() {
 		if (shootcount <= 0) {
-			if (health > 15)
+			if (health > 10)
 				customShot("buckShot");
-			if (health <= 15)
+			if (health <= 10)
 				customShot("tripleShot");
 			shootcount = 30;
 		}

@@ -26,6 +26,9 @@ public class enemy extends player {
 
 	public void customMove(String type) {
 
+		if (p.isDead)
+			return;
+
 		if (isDead) {
 			dx = 0;
 			dy = 5;

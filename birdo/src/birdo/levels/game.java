@@ -56,7 +56,8 @@ public abstract class game {
 		if (patternNum != 0)
 			g.drawString("Layout: " + layout.get(patternNum - 1), 550, 55);
 		g.drawString("Health: " + player.health, 25, 40);
-		g.drawString("Powerup: " + player.poweruptype + " x" + player.ammo, 25, 55);
+		if (player.poweruptype != "none")
+			g.drawString("Powerup: " + player.poweruptype + " x" + player.ammo, 25, 55);
 		if (player.checkisDead()) {
 			g.drawString("Game Over!", 300, 150);
 			g.drawString("Continue: F1", 300, 175);
@@ -170,6 +171,8 @@ public abstract class game {
 				feather f = player.feathers.get(j);
 				if (e.getHitBox().intersects(f.getHitBox())) {
 					e.health--;
+					if (e.health <= 0)
+						score += e.score;
 					player.feathers.remove(j);
 					j--;
 				}
@@ -189,9 +192,10 @@ public abstract class game {
 				egg p = player.eggs.get(k);
 				if (e.getHitBox().intersects(p.getHitBox())) {
 					e.health = e.health - 5;
+					if (e.health <= 0)
+						score += e.score;
 					player.eggs.remove(k);
 					k--;
-
 				}
 				if (p.y > 500) {
 					if (k >= 0)
@@ -203,19 +207,12 @@ public abstract class game {
 			e.checkisDead();
 
 			boolean removeEnemy = false;
-			boolean addScore = false;
 
-			if (e.y > 800) {
+			if (e.y > 800 || e.x < -300)
 				removeEnemy = true;
-				addScore = true;
-			}
+
 			// an enemy who falls below the lower bound
-			// should be removed and add to score
-
-			if (e.x < -300) {
-				removeEnemy = true;
-			}
-			// an enemy who moves beyond the left bound
+			// or an enemy who moves beyond the left bound
 			// should be removed
 
 			if (!removeEnemy)
@@ -254,13 +251,15 @@ public abstract class game {
 				continue;
 			powerup p = powerups.get(t);
 			if (player.getHitBox().intersects(p.getHitBox())) {
-				if (p.type == "eggs") { // if player gets eggs, they will receive 3 eggs
-					player.poweruptype = "Eggs";
-					powerups.remove(t);
+				player.poweruptype = p.type;
+				if (p.type == "eggs")
 					player.ammo = 3;
-					t--;
-				}
-
+				if (p.type == "tripleShot")
+					player.ammo = 3;
+				if (p.type == "buckShot")
+					player.ammo = 1;
+				powerups.remove(t);
+				t--;
 			}
 
 			if (p.x < -60) {
@@ -290,6 +289,7 @@ public abstract class game {
 			ArrayList<enemy> toAdd = new pattern(layout.get(patternNum)).enemies;
 			for (enemy e : toAdd)
 				enemies.add(e);
+			createRandomPowerup(800, 250);
 			patternNum++;
 		}
 	}
@@ -322,6 +322,13 @@ public abstract class game {
 		if (type.equals("miniBoss2"))
 			temp = new miniBoss2(x, y);
 		enemies.add(temp);
+	}
+
+	public void createRandomPowerup(int x, int y) {
+		String[] choices = { "eggs", "buckShot", "tripleShot" };
+		int choice = (int) (Math.random() * 3);
+		powerup toAdd = new powerup(x, y, choices[choice]);
+		powerups.add(toAdd);
 	}
 
 }

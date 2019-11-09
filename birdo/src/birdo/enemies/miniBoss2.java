@@ -9,10 +9,10 @@ public class miniBoss2 extends enemy {
 
 	public miniBoss2(int x, int y) {
 		super(x, y);
-		health = 10;
+		health = 20;
 		score = 1500;
-		w = 20;
-		h = 20;
+		w = 30;
+		h = 30;
 	}
 
 	public void move() {
