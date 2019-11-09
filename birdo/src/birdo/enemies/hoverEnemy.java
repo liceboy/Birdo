@@ -15,12 +15,7 @@ public class hoverEnemy extends enemy {
 	}
 	
 	public void move() {
-		if (x > p.x) // homing poopers should always spawn at y = 30;
-			dx = -3;
-		if (x < p.x)
-			dx = 3;
-		if (x == p.x)
-			dx = 0;
+		customMove("hover");
 		super.move();
 	}
 
@@ -30,10 +25,8 @@ public class hoverEnemy extends enemy {
 
 	public void poop() {
 		if (poopcount == 0) {
-			if (!isDead) {
-				eggs.add(new egg(this.x, this.y));
-				poopcount = 250;
-			}
+			eggs.add(new egg(this.x, this.y));
+			poopcount = 250;
 		}
 		poopcount--;
 	}

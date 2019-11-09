@@ -19,11 +19,11 @@ public class miniBoss1 extends enemy {
 
 	public void shootFeather() {
 		if (shootcount <= 0) {
-			if (!isDead && health > 15) {
+			if (health > 15) {
 				customShot("buckShot");
 				shootcount = 30;
 			}
-			if (!isDead && health <= 15) {
+			if (health <= 15) {
 				customShot("tripleShot");
 				shootcount = 30;
 			}
@@ -36,11 +36,8 @@ public class miniBoss1 extends enemy {
 	}
 
 	public void move() {
-		customMove("moveOut");
 		if (x < 700)
-		customMove("upDown");
-		if (isDead)
-			customMove("die");
+			customMove("upDown");
 		super.move();
 	}
 

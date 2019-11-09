@@ -113,14 +113,14 @@ public class enemy extends player {
 				f.dy = -1 * (int) (5*Math.sin(shotmultiplier * Math.PI / 12));	
 				
 				f1.dx = -1 * (int) (5*Math.cos((shotmultiplier * Math.PI / 12)+ Math.PI/2));
-				f1.dy = -1 * (int) (5*Math.sin((shotmultiplier * Math.PI / 12)+ Math.PI/2));	
+				f1.dy = -1 * (int) (5*Math.sin((shotmultiplier * Math.PI / 12)+ Math.PI/2));
 				
 				f2.dx = -1 * (int) (5*Math.cos((shotmultiplier * Math.PI / 12)+ Math.PI));
 				f2.dy = -1 * (int) (5*Math.sin((shotmultiplier * Math.PI / 12)+ Math.PI));	
 				 
 				f3.dx = -1 * (int) (5*Math.cos((shotmultiplier * Math.PI / 12)+ 3*Math.PI/2));
 				f3.dy = -1 * (int) (5*Math.sin((shotmultiplier * Math.PI / 12)+ 3*Math.PI/2));	
-		
+				
 			shotmultiplier++;
 			
 			feathers.add(f);
@@ -171,26 +171,45 @@ public class enemy extends player {
 	public void move() {
 		if (x < 800)
 			poop();
+		if (isDead) {
+			customMove("die");
+		}
 		super.move();
 	}
 	
 	public void customMove(String type) {
-		if (type == "moveOut") {
-			if (x > 700)
+		
+		if (isDead)
+			return;
+		
+		if (type == "default") {
+			if (x > 800) 
+				dx = -3;
+			if (x < 800)
+				dx = -1;
+			if (x < p.x) 
 				dx = -3;
 		}
-		if (type == "upDown") {
-			if (!isDead) {
+		
+		if (type == "hover") {
+			if (x > p.x)
+				dx = -3;
+			if (x < p.x)
+				dx = 3;
+			if (x == p.x)
 				dx = 0;
-				if (dy == 0)
-					dy = -3;
-				if (y > 400) {
-					dy = -3;
-				}
-				if (y < 100)
-					dy = 3;
-			}
 		}
+		
+		if (type == "upDown") {
+			dx = 0;
+			if (dy == 0)
+				dy = -3;
+			if (y > 400) 
+				dy = -3;
+			if (y < 100)
+				dy = 3;
+		}
+		
 		if (type == "moveCenter") {
 			if (Math.abs(x - w / 2 - 400) < 3 && Math.abs(y - h / 2 - 250) < 3) {
 				dx = 0; dy = 0;
@@ -208,9 +227,32 @@ public class enemy extends player {
 			if (y == 250)
 				dy = 0;
 		}
+		
 		if (type == "moveCircleSmall") {
 			
 		}
+		
+		if (type == "charge") {
+			int deltaX = p.x - x;
+			int deltaY = p.y - y;
+
+			double theta = Math.atan((double) deltaY / (double) deltaX);
+			
+			dx = -1 * (int) (6 * Math.cos(theta));
+			dy = -1 * (int) (6 * Math.sin(theta));
+			
+			if(p.x > x) { 
+				dy = 0;
+				if(p.x - x > 30)
+					dx = -8;
+			}
+			
+			if(p.y > 500) {
+				dy = 0;
+				dx = -8;
+			}
+		}
+		
 		if (type == "die") {
 			dx = 0;
 			dy = 5;

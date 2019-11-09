@@ -27,7 +27,7 @@ public class steadyEnemy extends enemy {
 	}
 	
 	public void shootFeather () {
-		if (shootcount % 30 == 0 && !isDead) {
+		if (shootcount % 30 == 0) {
 				customShot("homing");
 		}
 		shootcount++;

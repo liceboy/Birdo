@@ -17,10 +17,8 @@ public class suicideEnemy extends enemy {
 
 	public void shootFeather() {
 		if (shootcount == 0) {
-			if (!isDead) {
-				customShot("bloomShot");
-				shootcount = 100;
-			}
+			customShot("bloomShot");
+			shootcount = 100;
 		}
 		shootcount--;
 	}
@@ -30,27 +28,11 @@ public class suicideEnemy extends enemy {
 	}
 
 	public void move() {
-		if (!isDead) {
 
-			if (x > 800) {
-				dx = -3;
-				super.move();
-				return;
-			}
+		if (x < 800)
+			customMove("homing");
 
-			int deltaX = p.x - x;
-			int deltaY = p.y - y;
+		super.move();
 
-			double theta = Math.atan((double) deltaY / (double) deltaX);
-
-			dx = -1 * (int) (3 * Math.cos(theta));
-			dy = -1 * (int) (3 * Math.sin(theta));
-
-			super.move();
-
-		}
-
-		if (isDead)
-			super.move();
 	}
 }

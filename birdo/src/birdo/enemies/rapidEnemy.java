@@ -16,10 +16,8 @@ public class rapidEnemy extends enemy {
 
 	public void shootFeather() {
 		if (shootcount == 0) {
-			if (!isDead) {
-				customShot("normal");
-				shootcount = 20;
-			}
+			customShot("normal");
+			shootcount = 20;
 		}
 		shootcount--;
 	}

@@ -14,17 +14,14 @@ public class pulseEnemy extends enemy {
 	}
 
 	public void move() {
-		if (x > 700)
-			dx = -3;
 		if (x < 700)
 			dx = 0;
 		super.move();
 	}
 
 	public void shootFeather() {
-		if (x > 700)
-			return;
-		if (shootcount == 0 && !isDead) {
+
+		if (shootcount == 0) {
 			customShot("homing");
 			shootcount = 100;
 		}

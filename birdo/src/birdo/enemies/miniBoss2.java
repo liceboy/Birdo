@@ -18,7 +18,7 @@ public class miniBoss2 extends enemy {
 	}
 
 	public void shootFeather() {
-		if (!isDead && health >= 10) {
+		if (health >= 10) {
 			if (shootcount <= 0 && !isDead) {
 				customShot("normal");
 				shootcount = 100;
@@ -30,7 +30,8 @@ public class miniBoss2 extends enemy {
 					customShot("homing");
 			}
 		}
-		if (!isDead && health < 10) {
+		
+		if (health < 10) {
 			if (shootcount <= 0) {
 				customShot("spinShot");
 				shootcount = 10;
@@ -44,16 +45,13 @@ public class miniBoss2 extends enemy {
 	}
 
 	public void move() {
-		customMove("moveOut");
-		if (x < 700 && health >= 10) {
+
+		if (x < 700 && health >= 10) 
 			customMove("upDown");
-		}
-		if (health < 10) {
+		
+		if (health < 10) 
 			customMove("moveCenter");
-		}
-		if (isDead) {
-			customMove("die");
-		}
+
 		super.move();
 	}
 

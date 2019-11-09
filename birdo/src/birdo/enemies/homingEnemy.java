@@ -17,21 +17,14 @@ public class homingEnemy extends enemy {
 	}
 	
 	public void move() {
-		if (x > 800) 
-			dx = -3;
-		if (x < 800)
-			dx = -1;
-		if (x < p.x) 
-			dx = -3;
+		customMove("default");
 		super.move();
 	}
 
 	public void shootFeather() {
 		if (shootcount == 0) {
-			if (!isDead) {
-				customShot("homing");
-				shootcount = 100;
-			}
+			customShot("homing");
+			shootcount = 100;
 		}
 		shootcount--;
 	}

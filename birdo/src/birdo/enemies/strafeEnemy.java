@@ -22,10 +22,8 @@ public class strafeEnemy extends enemy {
 
 	public void poop() {
 		if (poopcount == 0) {
-			if (!isDead) {
-				eggs.add(new egg(this.x, this.y));
-				poopcount = 20;
-			}
+			eggs.add(new egg(this.x, this.y));
+			poopcount = 20;
 		}
 		poopcount--;
 	}
