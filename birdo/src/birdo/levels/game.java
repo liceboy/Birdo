@@ -79,6 +79,15 @@ public abstract class game {
 				player.c = Color.BLUE;
 			}
 		}
+		
+		// RAPIDFIRE POWERUP
+		
+		if (player.shootInterval == 5) {
+			player.rapidCooldown--;
+			if (player.rapidCooldown == 0) {
+				player.shootInterval = 15;
+			}
+		}
 
 		// SCREEN BORDERS
 
@@ -252,6 +261,12 @@ public abstract class game {
 			powerup p = powerups.get(t);
 			if (player.getHitBox().intersects(p.getHitBox())) {
 				player.poweruptype = p.type;
+				if (player.poweruptype == "Heal") { // heal powerup
+					player.health += 3;
+					player.poweruptype = "none";
+					if (player.health > player.maxHealth)
+						player.health = player.maxHealth;
+				}
 				player.ammo = p.ammo;
 				powerups.remove(t);
 				t--;
@@ -304,14 +319,16 @@ public abstract class game {
 			temp = new hoverEnemy(x, y);
 		if (type.equals("strafe"))
 			temp = new strafeEnemy(x, y);
-		if (type.equals("suicide"))
-			temp = new suicideEnemy(x, y);
+		if (type.equals("blossom"))
+			temp = new blossomEnemy(x, y);
 		if (type.equals("rapid"))
 			temp = new rapidEnemy(x, y);
 		if (type.equals("pulse"))
 			temp = new pulseEnemy(x, y);
 		if (type.equals("steady"))
 			temp = new steadyEnemy(x, y);
+		if (type.equals("spin"))
+			temp = new spinEnemy(x, y);
 		if (type.equals("miniBoss1"))
 			temp = new miniBoss1(x, y);
 		if (type.equals("miniBoss2"))
@@ -320,8 +337,8 @@ public abstract class game {
 	}
 
 	public void createRandomPowerup(int x, int y) {
-		String[] choices = {"eggs", "bloomShot", "buckShot", "tripleShot"};
-		int choice = (int) (Math.random() * 4);
+		String[] choices = {"Eggs", "bloomShot", "buckShot", "tripleShot", "Invulnerability", "Heal", "rapidFire"};
+		int choice = (int) (Math.random() * 7);
 		powerup toAdd = new powerup(x, y, choices[choice]);
 		powerups.add(toAdd);
 	}

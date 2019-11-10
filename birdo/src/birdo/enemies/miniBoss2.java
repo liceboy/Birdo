@@ -40,7 +40,7 @@ public class miniBoss2 extends enemy {
 		if (health < 10 && Math.abs(x - 400) < 3 && Math.abs(y - 250) < 3) {
 			if (shootcount <= 0) {
 				customShot("spinShot");
-				shootcount = 15;
+				shootcount = 10;
 			}
 		}
 		shootcount--;

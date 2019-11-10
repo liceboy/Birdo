@@ -10,17 +10,23 @@ public class powerup extends object {
 	int startY;
 	
 	public powerup(int x, int y, String t) {
-		super(x, y, 8, 8, Color.BLUE);
+		super(x, y, 16, 16, Color.BLUE);
 		startY = y;
 		type = t;
-		if (type == "eggs")
+		if (type == "Eggs")
 			ammo = 3;
 		if (type == "bloomShot")
-			ammo = 1;
+			ammo = 3;
 		if (type == "buckShot")
-			ammo = 1;
+			ammo = 3;
 		if (type == "tripleShot")
 			ammo = 3;
+		if (type == "Invulnerability")
+			ammo = 1;
+		if (type == "Heal")
+			ammo = 0;
+		if (type == "rapidFire")
+			ammo = 1;
 		dx = -2;
 		dy = 1;
 	}

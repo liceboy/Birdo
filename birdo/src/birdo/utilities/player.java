@@ -11,6 +11,7 @@ public class player extends object {
 	public int poopcount;
 	// poop cooldown
 	public int health;
+	public int maxHealth;
 	// health
 	public int damage;
 	// strength of attacks
@@ -31,6 +32,8 @@ public class player extends object {
 	public ArrayList<feather> feathers;
 	public ArrayList<egg> eggs;
 	public player p;
+	public int shootInterval;
+	public int rapidCooldown;
 
 	public player(int x, int y, Color c) {
 		super(x, y, 20, 20, c);
@@ -46,8 +49,11 @@ public class player extends object {
 		eggs = new ArrayList<egg>();
 		invulnerable = false;
 		invulnerablecooldown = 0;
+		rapidCooldown = 0;
 		shotmultiplier = 0;
+		shootInterval = 15;
 		poweruptype = "none"; // default powerup is always none
+		maxHealth = 10;
 	}
 
 	public void draw(Graphics g) {
@@ -76,7 +82,7 @@ public class player extends object {
 		if (shootcount == 0) {
 			customShot("normal");
 			// adds a feather if alive
-			shootcount = 15;
+			shootcount = shootInterval;
 		}
 		shootcount--;
 	}
@@ -209,16 +215,23 @@ public class player extends object {
 	public void usePowerup() { // uses the powerup based on string type, add powerups as you feel
 		if (poweruptype == "none")
 			return;
-		if (poweruptype == "eggs") 
+		if (poweruptype == "Eggs") 
 			poop();
 		if (poweruptype == "bloomShot") 
 			customShot("bloomShot");
 		if (poweruptype == "buckShot") 
 			customShot("buckShot");
-		if (poweruptype == "tripleShot")
+		if (poweruptype == "tripleShot") 
 			customShot("tripleShot");
-			
-		ammo--;
+		if (poweruptype == "Invulnerability") {
+			invulnerable = true;
+			invulnerablecooldown = 250;
+		}
+		if (poweruptype == "rapidFire") {
+			rapidCooldown = 250;
+			shootInterval = 5;
+		}
+			ammo--;
 		if (ammo <= 0)
 			poweruptype = "none";
 

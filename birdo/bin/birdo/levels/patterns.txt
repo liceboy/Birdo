@@ -98,3 +98,8 @@ miniBoss2Fight
 miniBoss2 815 360
 end
 
+spinDuo
+spin 815 135
+spin 815 360
+end
+

@@ -69,14 +69,16 @@ public class pattern {
 			temp = new hoverEnemy(0, 0);
 		if (type.equals("strafe"))
 			temp = new strafeEnemy(0, 0);
-		if (type.equals("suicide"))
-			temp = new suicideEnemy(0, 0);
+		if (type.equals("blossom"))
+			temp = new blossomEnemy(0, 0);
 		if (type.equals("rapid"))
 			temp = new rapidEnemy(0, 0);
 		if (type.equals("pulse"))
 			temp = new pulseEnemy(0, 0);
 		if (type.equals("steady"))
 			temp = new steadyEnemy(0, 0);
+		if (type.equals("spin"))
+			temp = new spinEnemy(0,0);
 		if (type.equals("miniBoss1"))
 			temp = new miniBoss1(0, 0);
 		if (type.equals("miniBoss2"))
