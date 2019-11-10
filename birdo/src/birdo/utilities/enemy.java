@@ -91,8 +91,8 @@ public class enemy extends player {
 				if (p.x - x > 30)
 					dx = -8;
 			}
-
-			if (p.y > 500) {
+			
+			if (dy < 0 && dx == 0) {
 				dy = 0;
 				dx = -8;
 			}

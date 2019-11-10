@@ -202,26 +202,24 @@ public class player extends object {
 	}
 
 	public void poop() { // poops
-		if (ammo > 0) {
-			if (!isDead) {
-				eggs.add(new egg(this.x, this.y));
-				ammo--;
-			}
-		}
+		if(!isDead)
+			eggs.add(new egg(this.x, this.y));
 	}
 
 	public void usePowerup() { // uses the powerup based on string type, add powerups as you feel
 		if (poweruptype == "none")
 			return;
-		if (poweruptype == "eggs")
+		if (poweruptype == "eggs") 
 			poop();
-		if (poweruptype == "buckShot")
+		if (poweruptype == "bloomShot") 
+			customShot("bloomShot");
+		if (poweruptype == "buckShot") 
 			customShot("buckShot");
 		if (poweruptype == "tripleShot")
 			customShot("tripleShot");
-
+			
 		ammo--;
-		if (ammo == 0)
+		if (ammo <= 0)
 			poweruptype = "none";
 
 	}

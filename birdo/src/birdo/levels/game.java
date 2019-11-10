@@ -208,7 +208,7 @@ public abstract class game {
 
 			boolean removeEnemy = false;
 
-			if (e.y > 800 || e.x < -300)
+			if (e.y < -300 || e.y > 800 || e.x < -300)
 				removeEnemy = true;
 
 			// an enemy who falls below the lower bound
@@ -252,12 +252,7 @@ public abstract class game {
 			powerup p = powerups.get(t);
 			if (player.getHitBox().intersects(p.getHitBox())) {
 				player.poweruptype = p.type;
-				if (p.type == "eggs")
-					player.ammo = 3;
-				if (p.type == "tripleShot")
-					player.ammo = 3;
-				if (p.type == "buckShot")
-					player.ammo = 1;
+				player.ammo = p.ammo;
 				powerups.remove(t);
 				t--;
 			}
@@ -325,8 +320,8 @@ public abstract class game {
 	}
 
 	public void createRandomPowerup(int x, int y) {
-		String[] choices = { "eggs", "buckShot", "tripleShot" };
-		int choice = (int) (Math.random() * 3);
+		String[] choices = {"eggs", "bloomShot", "buckShot", "tripleShot"};
+		int choice = (int) (Math.random() * 4);
 		powerup toAdd = new powerup(x, y, choices[choice]);
 		powerups.add(toAdd);
 	}
