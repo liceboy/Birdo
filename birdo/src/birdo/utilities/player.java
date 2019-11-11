@@ -34,6 +34,11 @@ public class player extends object {
 	public player p;
 	public int shootInterval;
 	public int rapidCooldown;
+	public boolean up = false;
+	public boolean down = false;
+	public boolean left = false;
+	public boolean right = false;
+	public boolean player = false;
 
 	public player(int x, int y, Color c) {
 		super(x, y, 20, 20, c);
@@ -69,6 +74,30 @@ public class player extends object {
 	}
 
 	public void move() {
+		if (player && !isDead) {
+			if (up || down) {
+				if (up && down) {
+					dy = 0;
+				} else if (up) {
+					dy = -4;
+				} else {
+					dy = 4;
+				}
+			} else {
+				dy = 0;
+			}
+			if (left || right) {
+				if (left && right) {
+					dx = 0;
+				} else if (left) {
+					dx = -4;
+				} else {
+					dx = 4;
+				}
+			} else {
+				dx = 0;
+			}
+		}
 		super.move();
 		for (feather f : feathers)
 			f.move();
@@ -208,20 +237,20 @@ public class player extends object {
 	}
 
 	public void poop() { // poops
-		if(!isDead)
+		if (!isDead)
 			eggs.add(new egg(this.x, this.y));
 	}
 
 	public void usePowerup() { // uses the powerup based on string type, add powerups as you feel
 		if (poweruptype == "none")
 			return;
-		if (poweruptype == "eggs") 
+		if (poweruptype == "eggs")
 			poop();
-		if (poweruptype == "bloomShot") 
+		if (poweruptype == "bloomShot")
 			customShot("bloomShot");
-		if (poweruptype == "buckShot") 
+		if (poweruptype == "buckShot")
 			customShot("buckShot");
-		if (poweruptype == "tripleShot") 
+		if (poweruptype == "tripleShot")
 			customShot("tripleShot");
 		if (poweruptype == "invulnerability") {
 			invulnerable = true;
@@ -231,7 +260,7 @@ public class player extends object {
 			rapidCooldown = 250;
 			shootInterval = 5;
 		}
-		
+
 		ammo--;
 		if (ammo <= 0)
 			poweruptype = "none";
