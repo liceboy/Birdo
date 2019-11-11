@@ -118,7 +118,7 @@ public class enemy extends player {
 	}
 
 	public void customShot(String type) {
-		if (isDead)
+		if (isDead || x > 800 || x < 0 || y > 500 || y < 0)
 			return;
 
 		if (type == "normal") {
