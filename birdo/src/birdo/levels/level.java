@@ -11,7 +11,7 @@ public class level extends game {
 	public level() {
 		super();
 
-		layout.add("spinDuo");
+		layout.add("spinGang");
 		layout.add("enemyStaggered");
 		layout.add("chargingArmy");
 		layout.add("strafingTrio");
