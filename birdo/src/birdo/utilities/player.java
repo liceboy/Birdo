@@ -215,7 +215,7 @@ public class player extends object {
 	public void usePowerup() { // uses the powerup based on string type, add powerups as you feel
 		if (poweruptype == "none")
 			return;
-		if (poweruptype == "Eggs") 
+		if (poweruptype == "eggs") 
 			poop();
 		if (poweruptype == "bloomShot") 
 			customShot("bloomShot");
@@ -223,7 +223,7 @@ public class player extends object {
 			customShot("buckShot");
 		if (poweruptype == "tripleShot") 
 			customShot("tripleShot");
-		if (poweruptype == "Invulnerability") {
+		if (poweruptype == "invulnerability") {
 			invulnerable = true;
 			invulnerablecooldown = 250;
 		}
@@ -231,7 +231,8 @@ public class player extends object {
 			rapidCooldown = 250;
 			shootInterval = 5;
 		}
-			ammo--;
+		
+		ammo--;
 		if (ammo <= 0)
 			poweruptype = "none";
 

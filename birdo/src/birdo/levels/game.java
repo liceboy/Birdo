@@ -337,7 +337,7 @@ public abstract class game {
 	}
 
 	public void createRandomPowerup(int x, int y) {
-		String[] choices = {"Eggs", "bloomShot", "buckShot", "tripleShot", "Invulnerability", "Heal", "rapidFire"};
+		String[] choices = {"eggs", "bloomShot", "buckShot", "tripleShot", "invulnerability", "heal", "rapidFire"};
 		int choice = (int) (Math.random() * 7);
 		powerup toAdd = new powerup(x, y, choices[choice]);
 		powerups.add(toAdd);

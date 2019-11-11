@@ -13,7 +13,7 @@ public class powerup extends object {
 		super(x, y, 16, 16, Color.BLUE);
 		startY = y;
 		type = t;
-		if (type == "Eggs")
+		if (type == "eggs")
 			ammo = 3;
 		if (type == "bloomShot")
 			ammo = 3;
@@ -21,9 +21,9 @@ public class powerup extends object {
 			ammo = 3;
 		if (type == "tripleShot")
 			ammo = 3;
-		if (type == "Invulnerability")
+		if (type == "invulnerability")
 			ammo = 1;
-		if (type == "Heal")
+		if (type == "heal")
 			ammo = 0;
 		if (type == "rapidFire")
 			ammo = 1;
