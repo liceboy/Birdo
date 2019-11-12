@@ -100,7 +100,6 @@ end
 
 spinGang
 spin 815 180
-blossom 815 270
 spin 815 360
 end
 
