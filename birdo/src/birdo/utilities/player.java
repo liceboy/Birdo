@@ -25,6 +25,7 @@ public class player extends object {
 	// invelnerability cooldown
 	public int shotmultiplier;
 	// for spin shot
+	public int shotmultiplier1;
 	public String poweruptype; // string keeps track of what powerup the player is holding
 	public int ammo;
 	public int maxammo;
@@ -59,6 +60,7 @@ public class player extends object {
 		shootInterval = 15;
 		poweruptype = "none"; // default powerup is always none
 		maxHealth = 10;
+		shotmultiplier1 = 15;
 	}
 
 	public void draw(Graphics g) {
@@ -232,6 +234,15 @@ public class player extends object {
 			feathers.add(f3);
 			feathers.add(f4);
 			feathers.add(f5);
+			feathers.add(f);
+		}
+		if (type == "laser") {
+			feather f = new feather (this.x, this.y, true);
+			f.dx = -1 * (int) (5 * Math.cos(shotmultiplier1 * Math.PI / 180));
+			f.dy = -1 * (int) (5 * Math.sin(shotmultiplier1 * Math.PI / 180));
+			shotmultiplier1++;
+			if (shotmultiplier >= 345)
+				shotmultiplier1 = 15;
 			feathers.add(f);
 		}
 	}
