@@ -10,8 +10,8 @@ public class object {
 	public int y; // location
 	public int w;
 	public int h; // dimensions
-	public int dx;
-	public int dy; // directional movement
+	public double dx;
+	public double dy; // directional movement
 
 	public Color c;
 
@@ -31,6 +31,8 @@ public class object {
 	}
 
 	public void move() {
+		if(this instanceof feather)
+			System.out.println(dx + " " + dy);
 		x += dx;
 		y += dy;
 	}
@@ -40,6 +42,6 @@ public class object {
 	}
 
 	public Rectangle getFutureHitBox() {
-		return new Rectangle(x + dx, y + dy, w, h);
+		return new Rectangle((int) (x + dx), (int) (y + dy), w, h);
 	}
 }

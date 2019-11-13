@@ -100,11 +100,11 @@ public class player extends object {
 
 			f.dx = 5;
 
-			f1.dx = (int) (5 * Math.cos(15 * Math.PI / 180));
-			f1.dy = (int) (5 * Math.sin(15 * Math.PI / 180));
+			f1.dx = (5 * Math.cos(15 * Math.PI / 180));
+			f1.dy = (5 * Math.sin(15 * Math.PI / 180));
 
-			f2.dx = (int) (5 * Math.cos(345 * Math.PI / 180));
-			f2.dy = (int) (5 * Math.sin(345 * Math.PI / 180));
+			f2.dx = (5 * Math.cos(345 * Math.PI / 180));
+			f2.dy = (5 * Math.sin(345 * Math.PI / 180));
 
 			feathers.add(f);
 			feathers.add(f1);
@@ -125,17 +125,17 @@ public class player extends object {
 			f3.dx = 5;
 			f3.dy = 0;
 
-			f1.dx = -1 * (int) (-5 * Math.cos(Math.PI / 4));
-			f1.dy = -1 * (int) (-5 * Math.sin(Math.PI / 4));
+			f1.dx = -1 * (-5 * Math.cos(Math.PI / 4));
+			f1.dy = -1 * (-5 * Math.sin(Math.PI / 4));
 
-			f2.dx = -1 * (int) (-5 * Math.cos(7 * Math.PI / 4));
-			f2.dy = -1 * (int) (-5 * Math.sin(7 * Math.PI / 4));
+			f2.dx = -1 * (-5 * Math.cos(7 * Math.PI / 4));
+			f2.dy = -1 * (-5 * Math.sin(7 * Math.PI / 4));
 
-			f4.dx = (int) (-5 * Math.cos(Math.PI / 4));
-			f4.dy = (int) (-5 * Math.sin(Math.PI / 4));
+			f4.dx = (-5 * Math.cos(Math.PI / 4));
+			f4.dy = (-5 * Math.sin(Math.PI / 4));
 
-			f5.dx = (int) (-5 * Math.cos(7 * Math.PI / 4));
-			f5.dy = (int) (-5 * Math.sin(7 * Math.PI / 4));
+			f5.dx = (-5 * Math.cos(7 * Math.PI / 4));
+			f5.dy = (-5 * Math.sin(7 * Math.PI / 4));
 
 			f6.dx = 0;
 			f6.dy = -5;
@@ -157,17 +157,17 @@ public class player extends object {
 			feather f2 = new feather(this.x + this.w / 2 - 6, this.y + this.h / 2 - 4, false);
 			feather f3 = new feather(this.x + this.w / 2 - 6, this.y + this.h / 2 - 4, false);
 
-			f.dx = -1 * (int) (5 * Math.cos(shotmultiplier * Math.PI / 12));
-			f.dy = -1 * (int) (5 * Math.sin(shotmultiplier * Math.PI / 12));
+			f.dx = -1 * (5 * Math.cos(shotmultiplier * Math.PI / 12));
+			f.dy = -1 * (5 * Math.sin(shotmultiplier * Math.PI / 12));
 
-			f1.dx = -1 * (int) (5 * Math.cos((shotmultiplier * Math.PI / 12) + Math.PI / 2));
-			f1.dy = -1 * (int) (5 * Math.sin((shotmultiplier * Math.PI / 12) + Math.PI / 2));
+			f1.dx = -1 * (5 * Math.cos((shotmultiplier * Math.PI / 12) + Math.PI / 2));
+			f1.dy = -1 * (5 * Math.sin((shotmultiplier * Math.PI / 12) + Math.PI / 2));
 
-			f2.dx = -1 * (int) (5 * Math.cos((shotmultiplier * Math.PI / 12) + Math.PI));
-			f2.dy = -1 * (int) (5 * Math.sin((shotmultiplier * Math.PI / 12) + Math.PI));
+			f2.dx = -1 * (5 * Math.cos((shotmultiplier * Math.PI / 12) + Math.PI));
+			f2.dy = -1 * (5 * Math.sin((shotmultiplier * Math.PI / 12) + Math.PI));
 
-			f3.dx = -1 * (int) (5 * Math.cos((shotmultiplier * Math.PI / 12) + 3 * Math.PI / 2));
-			f3.dy = -1 * (int) (5 * Math.sin((shotmultiplier * Math.PI / 12) + 3 * Math.PI / 2));
+			f3.dx = -1 * (5 * Math.cos((shotmultiplier * Math.PI / 12) + 3 * Math.PI / 2));
+			f3.dy = -1 * (5 * Math.sin((shotmultiplier * Math.PI / 12) + 3 * Math.PI / 2));
 
 			shotmultiplier++;
 
@@ -184,19 +184,19 @@ public class player extends object {
 			feather f4 = new feather(this.x, this.y, true);
 			feather f5 = new feather(this.x, this.y, true);
 
-			f1.dx = (int) (5 * Math.cos(Math.PI / 8));
-			f1.dy = (int) (5 * Math.sin(Math.PI / 8));
-			f2.dx = (int) (5 * Math.cos(2 * Math.PI / 8));
-			f2.dy = (int) (5 * Math.sin(2 * Math.PI / 8));
-			f3.dx = (int) (5 * Math.cos(3 * Math.PI / 8));
-			f3.dy = (int) (5 * Math.sin(3 * Math.PI / 8));
+			f1.dx = (5 * Math.cos(Math.PI / 8));
+			f1.dy = (5 * Math.sin(Math.PI / 8));
+			f2.dx = (5 * Math.cos(2 * Math.PI / 8));
+			f2.dy = (5 * Math.sin(2 * Math.PI / 8));
+			f3.dx = (5 * Math.cos(3 * Math.PI / 8));
+			f3.dy = (5 * Math.sin(3 * Math.PI / 8));
 
-			f4.dx = (int) (5 * Math.cos(-1 * Math.PI / 8));
-			f4.dy = (int) (5 * Math.sin(-1 * Math.PI / 8));
-			f5.dx = (int) (5 * Math.cos(-2 * Math.PI / 8));
-			f5.dy = (int) (5 * Math.sin(-2 * Math.PI / 8));
-			f.dx = (int) (5 * Math.cos(-3 * Math.PI / 8));
-			f.dy = (int) (5 * Math.sin(-3 * Math.PI / 8));
+			f4.dx = (5 * Math.cos(-1 * Math.PI / 8));
+			f4.dy = (5 * Math.sin(-1 * Math.PI / 8));
+			f5.dx = (5 * Math.cos(-2 * Math.PI / 8));
+			f5.dy = (5 * Math.sin(-2 * Math.PI / 8));
+			f.dx = (5 * Math.cos(-3 * Math.PI / 8));
+			f.dy = (5 * Math.sin(-3 * Math.PI / 8));
 
 			feathers.add(f1);
 			feathers.add(f2);
