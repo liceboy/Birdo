@@ -22,12 +22,12 @@ public class level extends game {
 		//layout.add("comboAttack");
 		//layout.add("miniBoss1Fight");
 		
-		layout.add("laserGang");
-		layout.add("spinGang");
-		layout.add("enemyStaggered");
-		layout.add("chargingArmy");
-		layout.add("strafingTrio");
-		layout.add("rapidBar");
+		//layout.add("laserGang");
+		//layout.add("spinGang");
+		//layout.add("enemyStaggered");
+		//layout.add("chargingArmy");
+		//layout.add("strafingTrio");
+		//layout.add("rapidBar");
 		layout.add("bigDuo");
 		layout.add("pulseDuo");
 		layout.add("shooterGang");

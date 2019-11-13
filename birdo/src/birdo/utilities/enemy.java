@@ -142,11 +142,11 @@ public class enemy extends player {
 
 			f.dx = -5;
 
-			f1.dx = -1 * (5 * Math.cos(15 * Math.PI / 180));
-			f1.dy = -1 * (5 * Math.sin(15 * Math.PI / 180));
+			f1.dx = -1 * (5 * Math.cos(1 * Math.PI / 8));
+			f1.dy = -1 * (5 * Math.sin(1 * Math.PI / 8));
 
-			f2.dx = -1 * (5 * Math.cos(345 * Math.PI / 180));
-			f2.dy = -1 * (5 * Math.sin(345 * Math.PI / 180));
+			f2.dx = -1 * (5 * Math.cos(1 * Math.PI / 8));
+			f2.dy = 1 * (5 * Math.sin(1 * Math.PI / 8));
 
 			feathers.add(f);
 			feathers.add(f1);
