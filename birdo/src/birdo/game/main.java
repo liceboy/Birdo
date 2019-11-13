@@ -107,13 +107,13 @@ public class main extends JPanel implements ActionListener {
 
 			if (state == "level") {
 				if (key == KeyEvent.VK_UP)
-					level.player.dy = -4;
+					level.player.up = true;
 				if (key == KeyEvent.VK_LEFT)
-					level.player.dx = -4;
+					level.player.left = true;
 				if (key == KeyEvent.VK_DOWN)
-					level.player.dy = 4;
+					level.player.down = true;
 				if (key == KeyEvent.VK_RIGHT)
-					level.player.dx = 4;
+					level.player.right = true;
 				if (key == KeyEvent.VK_ESCAPE) {
 					state = "select";
 					level = new level();
@@ -125,14 +125,14 @@ public class main extends JPanel implements ActionListener {
 		public void keyReleased(KeyEvent e) {
 			int key = e.getKeyCode();
 			if (state == "level") {
-				if (key == KeyEvent.VK_UP && level.player.dy != 2)
-					level.player.dy = 0;
-				if (key == KeyEvent.VK_LEFT && level.player.dx != 2)
-					level.player.dx = 0;
-				if (key == KeyEvent.VK_DOWN && level.player.dy != -2)
-					level.player.dy = 0;
-				if (key == KeyEvent.VK_RIGHT && level.player.dx != -2)
-					level.player.dx = 0;
+				if (key == KeyEvent.VK_UP)
+					level.player.up = false;
+				if (key == KeyEvent.VK_LEFT)
+					level.player.left = false;
+				if (key == KeyEvent.VK_DOWN)
+					level.player.down = false;
+				if (key == KeyEvent.VK_RIGHT)
+					level.player.right = false;
 				if (key == KeyEvent.VK_SPACE) {
 					level.player.usePowerup();
 				}

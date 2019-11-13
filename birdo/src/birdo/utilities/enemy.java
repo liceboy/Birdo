@@ -118,7 +118,7 @@ public class enemy extends player {
 	}
 
 	public void customShot(String type) {
-		if (isDead)
+		if (isDead || x > 800 || x < 0 || y > 500 || y < 0)
 			return;
 
 		if (type == "normal") {
@@ -244,6 +244,17 @@ public class enemy extends player {
 			feathers.add(f3);
 			feathers.add(f4);
 			feathers.add(f5);
+			feathers.add(f);
+		}
+		
+		if (type == "laser") {
+			feather f = new feather (this.x, this.y, true);
+			f.dx = -1 * (int) (5 * Math.cos(shotmultiplier1 * Math.PI / 180));
+			f.dy = -1 * (int) (5 * Math.sin(shotmultiplier1 * Math.PI / 180));
+			shotmultiplier1--;
+			if (shotmultiplier1 <= -45)
+				shotmultiplier1 = 45;
+			System.out.println(shotmultiplier1);
 			feathers.add(f);
 		}
 	}

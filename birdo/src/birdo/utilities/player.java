@@ -25,6 +25,7 @@ public class player extends object {
 	// invelnerability cooldown
 	public int shotmultiplier;
 	// for spin shot
+	public int shotmultiplier1;
 	public String poweruptype; // string keeps track of what powerup the player is holding
 	public int ammo;
 	public int maxammo;
@@ -34,6 +35,11 @@ public class player extends object {
 	public player p;
 	public int shootInterval;
 	public int rapidCooldown;
+	public boolean up = false;
+	public boolean down = false;
+	public boolean left = false;
+	public boolean right = false;
+	public boolean player = false;
 
 	public player(int x, int y, Color c) {
 		super(x, y, 20, 20, c);
@@ -54,6 +60,7 @@ public class player extends object {
 		shootInterval = 15;
 		poweruptype = "none"; // default powerup is always none
 		maxHealth = 10;
+		shotmultiplier1 = 45;
 	}
 
 	public void draw(Graphics g) {
@@ -69,6 +76,30 @@ public class player extends object {
 	}
 
 	public void move() {
+		if (player && !isDead) {
+			if (up || down) {
+				if (up && down) {
+					dy = 0;
+				} else if (up) {
+					dy = -4;
+				} else {
+					dy = 4;
+				}
+			} else {
+				dy = 0;
+			}
+			if (left || right) {
+				if (left && right) {
+					dx = 0;
+				} else if (left) {
+					dx = -4;
+				} else {
+					dx = 4;
+				}
+			} else {
+				dx = 0;
+			}
+		}
 		super.move();
 		for (feather f : feathers)
 			f.move();
@@ -205,23 +236,33 @@ public class player extends object {
 			feathers.add(f5);
 			feathers.add(f);
 		}
+		if (type == "laser") {
+			feather f = new feather (this.x, this.y, true);
+			f.dx = -1 * (int) (5 * Math.cos(shotmultiplier1 * Math.PI / 180));
+			f.dy = -1 * (int) (5 * Math.sin(shotmultiplier1 * Math.PI / 180));
+			shotmultiplier1++;
+			if (shotmultiplier >= 345)
+				shotmultiplier1 = 15;
+			feathers.add(f);
+			System.out.println("should be shooting");
+		}
 	}
 
 	public void poop() { // poops
-		if(!isDead)
+		if (!isDead)
 			eggs.add(new egg(this.x, this.y));
 	}
 
 	public void usePowerup() { // uses the powerup based on string type, add powerups as you feel
 		if (poweruptype == "none")
 			return;
-		if (poweruptype == "eggs") 
+		if (poweruptype == "eggs")
 			poop();
-		if (poweruptype == "bloomShot") 
+		if (poweruptype == "bloomShot")
 			customShot("bloomShot");
-		if (poweruptype == "buckShot") 
+		if (poweruptype == "buckShot")
 			customShot("buckShot");
-		if (poweruptype == "tripleShot") 
+		if (poweruptype == "tripleShot")
 			customShot("tripleShot");
 		if (poweruptype == "invulnerability") {
 			invulnerable = true;
@@ -231,7 +272,7 @@ public class player extends object {
 			rapidCooldown = 250;
 			shootInterval = 5;
 		}
-		
+
 		ammo--;
 		if (ammo <= 0)
 			poweruptype = "none";

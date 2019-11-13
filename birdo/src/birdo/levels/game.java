@@ -26,6 +26,7 @@ public abstract class game {
 
 	public game() {
 		player = new player(130, 130, Color.BLUE);
+		player.player = true;
 		enemies = new ArrayList<enemy>();
 		powerups = new ArrayList<powerup>();
 	}
@@ -261,7 +262,7 @@ public abstract class game {
 			powerup p = powerups.get(t);
 			if (player.getHitBox().intersects(p.getHitBox())) {
 				player.poweruptype = p.type;
-				if (player.poweruptype == "Heal") { // heal powerup
+				if (player.poweruptype == "heal") { // heal powerup
 					player.health += 3;
 					player.poweruptype = "none";
 					if (player.health > player.maxHealth)
@@ -329,6 +330,8 @@ public abstract class game {
 			temp = new steadyEnemy(x, y);
 		if (type.equals("spin"))
 			temp = new spinEnemy(x, y);
+		if (type.equals("laser"))
+			temp = new laserEnemy(x, y);
 		if (type.equals("miniBoss1"))
 			temp = new miniBoss1(x, y);
 		if (type.equals("miniBoss2"))

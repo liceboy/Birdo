@@ -79,6 +79,8 @@ public class pattern {
 			temp = new steadyEnemy(0, 0);
 		if (type.equals("spin"))
 			temp = new spinEnemy(0,0);
+		if (type.equals("laser"))
+			temp = new laserEnemy(0,0);
 		if (type.equals("miniBoss1"))
 			temp = new miniBoss1(0, 0);
 		if (type.equals("miniBoss2"))
