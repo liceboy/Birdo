@@ -60,7 +60,7 @@ public class player extends object {
 		shootInterval = 15;
 		poweruptype = "none"; // default powerup is always none
 		maxHealth = 10;
-		shotmultiplier1 = 15;
+		shotmultiplier1 = 45;
 	}
 
 	public void draw(Graphics g) {
@@ -244,6 +244,7 @@ public class player extends object {
 			if (shotmultiplier >= 345)
 				shotmultiplier1 = 15;
 			feathers.add(f);
+			System.out.println("should be shooting");
 		}
 	}
 

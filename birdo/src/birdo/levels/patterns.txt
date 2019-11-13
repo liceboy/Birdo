@@ -103,3 +103,8 @@ spin 815 180
 spin 815 360
 end
 
+laserGang
+laser 815 180
+laser 815 360
+end
+

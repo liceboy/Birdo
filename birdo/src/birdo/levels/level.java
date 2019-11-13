@@ -10,7 +10,8 @@ import birdo.utilities.*;
 public class level extends game {
 	public level() {
 		super();
-
+		
+		layout.add("laserGang");
 		layout.add("spinGang");
 		layout.add("enemyStaggered");
 		layout.add("chargingArmy");
