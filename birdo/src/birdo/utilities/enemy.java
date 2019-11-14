@@ -248,7 +248,7 @@ public class enemy extends player {
 		}
 		
 		if (type == "laser") {
-			System.out.println("laser has bad code, please fix");
+			// System.out.println("laser has bad code, please fix");
 		}
 	}
 

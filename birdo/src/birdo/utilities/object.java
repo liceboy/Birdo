@@ -31,8 +31,14 @@ public class object {
 	}
 
 	public void move() {
+		
 		x += dx;
 		y += dy;
+		
+		x = Math.floor(x * 100) / 100;
+		y = Math.floor(y * 100) / 100;
+		dx = Math.floor(dx * 100) / 100;
+		dy = Math.floor(dy * 100) / 100;
 	}
 
 	public Rectangle getHitBox() {

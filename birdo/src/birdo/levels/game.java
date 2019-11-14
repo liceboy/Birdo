@@ -132,7 +132,7 @@ public abstract class game {
 					e.feathers.remove(j);
 					j--;
 				}
-				if (f.x > 800) {
+				if (f.x < -100 || f.x > 900 || f.y < -100 || f.y > 600) {
 					e.feathers.remove(j);
 					j--;
 				}
@@ -186,7 +186,7 @@ public abstract class game {
 					player.feathers.remove(j);
 					j--;
 				}
-				if (f.x > 800) {
+				if (f.x < -100 || f.x > 900 || f.y < -100 || f.y > 600) {
 					if (j >= 0)
 						player.feathers.remove(j);
 					j--;
@@ -218,7 +218,7 @@ public abstract class game {
 
 			boolean removeEnemy = false;
 
-			if (e.y < -300 || e.y > 800 || e.x < -300)
+			if (e.y < -100 || e.y > 600 || e.x < -100)
 				removeEnemy = true;
 
 			// an enemy who falls below the lower bound
@@ -284,19 +284,20 @@ public abstract class game {
 
 	public void genPattern() {
 
-		boolean onScreen = false;
+		boolean allDead = true;
 		for (enemy e : enemies) {
-			if (e.x > 0 && e.y > 0 && e.y < 500) {
-				onScreen = true;
+			if (e.x > 0 && !e.isDead) {
+				allDead = false;
 				break;
 			}
+			
 		}
 
-		// if all enemies are offscreen (not necessarily feathers)
+		// if all enemies are dead 
 		// and there exists more patterns,
 		// bring on another pattern
 
-		if (!onScreen && patternNum != layout.size()) {
+		if (allDead && patternNum != layout.size()) {
 			ArrayList<enemy> toAdd = new pattern(layout.get(patternNum)).enemies;
 			for (enemy e : toAdd)
 				enemies.add(e);
