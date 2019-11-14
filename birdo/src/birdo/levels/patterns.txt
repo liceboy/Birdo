@@ -108,3 +108,13 @@ laser 815 180
 laser 815 360
 end
 
+explodeEnemy
+explode 815 180
+explode 815 360
+end
+
+trackingEnemy
+tracking 815 180
+tracking 815 360
+end
+

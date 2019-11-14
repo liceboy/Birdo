@@ -333,6 +333,10 @@ public abstract class game {
 			temp = new spinEnemy(x, y);
 		if (type.equals("laser"))
 			temp = new laserEnemy(x, y);
+		if (type.equals("explode"))
+			temp = new explodeEnemy(x, y);
+		if (type.equals("tracking"))
+			temp = new trackingEnemy(x, y);
 		if (type.equals("miniBoss1"))
 			temp = new miniBoss1(x, y);
 		if (type.equals("miniBoss2"))

@@ -31,7 +31,7 @@ public class enemy extends player {
 
 		if (isDead) {
 			dx = 0;
-			dy = 5;
+			dy = 7;
 			return;
 		}
 
@@ -247,9 +247,28 @@ public class enemy extends player {
 			feathers.add(f);
 		}
 		
-		if (type == "laser") {
-			// System.out.println("laser has bad code, please fix");
+		if (type == "explode") {
+			for (int x = 0; x < 30; x++) {
+			feather f = new feather (this.x + this.w / 2 - 6, this.y + this.h / 2 - 4, false);
+			f.dx = -1 * (5 * Math.cos(shotmultiplier1* Math.PI / 12));
+			f.dy = -1 * (5 * Math.sin(shotmultiplier1* Math.PI/12));
+			feathers.add(f);
+			shotmultiplier1++;
+			}
 		}
+		
+		if (type == "tripleShot1") {
+			feather f = new feather(this.x, this.y, false);
+			feather f1 = new feather(this.x, this.y + this.h / 2 -4, false);
+			feather f2 = new feather(this.x, this.y + this.h-4, false);
+			feathers.add(f);
+			feathers.add(f1);
+			feathers.add(f2);
+		}
+		
+		if (type == "tracking") {
+			
+			}
 	}
 
 	public void poop() {

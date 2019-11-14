@@ -35,10 +35,10 @@ public class object {
 		x += dx;
 		y += dy;
 		
-		x = Math.floor(x * 100) / 100;
-		y = Math.floor(y * 100) / 100;
-		dx = Math.floor(dx * 100) / 100;
-		dy = Math.floor(dy * 100) / 100;
+		x = Math.floor(x * 10) / 10;
+		y = Math.floor(y * 10) / 10;
+		dx = Math.floor(dx * 10) / 10;
+		dy = Math.floor(dy * 10) / 10;
 	}
 
 	public Rectangle getHitBox() {
