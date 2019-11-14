@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class egg extends object {
 
-	public egg(int x, int y) {
+	public egg(double x, double y) {
 		super(x, y, 12, 12, Color.YELLOW);
 		dx = 0;
 		dy = 8;

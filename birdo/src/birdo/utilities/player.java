@@ -43,7 +43,7 @@ public class player extends object {
 
 	public player(int x, int y, Color c) {
 		super(x, y, 20, 20, c);
-		health = 10;
+		health = 100;
 		damage = 1;
 		moveSpeed = 4;
 		shootcount = 0;

@@ -6,8 +6,8 @@ import java.awt.Rectangle;
 
 public class object {
 
-	public int x;
-	public int y; // location
+	public double x;
+	public double y; // location
 	public int w;
 	public int h; // dimensions
 	public double dx;
@@ -15,7 +15,7 @@ public class object {
 
 	public Color c;
 
-	public object(int x, int y, int w, int h, Color c) {
+	public object(double x, double y, int w, int h, Color c) {
 		this.x = x;
 		this.y = y;
 		this.w = w;
@@ -27,18 +27,16 @@ public class object {
 
 	public void draw(Graphics g) {
 		g.setColor(c);
-		g.fillRect(x, y, w, h);
+		g.fillRect((int) x, (int) y, w, h);
 	}
 
 	public void move() {
-		if(this instanceof feather)
-			System.out.println(dx + " " + dy);
 		x += dx;
 		y += dy;
 	}
 
 	public Rectangle getHitBox() {
-		return new Rectangle(x, y, w, h);
+		return new Rectangle((int) x, (int) y, w, h);
 	}
 
 	public Rectangle getFutureHitBox() {
