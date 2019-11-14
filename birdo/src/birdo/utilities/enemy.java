@@ -248,14 +248,7 @@ public class enemy extends player {
 		}
 		
 		if (type == "laser") {
-			feather f = new feather (this.x, this.y, true);
-			f.dx = -1 * (5 * Math.cos(shotmultiplier1 * Math.PI / 180));
-			f.dy = -1 * (5 * Math.sin(shotmultiplier1 * Math.PI / 180));
-			shotmultiplier1--;
-			if (shotmultiplier1 <= -45)
-				shotmultiplier1 = 45;
-			System.out.println(shotmultiplier1);
-			feathers.add(f);
+			System.out.println("laser has bad code, please fix");
 		}
 	}
 
