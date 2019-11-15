@@ -17,11 +17,11 @@ public class trackingEnemy extends enemy{
 	}
 
 	public void shootFeather() {
-		if (shootcount == 0) {
+		if (shootCount == 0) {
 			customShot("tracking");
-			shootcount = 100;
+			shootCount = 100;
 		}
-		shootcount--;
+		shootCount--;
 	}
 
 	public void poop() {

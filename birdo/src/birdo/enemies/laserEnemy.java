@@ -18,11 +18,11 @@ public class laserEnemy extends enemy{
 	}
 	
 	public void shootFeather() {
-		if (shootcount == 0) {
+		if (shootCount == 0) {
 			customShot("laser");
-			shootcount = 5;
+			shootCount = 5;
 		}
-		shootcount--;
+		shootCount--;
 	}
 
 	public void poop() {

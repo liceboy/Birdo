@@ -13,11 +13,11 @@ public class explodeEnemy extends enemy{
 	}
 	
 	public void shootFeather () {
-		if (shootcount == 0) {
-				customShot("explode");
-				shootcount = 50;
+		if (shootCount == 0) {
+				customShot("circleShot");
+				shootCount = 50;
 		}
-		shootcount--;
+		shootCount--;
 	}
 	
 	public void move () {

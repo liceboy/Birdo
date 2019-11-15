@@ -23,11 +23,11 @@ public class bigEnemy extends enemy {
 	}
 
 	public void shootFeather() {
-		if (shootcount == 0) {
+		if (shootCount == 0) {
 			customShot("tripleShot");
-			shootcount = 150;
+			shootCount = 150;
 		}
-		shootcount--;
+		shootCount--;
 	}
 
 	public void poop() {

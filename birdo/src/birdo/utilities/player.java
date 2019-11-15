@@ -6,9 +6,9 @@ import java.awt.Rectangle;
 import java.util.ArrayList;
 
 public class player extends object {
-	public int shootcount;
+	public int shootCount;
 	// shoot cooldown
-	public int poopcount;
+	public int poopCount;
 	// poop cooldown
 	public int health;
 	public int maxHealth;
@@ -21,14 +21,17 @@ public class player extends object {
 	// checks if the character is dead
 	public boolean invulnerable;
 	// checks if invulnerable
-	public int invulnerablecooldown;
+	public int invulnerableCooldown;
 	// invelnerability cooldown
-	public int shotmultiplier;
+	public int spinMultiplier;
 	// for spin shot
-	public int shotmultiplier1;
-	public String poweruptype; // string keeps track of what powerup the player is holding
+	public int explodeMultiplier;
+	public int circleMultiplier;
+	public double centerX;
+	public double centerY;
+	public String powerupType; // string keeps track of what powerup the player is holding
 	public int ammo;
-	public int maxammo;
+	public int maxAmmo;
 	public int[] stats = { health, damage, moveSpeed };
 	public ArrayList<feather> feathers;
 	public ArrayList<egg> eggs;
@@ -46,21 +49,24 @@ public class player extends object {
 		health = 100;
 		damage = 1;
 		moveSpeed = 4;
-		shootcount = 0;
-		poopcount = 0;
+		shootCount = 0;
+		poopCount = 0;
 		ammo = 0;
-		maxammo = 3;
+		maxAmmo = 3;
 		isDead = false;
 		feathers = new ArrayList<feather>();
 		eggs = new ArrayList<egg>();
 		invulnerable = false;
-		invulnerablecooldown = 0;
+		invulnerableCooldown = 0;
 		rapidCooldown = 0;
-		shotmultiplier = 0;
+		spinMultiplier = 0;
 		shootInterval = 15;
-		poweruptype = "none"; // default powerup is always none
+		powerupType = "none"; // default powerup is always none
 		maxHealth = 10;
-		shotmultiplier1 = 45;
+		explodeMultiplier = 45;
+		circleMultiplier = 0;
+		centerX = (this.x + this.w / 2 - 6);
+		centerY = (this.y + this.h / 2 - 4);
 	}
 
 	public void draw(Graphics g) {
@@ -110,12 +116,12 @@ public class player extends object {
 	}
 
 	public void shootFeather() { // shoots automatically with cooldown
-		if (shootcount == 0) {
+		if (shootCount == 0) {
 			customShot("normal");
 			// adds a feather if alive
-			shootcount = shootInterval;
+			shootCount = shootInterval;
 		}
-		shootcount--;
+		shootCount--;
 	}
 
 	public void customShot(String type) {
@@ -188,19 +194,19 @@ public class player extends object {
 			feather f2 = new feather(this.x + this.w / 2 - 6, this.y + this.h / 2 - 4, false);
 			feather f3 = new feather(this.x + this.w / 2 - 6, this.y + this.h / 2 - 4, false);
 
-			f.dx = -1 * (5 * Math.cos(shotmultiplier * Math.PI / 12));
-			f.dy = -1 * (5 * Math.sin(shotmultiplier * Math.PI / 12));
+			f.dx = -1 * (5 * Math.cos(spinMultiplier * Math.PI / 12));
+			f.dy = -1 * (5 * Math.sin(spinMultiplier * Math.PI / 12));
 
-			f1.dx = -1 * (5 * Math.cos((shotmultiplier * Math.PI / 12) + Math.PI / 2));
-			f1.dy = -1 * (5 * Math.sin((shotmultiplier * Math.PI / 12) + Math.PI / 2));
+			f1.dx = -1 * (5 * Math.cos((spinMultiplier * Math.PI / 12) + Math.PI / 2));
+			f1.dy = -1 * (5 * Math.sin((spinMultiplier * Math.PI / 12) + Math.PI / 2));
 
-			f2.dx = -1 * (5 * Math.cos((shotmultiplier * Math.PI / 12) + Math.PI));
-			f2.dy = -1 * (5 * Math.sin((shotmultiplier * Math.PI / 12) + Math.PI));
+			f2.dx = -1 * (5 * Math.cos((spinMultiplier * Math.PI / 12) + Math.PI));
+			f2.dy = -1 * (5 * Math.sin((spinMultiplier * Math.PI / 12) + Math.PI));
 
-			f3.dx = -1 * (5 * Math.cos((shotmultiplier * Math.PI / 12) + 3 * Math.PI / 2));
-			f3.dy = -1 * (5 * Math.sin((shotmultiplier * Math.PI / 12) + 3 * Math.PI / 2));
+			f3.dx = -1 * (5 * Math.cos((spinMultiplier * Math.PI / 12) + 3 * Math.PI / 2));
+			f3.dy = -1 * (5 * Math.sin((spinMultiplier * Math.PI / 12) + 3 * Math.PI / 2));
 
-			shotmultiplier++;
+			spinMultiplier++;
 
 			feathers.add(f);
 			feathers.add(f1);
@@ -236,16 +242,6 @@ public class player extends object {
 			feathers.add(f5);
 			feathers.add(f);
 		}
-		if (type == "laser") {
-			feather f = new feather (this.x, this.y, true);
-			f.dx = -1 * (int) (5 * Math.cos(shotmultiplier1 * Math.PI / 180));
-			f.dy = -1 * (int) (5 * Math.sin(shotmultiplier1 * Math.PI / 180));
-			shotmultiplier1++;
-			if (shotmultiplier >= 345)
-				shotmultiplier1 = 15;
-			feathers.add(f);
-			System.out.println("should be shooting");
-		}
 	}
 
 	public void poop() { // poops
@@ -254,28 +250,28 @@ public class player extends object {
 	}
 
 	public void usePowerup() { // uses the powerup based on string type, add powerups as you feel
-		if (poweruptype == "none")
+		if (powerupType == "none")
 			return;
-		if (poweruptype == "eggs")
+		if (powerupType == "eggs")
 			poop();
-		if (poweruptype == "bloomShot")
+		if (powerupType == "bloomShot")
 			customShot("bloomShot");
-		if (poweruptype == "buckShot")
+		if (powerupType == "buckShot")
 			customShot("buckShot");
-		if (poweruptype == "tripleShot")
+		if (powerupType == "tripleShot")
 			customShot("tripleShot");
-		if (poweruptype == "invulnerability") {
+		if (powerupType == "invulnerability") {
 			invulnerable = true;
-			invulnerablecooldown = 250;
+			invulnerableCooldown = 250;
 		}
-		if (poweruptype == "rapidFire") {
+		if (powerupType == "rapidFire") {
 			rapidCooldown = 250;
 			shootInterval = 5;
 		}
 
 		ammo--;
 		if (ammo <= 0)
-			poweruptype = "none";
+			powerupType = "none";
 
 	}
 

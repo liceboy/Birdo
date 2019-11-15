@@ -24,11 +24,11 @@ public class hoverEnemy extends enemy {
 	}
 
 	public void poop() {
-		if (poopcount == 0) {
+		if (poopCount == 0) {
 			eggs.add(new egg(this.x, this.y));
-			poopcount = 250;
+			poopCount = 250;
 		}
-		poopcount--;
+		poopCount--;
 	}
 
 }

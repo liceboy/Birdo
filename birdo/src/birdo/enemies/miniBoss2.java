@@ -25,12 +25,12 @@ public class miniBoss2 extends enemy {
 
 	public void shootFeather() {
 		if (health >= 10) {
-			if (shootcount <= 0) {
+			if (shootCount <= 0) {
 				customShot("homing");
-				shootcount = 200;
+				shootCount = 200;
 			}
-			if (shootcount % 20 == 0 && (shootcount / 20) < 80) {
-				if (shootcount / 20 < 5)
+			if (shootCount % 20 == 0 && (shootCount / 20) < 80) {
+				if (shootCount / 20 < 5)
 					customShot("normal");
 				else
 					customShot("homing");
@@ -38,12 +38,12 @@ public class miniBoss2 extends enemy {
 		}
 
 		if (health < 10 ) {
-			if (shootcount <= 0) {
+			if (shootCount <= 0) {
 				customShot("spinShot");
-				shootcount = 10;
+				shootCount = 10;
 			}
 		}
-		shootcount--;
+		shootCount--;
 	}
 
 	public void poop() {

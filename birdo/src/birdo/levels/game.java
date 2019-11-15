@@ -33,7 +33,11 @@ public abstract class game {
 
 	public void move() {
 		player.move();
+		player.centerX = (player.x + player.w / 2 - 6);
+		player.centerY = (player.y + player.h / 2 - 6);
 		for (enemy e : enemies) {
+			e.centerX = (e.x + e.w / 2 - 6);
+			e.centerY = (e.y + e.h / 2 - 4);
 			e.p = player;
 			e.move();
 		}
@@ -57,8 +61,8 @@ public abstract class game {
 		if (patternNum != 0)
 			g.drawString("Layout: " + layout.get(patternNum - 1), 550, 55);
 		g.drawString("Health: " + player.health, 25, 40);
-		if (player.poweruptype != "none")
-			g.drawString("Powerup: " + player.poweruptype + " x" + player.ammo, 25, 55);
+		if (player.powerupType != "none")
+			g.drawString("Powerup: " + player.powerupType + " x" + player.ammo, 25, 55);
 		if (player.checkisDead()) {
 			g.drawString("Game Over!", 300, 150);
 			g.drawString("Continue: F1", 300, 175);
@@ -74,8 +78,8 @@ public abstract class game {
 
 		if (player.invulnerable) {
 			player.c = Color.RED;
-			player.invulnerablecooldown--;
-			if (player.invulnerablecooldown == 0) {
+			player.invulnerableCooldown--;
+			if (player.invulnerableCooldown == 0) {
 				player.invulnerable = false;
 				player.c = Color.BLUE;
 			}
@@ -113,7 +117,7 @@ public abstract class game {
 				if (!player.invulnerable) {
 					player.health--;
 					player.invulnerable = true;
-					player.invulnerablecooldown = 75;
+					player.invulnerableCooldown = 75;
 				}
 			}
 
@@ -127,7 +131,7 @@ public abstract class game {
 					if (!player.invulnerable) {
 						player.health--;
 						player.invulnerable = true;
-						player.invulnerablecooldown = 75;
+						player.invulnerableCooldown = 75;
 					}
 					e.feathers.remove(j);
 					j--;
@@ -148,7 +152,7 @@ public abstract class game {
 					if (!player.invulnerable) {
 						player.health--;
 						player.invulnerable = true;
-						player.invulnerablecooldown = 75;
+						player.invulnerableCooldown = 75;
 					}
 					e.eggs.remove(k);
 					k--;
@@ -261,10 +265,10 @@ public abstract class game {
 				continue;
 			powerup p = powerups.get(t);
 			if (player.getHitBox().intersects(p.getHitBox())) {
-				player.poweruptype = p.type;
-				if (player.poweruptype == "heal") { // heal powerup
+				player.powerupType = p.type;
+				if (player.powerupType == "heal") { // heal powerup
 					player.health += 3;
-					player.poweruptype = "none";
+					player.powerupType = "none";
 					if (player.health > player.maxHealth)
 						player.health = player.maxHealth;
 				}

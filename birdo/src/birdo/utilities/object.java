@@ -27,7 +27,7 @@ public class object {
 
 	public void draw(Graphics g) {
 		g.setColor(c);
-		g.fillRect((int) x, (int) y, w, h);
+		g.fillOval((int) x, (int) y, w, h);
 	}
 
 	public void move() {

@@ -17,7 +17,7 @@ public class steadyEnemy extends enemy {
 	public void move() {
 		if (x < 700)
 			dx = 0;
-		if (shootcount > 200)
+		if (shootCount > 200)
 			dx = -3;
 		super.move();
 	}
@@ -27,9 +27,9 @@ public class steadyEnemy extends enemy {
 	}
 
 	public void shootFeather() {
-		if (shootcount % 30 == 0)
+		if (shootCount % 30 == 0)
 			customShot("homing");
-		shootcount++;
+		shootCount++;
 	}
 
 }

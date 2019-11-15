@@ -22,11 +22,11 @@ public class blossomEnemy extends enemy {
 	}
 
 	public void shootFeather() {
-		if (shootcount == 0) {
+		if (shootCount == 0) {
 			customShot("bloomShot");
-			shootcount = 100;
+			shootCount = 100;
 		}
-		shootcount--;
+		shootCount--;
 	}
 
 	public void poop() {

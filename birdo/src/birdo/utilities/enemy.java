@@ -107,14 +107,14 @@ public class enemy extends player {
 	}
 
 	public void shootFeather() {
-		if (shootcount == 0) {
+		if (shootCount == 0) {
 			if (!isDead) {
 				feathers.add(new feather(this.x, this.y, false));
 				// adds a feather if alive
-				shootcount = 100;
+				shootCount = 100;
 			}
 		}
-		shootcount--;
+		shootCount--;
 	}
 
 	public void customShot(String type) {
@@ -153,14 +153,14 @@ public class enemy extends player {
 			feathers.add(f2);
 		}
 		if (type == "bloomShot") {
-			feather f = new feather(this.x + this.w / 2 - 6, this.y + this.h / 2 - 4, false);
-			feather f1 = new feather(this.x + this.w / 2 - 6, this.y + this.h / 2 - 4, false);
-			feather f2 = new feather(this.x + this.w / 2 - 6, this.y + this.h / 2 - 4, false);
-			feather f3 = new feather(this.x + this.w / 2 - 6, this.y + this.h / 2 - 4, false);
-			feather f4 = new feather(this.x + this.w / 2 - 6, this.y + this.h / 2 - 4, false);
-			feather f5 = new feather(this.x + this.w / 2 - 6, this.y + this.h / 2 - 4, false);
-			feather f6 = new feather(this.x + this.w / 2 - 6, this.y + this.h / 2 - 4, false);
-			feather f7 = new feather(this.x + this.w / 2 - 6, this.y + this.h / 2 - 4, false);
+			feather f = new feather(centerX, centerY, false);
+			feather f1 = new feather(centerX, centerY, false);
+			feather f2 = new feather(centerX, centerY, false);
+			feather f3 = new feather(centerX, centerY, false);
+			feather f4 = new feather(centerX, centerY, false);
+			feather f5 = new feather(centerX, centerY, false);
+			feather f6 = new feather(centerX, centerY, false);
+			feather f7 = new feather(centerX, centerY, false);
 
 			f.dx = -5;
 			f.dy = 0;
@@ -194,24 +194,24 @@ public class enemy extends player {
 			feathers.add(f7);
 		}
 		if (type == "spinShot") {
-			feather f = new feather(this.x + this.w / 2 - 6, this.y + this.h / 2 - 4, false);
-			feather f1 = new feather(this.x + this.w / 2 - 6, this.y + this.h / 2 - 4, false);
-			feather f2 = new feather(this.x + this.w / 2 - 6, this.y + this.h / 2 - 4, false);
-			feather f3 = new feather(this.x + this.w / 2 - 6, this.y + this.h / 2 - 4, false);
+			feather f = new feather(centerX, centerY, false);
+			feather f1 = new feather(centerX, centerY, false);
+			feather f2 = new feather(centerX, centerY, false);
+			feather f3 = new feather(centerX, centerY, false);
 
-			f.dx = -1 * (5 * Math.cos(shotmultiplier * Math.PI / 12));
-			f.dy = -1 * (5 * Math.sin(shotmultiplier * Math.PI / 12));
+			f.dx = -1 * (5 * Math.cos(spinMultiplier * Math.PI / 12));
+			f.dy = -1 * (5 * Math.sin(spinMultiplier * Math.PI / 12));
 
-			f1.dx = -1 * (5 * Math.cos((shotmultiplier * Math.PI / 12) + Math.PI / 2));
-			f1.dy = -1 * (5 * Math.sin((shotmultiplier * Math.PI / 12) + Math.PI / 2));
+			f1.dx = -1 * (5 * Math.cos((spinMultiplier * Math.PI / 12) + Math.PI / 2));
+			f1.dy = -1 * (5 * Math.sin((spinMultiplier * Math.PI / 12) + Math.PI / 2));
 
-			f2.dx = -1 * (5 * Math.cos((shotmultiplier * Math.PI / 12) + Math.PI));
-			f2.dy = -1 * (5 * Math.sin((shotmultiplier * Math.PI / 12) + Math.PI));
+			f2.dx = -1 * (5 * Math.cos((spinMultiplier * Math.PI / 12) + Math.PI));
+			f2.dy = -1 * (5 * Math.sin((spinMultiplier * Math.PI / 12) + Math.PI));
 
-			f3.dx = -1 * (5 * Math.cos((shotmultiplier * Math.PI / 12) + 3 * Math.PI / 2));
-			f3.dy = -1 * (5 * Math.sin((shotmultiplier * Math.PI / 12) + 3 * Math.PI / 2));
+			f3.dx = -1 * (5 * Math.cos((spinMultiplier * Math.PI / 12) + 3 * Math.PI / 2));
+			f3.dy = -1 * (5 * Math.sin((spinMultiplier * Math.PI / 12) + 3 * Math.PI / 2));
 
-			shotmultiplier++;
+			spinMultiplier++;
 
 			feathers.add(f);
 			feathers.add(f1);
@@ -247,13 +247,13 @@ public class enemy extends player {
 			feathers.add(f);
 		}
 		
-		if (type == "explode") {
-			for (int x = 0; x < 30; x++) {
-			feather f = new feather (this.x + this.w / 2 - 6, this.y + this.h / 2 - 4, false);
-			f.dx = -1 * (5 * Math.cos(shotmultiplier1* Math.PI / 12));
-			f.dy = -1 * (5 * Math.sin(shotmultiplier1* Math.PI/12));
-			feathers.add(f);
-			shotmultiplier1++;
+		if (type == "explodeShot") {
+			for (int x = 0; x < 15; x++) {
+				feather f = new feather (centerX, centerY, false);
+				f.dx = -1 * (5 * Math.cos(explodeMultiplier* Math.PI / 6));
+				f.dy = -1 * (5 * Math.sin(explodeMultiplier* Math.PI / 6));
+				feathers.add(f);
+				explodeMultiplier++;
 			}
 		}
 		
@@ -269,17 +269,32 @@ public class enemy extends player {
 		if (type == "tracking") {
 			
 			}
+		
+		if (type == "circleShot") {
+			for (int x = 0; x < 15; x ++) {
+				System.out.println(this.centerX);
+				feather f = new feather ((this.centerX) + (20 * Math.cos(circleMultiplier * Math.PI/6)), (this.centerY) + (20 * Math.sin(circleMultiplier * Math.PI/6)), false);
+				double deltaX = (p.centerX + (20 * Math.cos(circleMultiplier * Math.PI/6))) - ((centerX) + (20 * Math.cos(circleMultiplier * Math.PI/6)));
+				double deltaY = (p.centerY + (20 * Math.cos(circleMultiplier * Math.PI/6))) - ((centerY) + (20 * Math.cos(circleMultiplier * Math.PI/6)));
+				System.out.println(deltaX + " " + deltaY);
+				double theta = Math.atan(deltaY / deltaX);
+				f.dx = -1 * (5 * Math.cos(theta));
+				f.dy = -1 * (5 * Math.sin(theta));
+				circleMultiplier++;
+				feathers.add(f);
+			}
+		}
 	}
 
 	public void poop() {
 		if (isDead)
 			return;
 
-		if (poopcount == 0) {
+		if (poopCount == 0) {
 			eggs.add(new egg(this.x, this.y));
-			poopcount = 100;
+			poopCount = 100;
 		}
-		poopcount--;
+		poopCount--;
 	}
 
 }
