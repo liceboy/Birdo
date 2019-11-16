@@ -272,11 +272,9 @@ public class enemy extends player {
 		
 		if (type == "circleShot") {
 			for (int x = 0; x < 15; x ++) {
-				System.out.println(this.centerX);
 				feather f = new feather ((this.centerX) + (20 * Math.cos(circleMultiplier * Math.PI/6)), (this.centerY) + (20 * Math.sin(circleMultiplier * Math.PI/6)), false);
 				double deltaX = (p.centerX + (20 * Math.cos(circleMultiplier * Math.PI/6))) - ((centerX) + (20 * Math.cos(circleMultiplier * Math.PI/6)));
 				double deltaY = (p.centerY + (20 * Math.cos(circleMultiplier * Math.PI/6))) - ((centerY) + (20 * Math.cos(circleMultiplier * Math.PI/6)));
-				System.out.println(deltaX + " " + deltaY);
 				double theta = Math.atan(deltaY / deltaX);
 				f.dx = -1 * (5 * Math.cos(theta));
 				f.dy = -1 * (5 * Math.sin(theta));
