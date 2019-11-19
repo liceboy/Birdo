@@ -120,7 +120,7 @@ public class player extends object {
 		if (shootCount == 0) {
 			if (shotState == 0)
 				customShot("normal");
-			if (shotState == 1) {
+			if (shotState >= 1) {
 				customShot("tripleShot1");
 			}
 			// adds a feather if alive
