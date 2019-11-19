@@ -6,38 +6,40 @@ import java.awt.Rectangle;
 import java.util.ArrayList;
 
 public class player extends object {
-	public int shootCount;
-	// shoot cooldown
-	public int poopCount;
-	// poop cooldown
+	
+	// stats
 	public int health;
 	public int maxHealth;
-	// health
 	public int damage;
-	// strength of attacks
 	public int moveSpeed;
-	// move speed when holding a key
+
+	// location
 	public boolean isDead;
-	// checks if the character is dead
-	public boolean invulnerable;
-	// checks if invulnerable
-	public int invulnerableCooldown;
-	// invelnerability cooldown
-	public int spinMultiplier;
-	// for spin shot
-	public int explodeMultiplier;
-	public int circleMultiplier;
 	public double centerX;
 	public double centerY;
-	public String powerupType; // string keeps track of what powerup the player is holding
+	
+	// powerups
+	public String powerupType;
 	public int ammo;
 	public int maxAmmo;
-	public int[] stats = { health, damage, moveSpeed };
+	
+	// invulnerability
+	public boolean invulnerable;
+	public int invulnerableCooldown;
+
+	// attacks
 	public ArrayList<feather> feathers;
 	public ArrayList<egg> eggs;
-	public player p;
+	
+	// shooting
+	public int shotMultiplier;
+	public int shootCount;
+	public int poopCount;
 	public int shootInterval;
-	public int rapidCooldown;
+	public int shotCooldown;
+	public int shotState;
+	
+	// ben's movement system
 	public boolean up = false;
 	public boolean down = false;
 	public boolean left = false;
@@ -58,15 +60,14 @@ public class player extends object {
 		eggs = new ArrayList<egg>();
 		invulnerable = false;
 		invulnerableCooldown = 0;
-		rapidCooldown = 0;
-		spinMultiplier = 0;
+		shotCooldown = 0;
 		shootInterval = 15;
 		powerupType = "none"; // default powerup is always none
 		maxHealth = 10;
-		explodeMultiplier = 45;
-		circleMultiplier = 0;
+		shotMultiplier = 0; 
 		centerX = (this.x + this.w / 2 - 6);
 		centerY = (this.y + this.h / 2 - 4);
+		shotState = 0;
 	}
 
 	public void draw(Graphics g) {
@@ -117,7 +118,11 @@ public class player extends object {
 
 	public void shootFeather() { // shoots automatically with cooldown
 		if (shootCount == 0) {
-			customShot("normal");
+			if (shotState == 0)
+				customShot("normal");
+			if (shotState == 1) {
+				customShot("tripleShot1");
+			}
 			// adds a feather if alive
 			shootCount = shootInterval;
 		}
@@ -194,19 +199,19 @@ public class player extends object {
 			feather f2 = new feather(this.x + this.w / 2 - 6, this.y + this.h / 2 - 4, false);
 			feather f3 = new feather(this.x + this.w / 2 - 6, this.y + this.h / 2 - 4, false);
 
-			f.dx = -1 * (5 * Math.cos(spinMultiplier * Math.PI / 12));
-			f.dy = -1 * (5 * Math.sin(spinMultiplier * Math.PI / 12));
+			f.dx = -1 * (5 * Math.cos(shotMultiplier * Math.PI / 12));
+			f.dy = -1 * (5 * Math.sin(shotMultiplier * Math.PI / 12));
 
-			f1.dx = -1 * (5 * Math.cos((spinMultiplier * Math.PI / 12) + Math.PI / 2));
-			f1.dy = -1 * (5 * Math.sin((spinMultiplier * Math.PI / 12) + Math.PI / 2));
+			f1.dx = -1 * (5 * Math.cos((shotMultiplier * Math.PI / 12) + Math.PI / 2));
+			f1.dy = -1 * (5 * Math.sin((shotMultiplier * Math.PI / 12) + Math.PI / 2));
 
-			f2.dx = -1 * (5 * Math.cos((spinMultiplier * Math.PI / 12) + Math.PI));
-			f2.dy = -1 * (5 * Math.sin((spinMultiplier * Math.PI / 12) + Math.PI));
+			f2.dx = -1 * (5 * Math.cos((shotMultiplier * Math.PI / 12) + Math.PI));
+			f2.dy = -1 * (5 * Math.sin((shotMultiplier * Math.PI / 12) + Math.PI));
 
-			f3.dx = -1 * (5 * Math.cos((spinMultiplier * Math.PI / 12) + 3 * Math.PI / 2));
-			f3.dy = -1 * (5 * Math.sin((spinMultiplier * Math.PI / 12) + 3 * Math.PI / 2));
+			f3.dx = -1 * (5 * Math.cos((shotMultiplier * Math.PI / 12) + 3 * Math.PI / 2));
+			f3.dy = -1 * (5 * Math.sin((shotMultiplier * Math.PI / 12) + 3 * Math.PI / 2));
 
-			spinMultiplier++;
+			shotMultiplier++;
 
 			feathers.add(f);
 			feathers.add(f1);
@@ -242,6 +247,14 @@ public class player extends object {
 			feathers.add(f5);
 			feathers.add(f);
 		}
+		if (type == "tripleShot1") {
+			feather f = new feather(this.x, this.y, true);
+			feather f1 = new feather(this.x, this.y + this.h / 2 - 2, true);
+			feather f2 = new feather(this.x, this.y + this.h - 4, true);
+			feathers.add(f);
+			feathers.add(f1);
+			feathers.add(f2);
+		}
 	}
 
 	public void poop() { // poops
@@ -254,21 +267,16 @@ public class player extends object {
 			return;
 		if (powerupType == "eggs")
 			poop();
-		if (powerupType == "bloomShot")
-			customShot("bloomShot");
 		if (powerupType == "buckShot")
 			customShot("buckShot");
-		if (powerupType == "tripleShot")
-			customShot("tripleShot");
 		if (powerupType == "invulnerability") {
 			invulnerable = true;
 			invulnerableCooldown = 250;
 		}
 		if (powerupType == "rapidFire") {
-			rapidCooldown = 250;
+			shotCooldown = 250;
 			shootInterval = 5;
 		}
-
 		ammo--;
 		if (ammo <= 0)
 			powerupType = "none";

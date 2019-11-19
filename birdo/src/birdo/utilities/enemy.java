@@ -4,7 +4,7 @@ import java.awt.Color;
 
 public class enemy extends player {
 
-	public player p;
+	public player p;    
 	public int score;
 
 	public enemy(int x, int y) {
@@ -91,7 +91,7 @@ public class enemy extends player {
 				if (p.x - x > 30)
 					dx = -8;
 			}
-			
+
 			if (dy < 0 && dx == 0) {
 				dy = 0;
 				dx = -8;
@@ -199,19 +199,19 @@ public class enemy extends player {
 			feather f2 = new feather(centerX, centerY, false);
 			feather f3 = new feather(centerX, centerY, false);
 
-			f.dx = -1 * (5 * Math.cos(spinMultiplier * Math.PI / 12));
-			f.dy = -1 * (5 * Math.sin(spinMultiplier * Math.PI / 12));
+			f.dx = -1 * (5 * Math.cos(shotMultiplier * Math.PI / 12));
+			f.dy = -1 * (5 * Math.sin(shotMultiplier * Math.PI / 12));
 
-			f1.dx = -1 * (5 * Math.cos((spinMultiplier * Math.PI / 12) + Math.PI / 2));
-			f1.dy = -1 * (5 * Math.sin((spinMultiplier * Math.PI / 12) + Math.PI / 2));
+			f1.dx = -1 * (5 * Math.cos((shotMultiplier * Math.PI / 12) + Math.PI / 2));
+			f1.dy = -1 * (5 * Math.sin((shotMultiplier * Math.PI / 12) + Math.PI / 2));
 
-			f2.dx = -1 * (5 * Math.cos((spinMultiplier * Math.PI / 12) + Math.PI));
-			f2.dy = -1 * (5 * Math.sin((spinMultiplier * Math.PI / 12) + Math.PI));
+			f2.dx = -1 * (5 * Math.cos((shotMultiplier * Math.PI / 12) + Math.PI));
+			f2.dy = -1 * (5 * Math.sin((shotMultiplier * Math.PI / 12) + Math.PI));
 
-			f3.dx = -1 * (5 * Math.cos((spinMultiplier * Math.PI / 12) + 3 * Math.PI / 2));
-			f3.dy = -1 * (5 * Math.sin((spinMultiplier * Math.PI / 12) + 3 * Math.PI / 2));
+			f3.dx = -1 * (5 * Math.cos((shotMultiplier * Math.PI / 12) + 3 * Math.PI / 2));
+			f3.dy = -1 * (5 * Math.sin((shotMultiplier * Math.PI / 12) + 3 * Math.PI / 2));
 
-			spinMultiplier++;
+			shotMultiplier++;
 
 			feathers.add(f);
 			feathers.add(f1);
@@ -246,42 +246,50 @@ public class enemy extends player {
 			feathers.add(f5);
 			feathers.add(f);
 		}
-		
+
 		if (type == "explodeShot") {
 			for (int x = 0; x < 15; x++) {
-				feather f = new feather (centerX, centerY, false);
-				f.dx = -1 * (5 * Math.cos(explodeMultiplier* Math.PI / 6));
-				f.dy = -1 * (5 * Math.sin(explodeMultiplier* Math.PI / 6));
+				feather f = new feather(centerX, centerY, false);
+				f.dx = -1 * (5 * Math.cos((shotMultiplier + 45) * Math.PI / 6));
+				f.dy = -1 * (5 * Math.sin((shotMultiplier + 45) * Math.PI / 6));
 				feathers.add(f);
-				explodeMultiplier++;
+				shotMultiplier++;
 			}
 		}
-		
+
 		if (type == "tripleShot1") {
 			feather f = new feather(this.x, this.y, false);
-			feather f1 = new feather(this.x, this.y + this.h / 2 -4, false);
-			feather f2 = new feather(this.x, this.y + this.h-4, false);
+			feather f1 = new feather(this.x, this.y + this.h / 2 - 2, false);
+			feather f2 = new feather(this.x, this.y + this.h - 4, false);
 			feathers.add(f);
 			feathers.add(f1);
 			feathers.add(f2);
 		}
-		
+
 		if (type == "tracking") {
-			
-			}
-		
+			//for homing feather 
+		}
+
 		if (type == "circleShot") {
-			for (int x = 0; x < 15; x ++) {
-				feather f = new feather ((this.centerX) + (20 * Math.cos(circleMultiplier * Math.PI/6)), (this.centerY) + (20 * Math.sin(circleMultiplier * Math.PI/6)), false);
-				double deltaX = (p.centerX + (20 * Math.cos(circleMultiplier * Math.PI/6))) - ((centerX) + (20 * Math.cos(circleMultiplier * Math.PI/6)));
-				double deltaY = (p.centerY + (20 * Math.cos(circleMultiplier * Math.PI/6))) - ((centerY) + (20 * Math.cos(circleMultiplier * Math.PI/6)));
+			for (int x = 0; x < 15; x++) {
+				feather f = new feather((this.centerX) + (20 * Math.cos(shotMultiplier * Math.PI / 6)),
+						(this.centerY) + (20 * Math.sin(shotMultiplier * Math.PI / 6)), false);
+				double deltaX = (p.centerX + (20 * Math.cos(shotMultiplier * Math.PI / 6)))
+						- ((centerX) + (20 * Math.cos(shotMultiplier * Math.PI / 6)));
+				double deltaY = (p.centerY + (20 * Math.cos(shotMultiplier * Math.PI / 6)))
+						- ((centerY) + (20 * Math.cos(shotMultiplier * Math.PI / 6)));
 				double theta = Math.atan(deltaY / deltaX);
 				f.dx = -1 * (5 * Math.cos(theta));
 				f.dy = -1 * (5 * Math.sin(theta));
-				circleMultiplier++;
+				shotMultiplier++;
 				feathers.add(f);
 			}
 		}
+		
+		
+		
+		
+
 	}
 
 	public void poop() {

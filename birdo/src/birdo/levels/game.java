@@ -88,8 +88,8 @@ public abstract class game {
 		// RAPIDFIRE POWERUP
 		
 		if (player.shootInterval == 5) {
-			player.rapidCooldown--;
-			if (player.rapidCooldown == 0) {
+			player.shotCooldown--;
+			if (player.shotCooldown == 0) {
 				player.shootInterval = 15;
 			}
 		}
@@ -272,6 +272,10 @@ public abstract class game {
 					if (player.health > player.maxHealth)
 						player.health = player.maxHealth;
 				}
+				if (player.powerupType == "shotUpgrade") { // shotUpgrade powerup
+					player.shotState++;
+					player.powerupType = "none";
+				}
 				player.ammo = p.ammo;
 				powerups.remove(t);
 				t--;
@@ -349,8 +353,8 @@ public abstract class game {
 	}
 
 	public void createRandomPowerup(int x, int y) {
-		String[] choices = {"eggs", "bloomShot", "buckShot", "tripleShot", "invulnerability", "heal", "rapidFire"};
-		int choice = (int) (Math.random() * 7);
+		String[] choices = {"eggs", "buckShot", "shotUpgrade", "invulnerability", "heal", "rapidFire"};
+		int choice = (int) (Math.random() * 6);
 		powerup toAdd = new powerup(x, y, choices[choice]);
 		powerups.add(toAdd);
 	}

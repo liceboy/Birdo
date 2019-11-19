@@ -19,8 +19,8 @@ public class powerup extends object {
 			ammo = 3;
 		if (type == "buckShot")
 			ammo = 3;
-		if (type == "tripleShot")
-			ammo = 3;
+		if (type == "shotUpgrade")
+			ammo = 0;
 		if (type == "invulnerability")
 			ammo = 1;
 		if (type == "heal")

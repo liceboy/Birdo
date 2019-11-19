@@ -14,8 +14,8 @@ public class explodeEnemy extends enemy{
 	
 	public void shootFeather () {
 		if (shootCount == 0) {
-				customShot("circleShot");
-				shootCount = 50;
+			customShot("tripleShot1");
+			shootCount = 20;
 		}
 		shootCount--;
 	}
