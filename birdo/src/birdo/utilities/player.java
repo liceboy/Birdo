@@ -64,6 +64,7 @@ public class player extends object {
 		shootInterval = 15;
 		powerupType = "none"; // default powerup is always none
 		maxHealth = 10;
+		
 		shotMultiplier = 0; 
 		centerX = (this.x + this.w / 2 - 6);
 		centerY = (this.y + this.h / 2 - 4);
@@ -114,15 +115,17 @@ public class player extends object {
 			e.move();
 		if (x < 800)
 			shootFeather();
+
 	}
 
 	public void shootFeather() { // shoots automatically with cooldown
 		if (shootCount == 0) {
 			if (shotState == 0)
 				customShot("normal");
-			if (shotState >= 1) {
-				customShot("tripleShot1");
-			}
+			if (shotState == 1) 
+				customShot("shootTwo");
+			if (shotState >= 2) 
+				customShot("shootThree");
 			// adds a feather if alive
 			shootCount = shootInterval;
 		}
@@ -247,14 +250,24 @@ public class player extends object {
 			feathers.add(f5);
 			feathers.add(f);
 		}
-		if (type == "tripleShot1") {
+		if (type == "shootTwo") {
+			feather f = new feather(this.x, this.y + this.h/2 -9, true);
+			feather f1 = new feather(this.x, this.y + this.h/2 , true);
+			feathers.add(f);
+			feathers.add(f1);
+		}
+		if (type == "shootThree") {
 			feather f = new feather(this.x, this.y, true);
-			feather f1 = new feather(this.x, this.y + this.h / 2 - 2, true);
-			feather f2 = new feather(this.x, this.y + this.h - 4, true);
+			feather f1 = new feather(this.x, this.y + this.h / 2 - 3, true);
+			feather f2 = new feather(this.x, this.y + this.h - 6, true);
 			feathers.add(f);
 			feathers.add(f1);
 			feathers.add(f2);
 		}
+		
+		
+		
+		
 	}
 
 	public void poop() { // poops

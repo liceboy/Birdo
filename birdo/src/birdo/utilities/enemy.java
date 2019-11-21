@@ -256,14 +256,28 @@ public class enemy extends player {
 				shotMultiplier++;
 			}
 		}
+		
+		if (type == "shootTwo") {
+			feather f = new feather(this.x, this.y + this.h/2 -9, false);
+			feather f1 = new feather(this.x, this.y + this.h/2 , false);
+			feathers.add(f);
+			feathers.add(f1);
+		}
 
-		if (type == "tripleShot1") {
+		if (type == "shootThree") {
 			feather f = new feather(this.x, this.y, false);
-			feather f1 = new feather(this.x, this.y + this.h / 2 - 2, false);
-			feather f2 = new feather(this.x, this.y + this.h - 4, false);
+			feather f1 = new feather(this.x, this.y + this.h / 2 - 3, false);
+			feather f2 = new feather(this.x, this.y + this.h - 6, false);
 			feathers.add(f);
 			feathers.add(f1);
 			feathers.add(f2);
+		}
+		
+		if (type == "shootTwo") {
+			feather f = new feather(this.x, this.y + this.h/2 -9, false);
+			feather f1 = new feather(this.x, this.y + this.h/2 , false);
+			feathers.add(f);
+			feathers.add(f1);
 		}
 
 		if (type == "tracking") {

@@ -187,8 +187,8 @@ public abstract class game {
 					e.health--;
 					if (e.health <= 0)
 						score += e.score;
-					player.feathers.remove(j);
-					j--;
+						player.feathers.remove(j);
+						j--;
 				}
 				if (f.x < -100 || f.x > 900 || f.y < -100 || f.y > 600) {
 					if (j >= 0)
@@ -354,7 +354,7 @@ public abstract class game {
 
 	public void createRandomPowerup(int x, int y) {
 		String[] choices = {"eggs", "buckShot", "shotUpgrade", "invulnerability", "heal", "rapidFire"};
-		int choice = (int) (Math.random() * 6);
+		int choice = (int) (Math.random() * 7);
 		powerup toAdd = new powerup(x, y, choices[choice]);
 		powerups.add(toAdd);
 	}
