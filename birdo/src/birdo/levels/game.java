@@ -36,6 +36,8 @@ public abstract class game {
 		player.centerX = (player.x + player.w / 2 - 6);
 		player.centerY = (player.y + player.h / 2 - 6);
 		for (enemy e : enemies) {
+			for (feather f : e.feathers)
+				f.p = player;
 			e.centerX = (e.x + e.w / 2 - 6);
 			e.centerY = (e.y + e.h / 2 - 4);
 			e.p = player;
@@ -46,6 +48,8 @@ public abstract class game {
 		}
 		collision();
 		genPattern();
+		if (player.shotState > player.maxShotState)
+			player.shotState = player.maxShotState;
 	}
 
 	public void draw(Graphics g) {
@@ -116,6 +120,7 @@ public abstract class game {
 			if (player.getHitBox().intersects(e.getHitBox())) {
 				if (!player.invulnerable) {
 					player.health--;
+					player.shotState = 0;
 					player.invulnerable = true;
 					player.invulnerableCooldown = 75;
 				}
@@ -130,6 +135,7 @@ public abstract class game {
 				if (player.getHitBox().intersects(f.getHitBox())) {
 					if (!player.invulnerable) {
 						player.health--;
+						player.shotState = 0;
 						player.invulnerable = true;
 						player.invulnerableCooldown = 75;
 					}
@@ -151,6 +157,7 @@ public abstract class game {
 				if (player.getHitBox().intersects(p.getHitBox())) {
 					if (!player.invulnerable) {
 						player.health--;
+						player.shotState = 0;
 						player.invulnerable = true;
 						player.invulnerableCooldown = 75;
 					}
@@ -354,7 +361,7 @@ public abstract class game {
 
 	public void createRandomPowerup(int x, int y) {
 		String[] choices = {"eggs", "buckShot", "shotUpgrade", "invulnerability", "heal", "rapidFire"};
-		int choice = (int) (Math.random() * 7);
+		int choice = (int) (Math.random() * 6);
 		powerup toAdd = new powerup(x, y, choices[choice]);
 		powerups.add(toAdd);
 	}

@@ -282,6 +282,8 @@ public class enemy extends player {
 
 		if (type == "tracking") {
 			//for homing feather 
+			homingFeather f = new homingFeather(this.x, this.y, false);
+			feathers.add(f);
 		}
 
 		if (type == "circleShot") {
@@ -299,6 +301,7 @@ public class enemy extends player {
 				feathers.add(f);
 			}
 		}
+		
 		
 		
 		
