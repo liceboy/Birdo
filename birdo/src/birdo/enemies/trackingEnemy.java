@@ -12,7 +12,7 @@ public class trackingEnemy extends enemy{
 	}
 	
 	public void move() {
-		customMove("default");
+		customMove("stop");
 		super.move();
 	}
 

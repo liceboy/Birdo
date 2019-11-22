@@ -29,8 +29,8 @@ public class homingFeather extends feather {
 		}
 		// update dx and dy to follow player if track is true
 		if (track) {
-			dx = (int) (5 * deltaX / hypotenuse);
-			dy = (int) (5 * deltaY / hypotenuse);
+			dx = (5 * deltaX / hypotenuse);
+			dy = (5 * deltaY / hypotenuse);
 		}
 		// update prevThetas
 		prevTheta = theta;

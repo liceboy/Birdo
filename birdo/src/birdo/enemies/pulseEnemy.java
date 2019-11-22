@@ -14,8 +14,7 @@ public class pulseEnemy extends enemy {
 	}
 
 	public void move() {
-		if (x < 700)
-			dx = 0;
+		customMove("stop");
 		super.move();
 	}
 

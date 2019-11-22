@@ -15,8 +15,7 @@ public class steadyEnemy extends enemy {
 	}
 
 	public void move() {
-		if (x < 700)
-			dx = 0;
+		customMove("stop");
 		if (shootCount > 200)
 			dx = -3;
 		super.move();
