@@ -6,6 +6,9 @@ public class enemy extends player {
 
 	public player p;    
 	public int score;
+	boolean init = true;
+	boolean track = true;
+	double prevTheta;
 
 	public enemy(int x, int y) {
 		super(x, y, Color.BLACK);
@@ -80,22 +83,25 @@ public class enemy extends player {
 		if (type == "charge") {
 			double deltaX = p.x - x;
 			double deltaY = p.y - y;
-
+			double hypotenuse = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
 			double theta = Math.atan(deltaY / deltaX);
-
-			dx = -1 * (int) (6 * Math.cos(theta));
-			dy = -1 * (int) (6 * Math.sin(theta));
-
-			if (p.x > x) {
-				dy = 0;
-				if (p.x - x > 30)
-					dx = -8;
+			// during first move, set prevTheta to theta so it starts out as tracking
+			if (init) {
+				prevTheta = theta;
+				init = false;
+			}	
+			// if change in angle is greater than 0.3 radians, then stop tracking
+			if (Math.abs(prevTheta - theta) > 0.2) {
+				track = false;
 			}
-
-			if (dy < 0 && dx == 0) {
-				dy = 0;
-				dx = -8;
+			// update dx and dy to follow player if track is true
+			if (track) {
+				dx = (int) (3 * deltaX / hypotenuse);
+				dy = (int) (3 * deltaY / hypotenuse);
 			}
+			// update prevThetas
+			prevTheta = theta;
+			super.move();
 		}
 
 		if (type == "die") {

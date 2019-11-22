@@ -15,7 +15,7 @@ public class explodeEnemy extends enemy {
 	public void shootFeather() {
 		if (shootCount == 0) {
 			customShot("tracking");
-			shootCount = 20;
+			shootCount = 100;
 		}
 		shootCount--;
 	}
