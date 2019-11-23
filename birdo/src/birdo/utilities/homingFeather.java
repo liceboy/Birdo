@@ -8,13 +8,18 @@ public class homingFeather extends feather {
 	double prevTheta;
 	boolean track = true;
 	boolean init = true;
+	
+	int duration;
 
 	public homingFeather(double x, double y, boolean forward) {
 		super(x, y, forward);
 		c = Color.GREEN;
+		
+		duration = 200;
 	}
 
 	public enemy nearestEnemy() { // function to find the nearest enemy for tracking bullets
+		
 		if (enemies.size() != 0) {
 			enemy nearestEnemy = enemies.get(0);
 			double nearestDeltaX = nearestEnemy.x - x;
@@ -42,6 +47,12 @@ public class homingFeather extends feather {
 	}
 
 	public void move() {
+		
+		if (duration <= 0) {
+			super.move();
+			return;
+		}
+		
 		if (!forward) {
 			double deltaX = p.x - x;
 			double deltaY = p.y - y;
@@ -73,12 +84,14 @@ public class homingFeather extends feather {
 			double deltaY = nearestEnemy().y - y;
 			
 			// if the distance is signficant, it has to already be travelling forward
-			if((deltaX > 600 && dx > 0) || deltaX < 600) {
+			if((deltaX > 500 && dx > 0) || deltaX < 500) {
 				double hypotenuse = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
 				dx = (5 * deltaX / hypotenuse);
 				dy = (5 * deltaY / hypotenuse);
 			}
 		}
+		
+		duration--;
 		super.move();
 	}
 
