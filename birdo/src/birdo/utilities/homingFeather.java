@@ -1,19 +1,44 @@
 package birdo.utilities;
 
 import java.awt.Color;
+import java.util.ArrayList;
 
 public class homingFeather extends feather {
 	
 	double prevTheta;
 	boolean track = true;
 	boolean init = true;
+	
 
 	public homingFeather(double x, double y, boolean forward) {
 		super(x, y, forward);
 		c = Color.GREEN;
 	}
+	
+	public enemy nearestEnemy() { 	// function to find the nearest enemy for tracking bullets
+		if (enemies.size() != 0) {
+			enemy nearestEnemy = enemies.get(0);
+			double nearestDeltaX = nearestEnemy.x - x;
+			double nearestDeltaY = nearestEnemy.y - y;
+			double nearestHypotenuse = Math.sqrt(nearestDeltaX * nearestDeltaX + nearestDeltaY * nearestDeltaY);
+		for (enemy a: enemies) {
+			double deltaX = a.x - x;
+			double deltaY = a.y - y;
+			double hypotenuse = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
+			if (nearestHypotenuse > hypotenuse) {
+				nearestHypotenuse = hypotenuse;
+				nearestDeltaX = deltaX;
+				nearestDeltaY = deltaY;
+				nearestEnemy = a;
+			}
+		}
+		return nearestEnemy;
+		}
+		return null;
+	}
 
 	public void move() {
+		if (!forward) {
 		double deltaX = p.x - x;
 		double deltaY = p.y - y;
 		double hypotenuse = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
@@ -34,6 +59,19 @@ public class homingFeather extends feather {
 		}
 		// update prevThetas
 		prevTheta = theta;
+		}
+		if (forward && enemies.size() == 0) {
+			System.out.println(enemies.size());
+			dx = 5;
+			dy = 0;
+		}
+		if (forward && enemies.size() > 0) {
+			double deltaX = nearestEnemy().x - x;
+			double deltaY = nearestEnemy().y - y;
+			double hypotenuse = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
+			dx = (5 * deltaX / hypotenuse);
+			dy = (5 * deltaY / hypotenuse);
+		}
 		super.move();
 	}
 

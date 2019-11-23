@@ -42,7 +42,6 @@ public class player extends object {
 	boolean init = true;
 	boolean track = true;
 	double prevTheta;
-	public ArrayList<enemy> enemies;
 	
 	// ben's movement system
 	public boolean up = false;
@@ -63,7 +62,6 @@ public class player extends object {
 		isDead = false;
 		feathers = new ArrayList<feather>();
 		eggs = new ArrayList<egg>();
-		enemies = new ArrayList<enemy>();
 		invulnerable = false;
 		invulnerableCooldown = 0;
 		shotCooldown = 0;
@@ -128,7 +126,7 @@ public class player extends object {
 	public void shootFeather() { // shoots automatically with cooldown
 		if (shootCount == 0) {
 			if (shotState == 0)
-				customShot("normal");
+				customShot("tracking");
 			if (shotState == 1) 
 				customShot("shootTwo");
 			if (shotState == 2) 
@@ -273,8 +271,8 @@ public class player extends object {
 		}
 		
 		if (type == "tracking") {
-			//homingFeather f = new homingFeather (this.x, this.y, true);
-			//feathers.add(f);
+			homingFeather f = new homingFeather (this.x, this.y, true);
+			feathers.add(f);
 		}
 		
 		
@@ -302,6 +300,7 @@ public class player extends object {
 			shotCooldown = 250;
 			shootInterval = 5;
 		}
+		
 		ammo--;
 		if (ammo <= 0)
 			powerupType = "none";
@@ -318,9 +317,6 @@ public class player extends object {
 		return false;
 	}
 	
-	public enemy nearestEnemy() {
-		// function to find the nearest enemy for tracking bullets
-		return null;
-	}
+
 
 }
