@@ -118,6 +118,12 @@ public class main extends JPanel implements ActionListener {
 					state = "select";
 					level = new level();
 				}
+				
+				// dev mode
+				
+				if (key == KeyEvent.VK_Q) {
+					level.player.shotState++;
+				}
 			}
 
 		}

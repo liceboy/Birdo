@@ -73,7 +73,7 @@ public class player extends object {
 		centerX = (this.x + this.w / 2 - 6);
 		centerY = (this.y + this.h / 2 - 4);
 		shotState = 0;
-		maxShotState = 1;
+		maxShotState = 3;
 	}
 
 	public void draw(Graphics g) {
@@ -126,13 +126,18 @@ public class player extends object {
 	public void shootFeather() { // shoots automatically with cooldown
 		if (shootCount == 0) {
 			if (shotState == 0)
-				customShot("tracking");
+				customShot("normal");
 			if (shotState == 1) 
 				customShot("shootTwo");
 			if (shotState == 2) 
 				customShot("shootThree");
-			// adds a feather if alive
+			
 			shootCount = shootInterval;
+			
+			if (shotState == 3) {
+				customShot("tracking");
+				shootCount *= 2;
+			}
 		}
 		shootCount--;
 	}

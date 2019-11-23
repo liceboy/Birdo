@@ -14,18 +14,14 @@ public class explodeEnemy extends enemy {
 
 	public void shootFeather() {
 		if (shootCount == 0) {
-			customShot("tracking");
+			customShot("explodeShot");
 			shootCount = 100;
 		}
 		shootCount--;
 	}
 
 	public void move() {
-		if (x < 700)
-			dx = 0;
-		else {
-			dx = -3;
-		}
+		customMove("normal");
 		super.move();
 	}
 
