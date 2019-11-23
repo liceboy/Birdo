@@ -35,7 +35,6 @@ public abstract class game {
 		player.move();
 		player.centerX = (player.x + player.w / 2 - 6);
 		player.centerY = (player.y + player.h / 2 - 6);
-		System.out.println(enemies.size());
 		for (enemy e : enemies) {
 			for (feather f : e.feathers) {
 				f.p = player; 
