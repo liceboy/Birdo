@@ -126,7 +126,7 @@ public class player extends object {
 	public void shootFeather() { // shoots automatically with cooldown
 		if (shootCount == 0) {
 			if (shotState == 0)
-				customShot("normal");
+				customShot("tracking");
 			if (shotState == 1) 
 				customShot("shootTwo");
 			if (shotState == 2) 
