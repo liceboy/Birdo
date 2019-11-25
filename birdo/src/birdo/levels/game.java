@@ -36,12 +36,16 @@ public abstract class game {
 		player.centerX = (player.x + player.w / 2 - 6);
 		player.centerY = (player.y + player.h / 2 - 6);
 		for (enemy e : enemies) {
-			for (feather f : e.feathers)
-				f.p = player;
+			for (feather f : e.feathers) {
+				f.p = player; 
+			}
 			e.centerX = (e.x + e.w / 2 - 6);
 			e.centerY = (e.y + e.h / 2 - 4);
 			e.p = player;
 			e.move();
+		}
+		for (feather f : player.feathers) {
+			f.enemies = enemies;
 		}
 		for (powerup p : powerups) {
 			p.move();

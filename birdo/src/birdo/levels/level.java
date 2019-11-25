@@ -21,8 +21,7 @@ public class level extends game {
 		//layout.add("shooterGang");
 		//layout.add("comboAttack");
 		//layout.add("miniBoss1Fight");
-
-		layout.add("chargingArmy");
+		
 		layout.add("explodeEnemy");
 		layout.add("laserGang");
 		layout.add("spinGang");

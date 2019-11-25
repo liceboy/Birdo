@@ -96,12 +96,17 @@ public class enemy extends player {
 			}
 			// update dx and dy to follow player if track is true
 			if (track) {
-				dx = (int) (3 * deltaX / hypotenuse);
-				dy = (int) (3 * deltaY / hypotenuse);
+				dx = (3 * deltaX / hypotenuse);
+				dy = (3 * deltaY / hypotenuse);
 			}
 			// update prevThetas
 			prevTheta = theta;
 			super.move();
+		}
+		
+		if (type == "stop") {
+			if (x < 700)
+				dx = 0;
 		}
 
 		if (type == "die") {
@@ -134,10 +139,11 @@ public class enemy extends player {
 			feather f = new feather(this.x, this.y, false);
 			double deltaX = p.x - x;
 			double deltaY = p.y - y;
-
+			double hypotenuse = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
 			double theta = Math.atan(deltaY / deltaX);
-			f.dx = -1 * (5 * Math.cos(theta));
-			f.dy = -1 * (5 * Math.sin(theta));
+			
+			f.dx = (5 * deltaX / hypotenuse);
+			f.dy = (5 * deltaY / hypotenuse);
 
 			feathers.add(f);
 		}
@@ -301,8 +307,9 @@ public class enemy extends player {
 				double deltaY = (p.centerY + (20 * Math.cos(shotMultiplier * Math.PI / 6)))
 						- ((centerY) + (20 * Math.cos(shotMultiplier * Math.PI / 6)));
 				double theta = Math.atan(deltaY / deltaX);
-				f.dx = -1 * (5 * Math.cos(theta));
-				f.dy = -1 * (5 * Math.sin(theta));
+				double hypotenuse = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
+				f.dx = (5 * deltaX / hypotenuse);
+				f.dy = (5 * deltaY / hypotenuse);
 				shotMultiplier++;
 				feathers.add(f);
 			}

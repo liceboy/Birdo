@@ -39,6 +39,9 @@ public class player extends object {
 	public int shotCooldown;
 	public int shotState;
 	public int maxShotState;
+	boolean init = true;
+	boolean track = true;
+	double prevTheta;
 	
 	// ben's movement system
 	public boolean up = false;
@@ -70,7 +73,7 @@ public class player extends object {
 		centerX = (this.x + this.w / 2 - 6);
 		centerY = (this.y + this.h / 2 - 4);
 		shotState = 0;
-		maxShotState = 1;
+		maxShotState = 3;
 	}
 
 	public void draw(Graphics g) {
@@ -128,8 +131,13 @@ public class player extends object {
 				customShot("shootTwo");
 			if (shotState == 2) 
 				customShot("shootThree");
-			// adds a feather if alive
+			
 			shootCount = shootInterval;
+			
+			if (shotState == 3) {
+				customShot("tracking");
+				shootCount *= 2;
+			}
 		}
 		shootCount--;
 	}
@@ -267,6 +275,11 @@ public class player extends object {
 			feathers.add(f2);
 		}
 		
+		if (type == "tracking") {
+			homingFeather f = new homingFeather (this.x, this.y, true);
+			feathers.add(f);
+		}
+		
 		
 		
 		
@@ -292,6 +305,7 @@ public class player extends object {
 			shotCooldown = 250;
 			shootInterval = 5;
 		}
+		
 		ammo--;
 		if (ammo <= 0)
 			powerupType = "none";
@@ -307,5 +321,7 @@ public class player extends object {
 		}
 		return false;
 	}
+	
+
 
 }

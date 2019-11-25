@@ -1,11 +1,13 @@
 package birdo.utilities;
 
 import java.awt.Color;
+import java.util.ArrayList;
 
 public class feather extends object {
 	public boolean forward;
 	public int speed;
 	public player p;
+	public ArrayList<enemy> enemies = new ArrayList<enemy>();
 
 	public feather(double x, double y, boolean forward) {
 		super(x, y, 12, 8, Color.BLACK);
