@@ -21,7 +21,7 @@ public class homingEnemy extends enemy {
 		super.move();
 	}
 
-	public void shootFeather() {
+	public void shoot() {
 		if (shootCount == 0) {
 			customShot("homing");
 			shootCount = 100;

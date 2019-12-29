@@ -19,7 +19,7 @@ public class rapidEnemy extends enemy {
 		super.move();
 	}
 
-	public void shootFeather() {
+	public void shoot() {
 		if (shootCount == 0) {
 			customShot("normal");
 			shootCount = 20;

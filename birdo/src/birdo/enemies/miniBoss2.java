@@ -23,7 +23,7 @@ public class miniBoss2 extends enemy {
 		super.move();
 	}
 
-	public void shootFeather() {
+	public void shoot() {
 		if (health >= 10) {
 			if (shootCount <= 0) {
 				customShot("homing");

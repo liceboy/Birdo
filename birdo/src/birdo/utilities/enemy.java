@@ -4,8 +4,13 @@ import java.awt.Color;
 
 public class enemy extends player {
 
-	public player p;    
+	// current player
+	public player p;
+	
+	// score granted upon death
 	public int score;
+	
+	// shooting variables
 	boolean init = true;
 	boolean track = true;
 	double prevTheta;
@@ -27,7 +32,29 @@ public class enemy extends player {
 		super.move();
 	}
 
+	public void shoot() {
+		if (shootCount == 0) {
+			if (!isDead) {
+				feathers.add(new feather(this.x, this.y, false));
+				shootCount = 100;
+			}
+		}
+		shootCount--;
+	}
+	
+	public void poop() {
+		if (isDead)
+			return;
+		if (poopCount == 0) {
+			eggs.add(new egg(this.x, this.y));
+			poopCount = 100;
+		}
+		poopCount--;
+	}
+	
 	public void customMove(String type) {
+		
+		// sets dx and dy according to given behavior
 
 		if (p.isDead)
 			return;
@@ -117,24 +144,17 @@ public class enemy extends player {
 		}
 	}
 
-	public void shootFeather() {
-		if (shootCount == 0) {
-			if (!isDead) {
-				feathers.add(new feather(this.x, this.y, false));
-				// adds a feather if alive
-				shootCount = 100;
-			}
-		}
-		shootCount--;
-	}
-
 	public void customShot(String type) {
+		
+		// creates feather(s) according to given behavior
+		
 		if (isDead || x > 800 || x < 0 || y > 500 || y < 0)
 			return;
 
 		if (type == "normal") {
 			feathers.add(new feather(this.x, this.y, false));
 		}
+		
 		if (type == "homing") {
 			feather f = new feather(this.x, this.y, false);
 			double deltaX = p.x - x;
@@ -147,6 +167,7 @@ public class enemy extends player {
 
 			feathers.add(f);
 		}
+		
 		if (type == "tripleShot") {
 			feather f = new feather(this.x, this.y, false);
 			feather f1 = new feather(this.x, this.y, false);
@@ -164,6 +185,7 @@ public class enemy extends player {
 			feathers.add(f1);
 			feathers.add(f2);
 		}
+		
 		if (type == "bloomShot") {
 			feather f = new feather(centerX, centerY, false);
 			feather f1 = new feather(centerX, centerY, false);
@@ -205,6 +227,7 @@ public class enemy extends player {
 			feathers.add(f6);
 			feathers.add(f7);
 		}
+		
 		if (type == "spinShot") {
 			feather f = new feather(centerX, centerY, false);
 			feather f1 = new feather(centerX, centerY, false);
@@ -230,6 +253,7 @@ public class enemy extends player {
 			feathers.add(f2);
 			feathers.add(f3);
 		}
+		
 		if (type == "buckShot") {
 			feather f = new feather(this.x, this.y, false);
 			feather f1 = new feather(this.x, this.y, false);
@@ -284,13 +308,6 @@ public class enemy extends player {
 			feathers.add(f1);
 			feathers.add(f2);
 		}
-		
-		if (type == "shootTwo") {
-			feather f = new feather(this.x, this.y + this.h/2 -9, false);
-			feather f1 = new feather(this.x, this.y + this.h/2 , false);
-			feathers.add(f);
-			feathers.add(f1);
-		}
 
 		if (type == "tracking") {
 			//for homing feather 
@@ -302,35 +319,19 @@ public class enemy extends player {
 			for (int x = 0; x < 15; x++) {
 				feather f = new feather((this.centerX) + (20 * Math.cos(shotMultiplier * Math.PI / 6)),
 						(this.centerY) + (20 * Math.sin(shotMultiplier * Math.PI / 6)), false);
+				
 				double deltaX = (p.centerX + (20 * Math.cos(shotMultiplier * Math.PI / 6)))
 						- ((centerX) + (20 * Math.cos(shotMultiplier * Math.PI / 6)));
 				double deltaY = (p.centerY + (20 * Math.cos(shotMultiplier * Math.PI / 6)))
 						- ((centerY) + (20 * Math.cos(shotMultiplier * Math.PI / 6)));
 				double theta = Math.atan(deltaY / deltaX);
 				double hypotenuse = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
+				
 				f.dx = (5 * deltaX / hypotenuse);
 				f.dy = (5 * deltaY / hypotenuse);
 				shotMultiplier++;
 				feathers.add(f);
 			}
 		}
-		
-		
-		
-		
-		
-
 	}
-
-	public void poop() {
-		if (isDead)
-			return;
-
-		if (poopCount == 0) {
-			eggs.add(new egg(this.x, this.y));
-			poopCount = 100;
-		}
-		poopCount--;
-	}
-
 }

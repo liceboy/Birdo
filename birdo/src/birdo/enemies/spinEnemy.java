@@ -18,7 +18,7 @@ public class spinEnemy extends enemy{
 		super.move();
 	}
 
-	public void shootFeather() {
+	public void shoot() {
 		if (shootCount == 0) {
 			customShot("spinShot");
 			shootCount = 30;

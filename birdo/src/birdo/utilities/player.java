@@ -37,8 +37,7 @@ public class player extends object {
 	public int poopCount;
 	public int shootInterval;
 	public int shotCooldown;
-	public int shotState;
-	public int maxShotState;
+	
 	boolean init = true;
 	boolean track = true;
 	double prevTheta;
@@ -70,10 +69,8 @@ public class player extends object {
 		maxHealth = 10;
 		
 		shotMultiplier = 0; 
-		centerX = (this.x + this.w / 2 - 6);
-		centerY = (this.y + this.h / 2 - 4);
-		shotState = 0;
-		maxShotState = 3;
+		centerX = (this.x + this.w / 2);
+		centerY = (this.y + this.h / 2);
 	}
 
 	public void draw(Graphics g) {
@@ -89,57 +86,27 @@ public class player extends object {
 	}
 
 	public void move() {
-		if (player && !isDead) {
-			if (up || down) {
-				if (up && down) {
-					dy = 0;
-				} else if (up) {
-					dy = -4;
-				} else {
-					dy = 4;
-				}
-			} else {
-				dy = 0;
-			}
-			if (left || right) {
-				if (left && right) {
-					dx = 0;
-				} else if (left) {
-					dx = -4;
-				} else {
-					dx = 4;
-				}
-			} else {
-				dx = 0;
-			}
-		}
+		setMovement();
 		super.move();
+		shoot();
+		
 		for (feather f : feathers)
 			f.move();
 		for (egg e : eggs)
 			e.move();
-		if (x < 800)
-			shootFeather();
-
 	}
 
-	public void shootFeather() { // shoots automatically with cooldown
+	public void shoot() { // shoots automatically with cooldown
 		if (shootCount == 0) {
-			if (shotState == 0)
-				customShot("normal");
-			if (shotState == 1) 
-				customShot("shootTwo");
-			if (shotState == 2) 
-				customShot("shootThree");
-			
 			shootCount = shootInterval;
-			
-			if (shotState == 3) {
-				customShot("tracking");
-				shootCount *= 2;
-			}
+			customShot("normal");
 		}
 		shootCount--;
+	}
+	
+	public void poop() { // poops
+		if (!isDead)
+			eggs.add(new egg(this.x, this.y));
 	}
 
 	public void customShot(String type) {
@@ -279,15 +246,34 @@ public class player extends object {
 			homingFeather f = new homingFeather (this.x, this.y, true);
 			feathers.add(f);
 		}
-		
-		
-		
-		
 	}
-
-	public void poop() { // poops
-		if (!isDead)
-			eggs.add(new egg(this.x, this.y));
+	
+	public void setMovement() {
+		// ben's movement system
+		if (player && !isDead) {
+			if (up || down) {
+				if (up && down) {
+					dy = 0;
+				} else if (up) {
+					dy = -4;
+				} else {
+					dy = 4;
+				}
+			} else {
+				dy = 0;
+			}
+			if (left || right) {
+				if (left && right) {
+					dx = 0;
+				} else if (left) {
+					dx = -4;
+				} else {
+					dx = 4;
+				}
+			} else {
+				dx = 0;
+			}
+		}
 	}
 
 	public void usePowerup() { // uses the powerup based on string type, add powerups as you feel

@@ -21,7 +21,7 @@ public class miniBoss1 extends enemy {
 		super.move();
 	}
 
-	public void shootFeather() {
+	public void shoot() {
 		if (shootCount <= 0) {
 			if (health > 10)
 				customShot("buckShot");

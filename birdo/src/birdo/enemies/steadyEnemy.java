@@ -21,14 +21,14 @@ public class steadyEnemy extends enemy {
 		super.move();
 	}
 
-	public void poop() {
-		return;
-	}
-
-	public void shootFeather() {
+	public void shoot() {
 		if (shootCount % 30 == 0)
 			customShot("homing");
 		shootCount++;
+	}
+	
+	public void poop() {
+		return;
 	}
 
 }

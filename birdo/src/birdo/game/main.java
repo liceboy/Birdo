@@ -2,6 +2,7 @@ package birdo.game;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.FontFormatException;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.Toolkit;
@@ -11,6 +12,8 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.IOException;
+
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
@@ -19,28 +22,42 @@ import birdo.enemies.*;
 import birdo.levels.*;
 
 public class main extends JPanel implements ActionListener {
-
-	private static final long serialVersionUID = 7278894226467689035L;
+	
+	// game loop
 	private Timer timer;
 	private final int DELAY = 10;
+	
+	// state handler
 	public String state;
 
+	// states
 	public title title;
 	public select select;
 	public level level;
 
-	public main() {
+	public main(){
 		addKeyListener(new KAdapter());
 		addMouseListener(new MAdapter());
 
 		setFocusable(true);
 		setBackground(Color.WHITE);
-
-		setFont(new Font("Arial", 1, 16));
-
+		
+		// set the main font
+		try {
+			Font mainFont = Font.createFont(Font.TRUETYPE_FONT, getClass().getClassLoader().
+					getResourceAsStream("birdo/resources/Press Start.ttf"));
+			mainFont = mainFont.deriveFont(0, 12f);
+			// 1 bold 2 italics 3 bold+italics
+			setFont(mainFont);
+		} catch (FontFormatException | IOException e) {
+			e.printStackTrace();
+		}
+		
+		// start game loop
 		timer = new Timer(DELAY, this);
 		timer.start();
 
+		// start on title page
 		state = "title";
 		title = new title();
 		select = new select();
@@ -67,10 +84,10 @@ public class main extends JPanel implements ActionListener {
 	}
 
 	public void actionPerformed(ActionEvent e) {
+		repaint();
+		
 		if (state == "level")
 			level.move();
-
-		repaint();
 	}
 
 	private class KAdapter extends KeyAdapter {
@@ -119,11 +136,6 @@ public class main extends JPanel implements ActionListener {
 					level = new level();
 				}
 				
-				// dev mode
-				
-				if (key == KeyEvent.VK_Q) {
-					level.player.shotState++;
-				}
 			}
 
 		}

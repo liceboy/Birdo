@@ -11,16 +11,16 @@ import birdo.utilities.*;
 
 public abstract class game {
 
+	// game variables
 	public player player;
-	// rectangle representing birdo
-	ArrayList<enemy> enemies;
-	// array list holding enemies
-	ArrayList<powerup> powerups;
-	int score = 0;
-	// player score
-	public String state;
-	// state of game
+	public ArrayList<enemy> enemies;
+	public ArrayList<powerup> powerups;
 
+	// game data
+	public int score = 0;
+	public String state;
+
+	// level layout data
 	ArrayList<String> layout = new ArrayList<String>();
 	int patternNum = 0;
 
@@ -32,45 +32,60 @@ public abstract class game {
 	}
 
 	public void move() {
+
+		// moving the player
 		player.move();
-		player.centerX = (player.x + player.w / 2 - 6);
-		player.centerY = (player.y + player.h / 2 - 6);
+		player.centerX = (player.x + player.w / 2);
+		player.centerY = (player.y + player.h / 2);
+
+		// moving the enemies
 		for (enemy e : enemies) {
-			for (feather f : e.feathers) {
-				f.p = player; 
-			}
-			e.centerX = (e.x + e.w / 2 - 6);
-			e.centerY = (e.y + e.h / 2 - 4);
 			e.p = player;
 			e.move();
+			e.centerX = (e.x + e.w / 2);
+			e.centerY = (e.y + e.h / 2);
+			
+			// for homing
+			for (feather f : e.feathers) 
+				f.p = player;
 		}
-		for (feather f : player.feathers) {
+		
+		// for homing
+		for (feather f : player.feathers)
 			f.enemies = enemies;
-		}
-		for (powerup p : powerups) {
+		
+		// moving the powerups
+		for (powerup p : powerups)
 			p.move();
-		}
+
 		collision();
 		genPattern();
-		if (player.shotState > player.maxShotState)
-			player.shotState = player.maxShotState;
 	}
 
 	public void draw(Graphics g) {
+		
+		// GAME OBJECTS
+		
 		player.draw(g);
-		for (egg e : player.eggs)
-			e.draw(g);
+		
 		for (enemy e : enemies)
 			e.draw(g);
 		for (powerup p : powerups)
 			p.draw(g);
+		
+		// USER INTERFACE
+		
 		g.setColor(Color.BLACK);
+		
+		g.drawString("Health: " + player.health, 25, 40);
 		g.drawString("Score: " + score, 550, 40);
+		
 		if (patternNum != 0)
 			g.drawString("Layout: " + layout.get(patternNum - 1), 550, 55);
-		g.drawString("Health: " + player.health, 25, 40);
+		
 		if (player.powerupType != "none")
 			g.drawString("Powerup: " + player.powerupType + " x" + player.ammo, 25, 55);
+		
 		if (player.checkisDead()) {
 			g.drawString("Game Over!", 300, 150);
 			g.drawString("Continue: F1", 300, 175);
@@ -80,7 +95,6 @@ public abstract class game {
 	}
 
 	public void collision() {
-		// good luck trying to understand this
 
 		// INVULNERABILITY
 
@@ -92,9 +106,9 @@ public abstract class game {
 				player.c = Color.BLUE;
 			}
 		}
-		
+
 		// RAPIDFIRE POWERUP
-		
+
 		if (player.shootInterval == 5) {
 			player.shotCooldown--;
 			if (player.shotCooldown == 0) {
@@ -124,7 +138,6 @@ public abstract class game {
 			if (player.getHitBox().intersects(e.getHitBox())) {
 				if (!player.invulnerable) {
 					player.health--;
-					player.shotState = 0;
 					player.invulnerable = true;
 					player.invulnerableCooldown = 75;
 				}
@@ -133,19 +146,22 @@ public abstract class game {
 			// hit enemy feather? take damage
 
 			for (int j = 0; j != e.feathers.size(); j++) {
+				
 				if (j == -1)
 					continue;
+				
 				feather f = e.feathers.get(j);
+				
 				if (player.getHitBox().intersects(f.getHitBox())) {
 					if (!player.invulnerable) {
 						player.health--;
-						player.shotState = 0;
 						player.invulnerable = true;
 						player.invulnerableCooldown = 75;
 					}
 					e.feathers.remove(j);
 					j--;
 				}
+				
 				if (f.x < -100 || f.x > 900 || f.y < -100 || f.y > 600) {
 					e.feathers.remove(j);
 					j--;
@@ -155,25 +171,27 @@ public abstract class game {
 			// hit enemy egg? take damage
 
 			for (int k = 0; k != e.eggs.size(); k++) {
+				
 				if (k == -1)
 					continue;
+				
 				egg p = e.eggs.get(k);
+				
 				if (player.getHitBox().intersects(p.getHitBox())) {
 					if (!player.invulnerable) {
 						player.health--;
-						player.shotState = 0;
 						player.invulnerable = true;
 						player.invulnerableCooldown = 75;
 					}
 					e.eggs.remove(k);
 					k--;
 				}
+				
 				if (p.x > 800) {
 					e.eggs.remove(k);
 					k--;
 				}
 			}
-
 		}
 
 		// ENEMY HITBOXES
@@ -191,16 +209,20 @@ public abstract class game {
 			// enemy hit my feather? take damage
 
 			for (int j = 0; j != player.feathers.size(); j++) {
+				
 				if (j == -1)
 					continue;
+				
 				feather f = player.feathers.get(j);
+				
 				if (e.getHitBox().intersects(f.getHitBox())) {
 					e.health--;
 					if (e.health <= 0)
 						score += e.score;
-						player.feathers.remove(j);
-						j--;
+					player.feathers.remove(j);
+					j--;
 				}
+				
 				if (f.x < -100 || f.x > 900 || f.y < -100 || f.y > 600) {
 					if (j >= 0)
 						player.feathers.remove(j);
@@ -210,11 +232,13 @@ public abstract class game {
 
 			// enemy hit my egg? take damage
 
-			for (int k = 0; k != player.eggs.size(); k++) { // when the player egg hits an enemy, it should explode into
-															// multiple scattershots
+			for (int k = 0; k != player.eggs.size(); k++) { 
+				
 				if (k == -1)
 					continue;
+				
 				egg p = player.eggs.get(k);
+				
 				if (e.getHitBox().intersects(p.getHitBox())) {
 					e.health = e.health - 5;
 					if (e.health <= 0)
@@ -222,6 +246,7 @@ public abstract class game {
 					player.eggs.remove(k);
 					k--;
 				}
+				
 				if (p.y > 500) {
 					if (k >= 0)
 						player.eggs.remove(k);
@@ -260,7 +285,7 @@ public abstract class game {
 				}
 			}
 
-			// if feathers or eggs are still onscreen, don't remove enemy yet
+			// if feathers or eggs are still on screen, don't remove enemy yet
 
 			if (onScreen)
 				continue;
@@ -270,11 +295,15 @@ public abstract class game {
 
 		}
 
-		// powerup hitboxes and conditions
+		// POWERUP HITBOXES
+		
 		for (int t = 0; t != powerups.size(); t++) {
+			
 			if (t == -1)
 				continue;
+			
 			powerup p = powerups.get(t);
+			
 			if (player.getHitBox().intersects(p.getHitBox())) {
 				player.powerupType = p.type;
 				if (player.powerupType == "heal") { // heal powerup
@@ -282,10 +311,6 @@ public abstract class game {
 					player.powerupType = "none";
 					if (player.health > player.maxHealth)
 						player.health = player.maxHealth;
-				}
-				if (player.powerupType == "shotUpgrade") { // shotUpgrade powerup
-					player.shotState++;
-					player.powerupType = "none";
 				}
 				player.ammo = p.ammo;
 				powerups.remove(t);
@@ -302,6 +327,10 @@ public abstract class game {
 	}
 
 	public void genPattern() {
+		
+		// if all enemies are dead
+		// and there exists more patterns,
+		// bring on another pattern
 
 		boolean allDead = true;
 		for (enemy e : enemies) {
@@ -309,12 +338,7 @@ public abstract class game {
 				allDead = false;
 				break;
 			}
-			
 		}
-
-		// if all enemies are dead 
-		// and there exists more patterns,
-		// bring on another pattern
 
 		if (allDead && patternNum != layout.size()) {
 			ArrayList<enemy> toAdd = new pattern(layout.get(patternNum)).enemies;
@@ -364,7 +388,7 @@ public abstract class game {
 	}
 
 	public void createRandomPowerup(int x, int y) {
-		String[] choices = {"eggs", "buckShot", "shotUpgrade", "invulnerability", "heal", "rapidFire"};
+		String[] choices = { "eggs", "buckShot", "invulnerability", "heal", "rapidFire" };
 		int choice = (int) (Math.random() * 6);
 		powerup toAdd = new powerup(x, y, choices[choice]);
 		powerups.add(toAdd);

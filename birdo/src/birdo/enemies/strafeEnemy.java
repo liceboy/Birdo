@@ -16,7 +16,7 @@ public class strafeEnemy extends enemy {
 		health = 1;
 	}
 
-	public void shootFeather() {
+	public void shoot() {
 		return;
 	}
 

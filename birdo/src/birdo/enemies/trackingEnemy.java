@@ -16,7 +16,7 @@ public class trackingEnemy extends enemy{
 		super.move();
 	}
 
-	public void shootFeather() {
+	public void shoot() {
 		if (shootCount == 0) {
 			customShot("tracking");
 			shootCount = 100;

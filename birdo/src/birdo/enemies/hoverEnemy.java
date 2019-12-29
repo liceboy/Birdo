@@ -19,7 +19,7 @@ public class hoverEnemy extends enemy {
 		super.move();
 	}
 
-	public void shootFeather() {
+	public void shoot() {
 		return;
 	}
 

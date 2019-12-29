@@ -17,7 +17,7 @@ public class laserEnemy extends enemy{
 		super.move();
 	}
 	
-	public void shootFeather() {
+	public void shoot() {
 		if (shootCount == 0) {
 			customShot("laser");
 			shootCount = 5;

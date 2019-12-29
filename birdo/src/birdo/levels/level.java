@@ -8,6 +8,7 @@ import birdo.levels.*;
 import birdo.utilities.*;
 
 public class level extends game {
+	
 	public level() {
 		super();
 

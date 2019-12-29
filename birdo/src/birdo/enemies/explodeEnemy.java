@@ -12,7 +12,7 @@ public class explodeEnemy extends enemy {
 		health = 2;
 	}
 
-	public void shootFeather() {
+	public void shoot() {
 		if (shootCount == 0) {
 			customShot("explodeShot");
 			shootCount = 100;

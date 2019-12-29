@@ -4,7 +4,6 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 
 public class application extends JFrame {
-	private static final long serialVersionUID = -6596113243078458151L;
 
 	public application() {
 		initUI();
@@ -14,7 +13,7 @@ public class application extends JFrame {
 		add(new main());
 		setSize(800, 525);
 		setResizable(false);
-		setTitle("birdo");
+		setTitle("Birdo v0.5");
 		setDefaultCloseOperation(3);
 		setLocationRelativeTo(null);
 	}
