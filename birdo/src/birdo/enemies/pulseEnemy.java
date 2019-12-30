@@ -4,13 +4,11 @@ import birdo.utilities.enemy;
 import birdo.utilities.feather;
 import java.awt.Color;
 
-// enemy that stops at the right edge, regularly sending pulses of three homing shots
-
 public class pulseEnemy extends enemy {
 
 	public pulseEnemy(int x, int y) {
 		super(x, y);
-		c = Color.CYAN;
+		c = new Color(50, 132, 100);
 	}
 
 	public void move() {

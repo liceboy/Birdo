@@ -4,13 +4,11 @@ import java.awt.Color;
 import java.util.ArrayList;
 import birdo.utilities.enemy;
 
-// fast enemy that doesn't shoot or poop, only charges at the player
-
 public class chargeEnemy extends enemy {
 
 	public chargeEnemy(int x, int y) {
 		super(x, y);
-		c = Color.GRAY;
+		c = new Color(199, 176, 139);
 		health = 2;
 	}
 

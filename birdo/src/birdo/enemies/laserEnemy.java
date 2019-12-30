@@ -8,7 +8,7 @@ public class laserEnemy extends enemy{
 
 	public laserEnemy(int x, int y) {
 		super(x, y);
-		c = Color.PINK;
+		c = new Color(180, 32, 42);
 	}
 	
 	public void move() {

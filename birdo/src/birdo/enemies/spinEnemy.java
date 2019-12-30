@@ -9,7 +9,7 @@ public class spinEnemy extends enemy{
 	public spinEnemy(int x, int y) {
 		super(x, y);
 		health = 3;
-		c = Color.GREEN;
+		c = new Color(250, 106, 10);
 	}
 
 	public void move() {

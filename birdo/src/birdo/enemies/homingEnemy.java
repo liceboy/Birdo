@@ -6,13 +6,11 @@ import java.util.ArrayList;
 import birdo.utilities.enemy;
 import birdo.utilities.feather;
 
-// simple enemy that shoots homing shots
-
 public class homingEnemy extends enemy {
 
 	public homingEnemy(int x, int y) {
 		super(x, y);
-		c = Color.DARK_GRAY;
+		c = new Color(121, 103, 85);
 		health = 2;
 	}
 

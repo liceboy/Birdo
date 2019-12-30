@@ -8,7 +8,7 @@ public class trackingEnemy extends enemy{
 
 	public trackingEnemy(int x, int y) {
 		super(x, y);
-		c = Color.RED;
+		c = new Color(156, 219, 67);
 	}
 	
 	public void move() {

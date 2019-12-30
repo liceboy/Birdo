@@ -16,7 +16,7 @@ public class enemy extends player {
 	double prevTheta;
 
 	public enemy(int x, int y) {
-		super(x, y, Color.BLACK);
+		super(x, y, new Color(6, 6, 8));
 		health = 1;
 		score = 100;
 		this.dx = -2;

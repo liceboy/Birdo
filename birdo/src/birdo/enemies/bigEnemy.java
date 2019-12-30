@@ -3,13 +3,11 @@ package birdo.enemies;
 import java.awt.Color;
 import birdo.utilities.*;
 
-// large, slow enemy that shoots triple shots
-
 public class bigEnemy extends enemy {
 
 	public bigEnemy(int x, int y) {
 		super(x, y);
-		c = Color.MAGENTA;
+		c = new Color(121, 58, 128);
 		w = 30;
 		h = 30;
 		health = 5;

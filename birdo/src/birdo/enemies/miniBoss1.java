@@ -13,6 +13,7 @@ public class miniBoss1 extends enemy {
 		score = 1500;
 		w = 30;
 		h = 30;
+		c = new Color(51, 57, 65);
 	}
 
 	public void move() {

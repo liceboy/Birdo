@@ -5,13 +5,11 @@ import java.awt.Color;
 import birdo.utilities.enemy;
 import birdo.utilities.feather;
 
-// enemy that shoots very, very quickly
-
 public class rapidEnemy extends enemy {
 
 	public rapidEnemy(int x, int y) {
 		super(x, y);
-		c = Color.PINK;
+		c = new Color(188, 74, 155);
 	}
 
 	public void move() {

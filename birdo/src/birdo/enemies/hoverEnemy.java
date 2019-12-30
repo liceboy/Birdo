@@ -4,13 +4,11 @@ import java.awt.Color;
 import birdo.utilities.egg;
 import birdo.utilities.enemy;
 
-// enemy that hovers over the player and poops... slowly
-
 public class hoverEnemy extends enemy {
 
 	public hoverEnemy(int x, int y) {
 		super(x, y);
-		c = Color.GREEN;
+		c = new Color(89, 193, 53);
 		health = 1;
 	}
 

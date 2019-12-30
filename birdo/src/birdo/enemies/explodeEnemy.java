@@ -8,7 +8,7 @@ public class explodeEnemy extends enemy {
 
 	public explodeEnemy(int x, int y) {
 		super(x, y);
-		c = Color.GREEN;
+		c = new Color(88, 141, 190);
 		health = 2;
 	}
 

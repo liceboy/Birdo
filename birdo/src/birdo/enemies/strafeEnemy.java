@@ -5,14 +5,12 @@ import java.awt.Color;
 import birdo.utilities.egg;
 import birdo.utilities.enemy;
 
-// very fast enemy that jets forward and poops quickly
-
 public class strafeEnemy extends enemy {
 
 	public strafeEnemy(int x, int y) {
 		super(x, y);
 		dx = -6;
-		c = Color.ORANGE;
+		c = new Color(249, 163, 27);
 		health = 1;
 	}
 
