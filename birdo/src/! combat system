@@ -1,0 +1,25 @@
+birdo // combat system // 12.30.19
+
+- both birds and feathers have defined stats
+- birds (health, attack, defense)
+- feathers (type, attack multiplier, pierce, interval)
+    
+	damage = (player attack * feather attack multiplier) - enemy defense
+	enemy health -= damage
+    
+- type defines the behavior of the attack (normal, homing, tracking, etc)
+- pierce defines to # of enemies that can be damaged by one attack
+- interval defines the frequency of the attack
+
+    public class player {
+        ...
+        public int health = 50;
+        public int attack = 14;
+        public int defense = 11;
+        
+        public String[] loadout = {"normal 1 1 15",
+                                   "tracking 1.2 4 100",
+                                   "triple 2 1 60"};
+                                   
+- throughout the game, the player can upgrade all of these stats
+- their loadout can change to different attack patterns
