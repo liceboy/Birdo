@@ -21,7 +21,7 @@ public class blossomEnemy extends enemy {
 
 	public void shoot() {
 		if (shootCount == 0) {
-			customShot("bloomShot");
+			customShot("bloom");
 			shootCount = 100;
 		}
 		shootCount--;

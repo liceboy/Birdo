@@ -168,7 +168,7 @@ public class enemy extends player {
 			feathers.add(f);
 		}
 		
-		if (type == "tripleShot") {
+		if (type == "triple") {
 			feather f = new feather(this.x, this.y, false);
 			feather f1 = new feather(this.x, this.y, false);
 			feather f2 = new feather(this.x, this.y, false);
@@ -186,7 +186,7 @@ public class enemy extends player {
 			feathers.add(f2);
 		}
 		
-		if (type == "bloomShot") {
+		if (type == "bloom") {
 			feather f = new feather(centerX, centerY, false);
 			feather f1 = new feather(centerX, centerY, false);
 			feather f2 = new feather(centerX, centerY, false);
@@ -228,7 +228,7 @@ public class enemy extends player {
 			feathers.add(f7);
 		}
 		
-		if (type == "spinShot") {
+		if (type == "spin") {
 			feather f = new feather(centerX, centerY, false);
 			feather f1 = new feather(centerX, centerY, false);
 			feather f2 = new feather(centerX, centerY, false);
@@ -254,7 +254,7 @@ public class enemy extends player {
 			feathers.add(f3);
 		}
 		
-		if (type == "buckShot") {
+		if (type == "buckshot") {
 			feather f = new feather(this.x, this.y, false);
 			feather f1 = new feather(this.x, this.y, false);
 			feather f2 = new feather(this.x, this.y, false);
@@ -283,7 +283,7 @@ public class enemy extends player {
 			feathers.add(f);
 		}
 
-		if (type == "explodeShot") {
+		if (type == "explode") {
 			for (int x = 0; x < 15; x++) {
 				feather f = new feather(centerX, centerY, false);
 				f.dx = -1 * (5 * Math.cos((shotMultiplier + 45) * Math.PI / 6));
@@ -293,14 +293,14 @@ public class enemy extends player {
 			}
 		}
 		
-		if (type == "shootTwo") {
+		if (type == "two") {
 			feather f = new feather(this.x, this.y + this.h/2 -9, false);
 			feather f1 = new feather(this.x, this.y + this.h/2 , false);
 			feathers.add(f);
 			feathers.add(f1);
 		}
 
-		if (type == "shootThree") {
+		if (type == "three") {
 			feather f = new feather(this.x, this.y, false);
 			feather f1 = new feather(this.x, this.y + this.h / 2 - 3, false);
 			feather f2 = new feather(this.x, this.y + this.h - 6, false);

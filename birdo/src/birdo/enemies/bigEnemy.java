@@ -22,7 +22,7 @@ public class bigEnemy extends enemy {
 
 	public void shoot() {
 		if (shootCount == 0) {
-			customShot("tripleShot");
+			customShot("triple");
 			shootCount = 150;
 		}
 		shootCount--;

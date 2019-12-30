@@ -190,7 +190,6 @@ public class main extends JPanel implements ActionListener {
 					dev.createEnemy("explode");
 				if (key == KeyEvent.VK_BACK_SPACE)
 					dev.createEnemy("tracking");
-				
 			}
 
 		}

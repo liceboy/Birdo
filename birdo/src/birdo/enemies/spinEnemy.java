@@ -20,8 +20,8 @@ public class spinEnemy extends enemy{
 
 	public void shoot() {
 		if (shootCount == 0) {
-			customShot("spinShot");
-			shootCount = 30;
+			customShot("spin");
+			shootCount = 25;
 		}
 		shootCount--;
 	}

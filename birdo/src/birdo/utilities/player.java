@@ -115,7 +115,7 @@ public class player extends object {
 		if (type == "normal") {
 			feathers.add(new feather(this.x, this.y, true));
 		}
-		if (type == "tripleShot") {
+		if (type == "triple") {
 			feather f = new feather(this.x, this.y, true);
 			feather f1 = new feather(this.x, this.y, true);
 			feather f2 = new feather(this.x, this.y, true);
@@ -132,7 +132,7 @@ public class player extends object {
 			feathers.add(f1);
 			feathers.add(f2);
 		}
-		if (type == "bloomShot") {
+		if (type == "bloom") {
 			feather f = new feather(this.x + this.w / 2 - 6, this.y + this.h / 2 - 4, false);
 			feather f1 = new feather(this.x + this.w / 2 - 6, this.y + this.h / 2 - 4, false);
 			feather f2 = new feather(this.x + this.w / 2 - 6, this.y + this.h / 2 - 4, false);
@@ -173,7 +173,7 @@ public class player extends object {
 			feathers.add(f6);
 			feathers.add(f7);
 		}
-		if (type == "spinShot") {
+		if (type == "spin") {
 			feather f = new feather(this.x + this.w / 2 - 6, this.y + this.h / 2 - 4, false);
 			feather f1 = new feather(this.x + this.w / 2 - 6, this.y + this.h / 2 - 4, false);
 			feather f2 = new feather(this.x + this.w / 2 - 6, this.y + this.h / 2 - 4, false);
@@ -198,7 +198,7 @@ public class player extends object {
 			feathers.add(f2);
 			feathers.add(f3);
 		}
-		if (type == "buckShot") {
+		if (type == "buckshot") {
 			feather f = new feather(this.x, this.y, true);
 			feather f1 = new feather(this.x, this.y, true);
 			feather f2 = new feather(this.x, this.y, true);
@@ -227,13 +227,13 @@ public class player extends object {
 			feathers.add(f5);
 			feathers.add(f);
 		}
-		if (type == "shootTwo") {
+		if (type == "two") {
 			feather f = new feather(this.x, this.y + this.h/2 -9, true);
 			feather f1 = new feather(this.x, this.y + this.h/2 , true);
 			feathers.add(f);
 			feathers.add(f1);
 		}
-		if (type == "shootThree") {
+		if (type == "three") {
 			feather f = new feather(this.x, this.y, true);
 			feather f1 = new feather(this.x, this.y + this.h / 2 - 3, true);
 			feather f2 = new feather(this.x, this.y + this.h - 6, true);
@@ -288,7 +288,7 @@ public class player extends object {
 		if (powerupType == "eggs")
 			poop();
 		if (powerupType == "buckShot")
-			customShot("buckShot");
+			customShot("buckshot");
 		if (powerupType == "invulnerability") {
 			invulnerable = true;
 			invulnerableCooldown = 250;

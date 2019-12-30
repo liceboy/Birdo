@@ -14,7 +14,7 @@ public class explodeEnemy extends enemy {
 
 	public void shoot() {
 		if (shootCount == 0) {
-			customShot("explodeShot");
+			customShot("explode");
 			shootCount = 100;
 		}
 		shootCount--;
