@@ -10,12 +10,14 @@ public class homingFeather extends feather {
 	boolean init = true;
 	
 	int duration;
+	int speed;
 
 	public homingFeather(double x, double y, boolean forward) {
 		super(x, y, forward);
 		c = Color.GREEN;
 		
 		duration = 200;
+		speed = 3;
 	}
 
 	public enemy nearestEnemy() { // function to find the nearest enemy for tracking bullets
@@ -69,14 +71,14 @@ public class homingFeather extends feather {
 			}
 			// update dx and dy to follow player if track is true
 			if (track) {
-				dx = (5 * deltaX / hypotenuse);
-				dy = (5 * deltaY / hypotenuse);
+				dx = (speed * deltaX / hypotenuse);
+				dy = (speed * deltaY / hypotenuse);
 			}
 			// update prevThetas
 			prevTheta = theta;
 		}
 		if (forward && enemies.size() == 0) {
-			dx = 5;
+			dx = speed;
 			dy = 0;
 		}
 		if (forward && enemies.size() > 0) {
@@ -86,8 +88,8 @@ public class homingFeather extends feather {
 			// if the distance is signficant, it has to already be travelling forward
 			if((deltaX > 500 && dx > 0) || deltaX < 500) {
 				double hypotenuse = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
-				dx = (5 * deltaX / hypotenuse);
-				dy = (5 * deltaY / hypotenuse);
+				dx = (speed * deltaX / hypotenuse);
+				dy = (speed * deltaY / hypotenuse);
 			}
 		}
 		

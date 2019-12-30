@@ -315,6 +315,13 @@ public class enemy extends player {
 			f.p = p;
 			feathers.add(f);
 		}
+		
+		if (type == "trackingFast") {
+			homingFeather f = new homingFeather(this.x, this.y, false);
+			f.p = p;
+			f.speed = 5;
+			feathers.add(f);
+		}
 
 		if (type == "circleShot") {
 			for (int x = 0; x < 15; x++) {

@@ -246,6 +246,12 @@ public class player extends object {
 			homingFeather f = new homingFeather (this.x, this.y, true);
 			feathers.add(f);
 		}
+		
+		if (type == "trackingFast") {
+			homingFeather f = new homingFeather(this.x, this.y, false);
+			f.speed = 5;
+			feathers.add(f);
+		}
 	}
 	
 	public void setMovement() {
