@@ -40,14 +40,14 @@ public abstract class game {
 
 		// moving the enemies
 		for (enemy e : enemies) {
+			// for homing
+			for (feather f : e.feathers) 
+				f.p = player;
+			
 			e.p = player;
 			e.move();
 			e.centerX = (e.x + e.w / 2);
 			e.centerY = (e.y + e.h / 2);
-			
-			// for homing
-			for (feather f : e.feathers) 
-				f.p = player;
 		}
 		
 		// for homing
@@ -347,6 +347,10 @@ public abstract class game {
 			createRandomPowerup(800, 250);
 			patternNum++;
 		}
+	}
+	
+	public void createEnemy(String type) {
+		createEnemy(type, 815, 225);
 	}
 
 	public void createEnemy(String type, int x, int y) {

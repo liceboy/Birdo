@@ -12,10 +12,8 @@ public class select {
 	public void draw(Graphics g) {
 		g.setColor(Color.BLACK);
 		g.drawString("Level Select:", 100, 100);
-		g.drawString("Woods: 1", 100, 130);
-		g.drawString("City: 2", 100, 160);
-		g.drawString("Beach: 3", 100, 190);
-		g.drawString("Sky: 4", 100, 220);
+		g.drawString("Default Level: Z", 100, 130);
+		g.drawString("Dev Mode: X", 100, 160);
 		g.drawString("Press Esc to go back", 100, 250);
 	}
 

@@ -34,6 +34,8 @@ public class main extends JPanel implements ActionListener {
 	public title title;
 	public select select;
 	public level level;
+	
+	public level dev;
 
 	public main(){
 		addKeyListener(new KAdapter());
@@ -62,6 +64,9 @@ public class main extends JPanel implements ActionListener {
 		title = new title();
 		select = new select();
 		level = new level();
+		level.defaultLayout();
+		
+		dev = new level();
 	}
 
 	public void paintComponent(Graphics g) {
@@ -81,6 +86,9 @@ public class main extends JPanel implements ActionListener {
 
 		if (state == "level")
 			level.draw(g);
+		
+		if (state == "dev")
+			dev.draw(g);
 	}
 
 	public void actionPerformed(ActionEvent e) {
@@ -88,6 +96,9 @@ public class main extends JPanel implements ActionListener {
 		
 		if (state == "level")
 			level.move();
+		
+		if (state == "dev")
+			dev.move();
 	}
 
 	private class KAdapter extends KeyAdapter {
@@ -118,8 +129,10 @@ public class main extends JPanel implements ActionListener {
 			if (state == "select") {
 				if (key == KeyEvent.VK_ESCAPE)
 					state = "title";
-				if (key == KeyEvent.VK_1)
+				if (key == KeyEvent.VK_Z)
 					state = "level";
+				if (key == KeyEvent.VK_X)
+					state = "dev";
 			}
 
 			if (state == "level") {
@@ -135,6 +148,48 @@ public class main extends JPanel implements ActionListener {
 					state = "select";
 					level = new level();
 				}
+			}
+			
+			if (state == "dev") {
+				if (key == KeyEvent.VK_UP)
+					dev.player.up = true;
+				if (key == KeyEvent.VK_LEFT)
+					dev.player.left = true;
+				if (key == KeyEvent.VK_DOWN)
+					dev.player.down = true;
+				if (key == KeyEvent.VK_RIGHT)
+					dev.player.right = true;
+				if (key == KeyEvent.VK_ESCAPE) {
+					state = "select";
+					dev = new level();
+				}
+				
+				if (key == KeyEvent.VK_1)
+					dev.createEnemy("homing");
+				if (key == KeyEvent.VK_2)
+					dev.createEnemy("charge");
+				if (key == KeyEvent.VK_3)
+					dev.createEnemy("big");
+				if (key == KeyEvent.VK_4)
+					dev.createEnemy("hover");
+				if (key == KeyEvent.VK_5)
+					dev.createEnemy("strafe");
+				if (key == KeyEvent.VK_6)
+					dev.createEnemy("blossom");
+				if (key == KeyEvent.VK_7)
+					dev.createEnemy("rapid");
+				if (key == KeyEvent.VK_8)
+					dev.createEnemy("pulse");
+				if (key == KeyEvent.VK_9)
+					dev.createEnemy("steady");
+				if (key == KeyEvent.VK_0)
+					dev.createEnemy("spin");
+				if (key == KeyEvent.VK_MINUS)
+					dev.createEnemy("laser");
+				if (key == KeyEvent.VK_EQUALS)
+					dev.createEnemy("explode");
+				if (key == KeyEvent.VK_BACK_SPACE)
+					dev.createEnemy("tracking");
 				
 			}
 
@@ -151,9 +206,21 @@ public class main extends JPanel implements ActionListener {
 					level.player.down = false;
 				if (key == KeyEvent.VK_RIGHT)
 					level.player.right = false;
-				if (key == KeyEvent.VK_SPACE) {
+				if (key == KeyEvent.VK_SPACE) 
 					level.player.usePowerup();
-				}
+			}
+			
+			if (state == "dev") {
+				if (key == KeyEvent.VK_UP)
+					dev.player.up = false;
+				if (key == KeyEvent.VK_LEFT)
+					dev.player.left = false;
+				if (key == KeyEvent.VK_DOWN)
+					dev.player.down = false;
+				if (key == KeyEvent.VK_RIGHT)
+					dev.player.right = false;
+				if (key == KeyEvent.VK_SPACE) 
+					dev.player.usePowerup();
 			}
 
 		}

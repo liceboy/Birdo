@@ -312,6 +312,7 @@ public class enemy extends player {
 		if (type == "tracking") {
 			//for homing feather 
 			homingFeather f = new homingFeather(this.x, this.y, false);
+			f.p = p;
 			feathers.add(f);
 		}
 
