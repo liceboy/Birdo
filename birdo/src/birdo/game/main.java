@@ -165,7 +165,7 @@ public class main extends JPanel implements ActionListener {
 				}
 				
 				if (key == KeyEvent.VK_1)
-					dev.createEnemy("homing");
+					dev.createEnemy("target");
 				if (key == KeyEvent.VK_2)
 					dev.createEnemy("charge");
 				if (key == KeyEvent.VK_3)
@@ -189,7 +189,7 @@ public class main extends JPanel implements ActionListener {
 				if (key == KeyEvent.VK_EQUALS)
 					dev.createEnemy("explode");
 				if (key == KeyEvent.VK_BACK_SPACE)
-					dev.createEnemy("tracking");
+					dev.createEnemy("homing");
 			}
 
 		}

@@ -110,15 +110,24 @@ public class player extends object {
 	}
 
 	public void customShot(String type) {
+		
+		// creates feather(s) according to given behavior
+		// feathers come from the dead center
+		
+		int fw = 8;
+		int fh = 8;
+		double alignedX = centerX - fw / 2;
+		double alignedY = centerY - fh / 2;
+		
 		if (isDead)
 			return;
 		if (type == "normal") {
-			feathers.add(new feather(this.x, this.y, true));
+			feathers.add(new feather(alignedX, alignedY, true));
 		}
 		if (type == "triple") {
-			feather f = new feather(this.x, this.y, true);
-			feather f1 = new feather(this.x, this.y, true);
-			feather f2 = new feather(this.x, this.y, true);
+			feather f = new feather(alignedX, alignedY, true);
+			feather f1 = new feather(alignedX, alignedY, true);
+			feather f2 = new feather(alignedX, alignedY, true);
 
 			f.dx = 5;
 
@@ -133,14 +142,14 @@ public class player extends object {
 			feathers.add(f2);
 		}
 		if (type == "bloom") {
-			feather f = new feather(this.x + this.w / 2 - 6, this.y + this.h / 2 - 4, false);
-			feather f1 = new feather(this.x + this.w / 2 - 6, this.y + this.h / 2 - 4, false);
-			feather f2 = new feather(this.x + this.w / 2 - 6, this.y + this.h / 2 - 4, false);
-			feather f3 = new feather(this.x + this.w / 2 - 6, this.y + this.h / 2 - 4, false);
-			feather f4 = new feather(this.x + this.w / 2 - 6, this.y + this.h / 2 - 4, false);
-			feather f5 = new feather(this.x + this.w / 2 - 6, this.y + this.h / 2 - 4, false);
-			feather f6 = new feather(this.x + this.w / 2 - 6, this.y + this.h / 2 - 4, false);
-			feather f7 = new feather(this.x + this.w / 2 - 6, this.y + this.h / 2 - 4, false);
+			feather f = new feather(alignedX, alignedY, true);
+			feather f1 = new feather(alignedX, alignedY, true);
+			feather f2 = new feather(alignedX, alignedY, true);
+			feather f3 = new feather(alignedX, alignedY, true);
+			feather f4 = new feather(alignedX, alignedY, true);
+			feather f5 = new feather(alignedX, alignedY, true);
+			feather f6 = new feather(alignedX, alignedY, true);
+			feather f7 = new feather(alignedX, alignedY, true);
 
 			f.dx = -5;
 			f.dy = 0;
@@ -174,10 +183,10 @@ public class player extends object {
 			feathers.add(f7);
 		}
 		if (type == "spin") {
-			feather f = new feather(this.x + this.w / 2 - 6, this.y + this.h / 2 - 4, false);
-			feather f1 = new feather(this.x + this.w / 2 - 6, this.y + this.h / 2 - 4, false);
-			feather f2 = new feather(this.x + this.w / 2 - 6, this.y + this.h / 2 - 4, false);
-			feather f3 = new feather(this.x + this.w / 2 - 6, this.y + this.h / 2 - 4, false);
+			feather f = new feather(alignedX, alignedY, true);
+			feather f1 = new feather(alignedX, alignedY, true);
+			feather f2 = new feather(alignedX, alignedY, true);
+			feather f3 = new feather(alignedX, alignedY, true);
 
 			f.dx = -1 * (5 * Math.cos(shotMultiplier * Math.PI / 12));
 			f.dy = -1 * (5 * Math.sin(shotMultiplier * Math.PI / 12));
@@ -199,12 +208,12 @@ public class player extends object {
 			feathers.add(f3);
 		}
 		if (type == "buckshot") {
-			feather f = new feather(this.x, this.y, true);
-			feather f1 = new feather(this.x, this.y, true);
-			feather f2 = new feather(this.x, this.y, true);
-			feather f3 = new feather(this.x, this.y, true);
-			feather f4 = new feather(this.x, this.y, true);
-			feather f5 = new feather(this.x, this.y, true);
+			feather f = new feather(alignedX, alignedY, true);
+			feather f1 = new feather(alignedX, alignedY, true);
+			feather f2 = new feather(alignedX, alignedY, true);
+			feather f3 = new feather(alignedX, alignedY, true);
+			feather f4 = new feather(alignedX, alignedY, true);
+			feather f5 = new feather(alignedX, alignedY, true);
 
 			f1.dx = (5 * Math.cos(Math.PI / 8));
 			f1.dy = (5 * Math.sin(Math.PI / 8));
@@ -227,29 +236,52 @@ public class player extends object {
 			feathers.add(f5);
 			feathers.add(f);
 		}
+		
+		if (type == "explode") {
+			for (int x = 0; x < 15; x++) {
+				feather f = new feather(alignedX, alignedY, true);
+				f.dx = -1 * (5 * Math.cos((shotMultiplier + 45) * Math.PI / 6));
+				f.dy = -1 * (5 * Math.sin((shotMultiplier + 45) * Math.PI / 6));
+				feathers.add(f);
+				shotMultiplier++;
+			}
+		}
+		
 		if (type == "two") {
-			feather f = new feather(this.x, this.y + this.h/2 -9, true);
-			feather f1 = new feather(this.x, this.y + this.h/2 , true);
+			feather f = new feather(alignedX, alignedY + this.h/2 -9, true);
+			feather f1 = new feather(alignedX, alignedY + this.h/2 , true);
 			feathers.add(f);
 			feathers.add(f1);
 		}
+
 		if (type == "three") {
-			feather f = new feather(this.x, this.y, true);
-			feather f1 = new feather(this.x, this.y + this.h / 2 - 3, true);
-			feather f2 = new feather(this.x, this.y + this.h - 6, true);
+			feather f = new feather(alignedX, alignedY, true);
+			feather f1 = new feather(alignedX, alignedY + this.h / 2 - 3, true);
+			feather f2 = new feather(alignedX, alignedY + this.h - 6, true);
 			feathers.add(f);
 			feathers.add(f1);
 			feathers.add(f2);
 		}
-		
-		if (type == "tracking") {
-			homingFeather f = new homingFeather (this.x, this.y, true);
+
+		if (type == "homing") {
+			//for homing feather 
+			homingFeather f = new homingFeather(alignedX, alignedY, true);
+			f.speed = 3;
+			f.duration = 150;
 			feathers.add(f);
 		}
 		
-		if (type == "trackingFast") {
-			homingFeather f = new homingFeather(this.x, this.y, false);
+		if (type == "homingSlow") {
+			homingFeather f = new homingFeather(alignedX, alignedY, true);
+			f.speed = 2;
+			f.duration = 200;
+			feathers.add(f);
+		}
+		
+		if (type == "homingFast") {
+			homingFeather f = new homingFeather(alignedX, alignedY, true);
 			f.speed = 5;
+			f.duration = 100;
 			feathers.add(f);
 		}
 	}

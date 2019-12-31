@@ -19,6 +19,7 @@ public abstract class game {
 	// game data
 	public int score = 0;
 	public String state;
+	public int test = 0;
 
 	// level layout data
 	ArrayList<String> layout = new ArrayList<String>();
@@ -57,7 +58,7 @@ public abstract class game {
 		// moving the powerups
 		for (powerup p : powerups)
 			p.move();
-
+		
 		collision();
 		genPattern();
 	}
@@ -358,8 +359,8 @@ public abstract class game {
 		enemy temp = null;
 		if (type.equals("enemy"))
 			temp = new enemy(x, y);
-		if (type.equals("homing"))
-			temp = new homingEnemy(x, y);
+		if (type.equals("target"))
+			temp = new targetEnemy(x, y);
 		if (type.equals("charge"))
 			temp = new chargeEnemy(x, y);
 		if (type.equals("big"))
@@ -382,8 +383,8 @@ public abstract class game {
 			temp = new laserEnemy(x, y);
 		if (type.equals("explode"))
 			temp = new explodeEnemy(x, y);
-		if (type.equals("tracking"))
-			temp = new trackingEnemy(x, y);
+		if (type.equals("homing"))
+			temp = new homingEnemy(x, y);
 		if (type.equals("miniBoss1"))
 			temp = new miniBoss1(x, y);
 		if (type.equals("miniBoss2"))

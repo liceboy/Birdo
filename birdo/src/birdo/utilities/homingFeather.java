@@ -65,8 +65,8 @@ public class homingFeather extends feather {
 				prevTheta = theta;
 				init = false;
 			}
-			// if change in angle is greater than 0.3 radians, then stop tracking
-			if (Math.abs(prevTheta - theta) > 0.3) {
+			// if change in angle is greater than 180 degrees, then stop tracking
+			if (Math.abs(prevTheta - theta) > Math.PI) {
 				track = false;
 			}
 			// update dx and dy to follow player if track is true

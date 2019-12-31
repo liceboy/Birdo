@@ -1,21 +1,18 @@
 package birdo.enemies;
 
 import java.awt.Color;
-import java.util.ArrayList;
 
 import birdo.utilities.enemy;
-import birdo.utilities.feather;
 
-public class homingEnemy extends enemy {
+public class homingEnemy extends enemy{
 
 	public homingEnemy(int x, int y) {
 		super(x, y);
-		c = new Color(121, 103, 85);
-		health = 2;
+		c = new Color(156, 219, 67);
 	}
-
+	
 	public void move() {
-		customMove("default");
+		customMove("stop");
 		super.move();
 	}
 

@@ -59,8 +59,8 @@ public class pattern {
 		enemy temp = null;
 		if (type.equals("enemy"))
 			temp = new enemy(0, 0);
-		if (type.equals("homing"))
-			temp = new homingEnemy(0, 0);
+		if (type.equals("target"))
+			temp = new targetEnemy(0, 0);
 		if (type.equals("charge"))
 			temp = new chargeEnemy(0, 0);
 		if (type.equals("big"))
@@ -83,8 +83,8 @@ public class pattern {
 			temp = new laserEnemy(0,0);
 		if (type.equals("explode"))
 			temp = new explodeEnemy(0,0);
-		if (type.equals("tracking"))
-			temp = new trackingEnemy(0,0);
+		if (type.equals("homing"))
+			temp = new homingEnemy(0,0);
 		if (type.equals("miniBoss1"))
 			temp = new miniBoss1(0, 0);
 		if (type.equals("miniBoss2"))

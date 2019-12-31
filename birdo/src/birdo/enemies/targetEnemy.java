@@ -1,24 +1,27 @@
 package birdo.enemies;
 
 import java.awt.Color;
+import java.util.ArrayList;
 
 import birdo.utilities.enemy;
+import birdo.utilities.feather;
 
-public class trackingEnemy extends enemy{
+public class targetEnemy extends enemy {
 
-	public trackingEnemy(int x, int y) {
+	public targetEnemy(int x, int y) {
 		super(x, y);
-		c = new Color(156, 219, 67);
+		c = new Color(121, 103, 85);
+		health = 2;
 	}
-	
+
 	public void move() {
-		customMove("stop");
+		customMove("default");
 		super.move();
 	}
 
 	public void shoot() {
 		if (shootCount == 0) {
-			customShot("tracking");
+			customShot("target");
 			shootCount = 100;
 		}
 		shootCount--;

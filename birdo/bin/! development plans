@@ -1,0 +1,32 @@
+obstacles: 
+	use the object class to create boxes with rectangular hitboxes
+	add them to game collision
+	same effect as running into an enemy (lose health, become invulnerable)
+
+laser:
+	make them obstacles tied to individual birds
+	define their movement in their owner's move()
+	add them to game collision
+	repeatedly lower health on an interval
+	
+central shooting:
+	edit ALL customShots to be positioned at the center of the bird
+	accommodate for the width and height of the feather
+	
+enemies:
+	finish refining them, there are enough now	
+	
+mini bosses:
+	make more of them
+	create a big fat health bar?
+	
+powerups:
+	find a way to revise it
+	no more health powerups
+	single use?
+	
+upgrades:
+	do this last
+	seeds are currency
+	skill tree for more general abilities
+	feather creation system

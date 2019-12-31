@@ -147,16 +147,22 @@ public class enemy extends player {
 	public void customShot(String type) {
 		
 		// creates feather(s) according to given behavior
+		// feathers come from the dead center
+		
+		int fw = 8;
+		int fh = 8;
+		double alignedX = centerX - fw / 2;
+		double alignedY = centerY - fh / 2;
 		
 		if (isDead || x > 800 || x < 0 || y > 500 || y < 0)
 			return;
 
 		if (type == "normal") {
-			feathers.add(new feather(this.x, this.y, false));
+			feathers.add(new feather(alignedX, alignedY, false));
 		}
 		
-		if (type == "homing") {
-			feather f = new feather(this.x, this.y, false);
+		if (type == "target") {
+			feather f = new feather(alignedX, alignedY, false);
 			double deltaX = p.x - x;
 			double deltaY = p.y - y;
 			double hypotenuse = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
@@ -169,9 +175,9 @@ public class enemy extends player {
 		}
 		
 		if (type == "triple") {
-			feather f = new feather(this.x, this.y, false);
-			feather f1 = new feather(this.x, this.y, false);
-			feather f2 = new feather(this.x, this.y, false);
+			feather f = new feather(alignedX, alignedY, false);
+			feather f1 = new feather(alignedX, alignedY, false);
+			feather f2 = new feather(alignedX, alignedY, false);
 
 			f.dx = -5;
 
@@ -187,14 +193,14 @@ public class enemy extends player {
 		}
 		
 		if (type == "bloom") {
-			feather f = new feather(centerX, centerY, false);
-			feather f1 = new feather(centerX, centerY, false);
-			feather f2 = new feather(centerX, centerY, false);
-			feather f3 = new feather(centerX, centerY, false);
-			feather f4 = new feather(centerX, centerY, false);
-			feather f5 = new feather(centerX, centerY, false);
-			feather f6 = new feather(centerX, centerY, false);
-			feather f7 = new feather(centerX, centerY, false);
+			feather f = new feather(alignedX, alignedY, false);
+			feather f1 = new feather(alignedX, alignedY, false);
+			feather f2 = new feather(alignedX, alignedY, false);
+			feather f3 = new feather(alignedX, alignedY, false);
+			feather f4 = new feather(alignedX, alignedY, false);
+			feather f5 = new feather(alignedX, alignedY, false);
+			feather f6 = new feather(alignedX, alignedY, false);
+			feather f7 = new feather(alignedX, alignedY, false);
 
 			f.dx = -5;
 			f.dy = 0;
@@ -229,10 +235,10 @@ public class enemy extends player {
 		}
 		
 		if (type == "spin") {
-			feather f = new feather(centerX, centerY, false);
-			feather f1 = new feather(centerX, centerY, false);
-			feather f2 = new feather(centerX, centerY, false);
-			feather f3 = new feather(centerX, centerY, false);
+			feather f = new feather(alignedX, alignedY, false);
+			feather f1 = new feather(alignedX, alignedY, false);
+			feather f2 = new feather(alignedX, alignedY, false);
+			feather f3 = new feather(alignedX, alignedY, false);
 
 			f.dx = -1 * (5 * Math.cos(shotMultiplier * Math.PI / 12));
 			f.dy = -1 * (5 * Math.sin(shotMultiplier * Math.PI / 12));
@@ -255,12 +261,12 @@ public class enemy extends player {
 		}
 		
 		if (type == "buckshot") {
-			feather f = new feather(this.x, this.y, false);
-			feather f1 = new feather(this.x, this.y, false);
-			feather f2 = new feather(this.x, this.y, false);
-			feather f3 = new feather(this.x, this.y, false);
-			feather f4 = new feather(this.x, this.y, false);
-			feather f5 = new feather(this.x, this.y, false);
+			feather f = new feather(alignedX, alignedY, false);
+			feather f1 = new feather(alignedX, alignedY, false);
+			feather f2 = new feather(alignedX, alignedY, false);
+			feather f3 = new feather(alignedX, alignedY, false);
+			feather f4 = new feather(alignedX, alignedY, false);
+			feather f5 = new feather(alignedX, alignedY, false);
 
 			f1.dx = -1 * (5 * Math.cos(Math.PI / 8));
 			f1.dy = -1 * (5 * Math.sin(Math.PI / 8));
@@ -285,7 +291,7 @@ public class enemy extends player {
 
 		if (type == "explode") {
 			for (int x = 0; x < 15; x++) {
-				feather f = new feather(centerX, centerY, false);
+				feather f = new feather(alignedX, alignedY, false);
 				f.dx = -1 * (5 * Math.cos((shotMultiplier + 45) * Math.PI / 6));
 				f.dy = -1 * (5 * Math.sin((shotMultiplier + 45) * Math.PI / 6));
 				feathers.add(f);
@@ -294,32 +300,43 @@ public class enemy extends player {
 		}
 		
 		if (type == "two") {
-			feather f = new feather(this.x, this.y + this.h/2 -9, false);
-			feather f1 = new feather(this.x, this.y + this.h/2 , false);
+			feather f = new feather(alignedX, alignedY + this.h/2 -9, false);
+			feather f1 = new feather(alignedX, alignedY + this.h/2 , false);
 			feathers.add(f);
 			feathers.add(f1);
 		}
 
 		if (type == "three") {
-			feather f = new feather(this.x, this.y, false);
-			feather f1 = new feather(this.x, this.y + this.h / 2 - 3, false);
-			feather f2 = new feather(this.x, this.y + this.h - 6, false);
+			feather f = new feather(alignedX, alignedY, false);
+			feather f1 = new feather(alignedX, alignedY + this.h / 2 - 3, false);
+			feather f2 = new feather(alignedX, alignedY + this.h - 6, false);
 			feathers.add(f);
 			feathers.add(f1);
 			feathers.add(f2);
 		}
 
-		if (type == "tracking") {
+		if (type == "homing") {
 			//for homing feather 
-			homingFeather f = new homingFeather(this.x, this.y, false);
+			homingFeather f = new homingFeather(alignedX, alignedY, false);
 			f.p = p;
+			f.speed = 3;
+			f.duration = 150;
 			feathers.add(f);
 		}
 		
-		if (type == "trackingFast") {
-			homingFeather f = new homingFeather(this.x, this.y, false);
+		if (type == "homingSlow") {
+			homingFeather f = new homingFeather(alignedX, alignedY, false);
+			f.p = p;
+			f.speed = 2;
+			f.duration = 200;
+			feathers.add(f);
+		}
+		
+		if (type == "homingFast") {
+			homingFeather f = new homingFeather(alignedX, alignedY, false);
 			f.p = p;
 			f.speed = 5;
+			f.duration = 100;
 			feathers.add(f);
 		}
 

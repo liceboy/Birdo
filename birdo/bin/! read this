@@ -1,0 +1,101 @@
+possible features to be added in the future:
+	eggs should have AOE / scattershot
+	player should be getting stronger each section/level, maybe we will just make a player that extends the first player 
+	suicideBomber: shoots only when dead, will also be considered dead when close enough to the player, thus shooting
+	healthbar of whatever is being shot in the top middle 
+	miniboss: simpler boss with like 15 health with 1 - 2 attk patterns
+	boss: should have multiple phases based on health, maybe one method that runs through all his phases? 
+	hazards: woods: tree branches/snakes dangling from trees (lmao), hunter that shoots after an indicator
+			 city:  power lines, smoke that slows you down, reduces vision, and/or damages you
+			 beach: kinda dont know, aquatic creatures/ big waves?
+			 sky: rain, lightning, wind, pretty much all weather effects could be implemented
+some things to think about:
+	shooting enemies should almost always be some kind of homing shooter unless in specific situations
+	enemies should sometimes be stalling out, not every enemy should just run across the screen at dx = -3
+	i'm thinking of making a enemy in which we can just manipulate its dx/dy, need a collision enemy besides chargingEnemy
+	should we be making the window bigger?
+	should enemy feathers be slower? everything feels sort of cancerous to dodge 
+	
+---------------------------------------------
+HOW TO DO THINGS:
+
+Create an enemy: 
+	-name it with camel case. common enemies are named like "<type>Enemy"
+	-if it doens't shoot, override shootFeather() with a return;
+	-if it doesn't poop, override poop() with a return;
+	-follow this syntax for the move method
+	
+		public void move(){
+			if (<condition1>)
+				customMove(<move1>);
+			if (<condition2>)
+				customMove(<move2>);
+			...
+			super.move();
+		}
+	
+	-follow this syntax for the shootFeather method
+	
+		public void shootFeather(){
+			if (shootCount == 0){
+				if (<condition1>){
+					customShot(<shot1>)
+					shootCount = N;
+				}
+				...
+			}
+			shootCount--;
+		}
+		
+	-the same syntax is used for the poop method
+		
+Create a pattern:
+	-name the pattern with camel case, something simple
+	-enemy type is the same as those in the enemy names
+	-follow this syntax for patterns
+	
+		name
+		type x y
+		type x y
+		...
+		end
+		
+	-to test the pattern, do this is the level.java constructor
+		
+		layout.add(<name>);
+		
+Create a custom move:
+	-you can do this in either enemy.java or player.java
+	-everything is in customMove()
+	-follow this syntax for custom moves
+	
+		if(type == <name>){
+			if(<condition1>){
+				dx = N; dy = N;
+			}
+			if(<condition2>){
+				dx = N; dy = N;
+			}
+			...
+		}
+		
+	-feel free to stack conditions, there will only be one final dx/dy
+	
+Create a custom shot:
+	-literally the same thing as above in customShot()
+	
+Create a power up:
+	-in usePowerup() in player.java, create an effect
+	-follow this syntax for effects
+		
+		if(poweruptype == <name>)
+			<effect>
+	
+	-in powerup.java, define the amount of ammo in the constructor
+	-in createRandomPowerup() in game.java, add the name to the choices list
+	-make sure the change the upper bounds in the random number generator
+	
+	
+		
+		
+		

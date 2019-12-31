@@ -44,15 +44,15 @@ strafe 1115 15
 strafe 1415 15
 end
 
-homingArmy
-homing 815 135
-homing 915 225
-homing 1015 315
-homing 1115 405
-homing 1215 135
-homing 1315 225
-homing 1415 315
-homing 1515 405
+targetArmy
+target 815 135
+target 915 225
+target 1015 315
+target 1115 405
+target 1215 135
+target 1315 225
+target 1415 315
+target 1515 405
 end
 
 rapidBar
@@ -77,17 +77,17 @@ end
 shooterGang
 pulse 815 180 
 pulse 815 360
-homing 915 90
-homing 915 270
-homing 915 450
+target 915 90
+target 915 270
+target 915 450
 end
 
 comboAttack
 big 815 270
 steady 1015 225
 steady 1015 315
-homing 915 360
-homing 915 180
+target 915 360
+target 915 180
 end
 
 miniBoss1Fight
@@ -113,8 +113,8 @@ explode 815 180
 explode 815 360
 end
 
-trackingEnemy
-tracking 815 180
-tracking 815 360
+homingEnemy
+homing 815 180
+homing 815 360
 end
 
