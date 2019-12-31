@@ -18,13 +18,13 @@ public class pulseEnemy extends enemy {
 
 	public void shoot() {
 		if (shootCount == 0) {
-			customShot("homing");
+			customShot("target");
 			shootCount = 100;
 		}
 		if (shootCount == 90)
-			customShot("homing");
+			customShot("target");
 		if (shootCount == 80)
-			customShot("homing");
+			customShot("target");
 		shootCount--;
 	}
 

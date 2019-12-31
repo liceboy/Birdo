@@ -11,10 +11,14 @@ public class select {
 
 	public void draw(Graphics g) {
 		g.setColor(Color.BLACK);
-		g.drawString("Level Select:", 100, 100);
+		g.setFont(g.getFont().deriveFont(16f));
+		g.drawString("-Level Select-", 100, 100);
+		g.setFont(g.getFont().deriveFont(12f));
 		g.drawString("Default Level: Z", 100, 130);
+		g.drawString("", 350, 130);
 		g.drawString("Dev Mode: X", 100, 160);
-		g.drawString("Press Esc to go back", 100, 250);
+		g.drawString("[1 to Backspace spawns enemies]", 350, 160);
+		g.drawString("Press Esc to exit", 100, 240);
 	}
 
 	public void move() {

@@ -9,7 +9,7 @@ laser:
 	add them to game collision
 	repeatedly lower health on an interval
 	
-central shooting:
+[COMPLETE] central shooting:
 	edit ALL customShots to be positioned at the center of the bird
 	accommodate for the width and height of the feather
 	

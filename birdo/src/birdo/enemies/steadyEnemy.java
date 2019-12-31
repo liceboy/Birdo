@@ -21,7 +21,7 @@ public class steadyEnemy extends enemy {
 
 	public void shoot() {
 		if (shootCount % 30 == 0)
-			customShot("homing");
+			customShot("target");
 		shootCount++;
 	}
 	

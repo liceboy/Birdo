@@ -94,11 +94,15 @@ public class main extends JPanel implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		repaint();
 		
+		long time = System.currentTimeMillis();
+		
 		if (state == "level")
 			level.move();
 		
 		if (state == "dev")
 			dev.move();
+		
+		// System.out.println(System.currentTimeMillis() - time);
 	}
 
 	private class KAdapter extends KeyAdapter {

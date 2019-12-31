@@ -79,10 +79,10 @@ public abstract class game {
 		g.setColor(Color.BLACK);
 		
 		g.drawString("Health: " + player.health, 25, 40);
-		g.drawString("Score: " + score, 550, 40);
+		g.drawString("Score: " + score, 500, 40);
 		
 		if (patternNum != 0)
-			g.drawString("Layout: " + layout.get(patternNum - 1), 550, 55);
+			g.drawString("Layout: " + layout.get(patternNum - 1), 500, 70);
 		
 		if (player.powerupType != "none")
 			g.drawString("Powerup: " + player.powerupType + " x" + player.ammo, 25, 55);
