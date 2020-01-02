@@ -20,11 +20,11 @@ public class targetEnemy extends enemy {
 	}
 
 	public void shoot() {
-		if (shootCount == 0) {
+		if (shotCount == 0) {
 			customShot("target");
-			shootCount = 100;
+			shotCount = 100;
 		}
-		shootCount--;
+		shotCount--;
 	}
 
 	public void poop() {

@@ -9,15 +9,10 @@ public class enemy extends player {
 	
 	// score granted upon death
 	public int score;
-	
-	// shooting variables
-	boolean init = true;
-	boolean track = true;
-	double prevTheta;
 
 	public enemy(int x, int y) {
 		super(x, y, new Color(6, 6, 8));
-		health = 1;
+		health = 50;
 		score = 100;
 		this.dx = -2;
 		this.dy = 0;
@@ -33,13 +28,13 @@ public class enemy extends player {
 	}
 
 	public void shoot() {
-		if (shootCount == 0) {
+		if (shotCount == 0) {
 			if (!isDead) {
 				feathers.add(new feather(this.x, this.y, false));
-				shootCount = 100;
+				shotCount = 100;
 			}
 		}
-		shootCount--;
+		shotCount--;
 	}
 	
 	public void poop() {

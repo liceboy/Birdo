@@ -4,39 +4,36 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class player extends object {
 	
 	// stats
 	public int health;
 	public int maxHealth;
-	public int damage;
-	public int moveSpeed;
-
-	// location
+	public int attack;
+	public int defense;
 	public boolean isDead;
+	
+	// location
 	public double centerX;
 	public double centerY;
 	
-	// powerups
+	// powerup
 	public String powerupType;
-	public int ammo;
-	public int maxAmmo;
 	
-	// invulnerability
-	public boolean invulnerable;
-	public int invulnerableCooldown;
-
+	// status
+	public Map<String, Integer> status;
+	
 	// attacks
 	public ArrayList<feather> feathers;
 	public ArrayList<egg> eggs;
 	
 	// shooting
-	public int shotMultiplier;
-	public int shootCount;
-	public int poopCount;
-	public int shootInterval;
-	public int shotCooldown;
+	public int shotCount = 0;
+	public int shotMultiplier = 0;
+	public int poopCount = 0;
 	
 	boolean init = true;
 	boolean track = true;
@@ -51,26 +48,26 @@ public class player extends object {
 
 	public player(int x, int y, Color c) {
 		super(x, y, 20, 20, c);
-		health = 100;
-		damage = 1;
-		moveSpeed = 4;
-		shootCount = 0;
-		poopCount = 0;
-		ammo = 0;
-		maxAmmo = 3;
-		isDead = false;
-		feathers = new ArrayList<feather>();
-		eggs = new ArrayList<egg>();
-		invulnerable = false;
-		invulnerableCooldown = 0;
-		shotCooldown = 0;
-		shootInterval = 15;
-		powerupType = "none"; // default powerup is always none
-		maxHealth = 10;
 		
-		shotMultiplier = 0; 
+		health = 50;
+		maxHealth = 50;
+		attack = 10;
+		defense = 8;
+		isDead = false;
+		
 		centerX = (this.x + this.w / 2);
 		centerY = (this.y + this.h / 2);
+		
+		powerupType = "none";
+		
+		status = new HashMap<String, Integer>();
+		
+		shotCount = 0;
+		poopCount = 0;
+		shotMultiplier = 0; 
+		
+		feathers = new ArrayList<feather>();
+		eggs = new ArrayList<egg>();
 	}
 
 	public void draw(Graphics g) {
@@ -86,6 +83,9 @@ public class player extends object {
 	}
 
 	public void move() {
+		centerX = (this.x + this.w / 2);
+		centerY = (this.y + this.h / 2);
+		
 		setMovement();
 		super.move();
 		shoot();
@@ -96,12 +96,12 @@ public class player extends object {
 			e.move();
 	}
 
-	public void shoot() { // shoots automatically with cooldown
-		if (shootCount == 0) {
-			shootCount = shootInterval;
+	public void shoot() { // shots automatically with cooldown
+		if (shotCount == 0) {
+			shotCount = 20;
 			customShot("normal");
 		}
-		shootCount--;
+		shotCount--;
 	}
 	
 	public void poop() { // poops
@@ -319,31 +319,13 @@ public class player extends object {
 
 	public void usePowerup() { // uses the powerup based on string type, add powerups as you feel
 		
-		if (true)
-			return; // keep until fixed
-		
 		if (powerupType == "none")
 			return;
-		if (powerupType == "eggs")
-			poop();
-		if (powerupType == "buckShot")
-			customShot("buckshot");
-		if (powerupType == "invulnerability") {
-			invulnerable = true;
-			invulnerableCooldown = 250;
-		}
-		if (powerupType == "rapidFire") {
-			shotCooldown = 250;
-			shootInterval = 5;
-		}
 		
-		ammo--;
-		if (ammo <= 0)
-			powerupType = "none";
-
+		powerupType = "none";
 	}
 
-	public boolean checkisDead() {
+	public boolean isDead() {
 		if (health <= 0) {
 			isDead = true;
 			dx = 0;

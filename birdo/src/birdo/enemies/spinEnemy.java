@@ -19,11 +19,11 @@ public class spinEnemy extends enemy{
 	}
 
 	public void shoot() {
-		if (shootCount == 0) {
+		if (shotCount == 0) {
 			customShot("spin");
-			shootCount = 25;
+			shotCount = 25;
 		}
-		shootCount--;
+		shotCount--;
 	}
 
 	public void poop() {

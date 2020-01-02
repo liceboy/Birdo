@@ -86,9 +86,9 @@ public abstract class game {
 			g.drawString("Layout: " + layout.get(patternNum - 1), 500, 70);
 		
 		if (player.powerupType != "none")
-			g.drawString("Powerup: " + player.powerupType + " x" + player.ammo, 25, 55);
+			g.drawString("Powerup: " + player.powerupType, 25, 55);
 		
-		if (player.checkisDead()) {
+		if (player.isDead()) {
 			g.drawString("Game Over!", 300, 150);
 			g.drawString("Continue: F1", 300, 175);
 			g.drawString("Quit: F2", 300, 200);
@@ -118,10 +118,9 @@ public abstract class game {
 			// hit the enemy? take damage
 
 			if (player.getHitBox().intersects(e.getHitBox())) {
-				if (!player.invulnerable) {
+				if (!player.status.containsKey("invulnerable")) {
 					player.health--;
-					player.invulnerable = true;
-					player.invulnerableCooldown = 75;
+					player.status.put("invulnerable", 75);
 				}
 			}
 
@@ -135,10 +134,9 @@ public abstract class game {
 				feather f = e.feathers.get(j);
 				
 				if (player.getHitBox().intersects(f.getHitBox())) {
-					if (!player.invulnerable) {
+					if (!player.status.containsKey("invulnerable")) {
 						player.health--;
-						player.invulnerable = true;
-						player.invulnerableCooldown = 75;
+						player.status.put("invulnerable", 75);
 					}
 					e.feathers.remove(j);
 					j--;
@@ -160,10 +158,9 @@ public abstract class game {
 				egg p = e.eggs.get(k);
 				
 				if (player.getHitBox().intersects(p.getHitBox())) {
-					if (!player.invulnerable) {
+					if (!player.status.containsKey("invulnerable")) {
 						player.health--;
-						player.invulnerable = true;
-						player.invulnerableCooldown = 75;
+						player.status.put("invulnerable", 75);
 					}
 					e.eggs.remove(k);
 					k--;
@@ -236,7 +233,7 @@ public abstract class game {
 				}
 			}
 
-			e.checkisDead();
+			e.isDead();
 
 			boolean removeEnemy = false;
 
@@ -288,13 +285,6 @@ public abstract class game {
 			
 			if (player.getHitBox().intersects(p.getHitBox())) {
 				player.powerupType = p.type;
-				if (player.powerupType == "heal") { // heal powerup
-					player.health += 3;
-					player.powerupType = "none";
-					if (player.health > player.maxHealth)
-						player.health = player.maxHealth;
-				}
-				player.ammo = p.ammo;
 				powerups.remove(t);
 				t--;
 			}
@@ -311,21 +301,21 @@ public abstract class game {
 	public void status() {
 		// INVULNERABILITY
 
-		if (player.invulnerable) {
+		if (player.status.containsKey("invulnerable")) {
 			player.c = Color.RED;
-			player.invulnerableCooldown--;
-			if (player.invulnerableCooldown == 0) {
-				player.invulnerable = false;
+			player.status.put("invulnerable", player.status.get("invulnerable") - 1);
+			if (player.status.get("invulnerable") <= 0) {
+				player.status.remove("invulnerable");
 				player.c = Color.BLUE;
 			}
 		}
 
 		// RAPIDFIRE POWERUP
 
-		if (player.shootInterval == 5) {
-			player.shotCooldown--;
-			if (player.shotCooldown == 0) {
-				player.shootInterval = 15;
+		if (player.status.containsKey("rapidFire")) {
+			player.status.put("rapidFire", player.status.get("rapidFire") - 1);
+			if (player.status.get("rapidFire") <= 0) {
+				player.status.remove("rapidFire");
 			}
 		}
 	}

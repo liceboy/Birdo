@@ -14,15 +14,15 @@ public class steadyEnemy extends enemy {
 
 	public void move() {
 		customMove("stop");
-		if (shootCount > 200)
+		if (shotCount > 200)
 			dx = -3;
 		super.move();
 	}
 
 	public void shoot() {
-		if (shootCount % 30 == 0)
+		if (shotCount % 30 == 0)
 			customShot("target");
-		shootCount++;
+		shotCount++;
 	}
 	
 	public void poop() {

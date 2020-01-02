@@ -49,7 +49,8 @@ public class main extends JPanel implements ActionListener {
 			Font mainFont = Font.createFont(Font.TRUETYPE_FONT, getClass().getClassLoader().
 					getResourceAsStream("birdo/resources/Press Start.ttf"));
 			mainFont = mainFont.deriveFont(0, 12f);
-			// 1 bold 2 italics 3 bold+italics
+			// style (1 bold 2 italics 3 bold+italics)
+			// font size (float variable)
 			setFont(mainFont);
 		} catch (FontFormatException | IOException e) {
 			e.printStackTrace();

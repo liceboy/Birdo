@@ -18,11 +18,11 @@ public class rapidEnemy extends enemy {
 	}
 
 	public void shoot() {
-		if (shootCount == 0) {
+		if (shotCount == 0) {
 			customShot("normal");
-			shootCount = 20;
+			shotCount = 20;
 		}
-		shootCount--;
+		shotCount--;
 	}
 
 	public void poop() {

@@ -16,7 +16,7 @@ public class title {
 		g.drawString("-Birdo v0.5-", 100, 100);
 		g.setFont(g.getFont().deriveFont(12f));
 		g.drawString("Benjamin Guan: Concept, Programming", 100, 130);
-		g.drawString("Joseph Ilagan: Programming", 100, 160);
+		g.drawString("Joseph Ilagan: Direction, Programming", 100, 160);
 		g.drawString("Press Space", 100, 240);
 	}
 

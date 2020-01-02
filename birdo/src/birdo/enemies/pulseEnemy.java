@@ -17,15 +17,15 @@ public class pulseEnemy extends enemy {
 	}
 
 	public void shoot() {
-		if (shootCount == 0) {
+		if (shotCount == 0) {
 			customShot("target");
-			shootCount = 100;
+			shotCount = 100;
 		}
-		if (shootCount == 90)
+		if (shotCount == 90)
 			customShot("target");
-		if (shootCount == 80)
+		if (shotCount == 80)
 			customShot("target");
-		shootCount--;
+		shotCount--;
 	}
 
 	public void poop() {

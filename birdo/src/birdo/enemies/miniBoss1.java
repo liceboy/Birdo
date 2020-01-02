@@ -23,15 +23,15 @@ public class miniBoss1 extends enemy {
 	}
 
 	public void shoot() {
-		if (shootCount <= 0) {
+		if (shotCount <= 0) {
 			if (health > 10)
 				customShot("buckshot");
 				customShot("normal");
 			if (health <= 10)
 				customShot("triple");
-			shootCount = 30;
+			shotCount = 30;
 		}
-		shootCount--;
+		shotCount--;
 	}
 
 	public void poop() {
