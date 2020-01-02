@@ -317,7 +317,8 @@ public class enemy extends player {
 
 		if (type == "homing") {
 			//for homing feather 
-			homingFeather f = new homingFeather(alignedX, alignedY, false);
+			feather f = new feather(alignedX, alignedY, false);
+			f.isHoming = true;
 			f.p = p;
 			f.speed = 3;
 			f.duration = 150;
@@ -325,7 +326,8 @@ public class enemy extends player {
 		}
 		
 		if (type == "homingSlow") {
-			homingFeather f = new homingFeather(alignedX, alignedY, false);
+			feather f = new feather(alignedX, alignedY, false);
+			f.isHoming = true;
 			f.p = p;
 			f.speed = 2;
 			f.duration = 200;
@@ -333,7 +335,8 @@ public class enemy extends player {
 		}
 		
 		if (type == "homingFast") {
-			homingFeather f = new homingFeather(alignedX, alignedY, false);
+			feather f = new feather(alignedX, alignedY, false);
+			f.isHoming = true;
 			f.p = p;
 			f.speed = 5;
 			f.duration = 100;

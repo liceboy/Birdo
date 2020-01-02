@@ -265,21 +265,24 @@ public class player extends object {
 
 		if (type == "homing") {
 			//for homing feather 
-			homingFeather f = new homingFeather(alignedX, alignedY, true);
+			feather f = new feather(alignedX, alignedY, true);
+			f.isHoming = true;
 			f.speed = 3;
 			f.duration = 150;
 			feathers.add(f);
 		}
 		
 		if (type == "homingSlow") {
-			homingFeather f = new homingFeather(alignedX, alignedY, true);
+			feather f = new feather(alignedX, alignedY, true);
+			f.isHoming = true;			
 			f.speed = 2;
 			f.duration = 200;
 			feathers.add(f);
 		}
 		
 		if (type == "homingFast") {
-			homingFeather f = new homingFeather(alignedX, alignedY, true);
+			feather f = new feather(alignedX, alignedY, true);
+			f.isHoming = true;
 			f.speed = 5;
 			f.duration = 100;
 			feathers.add(f);
