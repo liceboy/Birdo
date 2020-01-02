@@ -318,6 +318,10 @@ public class player extends object {
 	}
 
 	public void usePowerup() { // uses the powerup based on string type, add powerups as you feel
+		
+		if (true)
+			return; // keep until fixed
+		
 		if (powerupType == "none")
 			return;
 		if (powerupType == "eggs")

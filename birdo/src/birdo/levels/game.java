@@ -60,6 +60,7 @@ public abstract class game {
 			p.move();
 		
 		collision();
+		status();
 		genPattern();
 	}
 
@@ -96,26 +97,6 @@ public abstract class game {
 	}
 
 	public void collision() {
-
-		// INVULNERABILITY
-
-		if (player.invulnerable) {
-			player.c = Color.RED;
-			player.invulnerableCooldown--;
-			if (player.invulnerableCooldown == 0) {
-				player.invulnerable = false;
-				player.c = Color.BLUE;
-			}
-		}
-
-		// RAPIDFIRE POWERUP
-
-		if (player.shootInterval == 5) {
-			player.shotCooldown--;
-			if (player.shotCooldown == 0) {
-				player.shootInterval = 15;
-			}
-		}
 
 		// SCREEN BORDERS
 
@@ -325,6 +306,28 @@ public abstract class game {
 
 		}
 
+	}
+	
+	public void status() {
+		// INVULNERABILITY
+
+		if (player.invulnerable) {
+			player.c = Color.RED;
+			player.invulnerableCooldown--;
+			if (player.invulnerableCooldown == 0) {
+				player.invulnerable = false;
+				player.c = Color.BLUE;
+			}
+		}
+
+		// RAPIDFIRE POWERUP
+
+		if (player.shootInterval == 5) {
+			player.shotCooldown--;
+			if (player.shotCooldown == 0) {
+				player.shootInterval = 15;
+			}
+		}
 	}
 
 	public void genPattern() {
