@@ -6,21 +6,29 @@ import java.util.ArrayList;
 public class feather extends object {
 	
 	public boolean forward;
-	public int speed;
 	public player p;
 	public ArrayList<enemy> enemies = new ArrayList<enemy>();
 	
-	// Homing Variables
+	// status effects
+	public String effect;
+	public int effectDuration;
 	
-	boolean isHoming;
-	double prevTheta;
-	boolean track = true;
-	boolean init = true;
-	int duration;
+	// homing
+	
+	public boolean isHoming;
+	public int homingSpeed;
+	public double prevTheta;
+	public boolean track = true;
+	public boolean init = true;
+	public int duration;
 
 	public feather(double x, double y, boolean forward) {
 		super(x, y, 8, 8, Color.BLACK);
 		this.forward = forward;
+		
+		effect = "none";
+		effectDuration = -1;
+		
 		this.isHoming = false;
 
 		if (forward) {
@@ -61,14 +69,14 @@ public class feather extends object {
 			}
 			// update dx and dy to follow player if track is true
 			if (track) {
-				dx = (speed * deltaX / hypotenuse);
-				dy = (speed * deltaY / hypotenuse);
+				dx = (homingSpeed * deltaX / hypotenuse);
+				dy = (homingSpeed * deltaY / hypotenuse);
 			}
 			// update prevThetas
 			prevTheta = theta;
 		}
 		if (forward && enemies.size() == 0) {
-			dx = speed;
+			dx = homingSpeed;
 			dy = 0;
 		}
 		if (forward && enemies.size() > 0) {
@@ -78,8 +86,8 @@ public class feather extends object {
 			// if the distance is signficant, it has to already be travelling forward
 			if((deltaX > 500 && dx > 0) || deltaX < 500) {
 				double hypotenuse = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
-				dx = (speed * deltaX / hypotenuse);
-				dy = (speed * deltaY / hypotenuse);
+				dx = (homingSpeed * deltaX / hypotenuse);
+				dy = (homingSpeed * deltaY / hypotenuse);
 			}
 		}
 		

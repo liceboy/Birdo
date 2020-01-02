@@ -137,6 +137,9 @@ public abstract class game {
 					if (!player.status.containsKey("invulnerable")) {
 						player.health--;
 						player.status.put("invulnerable", 75);
+						
+						if (!f.effect.equals("none")) 
+							player.status.put(f.effect, f.effectDuration);
 					}
 					e.feathers.remove(j);
 					j--;
@@ -237,7 +240,7 @@ public abstract class game {
 
 			boolean removeEnemy = false;
 
-			if (e.y < -100 || e.y > 600 || e.x < -100)
+			if (e.y < -50 || e.y > 550 || e.x < -50)
 				removeEnemy = true;
 
 			// an enemy who falls below the lower bound
@@ -303,17 +306,52 @@ public abstract class game {
 
 		if (player.status.containsKey("invulnerable")) {
 			player.c = Color.RED;
-			player.status.put("invulnerable", player.status.get("invulnerable") - 1);
+			player.decreaseStatus("invulnerable");
+			
 			if (player.status.get("invulnerable") <= 0) {
 				player.status.remove("invulnerable");
 				player.c = Color.BLUE;
 			}
 		}
+		
+		// STUNNED
+		
+		if (player.status.containsKey("stunned")) {
+			player.c = Color.ORANGE;
+			player.decreaseStatus("stunned");
+			
+			if (player.status.get("stunned") <= 0) {
+				player.status.remove("stunned");
+				player.c = Color.BLUE;
+			}
+		}
+		
+		// SLOWED
+		
+		if (player.status.containsKey("slowed")) {
+			player.c = Color.CYAN;
+			player.decreaseStatus("slowed");
+			
+			if (player.status.get("slowed") <= 0) {
+				player.status.remove("slowed");
+				player.c = Color.BLUE;
+			}
+		}
+		
+		// SINKING
+		if (player.status.containsKey("sinking")) {
+			player.decreaseStatus("sinking");
+			
+			if (player.status.get("sinking") <= 0) {
+				player.status.remove("sinking");
+			}
+		}
 
-		// RAPIDFIRE POWERUP
+		// RAPID FIRE
 
 		if (player.status.containsKey("rapidFire")) {
-			player.status.put("rapidFire", player.status.get("rapidFire") - 1);
+			player.decreaseStatus("rapidFire");
+			
 			if (player.status.get("rapidFire") <= 0) {
 				player.status.remove("rapidFire");
 			}

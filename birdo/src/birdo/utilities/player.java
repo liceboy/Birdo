@@ -97,6 +97,9 @@ public class player extends object {
 	}
 
 	public void shoot() { // shots automatically with cooldown
+		if (status.containsKey("stunned"))
+			return;
+		
 		if (shotCount == 0) {
 			shotCount = 20;
 			customShot("normal");
@@ -110,6 +113,8 @@ public class player extends object {
 	}
 
 	public void customShot(String type) {
+		if (status.containsKey("stunned"))
+			return;
 		
 		// creates feather(s) according to given behavior
 		// feathers come from the dead center
@@ -267,7 +272,7 @@ public class player extends object {
 			//for homing feather 
 			feather f = new feather(alignedX, alignedY, true);
 			f.isHoming = true;
-			f.speed = 3;
+			f.homingSpeed = 3;
 			f.duration = 150;
 			feathers.add(f);
 		}
@@ -275,7 +280,7 @@ public class player extends object {
 		if (type == "homingSlow") {
 			feather f = new feather(alignedX, alignedY, true);
 			f.isHoming = true;			
-			f.speed = 2;
+			f.homingSpeed = 2;
 			f.duration = 200;
 			feathers.add(f);
 		}
@@ -283,7 +288,7 @@ public class player extends object {
 		if (type == "homingFast") {
 			feather f = new feather(alignedX, alignedY, true);
 			f.isHoming = true;
-			f.speed = 5;
+			f.homingSpeed = 5;
 			f.duration = 100;
 			feathers.add(f);
 		}
@@ -291,14 +296,19 @@ public class player extends object {
 	
 	public void setMovement() {
 		// ben's movement system
+		
+		int moveSpeed = 4;
+		if (status.containsKey("slowed"))
+			moveSpeed = 2;
+		
 		if (player && !isDead) {
 			if (up || down) {
 				if (up && down) {
 					dy = 0;
 				} else if (up) {
-					dy = -4;
+					dy = -moveSpeed;
 				} else {
-					dy = 4;
+					dy = moveSpeed;
 				}
 			} else {
 				dy = 0;
@@ -307,14 +317,22 @@ public class player extends object {
 				if (left && right) {
 					dx = 0;
 				} else if (left) {
-					dx = -4;
+					dx = -moveSpeed;
 				} else {
-					dx = 4;
+					dx = moveSpeed;
 				}
 			} else {
 				dx = 0;
 			}
 		}
+		
+		if (status.containsKey("sinking"))
+			dy += 2;
+	}
+	
+	public void decreaseStatus(String key) {
+		if (status.containsKey(key))
+			status.put(key, status.get(key) - 1);
 	}
 
 	public void usePowerup() { // uses the powerup based on string type, add powerups as you feel

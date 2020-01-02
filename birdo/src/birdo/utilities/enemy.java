@@ -315,7 +315,7 @@ public class enemy extends player {
 			feather f = new feather(alignedX, alignedY, false);
 			f.isHoming = true;
 			f.p = p;
-			f.speed = 3;
+			f.homingSpeed = 3;
 			f.duration = 150;
 			feathers.add(f);
 		}
@@ -324,7 +324,7 @@ public class enemy extends player {
 			feather f = new feather(alignedX, alignedY, false);
 			f.isHoming = true;
 			f.p = p;
-			f.speed = 2;
+			f.homingSpeed = 2;
 			f.duration = 200;
 			feathers.add(f);
 		}
@@ -333,7 +333,7 @@ public class enemy extends player {
 			feather f = new feather(alignedX, alignedY, false);
 			f.isHoming = true;
 			f.p = p;
-			f.speed = 5;
+			f.homingSpeed = 5;
 			f.duration = 100;
 			feathers.add(f);
 		}
