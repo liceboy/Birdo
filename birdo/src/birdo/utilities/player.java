@@ -5,6 +5,7 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
@@ -25,7 +26,7 @@ public class player extends object {
 	
 	// status
 	public Map<String, Integer> status;
-	public ArrayList<String> allEffects;
+	public Set<String> allEffects;
 	public String powerupType;
 	
 	// attacks
@@ -62,7 +63,7 @@ public class player extends object {
 		centerY = (this.y + this.h / 2);
 		
 		status = new HashMap<String, Integer>();
-		allEffects = new ArrayList<String>();
+		allEffects = new HashSet<String>();
 		powerupType = "spinBurst";
 		
 		loadout = new HashMap<String, int[]>();
@@ -114,6 +115,7 @@ public class player extends object {
 	}
 
 	public void shoot() { // shots automatically with cooldown
+		
 		if (status.containsKey("stunned"))
 			return;
 		if (status.containsKey("rapidFire")) 

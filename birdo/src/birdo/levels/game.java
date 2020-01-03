@@ -435,7 +435,7 @@ public abstract class game {
 	public void createRandomPowerup(int x, int y) {
 		String[] choices = {"rapidFire", "spinBurst", "homingRush", "stunShot", "heal", "invulnerability"};
 		int choice = (int) (Math.random() * 6);
-		powerup toAdd = new powerup(x, y, choices[choice]);
+		powerup toAdd = new powerup(x, y, "spinBurst");
 		powerups.add(toAdd);
 	}
 
