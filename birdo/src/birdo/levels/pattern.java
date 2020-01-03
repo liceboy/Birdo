@@ -10,10 +10,12 @@ import java.util.Scanner;
 
 import birdo.enemies.*;
 import birdo.utilities.enemy;
+import birdo.utilities.obstacle;
 
 public class pattern {
 
 	public ArrayList<enemy> enemies = new ArrayList<enemy>();
+	public ArrayList<obstacle> obstacles = new ArrayList<obstacle>();
 
 	public pattern(String pn) {
 		read(pn);
@@ -37,12 +39,19 @@ public class pattern {
 
 			while (!current.equals("end")) {
 				String[] params = current.split(" ");
-				// type, x, y
-				enemy temp = createEnemy(params[0]);
-				temp.x = Integer.parseInt(params[1]);
-				temp.y = Integer.parseInt(params[2]);
-				enemies.add(temp);
-				// adds the enemy to the main arr list
+				
+				if (params[0].equals("obstacle")) {
+					obstacle temp = new obstacle(Double.parseDouble(params[1]), Double.parseDouble(params[2]), 
+												 Integer.parseInt(params[3]), Integer.parseInt(params[4]));
+					obstacles.add(temp);
+				}
+				else {
+					enemy temp = createEnemy(params[0]);
+					temp.x = Integer.parseInt(params[1]);
+					temp.y = Integer.parseInt(params[2]);
+					enemies.add(temp);
+					// adds the enemy to the main arr list
+				}
 				current = b.readLine();
 			}
 

@@ -70,6 +70,15 @@ public class player extends object {
 	}
 
 	public void draw(Graphics g) {
+		String statusBar = "";
+		if (status.containsKey("invulnerable")) statusBar += "INV ";
+		if (status.containsKey("stunned")) statusBar += "STUN ";
+		if (status.containsKey("slowed")) statusBar += "SLOW ";
+		if (status.containsKey("sinking")) statusBar += "SINK ";
+		g.setColor(Color.BLACK);
+		g.setFont(g.getFont().deriveFont(8f));
+		g.drawString(statusBar, (int) x, (int) y - 10);
+		
 		for (feather a : feathers)
 			a.draw(g);
 		// draws feathers
@@ -78,10 +87,9 @@ public class player extends object {
 		// draw egg
 		super.draw(g);
 		// draws self
-
 	}
 
-	public void move() {
+	public void move() {	
 		centerX = (this.x + this.w / 2);
 		centerY = (this.y + this.h / 2);
 		
@@ -349,9 +357,22 @@ public class player extends object {
 			dy += 2;
 	}
 	
-	public void decreaseStatus(String key) {
-		if (status.containsKey(key))
-			status.put(key, status.get(key) - 1);
+	public void addStatus(String effect, int duration) {
+		if (!status.containsKey(effect))
+			status.put(effect, duration);
+	}
+	
+	public void decreaseStatus(String effect) {
+		if (status.containsKey(effect))
+			status.put(effect, status.get(effect) - 1);
+		else return;
+		if (status.get(effect) <= 0)
+			status.remove(effect);
+	}
+	
+	public void decreaseAllStatus() {
+		String[] allEffects = {"invulnerable", "stunned", "slowed", "sinking"};
+		for (String s : allEffects) decreaseStatus(s);
 	}
 
 	public void usePowerup() { // uses the powerup based on string type, add powerups as you feel

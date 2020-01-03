@@ -14,6 +14,7 @@ public class object {
 	public double dy; // directional movement
 
 	public Color c;
+	public Color cDefault;
 	
 	public int hash;
 

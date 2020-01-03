@@ -18,8 +18,7 @@ public class level extends game {
 	}
 	
 	public void defaultLayout() {
-		layout.add("explodeEnemy");
-		layout.add("laserGang");
+		layout.add("bigBlocks");
 		layout.add("spinGang");
 		layout.add("enemyStaggered");
 		layout.add("strafingTrio");

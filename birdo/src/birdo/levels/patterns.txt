@@ -118,3 +118,7 @@ homing 815 180
 homing 815 360
 end
 
+bigBlocks
+obstacle 815 0 50 150
+obstacle 815 350 50 150
+end

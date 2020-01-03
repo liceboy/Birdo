@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.util.ArrayList;
+import java.util.Map;
 
 import birdo.enemies.*;
 import birdo.levels.pattern;
@@ -15,7 +16,8 @@ public abstract class game {
 	public player player;
 	public ArrayList<enemy> enemies;
 	public ArrayList<powerup> powerups;
-
+	public ArrayList<obstacle> obstacles;
+	
 	// game data
 	public int score = 0;
 	public String state;
@@ -30,6 +32,7 @@ public abstract class game {
 		player.player = true;
 		enemies = new ArrayList<enemy>();
 		powerups = new ArrayList<powerup>();
+		obstacles = new ArrayList<obstacle>();
 	}
 
 	public void move() {
@@ -55,9 +58,10 @@ public abstract class game {
 		for (feather f : player.feathers)
 			f.enemies = enemies;
 		
-		// moving the powerups
 		for (powerup p : powerups)
 			p.move();
+		for (obstacle o : obstacles)
+			o.move();
 		
 		collision();
 		status();
@@ -74,10 +78,13 @@ public abstract class game {
 			e.draw(g);
 		for (powerup p : powerups)
 			p.draw(g);
+		for (obstacle o : obstacles)
+			o.draw(g);
 		
 		// USER INTERFACE
 		
 		g.setColor(Color.BLACK);
+		g.setFont(g.getFont().deriveFont(12f));
 		
 		g.drawString("Health: " + player.health, 25, 40);
 		g.drawString("Score: " + score, 500, 40);
@@ -121,7 +128,7 @@ public abstract class game {
 				if (!player.status.containsKey("invulnerable")
 					&& e.defense > player.defense) {
 					player.health -= e.defense - player.defense;
-					player.status.put("invulnerable", 75);
+					player.addStatus("invulnerable", 75);
 				}
 			}
 
@@ -143,10 +150,10 @@ public abstract class game {
 							player.health -= damage;
 						else
 							player.health--;
-						player.status.put("invulnerable", 75);
+						player.addStatus("invulnerable", 75);
 						
 						if (!f.effect.equals("none")) 
-							player.status.put(f.effect, f.effectDuration);
+							player.addStatus(f.effect, f.effectDuration);
 					}
 				}
 				
@@ -168,7 +175,7 @@ public abstract class game {
 				if (player.getHitBox().intersects(p.getHitBox())) {
 					if (!player.status.containsKey("invulnerable")) {
 						player.health--;
-						player.status.put("invulnerable", 75);
+						player.addStatus("invulnerable", 75);
 					}
 					e.eggs.remove(k);
 					k--;
@@ -214,7 +221,7 @@ public abstract class game {
 					f.hasHit.add(e.hash);
 					
 					if (!f.effect.equals("none")) 
-						e.status.put(f.effect, f.effectDuration);
+						e.addStatus(f.effect, f.effectDuration);
 					
 					if (e.health <= 0)
 						score += e.score;
@@ -320,64 +327,29 @@ public abstract class game {
 			}
 
 		}
+		
+		for (int m = 0; m != obstacles.size(); m++) {
+			
+			if (m == -1)
+				continue;
+			
+			obstacle o = obstacles.get(m);
+			
+			if (player.getHitBox().intersects(o.getHitBox())) {
+				player.health--;
+				player.addStatus("invulnerable", 75);
+				player.addStatus("stunned", 75);
+			}
+		}
 
 	}
 	
 	public void status() {
-		// INVULNERABILITY
-
-		if (player.status.containsKey("invulnerable")) {
-			player.c = Color.RED;
-			player.decreaseStatus("invulnerable");
-			
-			if (player.status.get("invulnerable") <= 0) {
-				player.status.remove("invulnerable");
-				player.c = Color.BLUE;
-			}
-		}
 		
-		// STUNNED
+		player.decreaseAllStatus();
 		
-		if (player.status.containsKey("stunned")) {
-			player.c = Color.ORANGE;
-			player.decreaseStatus("stunned");
-			
-			if (player.status.get("stunned") <= 0) {
-				player.status.remove("stunned");
-				player.c = Color.BLUE;
-			}
-		}
-		
-		// SLOWED
-		
-		if (player.status.containsKey("slowed")) {
-			player.c = Color.CYAN;
-			player.decreaseStatus("slowed");
-			
-			if (player.status.get("slowed") <= 0) {
-				player.status.remove("slowed");
-				player.c = Color.BLUE;
-			}
-		}
-		
-		// SINKING
-		if (player.status.containsKey("sinking")) {
-			player.decreaseStatus("sinking");
-			
-			if (player.status.get("sinking") <= 0) {
-				player.status.remove("sinking");
-			}
-		}
-
-		// RAPID FIRE
-
-		if (player.status.containsKey("rapidFire")) {
-			player.decreaseStatus("rapidFire");
-			
-			if (player.status.get("rapidFire") <= 0) {
-				player.status.remove("rapidFire");
-			}
-		}
+		for (enemy e : enemies) 
+			e.decreaseAllStatus();
 	}
 
 	public void genPattern() {
@@ -395,9 +367,9 @@ public abstract class game {
 		}
 
 		if (allDead && patternNum != layout.size()) {
-			ArrayList<enemy> toAdd = new pattern(layout.get(patternNum)).enemies;
-			for (enemy e : toAdd)
-				enemies.add(e);
+			pattern temp = new pattern(layout.get(patternNum));
+			enemies.addAll(temp.enemies);
+			obstacles.addAll(temp.obstacles);
 			createRandomPowerup(800, 250);
 			patternNum++;
 		}
