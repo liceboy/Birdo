@@ -10,19 +10,14 @@ public class rapidEnemy extends enemy {
 	public rapidEnemy(int x, int y) {
 		super(x, y);
 		c = new Color(188, 74, 155);
+		
+		int[] stats = {20, attack, 1};
+		loadout.put("normal", stats);
 	}
 
 	public void move() {
 		customMove("default");
 		super.move();
-	}
-
-	public void shoot() {
-		if (shotCount == 0) {
-			customShot("normal");
-			shotCount = 20;
-		}
-		shotCount--;
 	}
 
 	public void poop() {

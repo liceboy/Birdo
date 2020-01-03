@@ -1,6 +1,8 @@
 package birdo.enemies;
 
 import java.awt.Color;
+import java.util.Map;
+
 import birdo.utilities.*;
 
 public class bigEnemy extends enemy {
@@ -12,20 +14,15 @@ public class bigEnemy extends enemy {
 		h = 30;
 		health = 5;
 		score = 250;
+		
+		int[] stats = {150, attack, 1};
+		loadout.put("triple", stats);
 	}
 
 	public void move() {
 		if (x < 800)
 			dx = -1;
 		super.move();
-	}
-
-	public void shoot() {
-		if (shotCount == 0) {
-			customShot("triple");
-			shotCount = 150;
-		}
-		shotCount--;
 	}
 
 	public void poop() {

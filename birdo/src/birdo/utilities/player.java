@@ -20,20 +20,19 @@ public class player extends object {
 	public double centerX;
 	public double centerY;
 	
-	// powerup
-	public String powerupType;
-	
 	// status
 	public Map<String, Integer> status;
+	public String powerupType;
 	
 	// attacks
+	public Map<String, int[]> loadout;
 	public ArrayList<feather> feathers;
 	public ArrayList<egg> eggs;
 	
 	// shooting
-	public int shotCount = 0;
-	public int shotMultiplier = 0;
-	public int poopCount = 0;
+	public int shotCount;
+	public int shotMultiplier;
+	public int poopCount;
 	
 	boolean init = true;
 	boolean track = true;
@@ -58,16 +57,18 @@ public class player extends object {
 		centerX = (this.x + this.w / 2);
 		centerY = (this.y + this.h / 2);
 		
+		status = new HashMap<String, Integer>();
 		powerupType = "none";
 		
-		status = new HashMap<String, Integer>();
-		
-		shotCount = 0;
-		poopCount = 0;
-		shotMultiplier = 0; 
-		
+		loadout = new HashMap<String, int[]>();
 		feathers = new ArrayList<feather>();
 		eggs = new ArrayList<egg>();
+		
+		shotCount = 1;
+		poopCount = 0;
+		shotMultiplier = 0;
+		
+		setLoadout();
 	}
 
 	public void draw(Graphics g) {
@@ -100,11 +101,15 @@ public class player extends object {
 		if (status.containsKey("stunned"))
 			return;
 		
-		if (shotCount == 0) {
-			shotCount = 20;
-			customShot("normal");
+		for(Map.Entry<String, int[]> style : loadout.entrySet()) {
+			if (shotCount % style.getValue()[0] == 0)
+				customShot(style.getKey(), style.getValue());
 		}
-		shotCount--;
+		
+		if (shotCount == 0) 
+			shotCount = 600;	
+		else
+			shotCount--;
 	}
 	
 	public void poop() { // poops
@@ -112,27 +117,39 @@ public class player extends object {
 			eggs.add(new egg(this.x, this.y));
 	}
 
-	public void customShot(String type) {
+	public void customShot(String type, int[] stats) {
 		if (status.containsKey("stunned"))
 			return;
 		
 		// creates feather(s) according to given behavior
 		// feathers come from the dead center
 		
+		// removes digits
+		type = type.replaceAll("\\d","");
+		
 		int fw = 8;
 		int fh = 8;
 		double alignedX = centerX - fw / 2;
 		double alignedY = centerY - fh / 2;
 		
+		int damage = stats[1];
+		int pierce = stats[2];
+		
 		if (isDead)
 			return;
 		if (type == "normal") {
-			feathers.add(new feather(alignedX, alignedY, true));
+			feathers.add(new feather(alignedX, alignedY, damage, pierce, true));
+		}
+		if (type == "stun") {
+			feather f = new feather(alignedX, alignedY, damage, pierce, true);
+			f.effect = "stunned";
+			f.effectDuration = 100;
+			feathers.add(f);
 		}
 		if (type == "triple") {
-			feather f = new feather(alignedX, alignedY, true);
-			feather f1 = new feather(alignedX, alignedY, true);
-			feather f2 = new feather(alignedX, alignedY, true);
+			feather f = new feather(alignedX, alignedY, damage, pierce, true);
+			feather f1 = new feather(alignedX, alignedY, damage, pierce, true);
+			feather f2 = new feather(alignedX, alignedY, damage, pierce, true);
 
 			f.dx = 5;
 
@@ -147,14 +164,14 @@ public class player extends object {
 			feathers.add(f2);
 		}
 		if (type == "bloom") {
-			feather f = new feather(alignedX, alignedY, true);
-			feather f1 = new feather(alignedX, alignedY, true);
-			feather f2 = new feather(alignedX, alignedY, true);
-			feather f3 = new feather(alignedX, alignedY, true);
-			feather f4 = new feather(alignedX, alignedY, true);
-			feather f5 = new feather(alignedX, alignedY, true);
-			feather f6 = new feather(alignedX, alignedY, true);
-			feather f7 = new feather(alignedX, alignedY, true);
+			feather f = new feather(alignedX, alignedY, damage, pierce, true);
+			feather f1 = new feather(alignedX, alignedY, damage, pierce, true);
+			feather f2 = new feather(alignedX, alignedY, damage, pierce, true);
+			feather f3 = new feather(alignedX, alignedY, damage, pierce, true);
+			feather f4 = new feather(alignedX, alignedY, damage, pierce, true);
+			feather f5 = new feather(alignedX, alignedY, damage, pierce, true);
+			feather f6 = new feather(alignedX, alignedY, damage, pierce, true);
+			feather f7 = new feather(alignedX, alignedY, damage, pierce, true);
 
 			f.dx = -5;
 			f.dy = 0;
@@ -188,10 +205,10 @@ public class player extends object {
 			feathers.add(f7);
 		}
 		if (type == "spin") {
-			feather f = new feather(alignedX, alignedY, true);
-			feather f1 = new feather(alignedX, alignedY, true);
-			feather f2 = new feather(alignedX, alignedY, true);
-			feather f3 = new feather(alignedX, alignedY, true);
+			feather f = new feather(alignedX, alignedY, damage, pierce, true);
+			feather f1 = new feather(alignedX, alignedY, damage, pierce, true);
+			feather f2 = new feather(alignedX, alignedY, damage, pierce, true);
+			feather f3 = new feather(alignedX, alignedY, damage, pierce, true);
 
 			f.dx = -1 * (5 * Math.cos(shotMultiplier * Math.PI / 12));
 			f.dy = -1 * (5 * Math.sin(shotMultiplier * Math.PI / 12));
@@ -213,12 +230,12 @@ public class player extends object {
 			feathers.add(f3);
 		}
 		if (type == "buckshot") {
-			feather f = new feather(alignedX, alignedY, true);
-			feather f1 = new feather(alignedX, alignedY, true);
-			feather f2 = new feather(alignedX, alignedY, true);
-			feather f3 = new feather(alignedX, alignedY, true);
-			feather f4 = new feather(alignedX, alignedY, true);
-			feather f5 = new feather(alignedX, alignedY, true);
+			feather f = new feather(alignedX, alignedY, damage, pierce, true);
+			feather f1 = new feather(alignedX, alignedY, damage, pierce, true);
+			feather f2 = new feather(alignedX, alignedY, damage, pierce, true);
+			feather f3 = new feather(alignedX, alignedY, damage, pierce, true);
+			feather f4 = new feather(alignedX, alignedY, damage, pierce, true);
+			feather f5 = new feather(alignedX, alignedY, damage, pierce, true);
 
 			f1.dx = (5 * Math.cos(Math.PI / 8));
 			f1.dy = (5 * Math.sin(Math.PI / 8));
@@ -244,7 +261,7 @@ public class player extends object {
 		
 		if (type == "explode") {
 			for (int x = 0; x < 15; x++) {
-				feather f = new feather(alignedX, alignedY, true);
+				feather f = new feather(alignedX, alignedY, damage, pierce, true);
 				f.dx = -1 * (5 * Math.cos((shotMultiplier + 45) * Math.PI / 6));
 				f.dy = -1 * (5 * Math.sin((shotMultiplier + 45) * Math.PI / 6));
 				feathers.add(f);
@@ -253,16 +270,16 @@ public class player extends object {
 		}
 		
 		if (type == "two") {
-			feather f = new feather(alignedX, alignedY + this.h/2 -9, true);
-			feather f1 = new feather(alignedX, alignedY + this.h/2 , true);
+			feather f = new feather(alignedX, alignedY + this.h/2 -9, damage, pierce, true);
+			feather f1 = new feather(alignedX, alignedY + this.h/2 , damage, pierce, true);
 			feathers.add(f);
 			feathers.add(f1);
 		}
 
 		if (type == "three") {
-			feather f = new feather(alignedX, alignedY, true);
-			feather f1 = new feather(alignedX, alignedY + this.h / 2 - 3, true);
-			feather f2 = new feather(alignedX, alignedY + this.h - 6, true);
+			feather f = new feather(alignedX, alignedY, damage, pierce, true);
+			feather f1 = new feather(alignedX, alignedY + this.h / 2 - 3, damage, pierce, true);
+			feather f2 = new feather(alignedX, alignedY + this.h - 6, damage, pierce, true);
 			feathers.add(f);
 			feathers.add(f1);
 			feathers.add(f2);
@@ -270,28 +287,35 @@ public class player extends object {
 
 		if (type == "homing") {
 			//for homing feather 
-			feather f = new feather(alignedX, alignedY, true);
+			feather f = new feather(alignedX, alignedY, damage, pierce, true);
 			f.isHoming = true;
 			f.homingSpeed = 3;
-			f.duration = 150;
+			f.homingDuration = 150;
 			feathers.add(f);
 		}
 		
 		if (type == "homingSlow") {
-			feather f = new feather(alignedX, alignedY, true);
+			feather f = new feather(alignedX, alignedY, damage, pierce, true);
 			f.isHoming = true;			
 			f.homingSpeed = 2;
-			f.duration = 200;
+			f.homingDuration = 200;
 			feathers.add(f);
 		}
 		
 		if (type == "homingFast") {
-			feather f = new feather(alignedX, alignedY, true);
+			feather f = new feather(alignedX, alignedY, damage, pierce, true);
 			f.isHoming = true;
 			f.homingSpeed = 5;
-			f.duration = 100;
+			f.homingDuration = 100;
 			feathers.add(f);
 		}
+	}
+	
+	public void setLoadout() {
+		int[] first = {20, attack, 1};
+		loadout.put("normal", first);
+		int[] second = {300, (int) (attack * 1.2), 3};
+		loadout.put("homingFast", second);
 	}
 	
 	public void setMovement() {

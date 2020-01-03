@@ -10,14 +10,9 @@ public class explodeEnemy extends enemy {
 		super(x, y);
 		c = new Color(88, 141, 190);
 		health = 2;
-	}
-
-	public void shoot() {
-		if (shotCount == 0) {
-			customShot("explode");
-			shotCount = 100;
-		}
-		shotCount--;
+		
+		int[] stats = {100, attack, 1};
+		loadout.put("explode", stats);
 	}
 
 	public void move() {

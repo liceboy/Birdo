@@ -18,11 +18,7 @@ public class laserEnemy extends enemy{
 	}
 	
 	public void shoot() {
-		if (shotCount == 0) {
-			customShot("laser");
-			shotCount = 5;
-		}
-		shotCount--;
+		return;
 	}
 
 	public void poop() {

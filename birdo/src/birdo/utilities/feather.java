@@ -9,22 +9,27 @@ public class feather extends object {
 	public player p;
 	public ArrayList<enemy> enemies = new ArrayList<enemy>();
 	
+	// stats
+	public int damage;
+	public int pierce;
+	
 	// status effects
 	public String effect;
 	public int effectDuration;
 	
 	// homing
-	
 	public boolean isHoming;
 	public int homingSpeed;
 	public double prevTheta;
 	public boolean track = true;
 	public boolean init = true;
-	public int duration;
+	public int homingDuration;
 
-	public feather(double x, double y, boolean forward) {
+	public feather(double x, double y, int damage, int pierce, boolean forward) {
 		super(x, y, 8, 8, Color.BLACK);
 		this.forward = forward;
+		
+		pierce = 1;
 		
 		effect = "none";
 		effectDuration = -1;
@@ -43,6 +48,7 @@ public class feather extends object {
 	
 	public void move() {
 		if (isHoming) 
+			c = Color.GREEN;
 			home();
 		super.move();
 	}
@@ -50,7 +56,7 @@ public class feather extends object {
 	
 	public void home() {
 		
-		if (duration <= 0) 
+		if (homingDuration <= 0) 
 			return;
 		
 		if (!forward) {
@@ -91,7 +97,7 @@ public class feather extends object {
 			}
 		}
 		
-		duration--;
+		homingDuration--;
 	}
 	
 	public enemy nearestEnemy() { // function to find the nearest enemy for tracking bullets
