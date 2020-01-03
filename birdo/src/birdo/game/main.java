@@ -121,11 +121,13 @@ public class main extends JPanel implements ActionListener {
 
 			if (level.state == "GameOver") { // if gameover, new hotkeys, resets game state
 				if (key == KeyEvent.VK_F1) {
-					state = "level";
 					level = new level();
+					level.defaultLayout();
+					state = "level";
 				}
 				if (key == KeyEvent.VK_F2) {
 					level = new level();
+					level.defaultLayout();
 					state = "title";
 				}
 				level.state = " ";
@@ -152,6 +154,7 @@ public class main extends JPanel implements ActionListener {
 				if (key == KeyEvent.VK_ESCAPE) {
 					state = "select";
 					level = new level();
+					level.defaultLayout();
 				}
 			}
 			
@@ -195,6 +198,19 @@ public class main extends JPanel implements ActionListener {
 					dev.createEnemy("explode");
 				if (key == KeyEvent.VK_BACK_SPACE)
 					dev.createEnemy("homing");
+			}
+			
+
+			if (dev.state == "GameOver") { // if gameover, new hotkeys, resets game state
+				if (key == KeyEvent.VK_F1) {
+					state = "dev";
+					dev = new level();
+				}
+				if (key == KeyEvent.VK_F2) {
+					dev = new level();
+					state = "title";
+				}
+				dev.state = " ";
 			}
 
 		}

@@ -11,12 +11,12 @@ public class level extends game {
 	
 	public level() {
 		super();
-		
 		player.createLoadout("normal", 20, player.attack, 1);
 		player.createLoadout("homingFast", 200, player.attack * 2, 3);
 	}
 	
 	public void defaultLayout() {
+		
 		layout.add("bigBlocks");
 		layout.add("spinGang");
 		layout.add("enemyStaggered");
