@@ -56,7 +56,6 @@ public class feather extends object {
 		super.move();
 	}
 	
-	
 	public void home() {
 		if (x < 0 || x > 800 || y < 0 || y > 550) 
 			return;
@@ -71,6 +70,9 @@ public class feather extends object {
 				prevTheta = theta;
 				init = false;
 			}
+			// if close enough, start tracking
+			if (hypotenuse < 300)
+				track = true;
 			// if ready to fuck off, stop tracking
 			if (homingDuration <= 0) 
 				track = false;
@@ -97,6 +99,9 @@ public class feather extends object {
 				prevTheta = theta;
 				init = false;
 			}
+			// if close enough, start tracking
+			if (hypotenuse < 300)
+				track = true;
 			// if ready to fuck off, stop tracking
 			if (homingDuration <= 0) 
 				track = false;
@@ -127,6 +132,8 @@ public class feather extends object {
 				if (a.isDead)
 					continue;
 				
+				if (a.x < 0 || a.x > 800)
+				
 				if (hasHit.contains(a.hash))
 					continue;
 				
@@ -141,7 +148,8 @@ public class feather extends object {
 				}
 			}
 			
-			if (nearestEnemy.isDead || hasHit.contains(nearestEnemy.hash))
+			if (nearestEnemy.isDead || hasHit.contains(nearestEnemy.hash) || 
+				nearestEnemy.x < 0 || nearestEnemy.x > 800)
 				return null;
 			else
 				return nearestEnemy;

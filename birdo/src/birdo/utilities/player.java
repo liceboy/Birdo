@@ -67,8 +67,6 @@ public class player extends object {
 		shotCount = 1;
 		poopCount = 0;
 		shotMultiplier = 0;
-		
-		setLoadout();
 	}
 
 	public void draw(Graphics g) {
@@ -310,11 +308,9 @@ public class player extends object {
 		}
 	}
 	
-	public void setLoadout() {
-		int[] first = {20, attack, 1};
-		loadout.put("normal", first);
-		int[] second = {300, (int) (attack * 2), 5};
-		loadout.put("homingFast", second);
+	public void createLoadout(String type, int interval, int attack, int pierce) {
+		int[] stats = {interval, attack, pierce};
+		loadout.put(type, stats);
 	}
 	
 	public void setMovement() {

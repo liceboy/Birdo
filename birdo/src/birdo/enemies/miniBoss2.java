@@ -25,22 +25,23 @@ public class miniBoss2 extends enemy {
 	}
 
 	public void shoot() {
+		int[] stats = {-1000, attack, 1};
 		if (health >= 10) {
 			if (shotCount <= 0) {
-				customShot("homing");
+				customShot("homing", stats);
 				shotCount = 200;
 			}
 			if (shotCount % 20 == 0 && (shotCount / 20) < 80) {
 				if (shotCount / 20 < 5)
-					customShot("normal");
+					customShot("normal", stats);
 				else
-					customShot("homing");
+					customShot("homing", stats);
 			}
 		}
 
 		if (health < 10 ) {
 			if (shotCount <= 0) {
-				customShot("spin");
+				customShot("spin", stats);
 				shotCount = 10;
 			}
 		}

@@ -23,12 +23,13 @@ public class miniBoss1 extends enemy {
 	}
 
 	public void shoot() {
+		int[] stats = {-1000, attack, 1};
 		if (shotCount <= 0) {
 			if (health > 10)
-				customShot("buckshot");
-				customShot("normal");
+				customShot("buckshot", stats);
+				customShot("normal", stats);
 			if (health <= 10)
-				customShot("triple");
+				customShot("triple", stats);
 			shotCount = 30;
 		}
 		shotCount--;

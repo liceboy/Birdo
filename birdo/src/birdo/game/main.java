@@ -65,7 +65,6 @@ public class main extends JPanel implements ActionListener {
 		title = new title();
 		select = new select();
 		level = new level();
-		level.defaultLayout();
 		
 		dev = new level();
 	}
