@@ -427,6 +427,10 @@ public abstract class game {
 			temp = new miniBoss2(x, y);
 		enemies.add(temp);
 	}
+	
+	public void createPowerup(String type) {
+		powerups.add(new powerup(815, 225, type));
+	}
 
 	public void createRandomPowerup(int x, int y) {
 		String[] choices = {"rapidFire", "spinBurst", "homingRush", "stunShot", "heal", "invulnerability"};

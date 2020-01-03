@@ -198,6 +198,18 @@ public class main extends JPanel implements ActionListener {
 					dev.createEnemy("explode");
 				if (key == KeyEvent.VK_BACK_SPACE)
 					dev.createEnemy("homing");
+				if (key == KeyEvent.VK_P)
+					dev.createPowerup("rapidFire");
+				if (key == KeyEvent.VK_O)
+					dev.createPowerup("spinBurst");
+				if (key == KeyEvent.VK_I)
+					dev.createPowerup("homingRush");
+				if (key == KeyEvent.VK_U)
+					dev.createPowerup("stunShot");
+				if (key == KeyEvent.VK_Y)
+					dev.createPowerup("heal");
+				if (key == KeyEvent.VK_T)
+					dev.createPowerup("invulnerability");
 			}
 			
 

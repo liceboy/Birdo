@@ -120,17 +120,17 @@ public class player extends object {
 			shotCount = (int) (shotCount / 2) * 2 - 2;
 		if (status.containsKey("spinBurst")) {
 			if (status.get("spinBurst") % 10 == 0) {
-				int[] stats = {-1000, attack / 2, 3};
+				int[] stats = {-1000, attack, 1};
 				customShot("spinBurst", stats);
 			}
 		}
 		if (status.containsKey("homingRush")) {
-			if (status.get("homingRush") % 50 == 0) {
-				feather f = new feather(alignedX, alignedY, attack * 2, 3, true);
+			if (status.get("homingRush") % 10 == 0) {
+				feather f = new feather(alignedX, alignedY, attack * 2, 1, true);
 				f.isHoming = true;
 				f.isStrong = true;
-				f.homingSpeed = 5;
-				f.homingDuration = 100;
+				f.homingSpeed = 7;
+				f.homingDuration = 300;
 				feathers.add(f);
 			}
 		}
@@ -172,7 +172,8 @@ public class player extends object {
 		if (type == "stun") {
 			feather f = new feather(alignedX, alignedY, attack, pierce, true);
 			f.effect = "stunned";
-			f.effectDuration = 100;
+			f.effectDuration = 300;
+			f.isStunShot = true;
 			feathers.add(f);
 		}
 		if (type == "triple") {
@@ -293,6 +294,15 @@ public class player extends object {
 			f7.dy = -1 * (5 * Math.sin((shotMultiplier * Math.PI / 12) + 7 * Math.PI / 4));
 
 			shotMultiplier++;
+			
+			f.c = Color.ORANGE;
+			f1.c = Color.ORANGE;
+			f2.c = Color.ORANGE;
+			f3.c = Color.ORANGE;
+			f4.c = Color.ORANGE;
+			f5.c = Color.ORANGE;
+			f6.c = Color.ORANGE;
+			f7.c = Color.ORANGE;
 
 			feathers.add(f);
 			feathers.add(f1);
@@ -364,7 +374,7 @@ public class player extends object {
 			feather f = new feather(alignedX, alignedY, attack, pierce, true);
 			f.isHoming = true;
 			f.homingSpeed = 3;
-			f.homingDuration = 150;
+			f.homingDuration = 500;
 			feathers.add(f);
 		}
 		
@@ -372,7 +382,7 @@ public class player extends object {
 			feather f = new feather(alignedX, alignedY, attack, pierce, true);
 			f.isHoming = true;			
 			f.homingSpeed = 2;
-			f.homingDuration = 200;
+			f.homingDuration = 2000;
 			feathers.add(f);
 		}
 		
@@ -380,7 +390,7 @@ public class player extends object {
 			feather f = new feather(alignedX, alignedY, attack, pierce, true);
 			f.isHoming = true;
 			f.homingSpeed = 5;
-			f.homingDuration = 100;
+			f.homingDuration = 300;
 			feathers.add(f);
 		}
 	}
@@ -453,16 +463,16 @@ public class player extends object {
 		if (powerupType.equals("spinBurst"))
 			addStatus("spinBurst", 100);
 		if (powerupType.equals("homingRush"))
-			addStatus("homingRush", 400);
+			addStatus("homingRush", 60);
 		if (powerupType.equals("stunShot")) {
 			feather f = new feather(alignedX, alignedY, attack * 2, 10, true);
 			f.isHoming = true;
 			f.isStrong = true;
+			f.isStunShot = true;
 			f.homingSpeed = 5;
-			f.homingDuration = 300;
+			f.homingDuration = 1000;
 			f.effect = "stunned";
-			f.effectDuration = 300;
-			f.c = Color.ORANGE;
+			f.effectDuration = 500;
 			feathers.add(f);
 		}
 		if (powerupType.equals("heal")) {
