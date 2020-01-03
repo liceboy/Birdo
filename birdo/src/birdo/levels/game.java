@@ -340,6 +340,11 @@ public abstract class game {
 				player.addStatus("invulnerable", 75);
 				player.addStatus("stunned", 75);
 			}
+			
+			if (o.x < -60) {
+				obstacles.remove(o);
+				m--;
+			}
 		}
 
 	}
@@ -354,19 +359,25 @@ public abstract class game {
 
 	public void genPattern() {
 		
-		// if all enemies are dead
+		// if all enemies are dead and all obstacles are gone
 		// and there exists more patterns,
 		// bring on another pattern
 
-		boolean allDead = true;
+		boolean allClear = true;
 		for (enemy e : enemies) {
 			if (e.x > 0 && !e.isDead) {
-				allDead = false;
+				allClear = false;
+				break;
+			}
+		}
+		for (obstacle o : obstacles) {
+			if (o.x > 0) {
+				allClear = false;
 				break;
 			}
 		}
 
-		if (allDead && patternNum != layout.size()) {
+		if (allClear && patternNum != layout.size()) {
 			pattern temp = new pattern(layout.get(patternNum));
 			enemies.addAll(temp.enemies);
 			obstacles.addAll(temp.obstacles);
