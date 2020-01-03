@@ -124,9 +124,6 @@ public class player extends object {
 		// creates feather(s) according to given behavior
 		// feathers come from the dead center
 		
-		// removes digits
-		type = type.replaceAll("\\d","");
-		
 		int fw = 8;
 		int fh = 8;
 		double alignedX = centerX - fw / 2;

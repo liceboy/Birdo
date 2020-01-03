@@ -139,10 +139,6 @@ public class enemy extends player {
 		// creates feather(s) according to given behavior
 		// feathers come from the dead center
 		
-		// removes digits
-		type = type.replaceAll("\\d","");
-		System.out.println(type);
-		
 		int fw = 8;
 		int fh = 8;
 		double alignedX = centerX - fw / 2;
@@ -174,7 +170,6 @@ public class enemy extends player {
 			f.dy = (5 * deltaY / hypotenuse);
 
 			feathers.add(f);
-			System.out.println("here");
 		}
 		
 		if (type == "triple") {
