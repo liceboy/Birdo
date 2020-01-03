@@ -6,6 +6,7 @@ import java.awt.Rectangle;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 public class player extends object {
 	
@@ -19,9 +20,12 @@ public class player extends object {
 	// location
 	public double centerX;
 	public double centerY;
+	public double alignedX;
+	public double alignedY;
 	
 	// status
 	public Map<String, Integer> status;
+	public ArrayList<String> allEffects;
 	public String powerupType;
 	
 	// attacks
@@ -58,7 +62,8 @@ public class player extends object {
 		centerY = (this.y + this.h / 2);
 		
 		status = new HashMap<String, Integer>();
-		powerupType = "none";
+		allEffects = new ArrayList<String>();
+		powerupType = "spinBurst";
 		
 		loadout = new HashMap<String, int[]>();
 		feathers = new ArrayList<feather>();
@@ -89,9 +94,14 @@ public class player extends object {
 		// draws self
 	}
 
-	public void move() {	
+	public void move() {
+		int fw = 8;
+		int fh = 8;
+		
 		centerX = (this.x + this.w / 2);
 		centerY = (this.y + this.h / 2);
+		alignedX = centerX - fw / 2;
+		alignedY = centerY - fh / 2;
 		
 		setMovement();
 		super.move();
@@ -106,6 +116,25 @@ public class player extends object {
 	public void shoot() { // shots automatically with cooldown
 		if (status.containsKey("stunned"))
 			return;
+		if (status.containsKey("rapidFire")) 
+			shotCount = (int) (shotCount / 2) * 2 - 2;
+		if (status.containsKey("spinBurst")) {
+			if (status.get("spinBurst") % 10 == 0) {
+				int[] stats = {-1000, attack / 2, 3};
+				customShot("spinBurst", stats);
+			}
+		}
+		if (status.containsKey("homingRush")) {
+			if (status.get("homingRush") % 50 == 0) {
+				feather f = new feather(alignedX, alignedY, attack * 2, 3, true);
+				f.isHoming = true;
+				f.isStrong = true;
+				f.homingSpeed = 5;
+				f.homingDuration = 100;
+				feathers.add(f);
+			}
+		}
+		
 		
 		for(Map.Entry<String, int[]> style : loadout.entrySet()) {
 			int[] stats = loadout.get(style.getKey());
@@ -131,11 +160,6 @@ public class player extends object {
 		
 		// creates feather(s) according to given behavior
 		// feathers come from the dead center
-		
-		int fw = 8;
-		int fh = 8;
-		double alignedX = centerX - fw / 2;
-		double alignedY = centerY - fh / 2;
 		
 		int attack = stats[1];
 		int pierce = stats[2];
@@ -217,7 +241,7 @@ public class player extends object {
 
 			f.dx = -1 * (5 * Math.cos(shotMultiplier * Math.PI / 12));
 			f.dy = -1 * (5 * Math.sin(shotMultiplier * Math.PI / 12));
-
+			
 			f1.dx = -1 * (5 * Math.cos((shotMultiplier * Math.PI / 12) + Math.PI / 2));
 			f1.dy = -1 * (5 * Math.sin((shotMultiplier * Math.PI / 12) + Math.PI / 2));
 
@@ -233,6 +257,51 @@ public class player extends object {
 			feathers.add(f1);
 			feathers.add(f2);
 			feathers.add(f3);
+		}
+		if (type == "spinBurst") {
+			feather f = new feather(alignedX, alignedY, attack, pierce, true);
+			feather f1 = new feather(alignedX, alignedY, attack, pierce, true);
+			feather f2 = new feather(alignedX, alignedY, attack, pierce, true);
+			feather f3 = new feather(alignedX, alignedY, attack, pierce, true);
+			feather f4 = new feather(alignedX, alignedY, attack, pierce, true);
+			feather f5 = new feather(alignedX, alignedY, attack, pierce, true);
+			feather f6 = new feather(alignedX, alignedY, attack, pierce, true);
+			feather f7 = new feather(alignedX, alignedY, attack, pierce, true);
+
+			f.dx = -1 * (5 * Math.cos(shotMultiplier * Math.PI / 12));
+			f.dy = -1 * (5 * Math.sin(shotMultiplier * Math.PI / 12));
+			
+			f1.dx = -1 * (5 * Math.cos((shotMultiplier * Math.PI / 12) + Math.PI / 4));
+			f1.dy = -1 * (5 * Math.sin((shotMultiplier * Math.PI / 12) + Math.PI / 4));
+			
+			f2.dx = -1 * (5 * Math.cos((shotMultiplier * Math.PI / 12) + Math.PI / 2));
+			f2.dy = -1 * (5 * Math.sin((shotMultiplier * Math.PI / 12) + Math.PI / 2));
+			
+			f3.dx = -1 * (5 * Math.cos((shotMultiplier * Math.PI / 12) + 3 * Math.PI / 4));
+			f3.dy = -1 * (5 * Math.sin((shotMultiplier * Math.PI / 12) + 3 * Math.PI / 4));
+
+			f4.dx = -1 * (5 * Math.cos((shotMultiplier * Math.PI / 12) + Math.PI));
+			f4.dy = -1 * (5 * Math.sin((shotMultiplier * Math.PI / 12) + Math.PI));
+			
+			f5.dx = -1 * (5 * Math.cos((shotMultiplier * Math.PI / 12) + 5 * Math.PI / 4));
+			f5.dy = -1 * (5 * Math.sin((shotMultiplier * Math.PI / 12) + 5 * Math.PI / 4));
+
+			f6.dx = -1 * (5 * Math.cos((shotMultiplier * Math.PI / 12) + 3 * Math.PI / 2));
+			f6.dy = -1 * (5 * Math.sin((shotMultiplier * Math.PI / 12) + 3 * Math.PI / 2));
+			
+			f7.dx = -1 * (5 * Math.cos((shotMultiplier * Math.PI / 12) + 7 * Math.PI / 4));
+			f7.dy = -1 * (5 * Math.sin((shotMultiplier * Math.PI / 12) + 7 * Math.PI / 4));
+
+			shotMultiplier++;
+
+			feathers.add(f);
+			feathers.add(f1);
+			feathers.add(f2);
+			feathers.add(f3);
+			feathers.add(f4);
+			feathers.add(f5);
+			feathers.add(f6);
+			feathers.add(f7);
 		}
 		if (type == "buckshot") {
 			feather f = new feather(alignedX, alignedY, attack, pierce, true);
@@ -358,6 +427,7 @@ public class player extends object {
 	}
 	
 	public void addStatus(String effect, int duration) {
+		allEffects.add(effect);
 		if (!status.containsKey(effect))
 			status.put(effect, duration);
 	}
@@ -371,7 +441,6 @@ public class player extends object {
 	}
 	
 	public void decreaseAllStatus() {
-		String[] allEffects = {"invulnerable", "stunned", "slowed", "sinking"};
 		for (String s : allEffects) decreaseStatus(s);
 	}
 
@@ -379,6 +448,32 @@ public class player extends object {
 		
 		if (powerupType == "none")
 			return;
+		if (powerupType.equals("rapidFire"))
+			addStatus("rapidFire", 800);
+		if (powerupType.equals("spinBurst"))
+			addStatus("spinBurst", 100);
+		if (powerupType.equals("homingRush"))
+			addStatus("homingRush", 400);
+		if (powerupType.equals("stunShot")) {
+			feather f = new feather(alignedX, alignedY, attack * 2, 10, true);
+			f.isHoming = true;
+			f.isStrong = true;
+			f.homingSpeed = 5;
+			f.homingDuration = 300;
+			f.effect = "stunned";
+			f.effectDuration = 300;
+			f.c = Color.ORANGE;
+			feathers.add(f);
+		}
+		if (powerupType.equals("heal")) {
+			if (health < maxHealth * 3 / 4)
+				health = maxHealth * 3 / 4;
+			else
+				health = maxHealth;
+		}
+		if (powerupType.equals("invulnerability")) {
+			addStatus("invulnerable", 200);
+		}
 		
 		powerupType = "none";
 	}

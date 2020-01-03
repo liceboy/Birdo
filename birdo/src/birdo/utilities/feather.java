@@ -20,6 +20,7 @@ public class feather extends object {
 	
 	// homing
 	public boolean isHoming;
+	public boolean isStrong;
 	public int homingSpeed;
 	public double prevTheta;
 	public boolean track = true;
@@ -36,7 +37,8 @@ public class feather extends object {
 		effect = "none";
 		effectDuration = -1;
 		
-		this.isHoming = false;
+		isHoming = false;
+		isStrong = false;
 
 		if (forward) {
 			dx = 5;
@@ -100,13 +102,15 @@ public class feather extends object {
 				init = false;
 			}
 			// if close enough, start tracking
-			if (hypotenuse < 300)
+			if (hypotenuse < 300 && !isStrong)
 				track = true;
 			// if ready to fuck off, stop tracking
 			if (homingDuration <= 0) 
 				track = false;
 			// if change in angle is greater than threshold, then stop tracking
-			if (Math.abs(prevTheta - theta) > 5 * Math.PI / 4)
+			if (Math.abs(prevTheta - theta) > 5 * Math.PI / 4 && !isStrong)
+				track = false;
+			if (Math.abs(prevTheta - theta) > 3 * Math.PI / 2 && isStrong)
 				track = false;
 			// update dx and dy to follow player if track is true
 			if (track) {
