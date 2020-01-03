@@ -14,6 +14,8 @@ public class object {
 	public double dy; // directional movement
 
 	public Color c;
+	
+	public int hash;
 
 	public object(double x, double y, int w, int h, Color c) {
 		this.x = x;
@@ -23,6 +25,7 @@ public class object {
 		dx = 0;
 		dy = 0;
 		this.c = c;
+		hash = this.hashCode();
 	}
 
 	public void draw(Graphics g) {

@@ -8,9 +8,10 @@ public class feather extends object {
 	public boolean forward;
 	public player p;
 	public ArrayList<enemy> enemies = new ArrayList<enemy>();
+	public ArrayList<Integer> hasHit = new ArrayList<Integer>();
 	
 	// stats
-	public int damage;
+	public int attack;
 	public int pierce;
 	
 	// status effects
@@ -25,11 +26,12 @@ public class feather extends object {
 	public boolean init = true;
 	public int homingDuration;
 
-	public feather(double x, double y, int damage, int pierce, boolean forward) {
+	public feather(double x, double y, int attack, int pierce, boolean forward) {
 		super(x, y, 8, 8, Color.BLACK);
 		this.forward = forward;
 		
-		pierce = 1;
+		this.attack = attack;
+		this.pierce = pierce;
 		
 		effect = "none";
 		effectDuration = -1;
@@ -47,16 +49,16 @@ public class feather extends object {
 	}
 	
 	public void move() {
-		if (isHoming) 
+		if (isHoming) {
 			c = Color.GREEN;
 			home();
+		}
 		super.move();
 	}
 	
 	
 	public void home() {
-		
-		if (homingDuration <= 0) 
+		if (x < 0 || x > 800 || y < 0 || y > 550) 
 			return;
 		
 		if (!forward) {
@@ -69,10 +71,12 @@ public class feather extends object {
 				prevTheta = theta;
 				init = false;
 			}
-			// if change in angle is greater than 180 degrees, then stop tracking
-			if (Math.abs(prevTheta - theta) > Math.PI) {
+			// if ready to fuck off, stop tracking
+			if (homingDuration <= 0) 
 				track = false;
-			}
+			// if change in angle is greater than threshold, then stop tracking
+			if (Math.abs(prevTheta - theta) > 5 * Math.PI / 4)
+				track = false;
 			// update dx and dy to follow player if track is true
 			if (track) {
 				dx = (homingSpeed * deltaX / hypotenuse);
@@ -81,20 +85,30 @@ public class feather extends object {
 			// update prevThetas
 			prevTheta = theta;
 		}
-		if (forward && enemies.size() == 0) {
-			dx = homingSpeed;
-			dy = 0;
-		}
 		if (forward && enemies.size() > 0) {
+			if (nearestEnemy() == null) return;
+			
 			double deltaX = nearestEnemy().x - x;
 			double deltaY = nearestEnemy().y - y;
-			
-			// if the distance is signficant, it has to already be travelling forward
-			if((deltaX > 500 && dx > 0) || deltaX < 500) {
-				double hypotenuse = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
+			double hypotenuse = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
+			double theta = Math.atan(deltaY / deltaX);
+			// during first move, set prevTheta to theta so it starts out as tracking
+			if (init) {
+				prevTheta = theta;
+				init = false;
+			}
+			// if ready to fuck off, stop tracking
+			if (homingDuration <= 0) 
+				track = false;
+			// if change in angle is greater than threshold, then stop tracking
+			if (Math.abs(prevTheta - theta) > 5 * Math.PI / 4)
+				track = false;
+			// update dx and dy to follow player if track is true
+			if (track) {
 				dx = (homingSpeed * deltaX / hypotenuse);
 				dy = (homingSpeed * deltaY / hypotenuse);
 			}
+			prevTheta = theta;
 		}
 		
 		homingDuration--;
@@ -113,6 +127,9 @@ public class feather extends object {
 				if (a.isDead)
 					continue;
 				
+				if (hasHit.contains(a.hash))
+					continue;
+				
 				double deltaX = a.x - x;
 				double deltaY = a.y - y;
 				double hypotenuse = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
@@ -123,7 +140,11 @@ public class feather extends object {
 					nearestEnemy = a;
 				}
 			}
-			return nearestEnemy;
+			
+			if (nearestEnemy.isDead || hasHit.contains(nearestEnemy.hash))
+				return null;
+			else
+				return nearestEnemy;
 		}
 		return null;
 	}
