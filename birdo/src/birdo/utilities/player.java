@@ -115,7 +115,6 @@ public class player extends object {
 	}
 
 	public void shoot() { // shots automatically with cooldown
-		
 		if (status.containsKey("stunned"))
 			return;
 		if (status.containsKey("rapidFire")) 

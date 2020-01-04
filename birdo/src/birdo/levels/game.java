@@ -187,6 +187,30 @@ public abstract class game {
 				}
 			}
 		}
+		
+		// FEATHER AND EGG HITBOXES
+		
+		for(int i = 0; i != player.feathers.size(); i++) {
+			if (i == -1)
+				continue;
+			
+			feather f = player.feathers.get(i);
+			if (f.x < -50 || f.x > 850 || f.y < -50 || f.y > 550) {
+				player.feathers.remove(i);
+				i--;
+			}
+		}
+		
+		for(int i = 0; i != player.eggs.size(); i++) {
+			if (i == -1)
+				continue;
+			
+			egg e = player.eggs.get(i);
+			if (e.x < -50 || e.x > 850 || e.y < -50 || e.y > 550) {
+				player.feathers.remove(i);
+				i--;
+			}
+		}
 
 		// ENEMY HITBOXES
 
@@ -233,12 +257,6 @@ public abstract class game {
 						j--;
 					}
 				}
-				
-				if (f.x < -100 || f.x > 900 || f.y < -100 || f.y > 600) {
-					if (j >= 0)
-						player.feathers.remove(j);
-					j--;
-				}
 			}
 
 			// enemy hit my egg? take damage
@@ -255,12 +273,6 @@ public abstract class game {
 					if (e.health <= 0)
 						score += e.score;
 					player.eggs.remove(k);
-					k--;
-				}
-				
-				if (p.y > 500) {
-					if (k >= 0)
-						player.eggs.remove(k);
 					k--;
 				}
 			}
