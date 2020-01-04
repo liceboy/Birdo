@@ -64,7 +64,7 @@ public class player extends object {
 
 		status = new HashMap<String, Integer>();
 		allEffects = new HashSet<String>();
-		powerupType = "spinBurst";
+		powerupType = "none";
 
 		loadout = new HashMap<String, int[]>();
 		feathers = new ArrayList<feather>();
@@ -144,6 +144,7 @@ public class player extends object {
 				f.isStrong = true;
 				f.homingSpeed = 7;
 				f.homingDuration = 300;
+				f.fromPlayer = true;
 				feathers.add(f);
 			}
 		}
@@ -385,6 +386,7 @@ public class player extends object {
 			f.isHoming = true;
 			f.homingSpeed = 3;
 			f.homingDuration = 500;
+			f.fromPlayer = true;
 			feathers.add(f);
 		}
 
@@ -393,6 +395,7 @@ public class player extends object {
 			f.isHoming = true;
 			f.homingSpeed = 2;
 			f.homingDuration = 2000;
+			f.fromPlayer = true;
 			feathers.add(f);
 		}
 
@@ -401,6 +404,7 @@ public class player extends object {
 			f.isHoming = true;
 			f.homingSpeed = 5;
 			f.homingDuration = 300;
+			f.fromPlayer = true;
 			feathers.add(f);
 		}
 	}
@@ -488,7 +492,7 @@ public class player extends object {
 		if (powerupType.equals("homingRush"))
 			addStatus("homingRush", 60);
 		if (powerupType.equals("stunShot")) {
-			feather f = new feather(alignedX, alignedY, attack * 2, 10, true);
+			feather f = new feather(alignedX, alignedY, attack * 2, 5, true);
 			f.isHoming = true;
 			f.isStrong = true;
 			f.isStunShot = true;

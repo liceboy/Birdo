@@ -210,6 +210,10 @@ public class main extends JPanel implements ActionListener {
 					dev.createPowerup("heal");
 				if (key == KeyEvent.VK_T)
 					dev.createPowerup("invulnerability");
+				if (key == KeyEvent.VK_L)
+					dev.createEnemy("miniBoss1");
+				if (key == KeyEvent.VK_K)
+					dev.createEnemy("miniBoss2");
 			}
 			
 

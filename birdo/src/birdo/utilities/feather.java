@@ -27,6 +27,7 @@ public class feather extends object {
 	public boolean track = true;
 	public boolean init = true;
 	public int homingDuration;
+	public boolean fromPlayer;
 
 	public feather(double x, double y, int attack, int pierce, boolean forward) {
 		super(x, y, 8, 8, Color.BLACK);
@@ -41,6 +42,7 @@ public class feather extends object {
 		isHoming = false;
 		isStrong = false;
 		isStunShot = false;
+		fromPlayer = false;
 
 		if (forward) {
 			dx = 5;
@@ -84,7 +86,7 @@ public class feather extends object {
 			if (homingDuration <= 0) 
 				track = false;
 			// if change in angle is greater than threshold, then stop tracking
-			if (Math.abs(prevTheta - theta) > 5 * Math.PI / 4)
+			if (Math.abs(prevTheta - theta) > 5 * Math.PI / 4 && fromPlayer == false)
 				track = false;
 			// update dx and dy to follow player if track is true
 			if (track) {
