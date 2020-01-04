@@ -33,8 +33,9 @@ public class main extends JPanel implements ActionListener {
 	// states
 	public title title;
 	public select select;
-	public level level;
+	public shop shop; 
 	
+	public level level;
 	public level dev;
 
 	public main(){
@@ -64,9 +65,10 @@ public class main extends JPanel implements ActionListener {
 		state = "title";
 		title = new title();
 		select = new select();
+		shop = new shop();
+		
 		level = new level();
 		level.defaultLayout();
-		
 		dev = new level();
 	}
 
@@ -84,6 +86,9 @@ public class main extends JPanel implements ActionListener {
 
 		if (state == "select")
 			select.draw(g);
+		
+		if (state == "shop")
+			shop.draw(g);
 
 		if (state == "level")
 			level.draw(g);
@@ -140,6 +145,8 @@ public class main extends JPanel implements ActionListener {
 					state = "level";
 				if (key == KeyEvent.VK_X)
 					state = "dev";
+				if (key == KeyEvent.VK_C)
+					state = "shop";
 			}
 
 			if (state == "level") {
@@ -198,21 +205,21 @@ public class main extends JPanel implements ActionListener {
 					dev.createEnemy("explode");
 				if (key == KeyEvent.VK_BACK_SPACE)
 					dev.createEnemy("homing");
-				if (key == KeyEvent.VK_P)
-					dev.createPowerup("rapidFire");
-				if (key == KeyEvent.VK_O)
-					dev.createPowerup("spinBurst");
-				if (key == KeyEvent.VK_I)
-					dev.createPowerup("homingRush");
-				if (key == KeyEvent.VK_U)
-					dev.createPowerup("stunShot");
-				if (key == KeyEvent.VK_Y)
-					dev.createPowerup("heal");
 				if (key == KeyEvent.VK_T)
+					dev.createPowerup("rapidFire");
+				if (key == KeyEvent.VK_Y)
+					dev.createPowerup("spinBurst");
+				if (key == KeyEvent.VK_U)
+					dev.createPowerup("homingRush");
+				if (key == KeyEvent.VK_I)
+					dev.createPowerup("stunShot");
+				if (key == KeyEvent.VK_O)
+					dev.createPowerup("heal");
+				if (key == KeyEvent.VK_P)
 					dev.createPowerup("invulnerability");
-				if (key == KeyEvent.VK_L)
-					dev.createEnemy("miniBoss1");
 				if (key == KeyEvent.VK_K)
+					dev.createEnemy("miniBoss1");
+				if (key == KeyEvent.VK_L)
 					dev.createEnemy("miniBoss2");
 			}
 			
