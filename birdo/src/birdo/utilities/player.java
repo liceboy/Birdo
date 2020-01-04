@@ -10,39 +10,39 @@ import java.util.Map;
 import java.util.Set;
 
 public class player extends object {
-	
+
 	// stats
 	public int health;
 	public int maxHealth;
 	public int attack;
 	public int defense;
 	public boolean isDead;
-	
+
 	// location
 	public double centerX;
 	public double centerY;
 	public double alignedX;
 	public double alignedY;
-	
+
 	// status
 	public Map<String, Integer> status;
 	public Set<String> allEffects;
 	public String powerupType;
-	
+
 	// attacks
 	public Map<String, int[]> loadout;
 	public ArrayList<feather> feathers;
 	public ArrayList<egg> eggs;
-	
+
 	// shooting
 	public int shotCount;
 	public int shotMultiplier;
 	public int poopCount;
-	
+
 	boolean init = true;
 	boolean track = true;
 	double prevTheta;
-	
+
 	// ben's movement system
 	public boolean up = false;
 	public boolean down = false;
@@ -52,24 +52,24 @@ public class player extends object {
 
 	public player(int x, int y, Color c) {
 		super(x, y, 20, 20, c);
-		
+
 		health = 50;
 		maxHealth = 50;
 		attack = 10;
 		defense = 8;
 		isDead = false;
-		
+
 		centerX = (this.x + this.w / 2);
 		centerY = (this.y + this.h / 2);
-		
+
 		status = new HashMap<String, Integer>();
 		allEffects = new HashSet<String>();
 		powerupType = "spinBurst";
-		
+
 		loadout = new HashMap<String, int[]>();
 		feathers = new ArrayList<feather>();
 		eggs = new ArrayList<egg>();
-		
+
 		shotCount = 1;
 		poopCount = 0;
 		shotMultiplier = 0;
@@ -77,14 +77,18 @@ public class player extends object {
 
 	public void draw(Graphics g) {
 		String statusBar = "";
-		if (status.containsKey("invulnerable")) statusBar += "INV ";
-		if (status.containsKey("stunned")) statusBar += "STUN ";
-		if (status.containsKey("slowed")) statusBar += "SLOW ";
-		if (status.containsKey("sinking")) statusBar += "SINK ";
+		if (status.containsKey("invulnerable"))
+			statusBar += "INV ";
+		if (status.containsKey("stunned"))
+			statusBar += "STUN ";
+		if (status.containsKey("slowed"))
+			statusBar += "SLOW ";
+		if (status.containsKey("sinking"))
+			statusBar += "SINK ";
 		g.setColor(Color.BLACK);
 		g.setFont(g.getFont().deriveFont(8f));
 		g.drawString(statusBar, (int) x, (int) y - 10);
-		
+
 		for (feather a : feathers)
 			a.draw(g);
 		// draws feathers
@@ -98,16 +102,16 @@ public class player extends object {
 	public void move() {
 		int fw = 8;
 		int fh = 8;
-		
+
 		centerX = (this.x + this.w / 2);
 		centerY = (this.y + this.h / 2);
 		alignedX = centerX - fw / 2;
 		alignedY = centerY - fh / 2;
-		
+
 		setMovement();
 		super.move();
 		shoot();
-		
+
 		for (feather f : feathers)
 			f.move();
 		for (egg e : eggs)
@@ -117,14 +121,22 @@ public class player extends object {
 	public void shoot() { // shots automatically with cooldown
 		if (status.containsKey("stunned"))
 			return;
-		if (status.containsKey("rapidFire")) 
-			shotCount = (int) (shotCount / 2) * 2 - 2;
-		if (status.containsKey("spinBurst")) {
-			if (status.get("spinBurst") % 10 == 0) {
-				int[] stats = {-1000, attack, 1};
-				customShot("spinBurst", stats);
+		
+		if (status.containsKey("rapidFire")) {
+			if (status.get("rapidFire") == 1) {
+				for(Map.Entry<String, int[]> style : loadout.entrySet()) {
+					String type = style.getKey();
+					int[] stats = loadout.get(type);
+					stats[0] *= 2;
+					loadout.put(type, stats);
+				}
 			}
 		}
+		
+		if (status.containsKey("spinBurst")) 
+			if (status.get("spinBurst") % 10 == 0) 
+				customShot("spinBurst", attack, 1);
+		
 		if (status.containsKey("homingRush")) {
 			if (status.get("homingRush") % 10 == 0) {
 				feather f = new feather(alignedX, alignedY, attack * 2, 1, true);
@@ -149,22 +161,19 @@ public class player extends object {
 		else
 			shotCount--;
 	}
-	
+
 	public void poop() { // poops
 		if (!isDead)
 			eggs.add(new egg(this.x, this.y));
 	}
 
-	public void customShot(String type, int[] stats) {
+	public void customShot(String type, int attack, int pierce) {
 		if (status.containsKey("stunned"))
 			return;
-		
+
 		// creates feather(s) according to given behavior
 		// feathers come from the dead center
-		
-		int attack = stats[1];
-		int pierce = stats[2];
-		
+
 		if (isDead)
 			return;
 		if (type == "normal") {
@@ -243,7 +252,7 @@ public class player extends object {
 
 			f.dx = -1 * (5 * Math.cos(shotMultiplier * Math.PI / 12));
 			f.dy = -1 * (5 * Math.sin(shotMultiplier * Math.PI / 12));
-			
+
 			f1.dx = -1 * (5 * Math.cos((shotMultiplier * Math.PI / 12) + Math.PI / 2));
 			f1.dy = -1 * (5 * Math.sin((shotMultiplier * Math.PI / 12) + Math.PI / 2));
 
@@ -272,30 +281,30 @@ public class player extends object {
 
 			f.dx = -1 * (5 * Math.cos(shotMultiplier * Math.PI / 12));
 			f.dy = -1 * (5 * Math.sin(shotMultiplier * Math.PI / 12));
-			
+
 			f1.dx = -1 * (5 * Math.cos((shotMultiplier * Math.PI / 12) + Math.PI / 4));
 			f1.dy = -1 * (5 * Math.sin((shotMultiplier * Math.PI / 12) + Math.PI / 4));
-			
+
 			f2.dx = -1 * (5 * Math.cos((shotMultiplier * Math.PI / 12) + Math.PI / 2));
 			f2.dy = -1 * (5 * Math.sin((shotMultiplier * Math.PI / 12) + Math.PI / 2));
-			
+
 			f3.dx = -1 * (5 * Math.cos((shotMultiplier * Math.PI / 12) + 3 * Math.PI / 4));
 			f3.dy = -1 * (5 * Math.sin((shotMultiplier * Math.PI / 12) + 3 * Math.PI / 4));
 
 			f4.dx = -1 * (5 * Math.cos((shotMultiplier * Math.PI / 12) + Math.PI));
 			f4.dy = -1 * (5 * Math.sin((shotMultiplier * Math.PI / 12) + Math.PI));
-			
+
 			f5.dx = -1 * (5 * Math.cos((shotMultiplier * Math.PI / 12) + 5 * Math.PI / 4));
 			f5.dy = -1 * (5 * Math.sin((shotMultiplier * Math.PI / 12) + 5 * Math.PI / 4));
 
 			f6.dx = -1 * (5 * Math.cos((shotMultiplier * Math.PI / 12) + 3 * Math.PI / 2));
 			f6.dy = -1 * (5 * Math.sin((shotMultiplier * Math.PI / 12) + 3 * Math.PI / 2));
-			
+
 			f7.dx = -1 * (5 * Math.cos((shotMultiplier * Math.PI / 12) + 7 * Math.PI / 4));
 			f7.dy = -1 * (5 * Math.sin((shotMultiplier * Math.PI / 12) + 7 * Math.PI / 4));
 
 			shotMultiplier++;
-			
+
 			f.c = Color.ORANGE;
 			f1.c = Color.ORANGE;
 			f2.c = Color.ORANGE;
@@ -343,7 +352,7 @@ public class player extends object {
 			feathers.add(f5);
 			feathers.add(f);
 		}
-		
+
 		if (type == "explode") {
 			for (int x = 0; x < 15; x++) {
 				feather f = new feather(alignedX, alignedY, attack, pierce, true);
@@ -353,10 +362,10 @@ public class player extends object {
 				shotMultiplier++;
 			}
 		}
-		
+
 		if (type == "two") {
-			feather f = new feather(alignedX, alignedY + this.h/2 -9, attack, pierce, true);
-			feather f1 = new feather(alignedX, alignedY + this.h/2 , attack, pierce, true);
+			feather f = new feather(alignedX, alignedY + this.h / 2 - 9, attack, pierce, true);
+			feather f1 = new feather(alignedX, alignedY + this.h / 2, attack, pierce, true);
 			feathers.add(f);
 			feathers.add(f1);
 		}
@@ -371,22 +380,22 @@ public class player extends object {
 		}
 
 		if (type == "homing") {
-			//for homing feather 
+			// for homing feather
 			feather f = new feather(alignedX, alignedY, attack, pierce, true);
 			f.isHoming = true;
 			f.homingSpeed = 3;
 			f.homingDuration = 500;
 			feathers.add(f);
 		}
-		
+
 		if (type == "homingSlow") {
 			feather f = new feather(alignedX, alignedY, attack, pierce, true);
-			f.isHoming = true;			
+			f.isHoming = true;
 			f.homingSpeed = 2;
 			f.homingDuration = 2000;
 			feathers.add(f);
 		}
-		
+
 		if (type == "homingFast") {
 			feather f = new feather(alignedX, alignedY, attack, pierce, true);
 			f.isHoming = true;
@@ -395,19 +404,23 @@ public class player extends object {
 			feathers.add(f);
 		}
 	}
-	
+
+	public void customShot(String type, int[] stats) {
+		customShot(type, stats[1], stats[2]);
+	}
+
 	public void createLoadout(String type, int interval, int attack, int pierce) {
-		int[] stats = {interval, attack, pierce};
+		int[] stats = { interval, attack, pierce };
 		loadout.put(type, stats);
 	}
-	
+
 	public void setMovement() {
 		// ben's movement system
-		
+
 		int moveSpeed = 4;
 		if (status.containsKey("slowed"))
 			moveSpeed = 2;
-		
+
 		if (player && !isDead) {
 			if (up || down) {
 				if (up && down) {
@@ -432,35 +445,44 @@ public class player extends object {
 				dx = 0;
 			}
 		}
-		
+
 		if (status.containsKey("sinking"))
 			dy += 2;
 	}
-	
+
 	public void addStatus(String effect, int duration) {
 		allEffects.add(effect);
 		if (!status.containsKey(effect))
 			status.put(effect, duration);
 	}
-	
+
 	public void decreaseStatus(String effect) {
 		if (status.containsKey(effect))
 			status.put(effect, status.get(effect) - 1);
-		else return;
+		else
+			return;
 		if (status.get(effect) <= 0)
 			status.remove(effect);
 	}
-	
+
 	public void decreaseAllStatus() {
-		for (String s : allEffects) decreaseStatus(s);
+		for (String s : allEffects)
+			decreaseStatus(s);
 	}
 
 	public void usePowerup() { // uses the powerup based on string type, add powerups as you feel
-		
+
 		if (powerupType == "none")
 			return;
-		if (powerupType.equals("rapidFire"))
-			addStatus("rapidFire", 800);
+		if (powerupType.equals("rapidFire")) {
+			for(Map.Entry<String, int[]> style : loadout.entrySet()) {
+				String type = style.getKey();
+				int[] stats = loadout.get(type);
+				stats[0] /= 2;
+				loadout.put(type, stats);
+			}
+			addStatus("rapidFire", 400);
+		}
 		if (powerupType.equals("spinBurst"))
 			addStatus("spinBurst", 100);
 		if (powerupType.equals("homingRush"))
@@ -485,7 +507,7 @@ public class player extends object {
 		if (powerupType.equals("invulnerability")) {
 			addStatus("invulnerable", 200);
 		}
-		
+
 		powerupType = "none";
 	}
 
@@ -498,5 +520,5 @@ public class player extends object {
 		}
 		return false;
 	}
-	
+
 }
