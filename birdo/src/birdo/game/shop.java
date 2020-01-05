@@ -14,6 +14,7 @@ public class shop {
 		g.setColor(Color.BLACK);
 		g.setFont(g.getFont().deriveFont(16f));
 		g.drawString("-Shop-", 50, 50);
+		g.drawString("Exit: Esc", 600, 50);
 		g.setFont(g.getFont().deriveFont(12f));
 	}
 

@@ -148,6 +148,11 @@ public class main extends JPanel implements ActionListener {
 				if (key == KeyEvent.VK_C)
 					state = "shop";
 			}
+			
+			if (state == "shop") {
+				if (key == KeyEvent.VK_ESCAPE)
+					state = "select";
+			}
 
 			if (state == "level") {
 				if (key == KeyEvent.VK_UP)

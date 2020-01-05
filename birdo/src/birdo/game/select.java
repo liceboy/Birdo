@@ -15,7 +15,6 @@ public class select {
 		g.drawString("-Level Select-", 100, 100);
 		g.setFont(g.getFont().deriveFont(12f));
 		g.drawString("Default Level: Z", 100, 130);
-		g.drawString("", 350, 130);
 		g.drawString("Dev Mode: X", 100, 160);
 		g.drawString("[1 to Backspace spawns enemies]", 350, 160);
 		g.drawString("[T to P spawns powerups]", 350, 175);

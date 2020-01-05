@@ -144,7 +144,6 @@ public class player extends object {
 				f.isStrong = true;
 				f.homingSpeed = 7;
 				f.homingDuration = 300;
-				f.fromPlayer = true;
 				feathers.add(f);
 			}
 		}
@@ -386,7 +385,6 @@ public class player extends object {
 			f.isHoming = true;
 			f.homingSpeed = 3;
 			f.homingDuration = 500;
-			f.fromPlayer = true;
 			feathers.add(f);
 		}
 
@@ -395,7 +393,6 @@ public class player extends object {
 			f.isHoming = true;
 			f.homingSpeed = 2;
 			f.homingDuration = 2000;
-			f.fromPlayer = true;
 			feathers.add(f);
 		}
 
@@ -404,7 +401,6 @@ public class player extends object {
 			f.isHoming = true;
 			f.homingSpeed = 5;
 			f.homingDuration = 300;
-			f.fromPlayer = true;
 			feathers.add(f);
 		}
 	}
