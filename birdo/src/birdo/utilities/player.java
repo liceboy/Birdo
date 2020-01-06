@@ -485,7 +485,7 @@ public class player extends object {
 			f.homingSpeed = 5;
 			f.homingDuration = 1000;
 			f.effect = "stunned";
-			f.effectDuration = 500;
+			f.effectDuration = 200;
 			feathers.add(f);
 		}
 		if (powerupType.equals("heal")) {
