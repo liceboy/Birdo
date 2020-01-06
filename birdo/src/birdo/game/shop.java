@@ -10,7 +10,7 @@ public class shop {
 
 	}
 
-	public void draw(Graphics g) {
+	public void draw(Graphics g, assets a) {
 		g.setColor(Color.BLACK);
 		g.setFont(g.getFont().deriveFont(16f));
 		g.drawString("-Shop-", 50, 50);

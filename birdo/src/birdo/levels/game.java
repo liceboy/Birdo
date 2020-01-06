@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Map;
 
 import birdo.enemies.*;
+import birdo.game.assets;
 import birdo.levels.pattern;
 import birdo.utilities.*;
 
@@ -68,23 +69,23 @@ public abstract class game {
 		genPattern();
 	}
 
-	public void draw(Graphics g) {
+	public void draw(Graphics g, assets a) {
 		
 		// GAME OBJECTS
 		
-		player.draw(g);
+		player.draw(g, a);
 		
 		for (enemy e : enemies)
-			e.draw(g);
+			e.draw(g, a);
 		for (powerup p : powerups)
-			p.draw(g);
+			p.draw(g, a);
 		for (obstacle o : obstacles)
-			o.draw(g);
+			o.draw(g, a);
 		
 		// USER INTERFACE
 		
-		g.setColor(Color.BLACK);
-		g.setFont(g.getFont().deriveFont(12f));
+		g.setColor(a.colors.get("black"));
+		g.setFont(a.fonts[0]);
 		
 		g.drawString("Health: " + player.health, 25, 40);
 		g.drawString("Score: " + score, 500, 40);

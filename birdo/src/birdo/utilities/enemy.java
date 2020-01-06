@@ -132,20 +132,12 @@ public class enemy extends player {
 		}
 	}
 
-	public void customShot(String type, int[] stats) {
+	public void customShot(String type, int attack, int pierce) {
 		if (status.containsKey("stunned"))
 			return;
 		
 		// creates feather(s) according to given behavior
 		// feathers come from the dead center
-		
-		int fw = 8;
-		int fh = 8;
-		double alignedX = centerX - fw / 2;
-		double alignedY = centerY - fh / 2;
-		
-		int attack = stats[1];
-		int pierce = stats[2];
 		
 		if (isDead || x > 800 || x < 0 || y > 500 || y < 0)
 			return;
@@ -359,5 +351,9 @@ public class enemy extends player {
 				feathers.add(f);
 			}
 		}
+	}
+	
+	public void customShot(String type, int[] stats) {
+		customShot(type, stats[1], stats[2]);
 	}
 }

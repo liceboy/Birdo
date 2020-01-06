@@ -3,6 +3,8 @@ package birdo.utilities;
 import java.awt.Color;
 import java.awt.Graphics;
 
+import birdo.game.assets;
+
 public class powerup extends object {
 
 	public String type;
@@ -17,8 +19,8 @@ public class powerup extends object {
 		dy = 1;
 	}
 
-	public void draw(Graphics g) {
-		super.draw(g);
+	public void draw(Graphics g, assets a) {
+		super.draw(g, a);
 	}
 
 	public void move() {

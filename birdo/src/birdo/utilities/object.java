@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
+import birdo.game.assets;
+
 public class object {
 
 	public double x;
@@ -29,7 +31,7 @@ public class object {
 		hash = this.hashCode();
 	}
 
-	public void draw(Graphics g) {
+	public void draw(Graphics g, assets a) {
 		g.setColor(c);
 		g.fillOval((int) x, (int) y, w, h);
 	}

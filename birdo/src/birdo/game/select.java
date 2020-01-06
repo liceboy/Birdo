@@ -9,7 +9,7 @@ public class select {
 
 	}
 
-	public void draw(Graphics g) {
+	public void draw(Graphics g, assets a) {
 		g.setColor(Color.BLACK);
 		g.setFont(g.getFont().deriveFont(16f));
 		g.drawString("-Level Select-", 100, 100);

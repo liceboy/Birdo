@@ -27,6 +27,9 @@ public class main extends JPanel implements ActionListener {
 	private Timer timer;
 	private final int DELAY = 10;
 	
+	// assets
+	public assets assets;
+	
 	// state handler
 	public String state;
 
@@ -45,21 +48,12 @@ public class main extends JPanel implements ActionListener {
 		setFocusable(true);
 		setBackground(Color.WHITE);
 		
-		// set the main font
-		try {
-			Font mainFont = Font.createFont(Font.TRUETYPE_FONT, getClass().getClassLoader().
-					getResourceAsStream("birdo/resources/Press Start.ttf"));
-			mainFont = mainFont.deriveFont(0, 12f);
-			// style (1 bold 2 italics 3 bold+italics)
-			// font size (float variable)
-			setFont(mainFont);
-		} catch (FontFormatException | IOException e) {
-			e.printStackTrace();
-		}
-		
 		// start game loop
 		timer = new Timer(DELAY, this);
 		timer.start();
+		
+		assets = new assets();
+		setFont(assets.fonts[0]);
 
 		// start on title page
 		state = "title";
@@ -82,19 +76,19 @@ public class main extends JPanel implements ActionListener {
 	private void doDrawing(Graphics g) {
 
 		if (state == "title")
-			title.draw(g);
+			title.draw(g, assets);
 
 		if (state == "select")
-			select.draw(g);
+			select.draw(g, assets);
 		
 		if (state == "shop")
-			shop.draw(g);
+			shop.draw(g, assets);
 
 		if (state == "level")
-			level.draw(g);
+			level.draw(g, assets);
 		
 		if (state == "dev")
-			dev.draw(g);
+			dev.draw(g, assets);
 	}
 
 	public void actionPerformed(ActionEvent e) {

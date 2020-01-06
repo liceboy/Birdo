@@ -10,7 +10,7 @@ public class title {
 
 	}
 
-	public void draw(Graphics g) {
+	public void draw(Graphics g, assets a) {
 		g.setColor(Color.BLACK);
 		g.setFont(g.getFont().deriveFont(16f));
 		g.drawString("-Birdo v0.5-", 100, 100);

@@ -9,6 +9,8 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+import birdo.game.assets;
+
 public class player extends object {
 
 	// stats
@@ -75,7 +77,7 @@ public class player extends object {
 		shotMultiplier = 0;
 	}
 
-	public void draw(Graphics g) {
+	public void draw(Graphics g, assets a) {
 		String statusBar = "";
 		if (status.containsKey("invulnerable"))
 			statusBar += "INV ";
@@ -89,13 +91,13 @@ public class player extends object {
 		g.setFont(g.getFont().deriveFont(8f));
 		g.drawString(statusBar, (int) x, (int) y - 10);
 
-		for (feather a : feathers)
-			a.draw(g);
+		for (feather f : feathers)
+			f.draw(g, a);
 		// draws feathers
 		for (egg e : eggs)
-			e.draw(g);
+			e.draw(g, a);
 		// draw egg
-		super.draw(g);
+		super.draw(g, a);
 		// draws self
 	}
 
