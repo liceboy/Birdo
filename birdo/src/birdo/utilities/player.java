@@ -32,7 +32,7 @@ public class player extends object {
 	public String powerupType;
 
 	// attacks
-	public Map<String, int[]> loadout;
+	public ArrayList<loadout> loadouts;
 	public ArrayList<feather> feathers;
 	public ArrayList<egg> eggs;
 
@@ -68,7 +68,7 @@ public class player extends object {
 		allEffects = new HashSet<String>();
 		powerupType = "none";
 
-		loadout = new HashMap<String, int[]>();
+		loadouts = new ArrayList<loadout>();
 		feathers = new ArrayList<feather>();
 		eggs = new ArrayList<egg>();
 
@@ -124,16 +124,10 @@ public class player extends object {
 		if (status.containsKey("stunned"))
 			return;
 		
-		if (status.containsKey("rapidFire")) {
-			if (status.get("rapidFire") == 1) {
-				for(Map.Entry<String, int[]> style : loadout.entrySet()) {
-					String type = style.getKey();
-					int[] stats = loadout.get(type);
-					stats[0] *= 2;
-					loadout.put(type, stats);
-				}
-			}
-		}
+		if (status.containsKey("rapidFire")) 
+			if (status.get("rapidFire") == 1) 
+				for(loadout l : loadouts) 
+					l.interval *= 2;
 		
 		if (status.containsKey("spinBurst")) 
 			if (status.get("spinBurst") % 10 == 0) 
@@ -150,11 +144,9 @@ public class player extends object {
 			}
 		}
 		
-		
-		for(Map.Entry<String, int[]> style : loadout.entrySet()) {
-			int[] stats = loadout.get(style.getKey());
-			if (shotCount % stats[0] == 0) {
-				customShot(style.getKey(), stats);
+		for(loadout l : loadouts) {
+			if (shotCount % l.interval == 0) {
+				customShot(l.type, (int) l.modifier * attack, l.pierce);
 			}
 		}
 		
@@ -411,9 +403,8 @@ public class player extends object {
 		customShot(type, stats[1], stats[2]);
 	}
 
-	public void createLoadout(String type, int interval, int attack, int pierce) {
-		int[] stats = { interval, attack, pierce };
-		loadout.put(type, stats);
+	public void createLoadout(String type, int interval, double modifier, int pierce) {
+		loadouts.add(new loadout(type, interval, modifier, pierce));
 	}
 
 	public void setMovement() {
@@ -477,11 +468,8 @@ public class player extends object {
 		if (powerupType == "none")
 			return;
 		if (powerupType.equals("rapidFire")) {
-			for(Map.Entry<String, int[]> style : loadout.entrySet()) {
-				String type = style.getKey();
-				int[] stats = loadout.get(type);
-				stats[0] /= 2;
-				loadout.put(type, stats);
+			for(loadout l : loadouts) {
+				l.interval /= 2;
 			}
 			addStatus("rapidFire", 400);
 		}

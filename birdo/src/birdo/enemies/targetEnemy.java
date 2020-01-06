@@ -13,8 +13,7 @@ public class targetEnemy extends enemy {
 		c = new Color(121, 103, 85);
 		health = 2;
 		
-		int[] stats = {100, attack, 1};
-		loadout.put("target", stats);
+		createLoadout("target", 100, 1, 1);
 	}
 
 	public void move() {

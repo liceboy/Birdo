@@ -18,7 +18,6 @@ public class enemy extends player {
 		score = 100;
 		this.dx = -2;
 		this.dy = 0;
-		loadout = new HashMap<String, int[]>();
 	}
 
 	public void move() {

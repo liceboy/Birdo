@@ -10,8 +10,7 @@ public class homingEnemy extends enemy{
 		super(x, y);
 		c = new Color(156, 219, 67);
 		
-		int[] stats = {200, attack, 1};
-		loadout.put("homing", stats);
+		createLoadout("homing", 200, 1, 1);
 	}
 	
 	public void move() {

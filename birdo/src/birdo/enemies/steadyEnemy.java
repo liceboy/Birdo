@@ -11,8 +11,7 @@ public class steadyEnemy extends enemy {
 		super(x, y);
 		c = new Color(32, 214, 199);
 		
-		int[] stats = {30, attack, 1};
-		loadout.put("target", stats);
+		createLoadout("target", 30, 1, 1);
 	}
 
 	public void move() {

@@ -15,8 +15,7 @@ public class bigEnemy extends enemy {
 		health = 5;
 		score = 250;
 		
-		int[] stats = {150, attack, 1};
-		loadout.put("triple", stats);
+		createLoadout("triple", 150, 1, 1);
 	}
 
 	public void move() {

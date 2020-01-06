@@ -11,8 +11,7 @@ public class explodeEnemy extends enemy {
 		c = new Color(88, 141, 190);
 		health = 2;
 		
-		int[] stats = {100, attack, 1};
-		loadout.put("explode", stats);
+		createLoadout("explode", 100, 1, 1);
 	}
 
 	public void move() {

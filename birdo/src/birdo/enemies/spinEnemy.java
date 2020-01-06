@@ -11,8 +11,7 @@ public class spinEnemy extends enemy{
 		health = 3;
 		c = new Color(250, 106, 10);
 		
-		int[] stats = {25, attack, 1};
-		loadout.put("spin", stats);
+		createLoadout("spin", 25, 1, 1);
 	}
 
 	public void move() {

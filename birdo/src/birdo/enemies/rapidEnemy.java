@@ -11,8 +11,7 @@ public class rapidEnemy extends enemy {
 		super(x, y);
 		c = new Color(188, 74, 155);
 		
-		int[] stats = {20, attack, 1};
-		loadout.put("normal", stats);
+		createLoadout("normal", 10, 1, 1);
 	}
 
 	public void move() {

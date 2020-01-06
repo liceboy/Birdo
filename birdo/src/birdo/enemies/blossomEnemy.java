@@ -12,8 +12,7 @@ public class blossomEnemy extends enemy {
 		health = 2;
 		c = new Color(232, 106, 115);
 		
-		int[] stats = {100, attack, 1};
-		loadout.put("bloom", stats);
+		createLoadout("bloom", 100, 1, 1);
 	}
 
 	public void move() {
