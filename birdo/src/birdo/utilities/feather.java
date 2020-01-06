@@ -106,9 +106,12 @@ public class feather extends object {
 				prevTheta = theta;
 				init = false;
 			}
+			track = true;
 			// if close enough, start tracking
-			if (hypotenuse < 300 && !isStrong)
-				track = true;
+			if (hypotenuse > 300 && !isStrong)
+				track = false;
+			if (hypotenuse > 500 && isStrong)
+				track = false;
 			// if ready to fuck off, stop tracking
 			if (homingDuration <= 0) 
 				track = false;
@@ -124,7 +127,6 @@ public class feather extends object {
 			}
 			prevTheta = theta;
 		}
-		
 		homingDuration--;
 	}
 	
