@@ -14,7 +14,7 @@ public class enemy extends player {
 
 	public enemy(int x, int y) {
 		super(x, y, new Color(6, 6, 8));
-		health = 20;
+		health = 1;
 		score = 100;
 		this.dx = -2;
 		this.dy = 0;

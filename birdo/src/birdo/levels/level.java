@@ -11,7 +11,7 @@ public class level extends game {
 	
 	public level() {
 		super();
-		player.createLoadout("normal", 20, player.attack, 1);
+		player.createLoadout("normal", player.interval, player.attack, 1);
 	}
 	
 	public void defaultLayout() {

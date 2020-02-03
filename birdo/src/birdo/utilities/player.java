@@ -17,6 +17,7 @@ public class player extends object {
 	public int health;
 	public int maxHealth;
 	public int attack;
+	public int interval;
 	public int defense;
 	public boolean isDead;
 
@@ -57,7 +58,8 @@ public class player extends object {
 
 		health = 50;
 		maxHealth = 50;
-		attack = 10;
+		attack = 2;
+		interval = 20;
 		defense = 8;
 		isDead = false;
 
