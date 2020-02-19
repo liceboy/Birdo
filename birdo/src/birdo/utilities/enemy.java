@@ -148,6 +148,7 @@ public class enemy extends player {
 			feather f = new feather(alignedX, alignedY, attack, pierce, false);
 			f.effect = "stunned";
 			f.effectDuration = 100;
+			f.c = Color.BLUE;
 			feathers.add(f);
 		}
 		if (type == "target") {
@@ -159,8 +160,30 @@ public class enemy extends player {
 			
 			f.dx = (5 * deltaX / hypotenuse);
 			f.dy = (5 * deltaY / hypotenuse);
-
+			f.c = Color.GRAY;
 			feathers.add(f);
+		}
+		if (type == "tripleTarget") {
+			feather f = new feather(alignedX, alignedY, attack, pierce, false);
+			feather f1 = new feather(alignedX, alignedY+10, attack, pierce, false);
+			feather f2 = new feather(alignedX, alignedY-10, attack, pierce, false);
+			double deltaX = p.x - x;
+			double deltaY = p.y - y;
+			double hypotenuse = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
+			double theta = Math.atan(deltaY / deltaX);
+			
+			f.dx = (5 * deltaX / hypotenuse);
+			f.dy = (5 * deltaY / hypotenuse);
+			f.c = Color.GRAY;
+			f1.dx = (5 * deltaX / hypotenuse);
+			f1.dy = (5 * deltaY / hypotenuse + 10);
+			f1.c = Color.GRAY;
+			f2.dx = (5 * deltaX / hypotenuse);
+			f2.dy = (5 * deltaY / hypotenuse - 10);
+			f2.c = Color.GRAY;
+			feathers.add(f);
+			feathers.add(f1);
+			feathers.add(f2);
 		}
 		
 		if (type == "triple") {

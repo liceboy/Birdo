@@ -3,24 +3,21 @@ package birdo.enemies;
 import java.awt.Color;
 
 import birdo.utilities.enemy;
-import birdo.utilities.feather;
 
-public class miniBoss2 extends enemy {
-
-	public miniBoss2(int x, int y) {
+public class miniBoss3 extends enemy{
+	
+	public miniBoss3(int x, int y) {
 		super(x, y);
 		health = 20;
 		score = 1500;
 		w = 30;
 		h = 30;
-		c = new Color(109, 117, 141);
+		c = new Color(42, 57, 80);
 	}
 
 	public void move() {
-		if (x < 700 && health >= 10)
+		if (x < 700)
 			customMove("upDown");
-		if (health < 10)
-			customMove("moveCenter");
 		super.move();
 	}
 
@@ -28,20 +25,22 @@ public class miniBoss2 extends enemy {
 		int[] stats = {-1000, attack, 1};
 		if (health >= 10) {
 			if (shotCount <= 0) {
+				customShot("buckshot", stats);
 				customShot("normal", stats);
+				customShot("homingFast", stats);
 				shotCount = 200;
 			}
-			if (shotCount % 20 == 0) 
+			if (shotCount % 25 == 0) {
+				customShot("buckshot", stats);
 				customShot("normal", stats);
-			if (shotCount % 25 == 0 && shotCount <= 75)
-					customShot("target", stats);
+			}
+			if (shotCount % 15 == 0 && shotCount <= 30)
+					customShot("homingFast", stats);
 		}
 
 		if (health < 10 ) {
-			if (shotCount <= 0) {
-				customShot("spin", stats);
-				shotCount = 10;
-			}
+			if (shotCount % 5 == 0)
+				customShot("tripleTarget", stats);
 		}
 		shotCount--;
 	}

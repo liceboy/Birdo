@@ -122,3 +122,7 @@ bigBlocks
 obstacle 815 0 50 150
 obstacle 815 350 50 150
 end
+
+miniBoss3Fight
+miniBoss3 815 360
+end

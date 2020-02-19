@@ -22,6 +22,8 @@ public class feather extends object {
 	public boolean isHoming;
 	public boolean isStrong;
 	public boolean isStunShot;
+	public boolean isPlasmaShot;
+	public boolean isBurnShot;
 	public int homingSpeed;
 	public double prevTheta;
 	public boolean track = true;
@@ -58,8 +60,18 @@ public class feather extends object {
 				c = Color.GREEN;
 			if (isStunShot)
 				c = Color.BLUE;
+			if (isPlasmaShot) 
+				c = Color.PINK;
+			if (isBurnShot)
+				c = Color.RED;
 			home();
 		}
+		if (isStunShot)
+			c = Color.BLUE;
+		if (isPlasmaShot) 
+			c = Color.PINK;
+		if (isBurnShot)
+			c = Color.RED;
 		super.move();
 	}
 	

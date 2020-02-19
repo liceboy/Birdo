@@ -438,6 +438,8 @@ public abstract class game {
 			temp = new miniBoss1(x, y);
 		if (type.equals("miniBoss2"))
 			temp = new miniBoss2(x, y);
+		if (type.equals("miniBoss3"))
+			temp = new miniBoss3(x, y);
 		enemies.add(temp);
 	}
 	
