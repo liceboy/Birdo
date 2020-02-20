@@ -55,12 +55,10 @@ public class player extends object {
 
 	public player(int x, int y, Color c) {
 		super(x, y, 20, 20, c);
+		
+		createStats(50, 1, 0);
 
-		health = 50;
-		maxHealth = 50;
-		attack = 2;
 		interval = 20;
-		defense = 8;
 		isDead = false;
 
 		centerX = (this.x + this.w / 2);
@@ -80,6 +78,12 @@ public class player extends object {
 	}
 
 	public void draw(Graphics g, assets a) {
+		
+		g.setColor(Color.RED);
+		g.fillRect((int) x, (int) y - 10, 20, 5);
+		g.setColor(Color.GREEN);
+		g.fillRect((int) x, (int) y - 10, (int) ((double) health / maxHealth * w), 5);
+		
 		String statusBar = "";
 		if (status.containsKey("invulnerable"))
 			statusBar += "INV ";
@@ -91,7 +95,7 @@ public class player extends object {
 			statusBar += "SINK ";
 		g.setColor(Color.BLACK);
 		g.setFont(g.getFont().deriveFont(8f));
-		g.drawString(statusBar, (int) x, (int) y - 10);
+		g.drawString(statusBar, (int) x, (int) y - 20);
 
 		for (feather f : feathers)
 			f.draw(g, a);
@@ -405,6 +409,13 @@ public class player extends object {
 		customShot(type, stats[1], stats[2]);
 	}
 
+	public void createStats(int health, int attack, int defense) {
+		this.health = health;
+		this.maxHealth = health;
+		this.attack = attack;
+		this.defense = defense;
+	}
+	
 	public void createLoadout(String type, int interval, double modifier, int pierce) {
 		loadouts.add(new loadout(type, interval, modifier, pierce));
 	}

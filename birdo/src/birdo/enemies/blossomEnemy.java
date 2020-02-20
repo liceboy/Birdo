@@ -9,9 +9,9 @@ public class blossomEnemy extends enemy {
 
 	public blossomEnemy(int x, int y) {
 		super(x, y);
-		health = 2;
 		c = new Color(232, 106, 115);
 		
+		createStats(2, 1, 0);
 		createLoadout("bloom", 100, 1, 1);
 	}
 

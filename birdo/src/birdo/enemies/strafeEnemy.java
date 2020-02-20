@@ -11,7 +11,6 @@ public class strafeEnemy extends enemy {
 		super(x, y);
 		dx = -6;
 		c = new Color(249, 163, 27);
-		health = 1;
 	}
 
 	public void shoot() {

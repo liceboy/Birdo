@@ -12,7 +12,8 @@ public class bigEnemy extends enemy {
 		c = new Color(121, 58, 128);
 		w = 30;
 		h = 30;
-		health = 5;
+		
+		createStats(5, 1, 0);
 		score = 250;
 		
 		createLoadout("triple", 150, 1, 1);

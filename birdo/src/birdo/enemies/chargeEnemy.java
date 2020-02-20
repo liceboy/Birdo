@@ -9,7 +9,8 @@ public class chargeEnemy extends enemy {
 	public chargeEnemy(int x, int y) {
 		super(x, y);
 		c = new Color(199, 176, 139);
-		health = 2;
+		
+		createStats(2, 1, 0);
 	}
 
 	public void move() {

@@ -9,11 +9,12 @@ public class miniBoss2 extends enemy {
 
 	public miniBoss2(int x, int y) {
 		super(x, y);
-		health = 20;
 		score = 1500;
 		w = 30;
 		h = 30;
 		c = new Color(109, 117, 141);
+		
+		createStats(20, 1, 0);
 	}
 
 	public void move() {

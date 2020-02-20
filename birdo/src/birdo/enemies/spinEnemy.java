@@ -8,10 +8,10 @@ public class spinEnemy extends enemy{
 	
 	public spinEnemy(int x, int y) {
 		super(x, y);
-		health = 3;
 		c = new Color(250, 106, 10);
 		
 		createLoadout("spin", 25, 1, 1);
+		createStats(3, 1, 0);
 	}
 
 	public void move() {

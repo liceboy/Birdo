@@ -11,8 +11,8 @@ public class targetEnemy extends enemy {
 	public targetEnemy(int x, int y) {
 		super(x, y);
 		c = new Color(121, 103, 85);
-		health = 2;
 		
+		createStats(2, 1, 0);
 		createLoadout("target", 100, 1, 1);
 	}
 

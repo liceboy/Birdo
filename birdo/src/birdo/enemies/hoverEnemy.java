@@ -9,7 +9,6 @@ public class hoverEnemy extends enemy {
 	public hoverEnemy(int x, int y) {
 		super(x, y);
 		c = new Color(89, 193, 53);
-		health = 1;
 	}
 
 	public void move() {

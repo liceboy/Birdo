@@ -8,11 +8,12 @@ public class miniBoss3 extends enemy{
 	
 	public miniBoss3(int x, int y) {
 		super(x, y);
-		health = 20;
 		score = 1500;
 		w = 30;
 		h = 30;
 		c = new Color(42, 57, 80);
+		
+		createStats(20, 1, 0);
 	}
 
 	public void move() {
