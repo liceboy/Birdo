@@ -89,6 +89,8 @@ public class player extends object {
 			statusBar += "INV ";
 		if (status.containsKey("stunned"))
 			statusBar += "STUN ";
+		if (status.containsKey("burned"))
+			statusBar += "BURN ";
 		if (status.containsKey("slowed"))
 			statusBar += "SLOW ";
 		if (status.containsKey("sinking"))
@@ -108,6 +110,12 @@ public class player extends object {
 	}
 
 	public void move() {
+		if (status.containsKey("burned")) {
+			if (status.get("burned") % 10 == 0) {
+				health--;
+			}
+		}
+		
 		int fw = 8;
 		int fh = 8;
 
@@ -115,15 +123,21 @@ public class player extends object {
 		centerY = (this.y + this.h / 2);
 		alignedX = centerX - fw / 2;
 		alignedY = centerY - fh / 2;
-
-		setMovement();
-		super.move();
-		shoot();
-
+		
 		for (feather f : feathers)
 			f.move();
 		for (egg e : eggs)
 			e.move();
+
+		if (status.containsKey("slowed")) {
+			if (status.get("slowed") % 2 == 0) {
+				return;
+			}
+		}
+		
+		setMovement();
+		shoot();
+		super.move();
 	}
 
 	public void shoot() { // shots automatically with cooldown
@@ -184,6 +198,20 @@ public class player extends object {
 			f.effect = "stunned";
 			f.effectDuration = 300;
 			f.isStunShot = true;
+			feathers.add(f);
+		}
+		if (type == "burn") {
+			feather f = new feather(alignedX, alignedY, attack, pierce, true);
+			f.effect = "burned";
+			f.effectDuration = 300;
+			f.isBurnShot = true;
+			feathers.add(f);
+		}
+		if (type == "freeze") {
+			feather f = new feather(alignedX, alignedY, attack, pierce, true);
+			f.effect = "slowed";
+			f.effectDuration = 300;
+			f.isFreezeShot = true;
 			feathers.add(f);
 		}
 		if (type == "triple") {
@@ -424,8 +452,6 @@ public class player extends object {
 		// ben's movement system
 
 		int moveSpeed = 4;
-		if (status.containsKey("slowed"))
-			moveSpeed = 2;
 
 		if (player && !isDead) {
 			if (up || down) {

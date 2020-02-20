@@ -18,12 +18,15 @@ public class feather extends object {
 	public String effect;
 	public int effectDuration;
 	
-	// homing
+	// types
 	public boolean isHoming;
 	public boolean isStrong;
 	public boolean isStunShot;
-	public boolean isPlasmaShot;
 	public boolean isBurnShot;
+	public boolean isFreezeShot;
+	public boolean isPlasmaShot;
+	
+	// homing
 	public int homingSpeed;
 	public double prevTheta;
 	public boolean track = true;
@@ -43,6 +46,9 @@ public class feather extends object {
 		isHoming = false;
 		isStrong = false;
 		isStunShot = false;
+		isPlasmaShot = false;
+		isBurnShot = false;
+		isFreezeShot = false;
 
 		if (forward) {
 			dx = 5;
@@ -64,6 +70,8 @@ public class feather extends object {
 				c = Color.PINK;
 			if (isBurnShot)
 				c = Color.RED;
+			if (isFreezeShot)
+				c = Color.CYAN;
 			home();
 		}
 		if (isStunShot)
@@ -72,6 +80,8 @@ public class feather extends object {
 			c = Color.PINK;
 		if (isBurnShot)
 			c = Color.RED;
+		if (isFreezeShot)
+			c = Color.CYAN;
 		super.move();
 	}
 	

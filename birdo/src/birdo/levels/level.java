@@ -11,7 +11,7 @@ public class level extends game {
 	
 	public level() {
 		super();
-		player.createLoadout("normal", player.interval, 1, 1);
+		player.createLoadout("burn", player.interval, 1, 1);
 		player.createLoadout("homingFast", player.interval * 4, 2, 1);
 	}
 	
