@@ -129,7 +129,6 @@ public abstract class game {
 				if (!player.status.containsKey("invulnerable")
 					&& e.defense > player.defense) {
 					player.health -= e.defense - player.defense;
-					player.addStatus("invulnerable", 75);
 				}
 			}
 
@@ -151,7 +150,6 @@ public abstract class game {
 							player.health -= damage;
 						else
 							player.health--;
-						player.addStatus("invulnerable", 75);
 						
 						if (!f.effect.equals("none")) 
 							player.addStatus(f.effect, f.effectDuration);
@@ -176,7 +174,6 @@ public abstract class game {
 				if (player.getHitBox().intersects(p.getHitBox())) {
 					if (!player.status.containsKey("invulnerable")) {
 						player.health--;
-						player.addStatus("invulnerable", 75);
 					}
 					e.eggs.remove(k);
 					k--;
@@ -341,6 +338,8 @@ public abstract class game {
 
 		}
 		
+		// OBSTACLE HITBOXES
+		
 		for (int m = 0; m != obstacles.size(); m++) {
 			
 			if (m == -1)
@@ -348,10 +347,11 @@ public abstract class game {
 			
 			obstacle o = obstacles.get(m);
 			
-			if (player.getHitBox().intersects(o.getHitBox())) {
+			if (player.getHitBox().intersects(o.getHitBox()) && !o.hasHit.contains(player.hash)) {
 				player.health--;
-				player.addStatus("invulnerable", 75);
 				player.addStatus("stunned", 75);
+				
+				o.hasHit.add(player.hash);
 			}
 			
 			if (o.x < -60) {
