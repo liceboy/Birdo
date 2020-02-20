@@ -470,8 +470,10 @@ public class player extends object {
 		if (powerupType == "none")
 			return;
 		if (powerupType.equals("rapidFire")) {
-			for(loadout l : loadouts) {
-				l.interval /= 2;
+			if (!status.containsKey("rapidFire")) {
+				for (loadout l : loadouts) {
+					l.interval /= 2;
+				}
 			}
 			addStatus("rapidFire", 400);
 		}
