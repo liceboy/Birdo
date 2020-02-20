@@ -14,7 +14,7 @@ public class miniBoss2 extends enemy {
 		h = 30;
 		c = new Color(109, 117, 141);
 		
-		createStats(20, 1, 0);
+		createStats(200, 10, 0);
 	}
 
 	public void move() {

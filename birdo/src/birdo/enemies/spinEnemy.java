@@ -11,7 +11,7 @@ public class spinEnemy extends enemy{
 		c = new Color(250, 106, 10);
 		
 		createLoadout("spin", 25, 1, 1);
-		createStats(3, 1, 0);
+		createStats(30, 10, 0);
 	}
 
 	public void move() {

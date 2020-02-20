@@ -10,7 +10,7 @@ public class chargeEnemy extends enemy {
 		super(x, y);
 		c = new Color(199, 176, 139);
 		
-		createStats(2, 1, 0);
+		createStats(20, 10, 0);
 	}
 
 	public void move() {

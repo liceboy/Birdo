@@ -13,7 +13,7 @@ public class bigEnemy extends enemy {
 		w = 30;
 		h = 30;
 		
-		createStats(5, 1, 0);
+		createStats(50, 10, 0);
 		score = 250;
 		
 		createLoadout("triple", 150, 1, 1);

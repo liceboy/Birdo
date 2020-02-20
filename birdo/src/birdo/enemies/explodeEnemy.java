@@ -10,7 +10,7 @@ public class explodeEnemy extends enemy {
 		super(x, y);
 		c = new Color(88, 141, 190);
 		
-		createStats(2, 1, 0);
+		createStats(20, 10, 0);
 		createLoadout("explode", 100, 1, 1);
 	}
 

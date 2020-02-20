@@ -56,7 +56,7 @@ public class player extends object {
 	public player(int x, int y, Color c) {
 		super(x, y, 20, 20, c);
 		
-		createStats(50, 1, 0);
+		createStats(300, 5, 0);
 
 		interval = 20;
 		isDead = false;
