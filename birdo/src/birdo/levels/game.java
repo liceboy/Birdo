@@ -123,14 +123,6 @@ public abstract class game {
 		for (int i = 0; i != enemies.size(); i++) {
 			enemy e = enemies.get(i);
 
-			// hit the enemy? take damage
-
-			if (player.getHitBox().intersects(e.getHitBox())) {
-				if (!player.status.containsKey("invulnerable")
-					&& e.defense > player.defense) {
-					player.health -= e.defense - player.defense;
-				}
-			}
 
 			// hit enemy feather? take damage
 
@@ -141,19 +133,30 @@ public abstract class game {
 				
 				feather f = e.feathers.get(j);
 				
-				if (player.getHitBox().intersects(f.getHitBox())) {
-					if (!player.status.containsKey("invulnerable")) {
+				if (player.getHitBox().intersects(f.getHitBox()) && !f.hasHit.contains(player.hash)) {
 						
-						// player takes a minimum of 1 damage
-						int damage = f.attack - player.defense;
-						if (damage > 0)
-							player.health -= damage;
-						else
-							player.health--;
-						
-						if (!f.effect.equals("none")) 
-							player.addStatus(f.effect, f.effectDuration);
+					// player takes a minimum of 1 damage
+					int damage = f.attack - player.defense;
+					
+					if (player.status.containsKey("invulnerable"))
+						;
+					else if (damage > 0)
+						player.health -= damage;
+					else
+						player.health--;
+					
+					f.hasHit.add(player.hash);
+					
+					if (!f.effect.equals("none")) 
+						player.addStatus(f.effect, f.effectDuration);
+					
+					// if it still has pierce, don't remove
+					f.pierce--;
+					if (f.pierce <= 0) {
+						e.feathers.remove(j);
+						j--;
 					}
+					
 				}
 				
 				if (f.x < -100 || f.x > 900 || f.y < -100 || f.y > 600) {

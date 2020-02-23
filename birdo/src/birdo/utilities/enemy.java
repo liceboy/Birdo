@@ -133,6 +133,7 @@ public class enemy extends player {
 	}
 
 	public void customShot(String type, int attack, int pierce) {
+		
 		if (status.containsKey("stunned"))
 			return;
 		
