@@ -34,7 +34,7 @@ public class feather extends object {
 	public int homingDuration;
 
 	public feather(double x, double y, int attack, int pierce, boolean forward) {
-		super(x, y, 8, 8, Color.BLACK);
+		super(x, y, 10, 10, Color.BLACK);
 		this.forward = forward;
 		
 		this.attack = attack;

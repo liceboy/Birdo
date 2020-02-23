@@ -20,7 +20,8 @@ public class powerup extends object {
 	}
 
 	public void draw(Graphics g, assets a) {
-		super.draw(g, a);
+		g.setColor(c);
+		g.fillRect((int) x, (int) y, w, h);
 	}
 
 	public void move() {

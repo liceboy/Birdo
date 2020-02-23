@@ -54,7 +54,7 @@ public class player extends object {
 	public boolean player = false;
 
 	public player(int x, int y, Color c) {
-		super(x, y, 18, 18, c);
+		super(x, y, 20, 20, c);
 		
 		createStats(300, 5, 0);
 
@@ -120,7 +120,7 @@ public class player extends object {
 		if (status.containsKey("plasmized")) {
 			if (status.get("plasmized") <= 20 && status.get("plasmized") % 2 == 0) {
 				health = (int) (health * 0.93303);
-				System.out.println("here");
+				if (health < maxHealth / 10) health = 0;
 			}
 		}
 		
