@@ -1,8 +1,7 @@
 package birdo.utilities;
 
 import java.awt.Color;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
 
 public class enemy extends player {
 
@@ -11,6 +10,8 @@ public class enemy extends player {
 	
 	// score granted upon death
 	public int score;
+	
+	public boolean ignore;
 
 	public enemy(int x, int y) {
 		super(x, y, new Color(6, 6, 8));
@@ -58,8 +59,10 @@ public class enemy extends player {
 				dx = -3;
 			if (x < 800)
 				dx = -1;
-			if (x < p.x)
+			if (x < p.x || ignore) {
 				dx = -3;
+				ignore = true;
+			}
 		}
 
 		if (type == "hover") {
@@ -142,77 +145,36 @@ public class enemy extends player {
 		
 		if (isDead || x > 800 || x < 0 || y > 500 || y < 0)
 			return;
+		
+		ArrayList<feather> toAdd = new ArrayList<feather>();
+		
+		if (type.indexOf(",") != -1) {
+			toAdd.add(createFeather(type, attack, pierce));
+		}
+		// special feathers with multiple types
 
 		if (type == "normal") {
-			feathers.add(new feather(alignedX, alignedY, attack, pierce, false));
+			toAdd.add(createFeather(attack, pierce));
 		}
 		if (type == "stun") {
-			feather f = new feather(alignedX, alignedY, attack, pierce, false);
-			f.effect = "stunned";
-			f.effectDuration = 200;
-			f.isStunShot = true;
-			feathers.add(f);
+			toAdd.add(createFeather(type, attack, pierce));
 		}
 		if (type == "burn") {
-			feather f = new feather(alignedX, alignedY, attack, pierce, false);
-			f.effect = "burned";
-			f.effectDuration = 200;
-			f.isBurnShot = true;
-			feathers.add(f);
+			toAdd.add(createFeather(type, attack, pierce));
 		}
 		if (type == "freeze") {
-			feather f = new feather(alignedX, alignedY, attack, pierce, false);
-			f.effect = "slowed";
-			f.effectDuration = 200;
-			f.isFreezeShot = true;
-			feathers.add(f);
+			toAdd.add(createFeather(type, attack, pierce));
 		}
 		if (type == "plasma") {
-			feather f = new feather(alignedX, alignedY, attack, pierce, false);
-			f.effect = "plasmized";
-			f.effectDuration = 200;
-			f.isPlasmaShot = true;
-			feathers.add(f);
+			toAdd.add(createFeather(type, attack, pierce));
 		}
 		if (type == "target") {
-			feather f = new feather(alignedX, alignedY, attack, pierce, false);
-			double deltaX = p.x - x;
-			double deltaY = p.y - y;
-			double hypotenuse = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
-			double theta = Math.atan(deltaY / deltaX);
-			
-			f.dx = (5 * deltaX / hypotenuse);
-			f.dy = (5 * deltaY / hypotenuse);
-			f.c = Color.GRAY;
-			feathers.add(f);
+			toAdd.add(createFeather(type, attack, pierce));
 		}
-		if (type == "tripleTarget") {
-			feather f = new feather(alignedX, alignedY, attack, pierce, false);
-			feather f1 = new feather(alignedX, alignedY+10, attack, pierce, false);
-			feather f2 = new feather(alignedX, alignedY-10, attack, pierce, false);
-			double deltaX = p.x - x;
-			double deltaY = p.y - y;
-			double hypotenuse = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
-			double theta = Math.atan(deltaY / deltaX);
-			
-			f.dx = (5 * deltaX / hypotenuse);
-			f.dy = (5 * deltaY / hypotenuse);
-			f.c = Color.GRAY;
-			f1.dx = (5 * deltaX / hypotenuse);
-			f1.dy = (5 * deltaY / hypotenuse + 10);
-			f1.c = Color.GRAY;
-			f2.dx = (5 * deltaX / hypotenuse);
-			f2.dy = (5 * deltaY / hypotenuse - 10);
-			f2.c = Color.GRAY;
-			feathers.add(f);
-			feathers.add(f1);
-			feathers.add(f2);
-		}
-		
 		if (type == "triple") {
-			feather f = new feather(alignedX, alignedY, attack, pierce, false);
-			feather f1 = new feather(alignedX, alignedY, attack, pierce, false);
-			feather f2 = new feather(alignedX, alignedY, attack, pierce, false);
+			feather f = createFeather(attack, pierce);
+			feather f1 = createFeather(attack, pierce);
+			feather f2 = createFeather(attack, pierce);
 
 			f.dx = -5;
 
@@ -222,20 +184,20 @@ public class enemy extends player {
 			f2.dx = -1 * (5 * Math.cos(1 * Math.PI / 8));
 			f2.dy = 1 * (5 * Math.sin(1 * Math.PI / 8));
 
-			feathers.add(f);
-			feathers.add(f1);
-			feathers.add(f2);
+			toAdd.add(f);
+			toAdd.add(f1);
+			toAdd.add(f2);
 		}
 		
 		if (type == "bloom") {
-			feather f = new feather(alignedX, alignedY, attack, pierce, false);
-			feather f1 = new feather(alignedX, alignedY, attack, pierce, false);
-			feather f2 = new feather(alignedX, alignedY, attack, pierce, false);
-			feather f3 = new feather(alignedX, alignedY, attack, pierce, false);
-			feather f4 = new feather(alignedX, alignedY, attack, pierce, false);
-			feather f5 = new feather(alignedX, alignedY, attack, pierce, false);
-			feather f6 = new feather(alignedX, alignedY, attack, pierce, false);
-			feather f7 = new feather(alignedX, alignedY, attack, pierce, false);
+			feather f = createFeather(attack, pierce);
+			feather f1 = createFeather(attack, pierce);
+			feather f2 = createFeather(attack, pierce);
+			feather f3 = createFeather(attack, pierce);
+			feather f4 = createFeather(attack, pierce);
+			feather f5 = createFeather(attack, pierce);
+			feather f6 = createFeather(attack, pierce);
+			feather f7 = createFeather(attack, pierce);
 
 			f.dx = -5;
 			f.dy = 0;
@@ -259,21 +221,21 @@ public class enemy extends player {
 			f7.dx = 0;
 			f7.dy = 5;
 
-			feathers.add(f);
-			feathers.add(f1);
-			feathers.add(f2);
-			feathers.add(f3);
-			feathers.add(f4);
-			feathers.add(f5);
-			feathers.add(f6);
-			feathers.add(f7);
+			toAdd.add(f);
+			toAdd.add(f1);
+			toAdd.add(f2);
+			toAdd.add(f3);
+			toAdd.add(f4);
+			toAdd.add(f5);
+			toAdd.add(f6);
+			toAdd.add(f7);
 		}
 		
 		if (type == "spin") {
-			feather f = new feather(alignedX, alignedY, attack, pierce, false);
-			feather f1 = new feather(alignedX, alignedY, attack, pierce, false);
-			feather f2 = new feather(alignedX, alignedY, attack, pierce, false);
-			feather f3 = new feather(alignedX, alignedY, attack, pierce, false);
+			feather f = createFeather(attack, pierce);
+			feather f1 = createFeather(attack, pierce);
+			feather f2 = createFeather(attack, pierce);
+			feather f3 = createFeather(attack, pierce);
 
 			f.dx = -1 * (5 * Math.cos(shotMultiplier * Math.PI / 12));
 			f.dy = -1 * (5 * Math.sin(shotMultiplier * Math.PI / 12));
@@ -289,21 +251,21 @@ public class enemy extends player {
 
 			shotMultiplier++;
 
-			feathers.add(f);
-			feathers.add(f1);
-			feathers.add(f2);
-			feathers.add(f3);
+			toAdd.add(f);
+			toAdd.add(f1);
+			toAdd.add(f2);
+			toAdd.add(f3);
 		}
 		
 		if (type == "spinBurst") {
-			feather f = new feather(alignedX, alignedY, attack, pierce, true);
-			feather f1 = new feather(alignedX, alignedY, attack, pierce, true);
-			feather f2 = new feather(alignedX, alignedY, attack, pierce, true);
-			feather f3 = new feather(alignedX, alignedY, attack, pierce, true);
-			feather f4 = new feather(alignedX, alignedY, attack, pierce, true);
-			feather f5 = new feather(alignedX, alignedY, attack, pierce, true);
-			feather f6 = new feather(alignedX, alignedY, attack, pierce, true);
-			feather f7 = new feather(alignedX, alignedY, attack, pierce, true);
+			feather f = createFeather(attack, pierce);
+			feather f1 = createFeather(attack, pierce);
+			feather f2 = createFeather(attack, pierce);
+			feather f3 = createFeather(attack, pierce);
+			feather f4 = createFeather(attack, pierce);
+			feather f5 = createFeather(attack, pierce);
+			feather f6 = createFeather(attack, pierce);
+			feather f7 = createFeather(attack, pierce);
 
 			f.dx = -1 * (5 * Math.cos(shotMultiplier * Math.PI / 12));
 			f.dy = -1 * (5 * Math.sin(shotMultiplier * Math.PI / 12));
@@ -331,25 +293,25 @@ public class enemy extends player {
 
 			shotMultiplier++;
 
-			feathers.add(f);
-			feathers.add(f1);
-			feathers.add(f2);
-			feathers.add(f3);
-			feathers.add(f4);
-			feathers.add(f5);
-			feathers.add(f6);
-			feathers.add(f7);
+			toAdd.add(f);
+			toAdd.add(f1);
+			toAdd.add(f2);
+			toAdd.add(f3);
+			toAdd.add(f4);
+			toAdd.add(f5);
+			toAdd.add(f6);
+			toAdd.add(f7);
 		}
 		
 		if (type == "spinBurstSlow") {
-			feather f = new feather(alignedX, alignedY, attack, pierce, true);
-			feather f1 = new feather(alignedX, alignedY, attack, pierce, true);
-			feather f2 = new feather(alignedX, alignedY, attack, pierce, true);
-			feather f3 = new feather(alignedX, alignedY, attack, pierce, true);
-			feather f4 = new feather(alignedX, alignedY, attack, pierce, true);
-			feather f5 = new feather(alignedX, alignedY, attack, pierce, true);
-			feather f6 = new feather(alignedX, alignedY, attack, pierce, true);
-			feather f7 = new feather(alignedX, alignedY, attack, pierce, true);
+			feather f = createFeather(attack, pierce);
+			feather f1 = createFeather(attack, pierce);
+			feather f2 = createFeather(attack, pierce);
+			feather f3 = createFeather(attack, pierce);
+			feather f4 = createFeather(attack, pierce);
+			feather f5 = createFeather(attack, pierce);
+			feather f6 = createFeather(attack, pierce);
+			feather f7 = createFeather(attack, pierce);
 
 			f.dx = -1 * (3 * Math.cos(shotMultiplier * Math.PI / 12));
 			f.dy = -1 * (3 * Math.sin(shotMultiplier * Math.PI / 12));
@@ -377,23 +339,23 @@ public class enemy extends player {
 
 			shotMultiplier++;
 
-			feathers.add(f);
-			feathers.add(f1);
-			feathers.add(f2);
-			feathers.add(f3);
-			feathers.add(f4);
-			feathers.add(f5);
-			feathers.add(f6);
-			feathers.add(f7);
+			toAdd.add(f);
+			toAdd.add(f1);
+			toAdd.add(f2);
+			toAdd.add(f3);
+			toAdd.add(f4);
+			toAdd.add(f5);
+			toAdd.add(f6);
+			toAdd.add(f7);
 		}
 		
 		if (type == "buckshot") {
-			feather f = new feather(alignedX, alignedY, attack, pierce, false);
-			feather f1 = new feather(alignedX, alignedY, attack, pierce, false);
-			feather f2 = new feather(alignedX, alignedY, attack, pierce, false);
-			feather f3 = new feather(alignedX, alignedY, attack, pierce, false);
-			feather f4 = new feather(alignedX, alignedY, attack, pierce, false);
-			feather f5 = new feather(alignedX, alignedY, attack, pierce, false);
+			feather f = createFeather(attack, pierce);
+			feather f1 = createFeather(attack, pierce);
+			feather f2 = createFeather(attack, pierce);
+			feather f3 = createFeather(attack, pierce);
+			feather f4 = createFeather(attack, pierce);
+			feather f5 = createFeather(attack, pierce);
 
 			f1.dx = -1 * (5 * Math.cos(Math.PI / 8));
 			f1.dy = -1 * (5 * Math.sin(Math.PI / 8));
@@ -408,72 +370,64 @@ public class enemy extends player {
 			f.dx = (5 * Math.cos(7 * Math.PI / 8));
 			f.dy = (5 * Math.sin(7 * Math.PI / 8));
 
-			feathers.add(f1);
-			feathers.add(f2);
-			feathers.add(f3);
-			feathers.add(f4);
-			feathers.add(f5);
-			feathers.add(f);
+			toAdd.add(f1);
+			toAdd.add(f2);
+			toAdd.add(f3);
+			toAdd.add(f4);
+			toAdd.add(f5);
+			toAdd.add(f);
 		}
 
 		if (type == "explode") {
 			for (int x = 0; x < 15; x++) {
-				feather f = new feather(alignedX, alignedY, attack, pierce, false);
+				feather f = createFeather(attack, pierce);
 				f.dx = -1 * (5 * Math.cos((shotMultiplier + 45) * Math.PI / 6));
 				f.dy = -1 * (5 * Math.sin((shotMultiplier + 45) * Math.PI / 6));
-				feathers.add(f);
+				toAdd.add(f);
 				shotMultiplier++;
 			}
 		}
 		
 		if (type == "two") {
-			feather f = new feather(alignedX, alignedY + this.h/2 -9, attack, pierce, false);
-			feather f1 = new feather(alignedX, alignedY + this.h/2 , attack, pierce, false);
-			feathers.add(f);
-			feathers.add(f1);
+			feather f = createFeather(attack, pierce);
+			f.y += this.h/2 - 9;
+			feather f1 = createFeather(attack, pierce);
+			f1.y += this.h/2;
+			toAdd.add(f);
+			toAdd.add(f1);
 		}
 
 		if (type == "three") {
-			feather f = new feather(alignedX, alignedY, attack, pierce, false);
-			feather f1 = new feather(alignedX, alignedY + this.h / 2 - 3, attack, pierce, false);
-			feather f2 = new feather(alignedX, alignedY + this.h - 6, attack, pierce, false);
-			feathers.add(f);
-			feathers.add(f1);
-			feathers.add(f2);
+			feather f = createFeather(attack, pierce);
+			feather f1 = createFeather(attack, pierce);
+			f1.y += this.h / 2 - 3;
+			feather f2 = createFeather(attack, pierce);
+			f2.y += this.h - 6;
+			toAdd.add(f);
+			toAdd.add(f1);
+			toAdd.add(f2);
 		}
 
 		if (type == "homing") {
-			//for homing feather 
-			feather f = new feather(alignedX, alignedY, attack, pierce, false);
-			f.isHoming = true;
-			f.p = p;
-			f.homingSpeed = 3;
-			f.homingDuration = 150;
-			feathers.add(f);
+			feather f = createFeather(type, attack, pierce);
+			toAdd.add(f);
 		}
 		
 		if (type == "homingSlow") {
-			feather f = new feather(alignedX, alignedY, attack, pierce, false);
-			f.isHoming = true;
-			f.p = p;
-			f.homingSpeed = 2;
-			f.homingDuration = 200;
-			feathers.add(f);
+			feather f = createFeather(type, attack, pierce);
+			toAdd.add(f);
 		}
 		
 		if (type == "homingFast") {
-			feather f = new feather(alignedX, alignedY, attack, pierce, false);
-			f.isHoming = true;
-			f.p = p;
-			f.homingSpeed = 5;
-			f.homingDuration = 100;
-			feathers.add(f);
+			feather f = createFeather(type, attack, pierce);
+			toAdd.add(f);
 		}
 
 		if (type == "circleShot") {
 			for (int x = 0; x < 15; x++) {
-				feather f = new feather((this.centerX) + (20 * Math.cos(shotMultiplier * Math.PI / 6)),
-						(this.centerY) + (20 * Math.sin(shotMultiplier * Math.PI / 6)), attack, pierce, false);
+				feather f = createFeather(attack, pierce);
+				f.x = (this.centerX) + (20 * Math.cos(shotMultiplier * Math.PI / 6));
+				f.y = (this.centerY) + (20 * Math.sin(shotMultiplier * Math.PI / 6));
 				
 				double deltaX = (p.centerX + (20 * Math.cos(shotMultiplier * Math.PI / 6)))
 						- ((centerX) + (20 * Math.cos(shotMultiplier * Math.PI / 6)));
@@ -485,12 +439,83 @@ public class enemy extends player {
 				f.dx = (5 * deltaX / hypotenuse);
 				f.dy = (5 * deltaY / hypotenuse);
 				shotMultiplier++;
-				feathers.add(f);
+				toAdd.add(f);
 			}
 		}
+		
+		feathers.addAll(toAdd);
 	}
 	
 	public void customShot(String type, int[] stats) {
 		customShot(type, stats[1], stats[2]);
+	}
+	
+	public feather createFeather(String desc, int attack, int pierce) {
+		desc = desc.toLowerCase();
+		feather f = createFeather(attack, pierce);
+		
+		if (desc.indexOf("burn") != -1) {
+			f.effect = "burned";
+			f.effectDuration = 200;
+			f.isBurnShot = true;
+		}
+		
+		if (desc.indexOf("freeze") != -1) {
+			f.effect = "slowed";
+			f.effectDuration = 200;
+			f.isFreezeShot = true;
+		}
+		
+		if (desc.indexOf("plasma") != -1) {
+			f.effect = "plasmized";
+			f.effectDuration = 200;
+			f.isPlasmaShot = true;
+		}
+		
+		if (desc.indexOf("stun") != -1) {
+			f.effect = "burned";
+			f.effectDuration = 200;
+			f.isBurnShot = true;
+		}
+		
+		if (desc.indexOf("target") != -1) {
+			double deltaX = p.x - x;
+			double deltaY = p.y - y;
+			double hypotenuse = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
+			double theta = Math.atan(deltaY / deltaX);
+			
+			f.dx = (5 * deltaX / hypotenuse);
+			f.dy = (5 * deltaY / hypotenuse);
+			f.isTargetShot = true;
+		}
+		
+		if (desc.indexOf("homing") != -1) {
+			f.isHomingShot = true;
+			f.homingSpeed = 3;
+			f.homingDuration = 150;
+			
+			if (desc.indexOf("slow") != -1) {
+				f.homingSpeed = 2;
+				f.homingDuration = 200;
+			}
+			if (desc.indexOf("fast") != -1) {
+				f.homingSpeed = 5;
+				f.homingDuration = 100;
+			}
+			
+			f.p = p;
+		}
+		
+		if (desc.indexOf("strong") != -1) {
+			f.isStrongShot = true;
+		}
+		
+		return f;
+	}
+
+	public feather createFeather(int attack, int pierce) {
+		feather f = new feather(alignedX, alignedY, attack, pierce);
+		f.forward = false;
+		return f;
 	}
 }

@@ -19,12 +19,13 @@ public class feather extends object {
 	public int effectDuration;
 	
 	// types
-	public boolean isHoming;
-	public boolean isStrong;
+	public boolean isHomingShot;
+	public boolean isStrongShot;
 	public boolean isStunShot;
 	public boolean isBurnShot;
 	public boolean isFreezeShot;
 	public boolean isPlasmaShot;
+	public boolean isTargetShot;
 	
 	// homing
 	public int homingSpeed;
@@ -33,9 +34,8 @@ public class feather extends object {
 	public boolean init = true;
 	public int homingDuration;
 
-	public feather(double x, double y, int attack, int pierce, boolean forward) {
+	public feather(double x, double y, int attack, int pierce) {
 		super(x, y, 10, 10, Color.BLACK);
-		this.forward = forward;
 		
 		this.attack = attack;
 		this.pierce = pierce;
@@ -43,25 +43,25 @@ public class feather extends object {
 		effect = "none";
 		effectDuration = -1;
 		
-		isHoming = false;
-		isStrong = false;
+		isHomingShot = false;
+		isStrongShot = false;
 		isStunShot = false;
 		isPlasmaShot = false;
 		isBurnShot = false;
 		isFreezeShot = false;
 
-		if (forward) {
-			dx = 5;
-			dy = 0;
-		}
-		if (!forward) {
-			dx = -5;
-			dy = 0;
-		}
 	}
 	
 	public void move() {
-		if (isHoming) {
+		
+		if (dx == 0 && forward) {
+			dx = 5;
+		}
+		if (dx == 0 && !forward) {
+			dx = -5;
+		}
+		
+		if (isHomingShot) {
 			if (!isStunShot)
 				c = Color.GREEN;
 			if (isStunShot)
@@ -74,6 +74,7 @@ public class feather extends object {
 				c = Color.CYAN;
 			home();
 		}
+		
 		if (isStunShot)
 			c = Color.BLUE;
 		if (isPlasmaShot) 
@@ -82,10 +83,12 @@ public class feather extends object {
 			c = Color.RED;
 		if (isFreezeShot)
 			c = Color.CYAN;
+		
 		super.move();
 	}
 	
 	public void home() {
+		
 		if (x < 0 || x > 800 || y < 0 || y > 550) 
 			return;
 		
@@ -117,6 +120,7 @@ public class feather extends object {
 			prevTheta = theta;
 		}
 		if (forward && enemies.size() > 0) {
+			
 			if (nearestEnemy() == null) return;
 			
 			double deltaX = nearestEnemy().x - x;
@@ -130,17 +134,17 @@ public class feather extends object {
 			}
 			track = true;
 			// if close enough, start tracking
-			if (hypotenuse > 300 && !isStrong)
+			if (hypotenuse > 300 && !isStrongShot) 
 				track = false;
-			if (hypotenuse > 500 && isStrong)
+			if (hypotenuse > 500 && isStrongShot)
 				track = false;
 			// if ready to fuck off, stop tracking
 			if (homingDuration <= 0) 
 				track = false;
 			// if change in angle is greater than threshold, then stop tracking
-			if (Math.abs(prevTheta - theta) > 5 * Math.PI / 4 && !isStrong)
+			if (Math.abs(prevTheta - theta) > 5 * Math.PI / 4 && !isStrongShot)
 				track = false;
-			if (Math.abs(prevTheta - theta) > 3 * Math.PI / 2 && isStrong)
+			if (Math.abs(prevTheta - theta) > 3 * Math.PI / 2 && isStrongShot)
 				track = false;
 			// update dx and dy to follow player if track is true
 			if (track) {
@@ -148,6 +152,7 @@ public class feather extends object {
 				dy = (homingSpeed * deltaY / hypotenuse);
 			}
 			prevTheta = theta;
+			
 		}
 		homingDuration--;
 	}

@@ -42,6 +42,7 @@ public abstract class game {
 		player.move();
 		player.centerX = (player.x + player.w / 2);
 		player.centerY = (player.y + player.h / 2);
+		player.enemies = enemies;
 
 		// moving the enemies
 		for (enemy e : enemies) {
