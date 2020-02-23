@@ -204,28 +204,28 @@ public class player extends object {
 		if (type == "stun") {
 			feather f = new feather(alignedX, alignedY, attack, pierce, true);
 			f.effect = "stunned";
-			f.effectDuration = 300;
+			f.effectDuration = 200;
 			f.isStunShot = true;
 			feathers.add(f);
 		}
 		if (type == "burn") {
 			feather f = new feather(alignedX, alignedY, attack, pierce, true);
 			f.effect = "burned";
-			f.effectDuration = 300;
+			f.effectDuration = 200;
 			f.isBurnShot = true;
 			feathers.add(f);
 		}
 		if (type == "freeze") {
 			feather f = new feather(alignedX, alignedY, attack, pierce, true);
 			f.effect = "slowed";
-			f.effectDuration = 300;
+			f.effectDuration = 200;
 			f.isFreezeShot = true;
 			feathers.add(f);
 		}
 		if (type == "plasma") {
 			feather f = new feather(alignedX, alignedY, attack, pierce, true);
 			f.effect = "plasmized";
-			f.effectDuration = 300;
+			f.effectDuration = 200;
 			f.isPlasmaShot = true;
 			feathers.add(f);
 		}
@@ -545,10 +545,7 @@ public class player extends object {
 			feathers.add(f);
 		}
 		if (powerupType.equals("heal")) {
-			if (health < maxHealth * 3 / 4)
-				health = maxHealth * 3 / 4;
-			else
-				health = maxHealth;
+			health += maxHealth / 4;
 		}
 		if (powerupType.equals("invulnerability")) {
 			addStatus("invulnerable", 200);

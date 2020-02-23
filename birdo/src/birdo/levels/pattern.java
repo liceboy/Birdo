@@ -94,10 +94,20 @@ public class pattern {
 			temp = new explodeEnemy(0,0);
 		if (type.equals("homing"))
 			temp = new homingEnemy(0,0);
+		if (type.equals("burn"))
+			temp = new burnEnemy(0, 0);
+		if (type.equals("freeze"))
+			temp = new freezeEnemy(0, 0);
+		if (type.equals("plasma"))
+			temp = new plasmaEnemy(0, 0);
+		if (type.equals("stun"))
+			temp = new stunEnemy(0, 0);
 		if (type.equals("miniBoss1"))
 			temp = new miniBoss1(0, 0);
 		if (type.equals("miniBoss2"))
 			temp = new miniBoss2(0, 0);
+		if (type.equals("miniBoss3"))
+			temp = new miniBoss3(0, 0);
 		return temp;
 	}
 }

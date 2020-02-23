@@ -149,22 +149,29 @@ public class enemy extends player {
 		if (type == "stun") {
 			feather f = new feather(alignedX, alignedY, attack, pierce, false);
 			f.effect = "stunned";
-			f.effectDuration = 100;
+			f.effectDuration = 200;
 			f.isStunShot = true;
 			feathers.add(f);
 		}
 		if (type == "burn") {
 			feather f = new feather(alignedX, alignedY, attack, pierce, false);
 			f.effect = "burned";
-			f.effectDuration = 100;
+			f.effectDuration = 200;
 			f.isBurnShot = true;
 			feathers.add(f);
 		}
 		if (type == "freeze") {
 			feather f = new feather(alignedX, alignedY, attack, pierce, false);
 			f.effect = "slowed";
-			f.effectDuration = 100;
+			f.effectDuration = 200;
 			f.isFreezeShot = true;
+			feathers.add(f);
+		}
+		if (type == "plasma") {
+			feather f = new feather(alignedX, alignedY, attack, pierce, false);
+			f.effect = "plasmized";
+			f.effectDuration = 200;
+			f.isPlasmaShot = true;
 			feathers.add(f);
 		}
 		if (type == "target") {

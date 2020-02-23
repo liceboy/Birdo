@@ -11,13 +11,14 @@ public class level extends game {
 	
 	public level() {
 		super();
-		player.createLoadout("burn", player.interval, 1, 1);
-		player.createLoadout("homingFast", player.interval * 5, 2, 1);
+		player.createLoadout("plasma", player.interval, 1, 1);
+		// player.createLoadout("homingFast", player.interval * 5, 2, 1);
 	}
 	
 	public void defaultLayout() {
 		
 		layout.add("bigBlocks");
+		layout.add("effectArmy");
 		layout.add("spinGang");
 		layout.add("enemyStaggered");
 		layout.add("strafingTrio");
@@ -28,6 +29,7 @@ public class level extends game {
 		layout.add("comboAttack");
 		layout.add("miniBoss1Fight");
 		layout.add("miniBoss2Fight");
+		layout.add("miniBoss3Fight");
 	}
 
 }

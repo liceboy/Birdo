@@ -67,7 +67,7 @@ public class feather extends object {
 			if (isStunShot)
 				c = Color.BLUE;
 			if (isPlasmaShot) 
-				c = Color.PINK;
+				c = Color.MAGENTA;
 			if (isBurnShot)
 				c = Color.RED;
 			if (isFreezeShot)
@@ -77,7 +77,7 @@ public class feather extends object {
 		if (isStunShot)
 			c = Color.BLUE;
 		if (isPlasmaShot) 
-			c = Color.PINK;
+			c = Color.MAGENTA;
 		if (isBurnShot)
 			c = Color.RED;
 		if (isFreezeShot)

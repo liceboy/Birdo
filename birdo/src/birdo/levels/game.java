@@ -437,6 +437,14 @@ public abstract class game {
 			temp = new explodeEnemy(x, y);
 		if (type.equals("homing"))
 			temp = new homingEnemy(x, y);
+		if (type.equals("burn"))
+			temp = new burnEnemy(x, y);
+		if (type.equals("freeze"))
+			temp = new freezeEnemy(x, y);
+		if (type.equals("plasma"))
+			temp = new plasmaEnemy(x, y);
+		if (type.equals("stun"))
+			temp = new stunEnemy(x, y);
 		if (type.equals("miniBoss1"))
 			temp = new miniBoss1(x, y);
 		if (type.equals("miniBoss2"))

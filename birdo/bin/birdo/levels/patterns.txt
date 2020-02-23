@@ -123,6 +123,17 @@ obstacle 815 0 50 150
 obstacle 815 350 50 150
 end
 
+effectArmy
+burn 815 135
+freeze 915 225
+plasma 1015 315
+stun 1115 405
+burn 1215 135
+freeze 1315 225
+plasma 1415 315
+stun 1515 405
+end
+
 miniBoss3Fight
 miniBoss3 815 360
 end
