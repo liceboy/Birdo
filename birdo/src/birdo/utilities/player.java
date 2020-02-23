@@ -91,6 +91,8 @@ public class player extends object {
 			statusBar += "STUN ";
 		if (status.containsKey("burned"))
 			statusBar += "BURN ";
+		if (status.containsKey("plasmized"))
+			statusBar += "PLAZ ";
 		if (status.containsKey("slowed"))
 			statusBar += "SLOW ";
 		if (status.containsKey("sinking"))
@@ -113,6 +115,12 @@ public class player extends object {
 		if (status.containsKey("burned")) {
 			if (status.get("burned") % 10 == 0) {
 				health--;
+			}
+		}
+		if (status.containsKey("plasmized")) {
+			if (status.get("plasmized") <= 20 && status.get("plasmized") % 2 == 0) {
+				health = (int) (health * 0.93303);
+				System.out.println("here");
 			}
 		}
 		
@@ -212,6 +220,13 @@ public class player extends object {
 			f.effect = "slowed";
 			f.effectDuration = 300;
 			f.isFreezeShot = true;
+			feathers.add(f);
+		}
+		if (type == "plasma") {
+			feather f = new feather(alignedX, alignedY, attack, pierce, true);
+			f.effect = "plasmized";
+			f.effectDuration = 300;
+			f.isPlasmaShot = true;
 			feathers.add(f);
 		}
 		if (type == "triple") {
