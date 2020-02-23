@@ -97,6 +97,12 @@ public class player extends object {
 			statusBar += "SLOW ";
 		if (status.containsKey("sinking"))
 			statusBar += "SINK ";
+		if (status.containsKey("rising"))
+			statusBar += "RISE ";
+		if (status.containsKey("pushed"))
+			statusBar += "PUSH ";
+		if (status.containsKey("pulled"))
+			statusBar += "PULL ";
 		g.setColor(Color.BLACK);
 		g.setFont(g.getFont().deriveFont(8f));
 		g.drawString(statusBar, (int) x, (int) y - 20);
@@ -497,7 +503,20 @@ public class player extends object {
 		}
 
 		if (status.containsKey("sinking"))
-			dy += 2;
+			if (dy != 0)
+				dy += 2;
+		
+		if (status.containsKey("rising"))
+			if (dy != 0)
+				dy -= 2;
+		
+		if (status.containsKey("pushed"))
+			if (dx != 0)
+				dx += 2;
+		
+		if (status.containsKey("pulled"))
+			if (dx != 0)
+				dx -= 2;
 	}
 
 	public void addStatus(String effect, int duration) {
