@@ -288,6 +288,98 @@ public class enemy extends player {
 			feathers.add(f3);
 		}
 		
+		if (type == "spinBurst") {
+			feather f = new feather(alignedX, alignedY, attack, pierce, true);
+			feather f1 = new feather(alignedX, alignedY, attack, pierce, true);
+			feather f2 = new feather(alignedX, alignedY, attack, pierce, true);
+			feather f3 = new feather(alignedX, alignedY, attack, pierce, true);
+			feather f4 = new feather(alignedX, alignedY, attack, pierce, true);
+			feather f5 = new feather(alignedX, alignedY, attack, pierce, true);
+			feather f6 = new feather(alignedX, alignedY, attack, pierce, true);
+			feather f7 = new feather(alignedX, alignedY, attack, pierce, true);
+
+			f.dx = -1 * (5 * Math.cos(shotMultiplier * Math.PI / 12));
+			f.dy = -1 * (5 * Math.sin(shotMultiplier * Math.PI / 12));
+
+			f1.dx = -1 * (5 * Math.cos((shotMultiplier * Math.PI / 12) + Math.PI / 4));
+			f1.dy = -1 * (5 * Math.sin((shotMultiplier * Math.PI / 12) + Math.PI / 4));
+
+			f2.dx = -1 * (5 * Math.cos((shotMultiplier * Math.PI / 12) + Math.PI / 2));
+			f2.dy = -1 * (5 * Math.sin((shotMultiplier * Math.PI / 12) + Math.PI / 2));
+
+			f3.dx = -1 * (5 * Math.cos((shotMultiplier * Math.PI / 12) + 3 * Math.PI / 4));
+			f3.dy = -1 * (5 * Math.sin((shotMultiplier * Math.PI / 12) + 3 * Math.PI / 4));
+
+			f4.dx = -1 * (5 * Math.cos((shotMultiplier * Math.PI / 12) + Math.PI));
+			f4.dy = -1 * (5 * Math.sin((shotMultiplier * Math.PI / 12) + Math.PI));
+
+			f5.dx = -1 * (5 * Math.cos((shotMultiplier * Math.PI / 12) + 5 * Math.PI / 4));
+			f5.dy = -1 * (5 * Math.sin((shotMultiplier * Math.PI / 12) + 5 * Math.PI / 4));
+
+			f6.dx = -1 * (5 * Math.cos((shotMultiplier * Math.PI / 12) + 3 * Math.PI / 2));
+			f6.dy = -1 * (5 * Math.sin((shotMultiplier * Math.PI / 12) + 3 * Math.PI / 2));
+
+			f7.dx = -1 * (5 * Math.cos((shotMultiplier * Math.PI / 12) + 7 * Math.PI / 4));
+			f7.dy = -1 * (5 * Math.sin((shotMultiplier * Math.PI / 12) + 7 * Math.PI / 4));
+
+			shotMultiplier++;
+
+			feathers.add(f);
+			feathers.add(f1);
+			feathers.add(f2);
+			feathers.add(f3);
+			feathers.add(f4);
+			feathers.add(f5);
+			feathers.add(f6);
+			feathers.add(f7);
+		}
+		
+		if (type == "spinBurstSlow") {
+			feather f = new feather(alignedX, alignedY, attack, pierce, true);
+			feather f1 = new feather(alignedX, alignedY, attack, pierce, true);
+			feather f2 = new feather(alignedX, alignedY, attack, pierce, true);
+			feather f3 = new feather(alignedX, alignedY, attack, pierce, true);
+			feather f4 = new feather(alignedX, alignedY, attack, pierce, true);
+			feather f5 = new feather(alignedX, alignedY, attack, pierce, true);
+			feather f6 = new feather(alignedX, alignedY, attack, pierce, true);
+			feather f7 = new feather(alignedX, alignedY, attack, pierce, true);
+
+			f.dx = -1 * (3 * Math.cos(shotMultiplier * Math.PI / 12));
+			f.dy = -1 * (3 * Math.sin(shotMultiplier * Math.PI / 12));
+
+			f1.dx = -1 * (3 * Math.cos((shotMultiplier * Math.PI / 12) + Math.PI / 4));
+			f1.dy = -1 * (3 * Math.sin((shotMultiplier * Math.PI / 12) + Math.PI / 4));
+
+			f2.dx = -1 * (3 * Math.cos((shotMultiplier * Math.PI / 12) + Math.PI / 2));
+			f2.dy = -1 * (3 * Math.sin((shotMultiplier * Math.PI / 12) + Math.PI / 2));
+
+			f3.dx = -1 * (3 * Math.cos((shotMultiplier * Math.PI / 12) + 3 * Math.PI / 4));
+			f3.dy = -1 * (3 * Math.sin((shotMultiplier * Math.PI / 12) + 3 * Math.PI / 4));
+
+			f4.dx = -1 * (3 * Math.cos((shotMultiplier * Math.PI / 12) + Math.PI));
+			f4.dy = -1 * (3 * Math.sin((shotMultiplier * Math.PI / 12) + Math.PI));
+
+			f5.dx = -1 * (3 * Math.cos((shotMultiplier * Math.PI / 12) + 5 * Math.PI / 4));
+			f5.dy = -1 * (3 * Math.sin((shotMultiplier * Math.PI / 12) + 5 * Math.PI / 4));
+
+			f6.dx = -1 * (3 * Math.cos((shotMultiplier * Math.PI / 12) + 3 * Math.PI / 2));
+			f6.dy = -1 * (3 * Math.sin((shotMultiplier * Math.PI / 12) + 3 * Math.PI / 2));
+
+			f7.dx = -1 * (3 * Math.cos((shotMultiplier * Math.PI / 12) + 7 * Math.PI / 4));
+			f7.dy = -1 * (3 * Math.sin((shotMultiplier * Math.PI / 12) + 7 * Math.PI / 4));
+
+			shotMultiplier++;
+
+			feathers.add(f);
+			feathers.add(f1);
+			feathers.add(f2);
+			feathers.add(f3);
+			feathers.add(f4);
+			feathers.add(f5);
+			feathers.add(f6);
+			feathers.add(f7);
+		}
+		
 		if (type == "buckshot") {
 			feather f = new feather(alignedX, alignedY, attack, pierce, false);
 			feather f1 = new feather(alignedX, alignedY, attack, pierce, false);

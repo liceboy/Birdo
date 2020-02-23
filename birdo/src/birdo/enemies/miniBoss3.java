@@ -24,24 +24,25 @@ public class miniBoss3 extends enemy{
 
 	public void shoot() {
 		int[] stats = {-1000, attack, 1};
-		if (health >= 10) {
+		if (health >= maxHealth / 2) {
 			if (shotCount <= 0) {
-				customShot("buckshot", stats);
-				customShot("normal", stats);
+				customShot("bloom", stats);
 				customShot("homingFast", stats);
 				shotCount = 200;
 			}
 			if (shotCount % 25 == 0) {
-				customShot("buckshot", stats);
-				customShot("normal", stats);
+				customShot("bloom", stats);
 			}
 			if (shotCount % 15 == 0 && shotCount <= 30)
-					customShot("homingFast", stats);
+				customShot("homingFast", stats);
 		}
 
-		if (health < 10 ) {
-			if (shotCount % 5 == 0)
-				customShot("tripleTarget", stats);
+		if (health < maxHealth / 2) {
+			if (shotCount > 0)
+				shotCount = 0;
+			if (shotCount % 5 == 0) 
+				if (shotCount % 50 > -30) 
+					customShot("target", stats);
 		}
 		shotCount--;
 	}

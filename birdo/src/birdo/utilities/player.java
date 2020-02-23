@@ -54,7 +54,7 @@ public class player extends object {
 	public boolean player = false;
 
 	public player(int x, int y, Color c) {
-		super(x, y, 20, 20, c);
+		super(x, y, 18, 18, c);
 		
 		createStats(300, 5, 0);
 
@@ -80,7 +80,7 @@ public class player extends object {
 	public void draw(Graphics g, assets a) {
 		
 		g.setColor(Color.RED);
-		g.fillRect((int) x, (int) y - 10, 20, 5);
+		g.fillRect((int) x, (int) y - 10, w, 5);
 		g.setColor(Color.GREEN);
 		g.fillRect((int) x, (int) y - 10, (int) ((double) health / maxHealth * w), 5);
 		

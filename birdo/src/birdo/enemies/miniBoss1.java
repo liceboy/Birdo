@@ -26,10 +26,10 @@ public class miniBoss1 extends enemy {
 	public void shoot() {
 		int[] stats = {-1000, attack, 1};
 		if (shotCount <= 0) {
-			if (health > 10)
+			if (health > maxHealth / 3)
 				customShot("buckshot", stats);
 				customShot("normal", stats);
-			if (health <= 10)
+			if (health <= maxHealth / 3)
 				customShot("triple", stats);
 			shotCount = 30;
 		}

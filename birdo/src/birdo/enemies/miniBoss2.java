@@ -18,16 +18,17 @@ public class miniBoss2 extends enemy {
 	}
 
 	public void move() {
-		if (x < 700 && health >= 10)
+		if (x < 700 && health > maxHealth / 2) {
 			customMove("upDown");
-		if (health < 10)
+		}
+		if (health <= maxHealth / 2)
 			customMove("moveCenter");
 		super.move();
 	}
 
 	public void shoot() {
 		int[] stats = {-1000, attack, 1};
-		if (health >= 10) {
+		if (health > maxHealth / 2) {
 			if (shotCount <= 0) {
 				customShot("normal", stats);
 				shotCount = 200;
@@ -38,10 +39,10 @@ public class miniBoss2 extends enemy {
 					customShot("target", stats);
 		}
 
-		if (health < 10 ) {
+		if (health <= maxHealth / 2) {
 			if (shotCount <= 0) {
-				customShot("spin", stats);
-				shotCount = 10;
+				customShot("spinBurstSlow", stats);
+				shotCount = 15;
 			}
 		}
 		shotCount--;
