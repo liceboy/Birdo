@@ -143,6 +143,9 @@ public class player extends object {
 			}
 		}
 		
+		if (health > maxHealth) health = maxHealth;
+		if (health < 0) health = 0;
+		
 		setMovement();
 		shoot();
 		super.move();

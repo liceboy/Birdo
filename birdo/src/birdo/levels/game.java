@@ -351,7 +351,17 @@ public abstract class game {
 			obstacle o = obstacles.get(m);
 			
 			if (player.getHitBox().intersects(o.getHitBox()) && !o.hasHit.contains(player.hash)) {
-				player.health--;
+				
+				// player takes a minimum of 1 damage
+				int damage = o.attack - player.defense;
+				
+				if (player.status.containsKey("invulnerable"))
+					;
+				else if (damage > 0)
+					player.health -= damage;
+				else
+					player.health--;
+				
 				player.addStatus("stunned", 75);
 				
 				o.hasHit.add(player.hash);
