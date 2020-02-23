@@ -12,7 +12,7 @@ public class powerup extends object {
 	int startY;
 	
 	public powerup(int x, int y, String t) {
-		super(x, y, 16, 16, Color.BLUE);
+		super(x, y, 12, 12, Color.BLUE);
 		startY = y;
 		type = t;
 		dx = -2;

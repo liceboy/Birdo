@@ -12,7 +12,7 @@ public class level extends game {
 	public level() {
 		super();
 		player.createLoadout("plasma", player.interval, 1, 1);
-		// player.createLoadout("homingFast", player.interval * 5, 2, 1);
+		player.createLoadout("homingFast", player.interval * 5, 2, 1);
 	}
 	
 	public void defaultLayout() {
