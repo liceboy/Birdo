@@ -148,8 +148,8 @@ public abstract class game {
 					
 					f.hasHit.add(player.hash);
 					
-					if (!f.effect.equals("none")) 
-						player.addStatus(f.effect, f.effectDuration);
+					for (int a = 0; a != f.effects.size(); a++)
+						player.addStatus(f.effects.get(a), f.effectDurations.get(a));
 					
 					// if it still has pierce, don't remove
 					f.pierce--;
@@ -246,8 +246,8 @@ public abstract class game {
 					
 					f.hasHit.add(e.hash);
 					
-					if (!f.effect.equals("none")) 
-						e.addStatus(f.effect, f.effectDuration);
+					for (int a = 0; a != f.effects.size(); a++)
+						e.addStatus(f.effects.get(a), f.effectDurations.get(a));
 					
 					if (e.health <= 0)
 						score += e.score;

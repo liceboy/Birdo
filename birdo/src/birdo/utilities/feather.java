@@ -1,7 +1,10 @@
 package birdo.utilities;
 
 import java.awt.Color;
+import java.awt.Graphics;
 import java.util.ArrayList;
+
+import birdo.game.assets;
 
 public class feather extends object {
 	
@@ -15,8 +18,8 @@ public class feather extends object {
 	public int pierce;
 	
 	// status effects
-	public String effect;
-	public int effectDuration;
+	public ArrayList<String> effects = new ArrayList<String>();;
+	public ArrayList<Integer> effectDurations = new ArrayList<Integer>();;
 	
 	// types
 	public boolean isHomingShot;
@@ -40,8 +43,8 @@ public class feather extends object {
 		this.attack = attack;
 		this.pierce = pierce;
 		
-		effect = "none";
-		effectDuration = -1;
+		effects.add("none");
+		effectDurations.add(-1);
 		
 		isHomingShot = false;
 		isStrongShot = false;
@@ -49,7 +52,19 @@ public class feather extends object {
 		isPlasmaShot = false;
 		isBurnShot = false;
 		isFreezeShot = false;
+		isTargetShot = false;
 
+	}
+	
+	public void draw(Graphics g, assets a) {
+		if (isHomingShot) c = Color.GREEN;
+		if (isTargetShot) c = Color.GRAY;
+		if (isBurnShot) c = Color.RED;
+		if (isFreezeShot) c = Color.CYAN;
+		if (isStunShot) c = Color.BLUE;
+		if (isPlasmaShot) c = Color.MAGENTA;
+			
+		super.draw(g, a);
 	}
 	
 	public void move() {
@@ -61,28 +76,7 @@ public class feather extends object {
 			dx = -5;
 		}
 		
-		if (isHomingShot) {
-			if (!isStunShot)
-				c = Color.GREEN;
-			if (isStunShot)
-				c = Color.BLUE;
-			if (isPlasmaShot) 
-				c = Color.MAGENTA;
-			if (isBurnShot)
-				c = Color.RED;
-			if (isFreezeShot)
-				c = Color.CYAN;
-			home();
-		}
-		
-		if (isStunShot)
-			c = Color.BLUE;
-		if (isPlasmaShot) 
-			c = Color.MAGENTA;
-		if (isBurnShot)
-			c = Color.RED;
-		if (isFreezeShot)
-			c = Color.CYAN;
+		home();
 		
 		super.move();
 	}
@@ -90,6 +84,8 @@ public class feather extends object {
 	public void home() {
 		
 		if (x < 0 || x > 800 || y < 0 || y > 550) 
+			return;
+		if (!isHomingShot)
 			return;
 		
 		if (!forward) {

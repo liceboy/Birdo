@@ -455,26 +455,26 @@ public class enemy extends player {
 		feather f = createFeather(attack, pierce);
 		
 		if (desc.indexOf("burn") != -1) {
-			f.effect = "burned";
-			f.effectDuration = 200;
+			f.effects.add("burned");
+			f.effectDurations.add(200);
 			f.isBurnShot = true;
 		}
 		
 		if (desc.indexOf("freeze") != -1) {
-			f.effect = "slowed";
-			f.effectDuration = 200;
+			f.effects.add("slowed");
+			f.effectDurations.add(200);
 			f.isFreezeShot = true;
 		}
 		
 		if (desc.indexOf("plasma") != -1) {
-			f.effect = "plasmized";
-			f.effectDuration = 200;
+			f.effects.add("plasmized");
+			f.effectDurations.add(200);
 			f.isPlasmaShot = true;
 		}
 		
 		if (desc.indexOf("stun") != -1) {
-			f.effect = "burned";
-			f.effectDuration = 200;
+			f.effects.add("stunned");
+			f.effectDurations.add(200);
 			f.isBurnShot = true;
 		}
 		
