@@ -69,10 +69,10 @@ public class feather extends object {
 	
 	public void move() {
 		
-		if (dx == 0 && forward) {
+		if (dx == 0 && dy == 0 && forward) {
 			dx = 5;
 		}
-		if (dx == 0 && !forward) {
+		if (dx == 0 && dy == 0 && !forward) {
 			dx = -5;
 		}
 		

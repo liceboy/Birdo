@@ -36,7 +36,7 @@ public class miniBoss2 extends enemy {
 			if (shotCount % 20 == 0) 
 				customShot("normal", stats);
 			if (shotCount % 25 == 0 && shotCount <= 75)
-					customShot("target", stats);
+					customShot("target, stun", stats);
 		}
 
 		if (health <= maxHealth / 2) {

@@ -313,29 +313,29 @@ public class enemy extends player {
 			feather f6 = createFeather(attack, pierce);
 			feather f7 = createFeather(attack, pierce);
 
-			f.dx = -1 * (3 * Math.cos(shotMultiplier * Math.PI / 12));
-			f.dy = -1 * (3 * Math.sin(shotMultiplier * Math.PI / 12));
+			f.dx = -1 * (4 * Math.cos(shotMultiplier * Math.PI / 12));
+			f.dy = -1 * (4 * Math.sin(shotMultiplier * Math.PI / 12));
 
-			f1.dx = -1 * (3 * Math.cos((shotMultiplier * Math.PI / 12) + Math.PI / 4));
-			f1.dy = -1 * (3 * Math.sin((shotMultiplier * Math.PI / 12) + Math.PI / 4));
+			f1.dx = -1 * (4 * Math.cos((shotMultiplier * Math.PI / 12) + Math.PI / 4));
+			f1.dy = -1 * (4 * Math.sin((shotMultiplier * Math.PI / 12) + Math.PI / 4));
 
-			f2.dx = -1 * (3 * Math.cos((shotMultiplier * Math.PI / 12) + Math.PI / 2));
-			f2.dy = -1 * (3 * Math.sin((shotMultiplier * Math.PI / 12) + Math.PI / 2));
+			f2.dx = -1 * (4 * Math.cos((shotMultiplier * Math.PI / 12) + Math.PI / 2));
+			f2.dy = -1 * (4 * Math.sin((shotMultiplier * Math.PI / 12) + Math.PI / 2));
 
-			f3.dx = -1 * (3 * Math.cos((shotMultiplier * Math.PI / 12) + 3 * Math.PI / 4));
-			f3.dy = -1 * (3 * Math.sin((shotMultiplier * Math.PI / 12) + 3 * Math.PI / 4));
+			f3.dx = -1 * (4 * Math.cos((shotMultiplier * Math.PI / 12) + 3 * Math.PI / 4));
+			f3.dy = -1 * (4 * Math.sin((shotMultiplier * Math.PI / 12) + 3 * Math.PI / 4));
 
-			f4.dx = -1 * (3 * Math.cos((shotMultiplier * Math.PI / 12) + Math.PI));
-			f4.dy = -1 * (3 * Math.sin((shotMultiplier * Math.PI / 12) + Math.PI));
+			f4.dx = -1 * (4 * Math.cos((shotMultiplier * Math.PI / 12) + Math.PI));
+			f4.dy = -1 * (4 * Math.sin((shotMultiplier * Math.PI / 12) + Math.PI));
 
-			f5.dx = -1 * (3 * Math.cos((shotMultiplier * Math.PI / 12) + 5 * Math.PI / 4));
-			f5.dy = -1 * (3 * Math.sin((shotMultiplier * Math.PI / 12) + 5 * Math.PI / 4));
+			f5.dx = -1 * (4 * Math.cos((shotMultiplier * Math.PI / 12) + 5 * Math.PI / 4));
+			f5.dy = -1 * (4 * Math.sin((shotMultiplier * Math.PI / 12) + 5 * Math.PI / 4));
 
-			f6.dx = -1 * (3 * Math.cos((shotMultiplier * Math.PI / 12) + 3 * Math.PI / 2));
-			f6.dy = -1 * (3 * Math.sin((shotMultiplier * Math.PI / 12) + 3 * Math.PI / 2));
+			f6.dx = -1 * (4 * Math.cos((shotMultiplier * Math.PI / 12) + 3 * Math.PI / 2));
+			f6.dy = -1 * (4 * Math.sin((shotMultiplier * Math.PI / 12) + 3 * Math.PI / 2));
 
-			f7.dx = -1 * (3 * Math.cos((shotMultiplier * Math.PI / 12) + 7 * Math.PI / 4));
-			f7.dy = -1 * (3 * Math.sin((shotMultiplier * Math.PI / 12) + 7 * Math.PI / 4));
+			f7.dx = -1 * (4 * Math.cos((shotMultiplier * Math.PI / 12) + 7 * Math.PI / 4));
+			f7.dy = -1 * (4 * Math.sin((shotMultiplier * Math.PI / 12) + 7 * Math.PI / 4));
 
 			shotMultiplier++;
 
@@ -475,7 +475,7 @@ public class enemy extends player {
 		if (desc.indexOf("stun") != -1) {
 			f.effects.add("stunned");
 			f.effectDurations.add(200);
-			f.isBurnShot = true;
+			f.isStunShot = true;
 		}
 		
 		if (desc.indexOf("target") != -1) {

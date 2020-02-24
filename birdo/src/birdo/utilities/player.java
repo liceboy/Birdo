@@ -120,14 +120,17 @@ public class player extends object {
 
 	public void move() {
 		if (status.containsKey("burned")) {
-			if (status.get("burned") % 10 == 0) {
-				health--;
+			if (status.get("burned") % 20 == 0) {
+				int damage = maxHealth / 50;
+				if (damage <= 0) damage = 1;
+				health -= damage;
 			}
 		}
 		if (status.containsKey("plasmized")) {
-			if (status.get("plasmized") <= 20 && status.get("plasmized") % 2 == 0) {
-				health = (int) (health * 0.93303);
-				if (health < maxHealth / 10) health = 0;
+			if (status.get("plasmized") % 20 == 0) {
+				int damage = maxHealth / 20;
+				if (damage <= 0) damage = 1;
+				health -= damage;
 			}
 		}
 		
@@ -476,7 +479,7 @@ public class player extends object {
 		if (desc.indexOf("stun") != -1) {
 			f.effects.add("stunned");
 			f.effectDurations.add(200);
-			f.isBurnShot = true;
+			f.isStunShot = true;
 		}
 		
 		if (desc.indexOf("homing") != -1) {
@@ -617,6 +620,20 @@ public class player extends object {
 		}
 
 		powerupType = "none";
+	}
+	
+	public void takeDamage(int atk) {
+		
+		int damage = atk - defense;
+		
+		if (damage <= 0)
+			damage = 1;
+		if (status.containsKey("plasmized"))
+			damage *= 3;
+
+		if (!status.containsKey("invulnerable"))
+			health -= damage;
+		
 	}
 
 	public boolean isDead() {

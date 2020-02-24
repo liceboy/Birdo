@@ -135,17 +135,8 @@ public abstract class game {
 				feather f = e.feathers.get(j);
 				
 				if (player.getHitBox().intersects(f.getHitBox()) && !f.hasHit.contains(player.hash)) {
-						
-					// player takes a minimum of 1 damage
-					int damage = f.attack - player.defense;
 					
-					if (player.status.containsKey("invulnerable"))
-						;
-					else if (damage > 0)
-						player.health -= damage;
-					else
-						player.health--;
-					
+					player.takeDamage(f.attack);
 					f.hasHit.add(player.hash);
 					
 					for (int a = 0; a != f.effects.size(); a++)
@@ -176,9 +167,7 @@ public abstract class game {
 				egg p = e.eggs.get(k);
 				
 				if (player.getHitBox().intersects(p.getHitBox())) {
-					if (!player.status.containsKey("invulnerable")) {
-						player.health--;
-					}
+					player.takeDamage(10);
 					e.eggs.remove(k);
 					k--;
 				}
@@ -237,13 +226,7 @@ public abstract class game {
 				
 				if (e.getHitBox().intersects(f.getHitBox()) && !f.hasHit.contains(e.hash)) {
 					
-					// enemy takes a minimum of 1 damage
-					int damage = f.attack - e.defense;
-					if (damage > 0)
-						e.health -= damage;
-					else
-						e.health--;
-					
+					e.takeDamage(f.attack);
 					f.hasHit.add(e.hash);
 					
 					for (int a = 0; a != f.effects.size(); a++)
@@ -271,7 +254,7 @@ public abstract class game {
 				egg p = player.eggs.get(k);
 				
 				if (e.getHitBox().intersects(p.getHitBox())) {
-					e.health = e.health - 5;
+					e.takeDamage(10);
 					if (e.health <= 0)
 						score += e.score;
 					player.eggs.remove(k);
@@ -353,15 +336,7 @@ public abstract class game {
 			
 			if (player.getHitBox().intersects(o.getHitBox()) && !o.hasHit.contains(player.hash)) {
 				
-				// player takes a minimum of 1 damage
-				int damage = o.attack - player.defense;
-				
-				if (player.status.containsKey("invulnerable"))
-					;
-				else if (damage > 0)
-					player.health -= damage;
-				else
-					player.health--;
+				player.takeDamage(o.attack);
 				
 				player.addStatus("stunned", 75);
 				
