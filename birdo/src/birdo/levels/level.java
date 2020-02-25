@@ -12,8 +12,8 @@ public class level extends game {
 	public level() {
 		super();
 		// op af
-		player.createLoadout("plasma", player.interval, 1, 1);
-		//player.createLoadout("homing", player.interval * 5, 1, 3);
+		player.createLoadout("normal", player.interval, 1, 1);
+		player.createLoadout("homing, plasma, fast", player.interval * 10, 1, 3);
 	}
 	
 	public void defaultLayout() {

@@ -30,7 +30,7 @@ public class miniBoss1 extends enemy {
 				customShot("buckshot", stats);
 				customShot("normal", stats);
 			if (health <= maxHealth / 3)
-				customShot("triple, burn", stats);
+				customShot("triple", stats);
 			shotCount = 30;
 		}
 		shotCount--;
