@@ -36,6 +36,7 @@ public class player extends object {
 	public ArrayList<enemy> enemies;
 	public ArrayList<loadout> loadouts;
 	public ArrayList<feather> feathers;
+	public ArrayList<obstacle> obstacles;
 	public ArrayList<egg> eggs;
 
 	// shooting
@@ -71,6 +72,7 @@ public class player extends object {
 
 		loadouts = new ArrayList<loadout>();
 		feathers = new ArrayList<feather>();
+		obstacles = new ArrayList<obstacle>();
 		eggs = new ArrayList<egg>();
 
 		shotCount = 1;
@@ -111,6 +113,8 @@ public class player extends object {
 		for (feather f : feathers)
 			f.draw(g, a);
 		// draws feathers
+		for (obstacle o : obstacles)
+			o.draw(g, a);
 		for (egg e : eggs)
 			e.draw(g, a);
 		// draw egg
@@ -144,6 +148,8 @@ public class player extends object {
 		
 		for (feather f : feathers)
 			f.move();
+		for (obstacle o : obstacles)
+			o.move();
 		for (egg e : eggs)
 			e.move();
 
@@ -522,6 +528,35 @@ public class player extends object {
 	
 	public void createLoadout(String type, int interval, double modifier, int pierce) {
 		loadouts.add(new loadout(type, interval, modifier, pierce));
+	}
+	
+	public obstacle createObstacle(double x, double y, int h, int w, int attack) {
+		obstacle o = new obstacle(x, y, h, w);
+		o.attack = attack;
+		return o;
+	}
+	
+	public void customObstacle(String type) {
+		if (status.containsKey("stunned"))
+			return;
+
+		if (isDead)
+			return;
+		
+		ArrayList<obstacle> toAdd = new ArrayList<obstacle>();
+		
+		if (type == "laser") {
+			obstacle o = createObstacle(alignedX, alignedY, 800, 10, 1);
+			o.isLaser = true;
+			toAdd.add(o);
+		}
+		if (type == "warningLaser") {
+			obstacle o = createObstacle(alignedX, alignedY, 800, 2, 0);
+			System.out.println(o.attack);
+			o.isLaser = true;
+			toAdd.add(o);
+		}
+		obstacles.addAll(toAdd);
 	}
 
 	public void setMovement() {

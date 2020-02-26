@@ -443,27 +443,6 @@ public class enemy extends player {
 			}
 		}
 		
-		if (type == "laser") {
-			feather f = new feather(alignedX-700, alignedY, 1, 90000);
-			f.forward = false;
-			f.h = 10;
-			f.w = 700;
-			f.isLaser = true;
-			f.laserShooter = this;
-			toAdd.add(f);
-		}
-		
-		if (type == "warningLaser") {
-			feather f = new feather(alignedX-700, alignedY, 0, 90000);
-			f.forward = false;
-			f.h = 2;
-			f.w = 700;
-			f.dx = 100;
-			f.dy = 0;
-			f.isLaser = true;
-			f.laserShooter = this;
-			toAdd.add(f);
-		}
 
 		feathers.addAll(toAdd);
 	}

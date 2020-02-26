@@ -39,6 +39,8 @@ public abstract class game {
 	public void move() {
 
 		// moving the player
+		for (obstacle o : player.obstacles)
+			o.p = player;
 		player.move();
 		player.centerX = (player.x + player.w / 2);
 		player.centerY = (player.y + player.h / 2);
@@ -49,6 +51,8 @@ public abstract class game {
 			// for homing
 			for (feather f : e.feathers) 
 				f.p = player;
+			for (obstacle o : e.obstacles)
+				o.p = player;
 			
 			e.p = player;
 			e.move();
@@ -177,6 +181,20 @@ public abstract class game {
 					k--;
 				}
 			}
+			
+			// hit enemy obstacle? take damage
+			
+			for (int l = 0; l != e.obstacles.size(); l++) {
+				
+				if (l == -1)
+					continue;
+				
+				obstacle o = e.obstacles.get(l);
+				
+				if	(player.getHitBox().intersects(o.getHitBox())) {
+					player.takeDamage(o.attack);
+				}
+			}			
 		}
 		
 		// FEATHER AND EGG HITBOXES
@@ -261,6 +279,20 @@ public abstract class game {
 					k--;
 				}
 			}
+			
+		// enemy hit my obstascle? take daamge
+			
+			for (int l = 0; l != player.obstacles.size(); l++) {
+				
+				if (l == -1)
+					continue;
+				
+				obstacle o = player.obstacles.get(l);
+				
+				if	(e.getHitBox().intersects(o.getHitBox())) {
+					e.takeDamage(o.attack);
+				}
+			}	
 
 			e.isDead();
 

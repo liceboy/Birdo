@@ -13,7 +13,7 @@ public class level extends game {
 		super();
 		// op af
 		player.createLoadout("normal", player.interval, 1, 1);
-		player.createLoadout("homing, plasma, fast", player.interval * 10, 1, 3);
+		player.customObstacle("warningLaser");
 	}
 	
 	public void defaultLayout() {

@@ -29,8 +29,6 @@ public class feather extends object {
 	public boolean isFreezeShot;
 	public boolean isPlasmaShot;
 	public boolean isTargetShot;
-	public boolean isLaser;
-	public enemy laserShooter;
 	
 	// homing
 	public int homingSpeed;
@@ -65,8 +63,6 @@ public class feather extends object {
 		if (isFreezeShot) c = Color.CYAN;
 		if (isStunShot) c = Color.BLUE;
 		if (isPlasmaShot) c = Color.MAGENTA;
-		if (isLaser)
-			g.fillRect((int) x, (int) y, w, h);
 		super.draw(g, a);
 	}
 	
@@ -80,7 +76,6 @@ public class feather extends object {
 		}
 		
 		home();
-		laser();
 		super.move();
 	}
 	
@@ -143,14 +138,6 @@ public class feather extends object {
 		homingDuration--;
 	}
 	
-	public void laser() {
-	if (!isLaser)
-		return;
-	if (isLaser && !forward) {
-		x = laserShooter.alignedX-700;
-		y = laserShooter.alignedY;
-	}
-	}
 	public enemy nearestEnemy() { // function to find the nearest enemy for tracking bullets
 		
 		if (enemies.size() != 0) {
