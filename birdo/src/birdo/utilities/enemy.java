@@ -16,7 +16,7 @@ public class enemy extends player {
 	public enemy(int x, int y) {
 		super(x, y, new Color(6, 6, 8));
 		createStats(10, 10, 0);
-		
+		player = false;
 		score = 100;
 		this.dx = -2;
 		this.dy = 0;
@@ -519,4 +519,33 @@ public class enemy extends player {
 		f.forward = false;
 		return f;
 	}
+	
+	public obstacle createObstacle(double x, double y, int h, int w, int attack, boolean fromPlayer) {
+		obstacle o = new obstacle(x, y, h, w, false);
+		o.attack = attack;
+		return o;
+	}
+	
+	public void customObstacle(String type) {
+		if (status.containsKey("stunned"))
+			return;
+
+		if (isDead)
+			return;
+		
+		ArrayList<obstacle> toAdd = new ArrayList<obstacle>();
+		
+		if (type == "laser") {
+			obstacle o = createObstacle(alignedX - 800, alignedY, 800, 10, 1, false);
+			o.isLaser = true;
+			toAdd.add(o);
+		}
+		if (type == "warningLaser") {
+			obstacle o = createObstacle(alignedX - 800, alignedY, 800, 2, 0, false);
+			o.isLaser = true;
+			toAdd.add(o);
+		}
+		obstacles.addAll(toAdd);
+	}
+
 }

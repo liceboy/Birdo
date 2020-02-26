@@ -51,8 +51,10 @@ public abstract class game {
 			// for homing
 			for (feather f : e.feathers) 
 				f.p = player;
-			for (obstacle o : e.obstacles)
+			for (obstacle o : e.obstacles) {
 				o.p = player;
+				o.shooter = e;
+			}
 			
 			e.p = player;
 			e.move();
@@ -191,7 +193,8 @@ public abstract class game {
 				
 				obstacle o = e.obstacles.get(l);
 				
-				if	(player.getHitBox().intersects(o.getHitBox())) {
+				
+				if (player.getHitBox().intersects(o.getHitBox())) {
 					player.takeDamage(o.attack);
 				}
 			}			

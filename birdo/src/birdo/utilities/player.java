@@ -53,7 +53,7 @@ public class player extends object {
 	public boolean down = false;
 	public boolean left = false;
 	public boolean right = false;
-	public boolean player = false;
+	public boolean player = true;
 
 	public player(int x, int y, Color c) {
 		super(x, y, 20, 20, c);
@@ -530,8 +530,8 @@ public class player extends object {
 		loadouts.add(new loadout(type, interval, modifier, pierce));
 	}
 	
-	public obstacle createObstacle(double x, double y, int h, int w, int attack) {
-		obstacle o = new obstacle(x, y, h, w);
+	public obstacle createObstacle(double x, double y, int h, int w, int attack, boolean fromPlayer) {
+		obstacle o = new obstacle(x, y, h, w, true);
 		o.attack = attack;
 		return o;
 	}
@@ -546,14 +546,15 @@ public class player extends object {
 		ArrayList<obstacle> toAdd = new ArrayList<obstacle>();
 		
 		if (type == "laser") {
-			obstacle o = createObstacle(alignedX, alignedY, 800, 10, 1);
+			obstacle o = createObstacle(alignedX, alignedY, 800, 10, 1, true);
 			o.isLaser = true;
+			o.fromPlayer = true;
 			toAdd.add(o);
 		}
 		if (type == "warningLaser") {
-			obstacle o = createObstacle(alignedX, alignedY, 800, 2, 0);
-			System.out.println(o.attack);
+			obstacle o = createObstacle(alignedX, alignedY, 800, 10, 0, true);
 			o.isLaser = true;
+			o.fromPlayer = true;
 			toAdd.add(o);
 		}
 		obstacles.addAll(toAdd);

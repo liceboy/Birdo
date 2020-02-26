@@ -27,6 +27,8 @@ public class miniBoss3 extends enemy{
 	public void shoot() {
 		int[] stats = {-1000, attack, 1};
 		if (x < 700) {
+			if (obstacles.size() == 0)
+				customObstacle("laser");
 			// going to implement laser and other new shot patterns
 		}
 		shotCount--;
