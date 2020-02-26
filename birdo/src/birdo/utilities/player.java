@@ -447,6 +447,7 @@ public class player extends object {
 			toAdd.add(f);
 		}
 		
+		
 		feathers.addAll(toAdd);
 	}
 

@@ -20,32 +20,23 @@ public class miniBoss3 extends enemy{
 		if (x < 700)
 			customMove("upDown");
 		super.move();
+		
 	}
 
 	public void shoot() {
 		int[] stats = {-1000, attack, 1};
-		if (health >= maxHealth / 2) {
-			if (shotCount <= 0) {
-				customShot("bloom", stats);
-				customShot("homingFast, plasma", stats);
+		if (x < 700) {
+			if (shotCount < 0)
 				shotCount = 200;
-			}
-			if (shotCount % 25 == 0) {
-				customShot("bloom", stats);
-			}
-			if (shotCount % 15 == 0 && shotCount <= 30)
-				customShot("homingFast, plasma", stats);
-		}
-
-		if (health < maxHealth / 2) {
-			if (shotCount > 0)
-				shotCount = 0;
-			if (shotCount % 5 == 0) 
-				if (shotCount % 50 > -30) 
-					customShot("target, plasma", stats);
+			if (shotCount == 150)
+				customShot("warningLaser", 0, 90000);
+			if (shotCount == 50)
+				customShot("laser", stats);
 		}
 		shotCount--;
 	}
+	
+	
 
 	public void poop() {
 		return;

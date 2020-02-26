@@ -29,6 +29,8 @@ public class feather extends object {
 	public boolean isFreezeShot;
 	public boolean isPlasmaShot;
 	public boolean isTargetShot;
+	public boolean isLaser;
+	public enemy laserShooter;
 	
 	// homing
 	public int homingSpeed;
@@ -63,7 +65,8 @@ public class feather extends object {
 		if (isFreezeShot) c = Color.CYAN;
 		if (isStunShot) c = Color.BLUE;
 		if (isPlasmaShot) c = Color.MAGENTA;
-			
+		if (isLaser)
+			g.fillRect((int) x, (int) y, w, h);
 		super.draw(g, a);
 	}
 	
@@ -77,7 +80,7 @@ public class feather extends object {
 		}
 		
 		home();
-		
+		laser();
 		super.move();
 	}
 	
@@ -115,7 +118,7 @@ public class feather extends object {
 			// update prevThetas
 			prevTheta = theta;
 		}
-		if (forward && enemies.size() > 0) {
+		if (forward && enemies.size() > 0) { // should always track if shot by player
 			
 			if (nearestEnemy() == null) return;
 			
@@ -129,19 +132,6 @@ public class feather extends object {
 				init = false;
 			}
 			track = true;
-			// if close enough, start tracking
-			if (hypotenuse > 300 && !isStrongShot) 
-				track = false;
-			if (hypotenuse > 500 && isStrongShot)
-				track = false;
-			// if ready to fuck off, stop tracking
-			if (homingDuration <= 0) 
-				track = false;
-			// if change in angle is greater than threshold, then stop tracking
-			if (Math.abs(prevTheta - theta) > 5 * Math.PI / 4 && !isStrongShot)
-				track = false;
-			if (Math.abs(prevTheta - theta) > 3 * Math.PI / 2 && isStrongShot)
-				track = false;
 			// update dx and dy to follow player if track is true
 			if (track) {
 				dx = (homingSpeed * deltaX / hypotenuse);
@@ -153,6 +143,14 @@ public class feather extends object {
 		homingDuration--;
 	}
 	
+	public void laser() {
+	if (!isLaser)
+		return;
+	if (isLaser && !forward) {
+		x = laserShooter.alignedX-700;
+		y = laserShooter.alignedY;
+	}
+	}
 	public enemy nearestEnemy() { // function to find the nearest enemy for tracking bullets
 		
 		if (enemies.size() != 0) {
