@@ -520,12 +520,6 @@ public class enemy extends player {
 		return f;
 	}
 	
-	public obstacle createObstacle(double x, double y, int h, int w, int attack, boolean fromPlayer) {
-		obstacle o = new obstacle(x, y, h, w, false);
-		o.attack = attack;
-		return o;
-	}
-	
 	public void customObstacle(String type) {
 		if (status.containsKey("stunned"))
 			return;
@@ -536,12 +530,12 @@ public class enemy extends player {
 		ArrayList<obstacle> toAdd = new ArrayList<obstacle>();
 		
 		if (type == "laser") {
-			obstacle o = createObstacle(alignedX - 800, alignedY, 800, 10, 1, false);
+			obstacle o = createObstacle(alignedX - 800, alignedY, 800, 10, 1);
 			o.isLaser = true;
 			toAdd.add(o);
 		}
 		if (type == "warningLaser") {
-			obstacle o = createObstacle(alignedX - 800, alignedY, 800, 2, 0, false);
+			obstacle o = createObstacle(alignedX - 800, alignedY, 800, 2, 0);
 			o.isLaser = true;
 			toAdd.add(o);
 		}

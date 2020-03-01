@@ -529,14 +529,9 @@ public class player extends object {
 	public void createLoadout(String type, int interval, double modifier, int pierce) {
 		loadouts.add(new loadout(type, interval, modifier, pierce));
 	}
-	
-<<<<<<< HEAD
-	public obstacle createObstacle(double x, double y, int w, int h, int attack) {
-		obstacle o = new obstacle(x, y, w, h);
-=======
-	public obstacle createObstacle(double x, double y, int h, int w, int attack, boolean fromPlayer) {
-		obstacle o = new obstacle(x, y, h, w, true);
->>>>>>> branch 'master' of https://github.com/mumbler6/birdo
+		
+	public obstacle createObstacle(double x, double y, int h, int w, int attack) {
+		obstacle o = new obstacle(x, y, h, w);
 		o.attack = attack;
 		return o;
 	}
@@ -551,17 +546,13 @@ public class player extends object {
 		ArrayList<obstacle> toAdd = new ArrayList<obstacle>();
 		
 		if (type == "laser") {
-			obstacle o = createObstacle(alignedX, alignedY, 800, 10, 1, true);
+			obstacle o = createObstacle(alignedX, alignedY, 800, 10, 1);
 			o.isLaser = true;
 			o.fromPlayer = true;
 			toAdd.add(o);
 		}
 		if (type == "warningLaser") {
-<<<<<<< HEAD
-			obstacle o = createObstacle(alignedX, alignedY, 800, 10, 1);
-=======
-			obstacle o = createObstacle(alignedX, alignedY, 800, 10, 0, true);
->>>>>>> branch 'master' of https://github.com/mumbler6/birdo
+			obstacle o = createObstacle(alignedX, alignedY, 800, 10, 0);
 			o.isLaser = true;
 			o.fromPlayer = true;
 			toAdd.add(o);

@@ -16,9 +16,8 @@ public class obstacle extends object{
 	public boolean fromPlayer;
 	public boolean isLaser;
 	
-	public obstacle(double x, double y, int w, int h, boolean fromPlayer) {
+	public obstacle(double x, double y, int w, int h) {
 		super(x, y, w, h, new Color(6, 6, 8));
-		fromPlayer = true;
 		attack = 10;
 	}
 	
