@@ -13,7 +13,7 @@ public class stunEnemy extends enemy {
 		c = new Color(121, 103, 85);
 		
 		createStats(20, 10, 0);
-		createLoadout("stun", 100, 1, 1);
+		createLoadout("stun, target", 100, 1, 1);
 	}
 
 	public void move() {

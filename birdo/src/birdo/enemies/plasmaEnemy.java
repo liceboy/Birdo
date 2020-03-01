@@ -13,7 +13,7 @@ public class plasmaEnemy extends enemy {
 		c = new Color(121, 103, 85);
 		
 		createStats(20, 10, 0);
-		createLoadout("plasma", 100, 1, 1);
+		createLoadout("plasma, target", 100, 1, 1);
 	}
 
 	public void move() {

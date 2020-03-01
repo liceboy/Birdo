@@ -530,8 +530,8 @@ public class player extends object {
 		loadouts.add(new loadout(type, interval, modifier, pierce));
 	}
 	
-	public obstacle createObstacle(double x, double y, int h, int w, int attack) {
-		obstacle o = new obstacle(x, y, h, w);
+	public obstacle createObstacle(double x, double y, int w, int h, int attack) {
+		obstacle o = new obstacle(x, y, w, h);
 		o.attack = attack;
 		return o;
 	}
@@ -551,8 +551,7 @@ public class player extends object {
 			toAdd.add(o);
 		}
 		if (type == "warningLaser") {
-			obstacle o = createObstacle(alignedX, alignedY, 800, 2, 0);
-			System.out.println(o.attack);
+			obstacle o = createObstacle(alignedX, alignedY, 800, 10, 1);
 			o.isLaser = true;
 			toAdd.add(o);
 		}

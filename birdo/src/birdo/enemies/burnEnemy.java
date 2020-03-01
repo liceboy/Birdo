@@ -13,7 +13,7 @@ public class burnEnemy extends enemy {
 		c = new Color(121, 103, 85);
 		
 		createStats(20, 10, 0);
-		createLoadout("burn", 100, 1, 1);
+		createLoadout("burn, target", 100, 1, 1);
 	}
 
 	public void move() {
