@@ -6,42 +6,52 @@ import java.util.ArrayList;
 
 import birdo.game.assets;
 
-public class obstacle extends object{
+public class obstacle extends attack {
 	
-	public ArrayList<Integer> hasHit = new ArrayList<Integer>();
-	public int attack;
-	public player p;
-	public enemy shooter;
-	public ArrayList<enemy> enemies = new ArrayList<enemy>();
-	public boolean fromPlayer;
+	public int lockX = 0;
+	public int lockY = 0;
+	
 	public boolean isLaser;
+	public int lifeCount;
+	public int damageRate = 10;
+	public int damageCount = 0;
 	
 	public obstacle(double x, double y, int w, int h) {
 		super(x, y, w, h, new Color(6, 6, 8));
 		attack = 10;
+		lifeCount = -1;
+		dx = -3;
 	}
 	
 	public void draw(Graphics g, assets a) {
+		setColor();
 		g.setColor(c);
 		g.fillRect((int) x, (int) y, w, h);
 	}
 	
 	public void move() {
-		dx = -3;
 		laser();
 		super.move();
 	}
 	
 	public void laser() {
-	if (!isLaser)
-		return;
-	if (isLaser && fromPlayer) {
-		x = p.alignedX + p.dx;
-		y = p.alignedY + p.dy;
-	}
-	if (isLaser && shooter != null && shooter.player == false ) {
-		x = shooter.alignedX-800 + shooter.dx;
-		y = shooter.alignedY + shooter.dy;
-	}
+		if (!isLaser)
+			return;
+		
+		if (damageCount == damageRate) {
+			hasHit.clear();
+			damageCount = 0;
+		}
+		if (fromPlayer) {
+			x = owner.alignedX + owner.dx + lockX;
+			y = owner.alignedY + owner.dy + lockY;
+		}
+		else {
+			x = owner.alignedX - w + owner.dx + lockX;
+			y = owner.alignedY + owner.dy + lockY;
+		}
+		
+		damageCount++;
+		lifeCount--;
 	}
 }

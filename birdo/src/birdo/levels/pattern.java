@@ -46,7 +46,8 @@ public class pattern {
 					obstacles.add(temp);
 				}
 				else {
-					enemy temp = createEnemy(params[0]);
+					enemy temp = new enemy(0, 0);
+					temp.type = params[0];
 					temp.x = Integer.parseInt(params[1]);
 					temp.y = Integer.parseInt(params[2]);
 					enemies.add(temp);
@@ -61,53 +62,5 @@ public class pattern {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	}
-
-	public enemy createEnemy(String type) {
-
-		enemy temp = null;
-		if (type.equals("enemy"))
-			temp = new enemy(0, 0);
-		if (type.equals("target"))
-			temp = new targetEnemy(0, 0);
-		if (type.equals("charge"))
-			temp = new chargeEnemy(0, 0);
-		if (type.equals("big"))
-			temp = new bigEnemy(0, 0);
-		if (type.equals("hover"))
-			temp = new hoverEnemy(0, 0);
-		if (type.equals("strafe"))
-			temp = new strafeEnemy(0, 0);
-		if (type.equals("blossom"))
-			temp = new blossomEnemy(0, 0);
-		if (type.equals("rapid"))
-			temp = new rapidEnemy(0, 0);
-		if (type.equals("pulse"))
-			temp = new pulseEnemy(0, 0);
-		if (type.equals("steady"))
-			temp = new steadyEnemy(0, 0);
-		if (type.equals("spin"))
-			temp = new spinEnemy(0,0);
-		if (type.equals("laser"))
-			temp = new laserEnemy(0,0);
-		if (type.equals("explode"))
-			temp = new explodeEnemy(0,0);
-		if (type.equals("homing"))
-			temp = new homingEnemy(0,0);
-		if (type.equals("burn"))
-			temp = new burnEnemy(0, 0);
-		if (type.equals("freeze"))
-			temp = new freezeEnemy(0, 0);
-		if (type.equals("plasma"))
-			temp = new plasmaEnemy(0, 0);
-		if (type.equals("stun"))
-			temp = new stunEnemy(0, 0);
-		if (type.equals("miniBoss1"))
-			temp = new miniBoss1(0, 0);
-		if (type.equals("miniBoss2"))
-			temp = new miniBoss2(0, 0);
-		if (type.equals("miniBoss3"))
-			temp = new miniBoss3(0, 0);
-		return temp;
 	}
 }

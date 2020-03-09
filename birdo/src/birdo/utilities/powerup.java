@@ -11,10 +11,10 @@ public class powerup extends object {
 	public int ammo;
 	int startY;
 	
-	public powerup(int x, int y, String t) {
+	public powerup(int x, int y) {
 		super(x, y, 12, 12, Color.BLUE);
 		startY = y;
-		type = t;
+		type = randomType();
 		dx = -2;
 		dy = 1;
 	}
@@ -30,6 +30,12 @@ public class powerup extends object {
 		if (y < startY - 40)
 			dy = 1;
 		super.move();
+	}
+	
+	public String randomType() {
+		String[] choices = {"rapidFire", "spinBurst", "homingRush", "stunShot", "heal", "invulnerability", "laser"};
+		int choice = (int) (Math.random() * 7);
+		return choices[choice];
 	}
 
 }

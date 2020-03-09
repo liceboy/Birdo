@@ -12,10 +12,9 @@ public class shop {
 
 	public void draw(Graphics g, assets a) {
 		g.setColor(Color.BLACK);
-		g.setFont(g.getFont().deriveFont(16f));
+		g.setFont(a.fonts[1]);
 		g.drawString("-Shop-", 50, 50);
 		g.drawString("Exit: Esc", 600, 50);
-		g.setFont(g.getFont().deriveFont(12f));
 	}
 
 	public void move() {

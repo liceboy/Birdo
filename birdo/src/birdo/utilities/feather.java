@@ -6,20 +6,7 @@ import java.util.ArrayList;
 
 import birdo.game.assets;
 
-public class feather extends object {
-	
-	public boolean forward;
-	public player p;
-	public ArrayList<enemy> enemies = new ArrayList<enemy>();
-	public ArrayList<Integer> hasHit = new ArrayList<Integer>();
-	
-	// stats
-	public int attack;
-	public int pierce;
-	
-	// status effects
-	public ArrayList<String> effects = new ArrayList<String>();;
-	public ArrayList<Integer> effectDurations = new ArrayList<Integer>();;
+public class feather extends attack {
 	
 	// types
 	public boolean isHomingShot;
@@ -68,10 +55,10 @@ public class feather extends object {
 	
 	public void move() {
 		
-		if (dx == 0 && dy == 0 && forward) {
+		if (dx == 0 && dy == 0 && fromPlayer) {
 			dx = 5;
 		}
-		if (dx == 0 && dy == 0 && !forward) {
+		if (dx == 0 && dy == 0 && !fromPlayer) {
 			dx = -5;
 		}
 		
@@ -86,7 +73,7 @@ public class feather extends object {
 		if (!isHomingShot)
 			return;
 		
-		if (!forward) {
+		if (!fromPlayer) {
 			double deltaX = p.x - x;
 			double deltaY = p.y - y;
 			double hypotenuse = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
@@ -103,7 +90,7 @@ public class feather extends object {
 			if (homingDuration <= 0) 
 				track = false;
 			// if change in angle is greater than threshold, then stop tracking
-			if (Math.abs(prevTheta - theta) > 5 * Math.PI / 4 && forward == false)
+			if (Math.abs(prevTheta - theta) > 5 * Math.PI / 4 && fromPlayer == false)
 				track = false;
 			// update dx and dy to follow player if track is true
 			if (track) {
@@ -113,7 +100,7 @@ public class feather extends object {
 			// update prevThetas
 			prevTheta = theta;
 		}
-		if (forward && enemies.size() > 0) { // should always track if shot by player
+		if (fromPlayer && enemies.size() > 0) { // should always track if shot by player
 			
 			if (nearestEnemy() == null) return;
 			

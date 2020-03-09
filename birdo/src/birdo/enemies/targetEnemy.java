@@ -12,7 +12,7 @@ public class targetEnemy extends enemy {
 		super(x, y);
 		c = new Color(121, 103, 85);
 		
-		createStats(20, 10, 0);
+		// createStats(20, 10, 0);
 		createLoadout("target", 100, 1, 1);
 	}
 

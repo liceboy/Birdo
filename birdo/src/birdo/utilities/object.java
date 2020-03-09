@@ -6,7 +6,7 @@ import java.awt.Rectangle;
 
 import birdo.game.assets;
 
-public class object {
+public abstract class object {
 
 	public double x;
 	public double y; // location

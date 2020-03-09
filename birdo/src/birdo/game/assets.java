@@ -10,8 +10,6 @@ import java.util.Map;
 public class assets {
 	
 	public Font[] fonts;
-	public Map<String, Color> colors;
-	// sprites
 	
 	public assets() {
 		loadAssets();
@@ -19,6 +17,7 @@ public class assets {
 	
 	public void loadAssets() {
 		fonts = new Font[3];
+		// 0: 12pt font, 1: 16pt font, 2: 8pt font
 		try {
 			fonts[0] = Font.createFont(Font.TRUETYPE_FONT, getClass().getClassLoader().
 					getResourceAsStream("birdo/resources/Press Start.ttf")).deriveFont(12f);
@@ -30,8 +29,5 @@ public class assets {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		colors = new HashMap<String, Color>();
-		colors.put("black", Color.decode("#060608"));
 	}
 }

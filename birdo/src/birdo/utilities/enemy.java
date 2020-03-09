@@ -5,18 +5,22 @@ import java.util.ArrayList;
 
 public class enemy extends player {
 
-	// current player
 	public player p;
+	// current player
 	
-	// score granted upon death
 	public int score;
+	// score granted upon death
 	
 	public boolean ignore;
+	// whether or not to ignor player
+	
+	public String type;
+	// type of enemy
 
 	public enemy(int x, int y) {
 		super(x, y, new Color(6, 6, 8));
 		createStats(10, 10, 0);
-		player = false;
+		isPlayer = false;
 		score = 100;
 		this.dx = -2;
 		this.dy = 0;
@@ -451,6 +455,10 @@ public class enemy extends player {
 		customShot(type, stats[1], stats[2]);
 	}
 	
+	public void customShot(String type) {
+		customShot(type, attack, 1);
+	}
+	
 	public feather createFeather(String desc, int attack, int pierce) {
 		desc = desc.toLowerCase();
 		feather f = createFeather(attack, pierce);
@@ -515,31 +523,9 @@ public class enemy extends player {
 	}
 
 	public feather createFeather(int attack, int pierce) {
-		feather f = new feather(alignedX, alignedY, attack, pierce);
-		f.forward = false;
+		feather f = super.createFeather(attack, pierce);
+		f.fromPlayer = false;
 		return f;
-	}
-	
-	public void customObstacle(String type) {
-		if (status.containsKey("stunned"))
-			return;
-
-		if (isDead)
-			return;
-		
-		ArrayList<obstacle> toAdd = new ArrayList<obstacle>();
-		
-		if (type == "laser") {
-			obstacle o = createObstacle(alignedX - 800, alignedY, 800, 10, 1);
-			o.isLaser = true;
-			toAdd.add(o);
-		}
-		if (type == "warningLaser") {
-			obstacle o = createObstacle(alignedX - 800, alignedY, 800, 2, 0);
-			o.isLaser = true;
-			toAdd.add(o);
-		}
-		obstacles.addAll(toAdd);
 	}
 
 }

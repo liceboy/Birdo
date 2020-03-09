@@ -19,11 +19,13 @@ public class application extends JFrame {
 	}
 
 	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				application ex = new application();
-				ex.setVisible(true);
+		EventQueue.invokeLater(
+			new Runnable() {
+				public void run() {
+					application ex = new application();
+					ex.setVisible(true);
+				}
 			}
-		});
+		);
 	}
 }

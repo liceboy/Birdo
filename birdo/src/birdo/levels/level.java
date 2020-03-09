@@ -9,11 +9,10 @@ import birdo.utilities.*;
 
 public class level extends game {
 	
-	public level() {
-		super();
+	public level(String rules) {
+		super(rules);
 		// op af
 		player.createLoadout("normal", player.interval, 1, 1);
-		player.customObstacle("warningLaser");
 	}
 	
 	public void defaultLayout() {

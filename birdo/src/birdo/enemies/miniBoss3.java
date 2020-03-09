@@ -26,11 +26,42 @@ public class miniBoss3 extends enemy{
 
 	public void shoot() {
 		int[] stats = {-1000, attack, 1};
-		if (x < 700) {
-			if (obstacles.size() == 0)
-				customObstacle("laser");
-			// going to implement laser and other new shot patterns
+		
+		if (health > maxHealth / 2) {
+			if (x < 700) {
+				if (shotCount == 150) {
+					if (obstacles.size() == 0)
+						customShot("homing, slow, stun", stats);
+				}
+				if (shotCount == 100) {
+					if (obstacles.size() == 0)
+						customShot("homing, slow, burn", stats);
+				}
+				if (shotCount == 50) {
+					if (obstacles.size() == 0)	
+						customShot("homing, slow, freeze", stats);
+				}
+				if (shotCount <= 0) {
+					if (obstacles.size() == 0)
+						customObstacle("laser");
+					else if (obstacles.size() > 0) {
+						obstacles.clear();
+						customShot("homing, slow, plasma", stats);
+					}
+					shotCount = 200;
+				}
+			}
 		}
+		else
+			obstacles.clear();
+
+		if (health <= maxHealth / 2) {
+			if (shotCount <= 0) {
+				customShot("spinBurstSlow", stats);
+				shotCount = 15;
+			}
+		}
+		
 		shotCount--;
 	}
 	

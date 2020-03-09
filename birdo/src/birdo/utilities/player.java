@@ -53,14 +53,14 @@ public class player extends object {
 	public boolean down = false;
 	public boolean left = false;
 	public boolean right = false;
-	public boolean player = true;
+	public boolean isPlayer = true;
 
 	public player(int x, int y, Color c) {
 		super(x, y, 20, 20, c);
 		
-		createStats(300, 5, 0);
+		createStats(300, 10, 0);
 
-		interval = 20;
+		interval = 15;
 		isDead = false;
 
 		centerX = (this.x + this.w / 2);
@@ -106,6 +106,7 @@ public class player extends object {
 			statusBar += "PUSH ";
 		if (status.containsKey("pulled"))
 			statusBar += "PULL ";
+		
 		g.setColor(Color.BLACK);
 		g.setFont(g.getFont().deriveFont(8f));
 		g.drawString(statusBar, (int) x, (int) y - 20);
@@ -126,13 +127,6 @@ public class player extends object {
 		if (status.containsKey("burned")) {
 			if (status.get("burned") % 20 == 0) {
 				int damage = maxHealth / 50;
-				if (damage <= 0) damage = 1;
-				health -= damage;
-			}
-		}
-		if (status.containsKey("plasmized")) {
-			if (status.get("plasmized") % 20 == 0) {
-				int damage = maxHealth / 20;
 				if (damage <= 0) damage = 1;
 				health -= damage;
 			}
@@ -183,7 +177,7 @@ public class player extends object {
 		if (status.containsKey("homingRush")) {
 			if (status.get("homingRush") % 10 == 0) {
 				feather f = createFeather("homing", attack * 2, 1);
-				f.forward = true;
+				f.fromPlayer = true;
 				f.isStrongShot = true;
 				f.homingSpeed = 7;
 				f.homingDuration = 300;
@@ -220,7 +214,7 @@ public class player extends object {
 		
 		ArrayList<feather> toAdd = new ArrayList<feather>();
 		
-		if (type.indexOf(",") != -1) {
+		if (type.indexOf(",") != -1 || type.indexOf(" ") != -1) {
 			toAdd.add(createFeather(type, attack, pierce));
 		}
 		// special feathers with multiple types
@@ -515,7 +509,8 @@ public class player extends object {
 
 	public feather createFeather(int attack, int pierce) {
 		feather f = new feather(alignedX, alignedY, attack, pierce);
-		f.forward = true;
+		f.fromPlayer = true;
+		f.owner = this;
 		return f;
 	}
 
@@ -533,6 +528,8 @@ public class player extends object {
 	public obstacle createObstacle(double x, double y, int h, int w, int attack) {
 		obstacle o = new obstacle(x, y, h, w);
 		o.attack = attack;
+		o.owner = this;
+		o.fromPlayer = isPlayer;
 		return o;
 	}
 	
@@ -548,15 +545,32 @@ public class player extends object {
 		if (type == "laser") {
 			obstacle o = createObstacle(alignedX, alignedY, 800, 10, 1);
 			o.isLaser = true;
-			o.fromPlayer = true;
 			toAdd.add(o);
 		}
-		if (type == "warningLaser") {
+		if (type == "strongLaser") {
 			obstacle o = createObstacle(alignedX, alignedY, 800, 10, 0);
+			o.damageRate = 1;
 			o.isLaser = true;
-			o.fromPlayer = true;
 			toAdd.add(o);
 		}
+		if (type == "dualLaser") {
+			obstacle o = createObstacle(alignedX, alignedY, 800, 5, 0);
+			o.isLaser = true;
+			o.lockX = 20;
+			o.lockY = -20;
+			toAdd.add(o);
+			
+			o = createObstacle(alignedX, alignedY, 800, 5, 0);
+			o.isLaser = true;
+			o.lockX = 20;
+			o.lockY = 20;
+			toAdd.add(o);	
+		}
+		
+		for (obstacle o : obstacles) {
+			System.out.println("here");
+		}
+		
 		obstacles.addAll(toAdd);
 	}
 
@@ -565,7 +579,7 @@ public class player extends object {
 
 		int moveSpeed = 4;
 
-		if (player && !isDead) {
+		if (isPlayer && !isDead) {
 			if (up || down) {
 				if (up && down) {
 					dy = 0;
@@ -639,10 +653,12 @@ public class player extends object {
 			}
 			addStatus("rapidFire", 400);
 		}
-		if (powerupType.equals("spinBurst"))
+		if (powerupType.equals("spinBurst")) {
 			addStatus("spinBurst", 100);
-		if (powerupType.equals("homingRush"))
+		}
+		if (powerupType.equals("homingRush")) {
 			addStatus("homingRush", 60);
+		}
 		if (powerupType.equals("stunShot")) {
 			feather f = createFeather("homing,stun,strong", attack * 2, 5);
 			f.homingSpeed = 5;
@@ -655,8 +671,36 @@ public class player extends object {
 		if (powerupType.equals("invulnerability")) {
 			addStatus("invulnerable", 200);
 		}
+		if (powerupType.equals("laser")) {
+			customObstacle("strongLaser");
+			obstacles.get(obstacles.size() - 1).lifeCount = 300;
+		}
 
 		powerupType = "none";
+	}
+	
+	public boolean takeFeatherDamage(feather f) {
+		if (f.hasHit.contains(hash)) return false;
+		if (!getHitBox().intersects(f.getHitBox())) return false;
+		
+		takeDamage(f.attack);
+		f.hasHit.add(hash);
+		for (int a = 0; a != f.effects.size(); a++)
+			addStatus(f.effects.get(a), f.effectDurations.get(a));
+		f.pierce--;
+		return true;
+	}
+	
+	public boolean takeObstacleDamage(obstacle o) {
+		if (o.hasHit.contains(hash)) return false;
+		if (!getHitBox().intersects(o.getHitBox())) return false;
+		
+		takeDamage(o.attack);
+		o.hasHit.add(hash);
+		for (int a = 0; a != o.effects.size(); a++)
+			addStatus(o.effects.get(a), o.effectDurations.get(a));
+		o.pierce--;
+		return true;
 	}
 	
 	public void takeDamage(int atk) {
@@ -670,6 +714,9 @@ public class player extends object {
 
 		if (!status.containsKey("invulnerable"))
 			health -= damage;
+		
+		if (health < 0)
+			health = 0;
 		
 	}
 

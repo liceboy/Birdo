@@ -12,9 +12,9 @@ public class title {
 
 	public void draw(Graphics g, assets a) {
 		g.setColor(Color.BLACK);
-		g.setFont(g.getFont().deriveFont(16f));
+		g.setFont(a.fonts[1]);
 		g.drawString("-Birdo v0.5-", 100, 100);
-		g.setFont(g.getFont().deriveFont(12f));
+		g.setFont(a.fonts[0]);
 		g.drawString("Benjamin Guan: Concept, Programming", 100, 130);
 		g.drawString("Joseph Ilagan: Direction, Programming", 100, 160);
 		g.drawString("Press Space", 100, 240);

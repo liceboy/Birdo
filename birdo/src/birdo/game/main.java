@@ -31,7 +31,9 @@ public class main extends JPanel implements ActionListener {
 	public assets assets;
 	
 	// state handler
-	public String state;
+	public String state = "title";
+	
+	public String rules = "medium";
 
 	// states
 	public title title;
@@ -48,22 +50,24 @@ public class main extends JPanel implements ActionListener {
 		setFocusable(true);
 		setBackground(Color.WHITE);
 		
-		// start game loop
 		timer = new Timer(DELAY, this);
 		timer.start();
+		// start game loop
 		
 		assets = new assets();
 		setFont(assets.fonts[0]);
-
-		// start on title page
+		
 		state = "title";
+		// start on title page
+		
 		title = new title();
 		select = new select();
+		select.rules = rules;
 		shop = new shop();
 		
-		level = new level();
+		level = new level(rules);
 		level.defaultLayout();
-		dev = new level();
+		dev = new level(rules);
 	}
 
 	public void paintComponent(Graphics g) {
@@ -120,12 +124,12 @@ public class main extends JPanel implements ActionListener {
 
 			if (level.state == "GameOver") { // if gameover, new hotkeys, resets game state
 				if (key == KeyEvent.VK_F1) {
-					level = new level();
+					level = new level(rules);
 					level.defaultLayout();
 					state = "level";
 				}
 				if (key == KeyEvent.VK_F2) {
-					level = new level();
+					level = new level(rules);
 					level.defaultLayout();
 					state = "title";
 				}
@@ -141,6 +145,18 @@ public class main extends JPanel implements ActionListener {
 					state = "dev";
 				if (key == KeyEvent.VK_C)
 					state = "shop";
+				if (key == KeyEvent.VK_A) {
+					if (rules.equals("easy"))
+						rules = "medium";
+					else if (rules.equals("medium"))
+						rules = "hard";
+					else if (rules.equals("hard"))
+						rules = "master";
+					else if (rules.equals("master"))
+						rules = "easy";
+					select.rules = rules;
+					level.setRules(rules);
+				}
 			}
 			
 			if (state == "shop") {
@@ -159,7 +175,7 @@ public class main extends JPanel implements ActionListener {
 					level.player.right = true;
 				if (key == KeyEvent.VK_ESCAPE) {
 					state = "select";
-					level = new level();
+					level = new level(rules);
 					level.defaultLayout();
 				}
 			}
@@ -175,7 +191,7 @@ public class main extends JPanel implements ActionListener {
 					dev.player.right = true;
 				if (key == KeyEvent.VK_ESCAPE) {
 					state = "select";
-					dev = new level();
+					dev = new level(rules);
 				}
 				
 				if (key == KeyEvent.VK_1)
@@ -228,10 +244,10 @@ public class main extends JPanel implements ActionListener {
 			if (dev.state == "GameOver") { // if gameover, new hotkeys, resets game state
 				if (key == KeyEvent.VK_F1) {
 					state = "dev";
-					dev = new level();
+					dev = new level(rules);
 				}
 				if (key == KeyEvent.VK_F2) {
-					dev = new level();
+					dev = new level(rules);
 					state = "title";
 				}
 				dev.state = " ";
