@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
+import java.awt.Shape;
+import java.awt.geom.AffineTransform;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -548,6 +550,18 @@ public class player extends object {
 			o.isLaser = true;
 			toAdd.add(o);
 		}
+		if (type == "sweepingLaser") {
+			obstacle o = createObstacle(alignedX, alignedY, 800, 10, 1);
+			o.isLaser = true;
+			AffineTransform at = AffineTransform.getRotateInstance(Math.PI / 4, alignedX, alignedY);
+			Shape rotatedRect = at.createTransformedShape(this.getHitBox());
+			Rectangle newHitbox = rotatedRect.getBounds();
+			System.out.println(newHitbox);
+			o.setNewHitbox(newHitbox);
+			System.out.println(o.getHitBox());
+			o.isLaser = true;
+			toAdd.add(o);
+		}
 		if (type == "strongLaser") {
 			obstacle o = createObstacle(alignedX, alignedY, 800, 10, 0);
 			o.damageRate = 1;
@@ -569,9 +583,8 @@ public class player extends object {
 		}
 		
 		if (type == "skyLaser") {
-			for (x = 20; x < 800; x+= 100) {
-				obstacle o = createObstacle(x, 0, 10, 525, 0);
-				o.isLaser = false;
+			for (x = 20; x < 800; x+=75) {
+				obstacle o = createObstacle(x, 0, 20, 525, 1);
 				toAdd.add(o);
 			}
 			}

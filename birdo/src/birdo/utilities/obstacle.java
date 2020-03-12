@@ -3,8 +3,10 @@ package birdo.utilities;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Rectangle;
 import java.awt.Shape;
 import java.awt.geom.AffineTransform;
+import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 
 import birdo.game.assets;
@@ -27,7 +29,7 @@ public class obstacle extends attack {
 	}
 	
 	public void draw(Graphics2D g, assets a) {
-		setColor(); 
+		setColor();
 		g.setColor(c);
 		g.fillRect((int) x, (int) y, w, h);
 	}

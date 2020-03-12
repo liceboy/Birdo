@@ -14,6 +14,7 @@ public abstract class object {
 	public int h; // dimensions
 	public double dx;
 	public double dy; // directional movement
+	private Rectangle hitbox;
 
 	public Color c;
 	public Color cDefault;
@@ -25,6 +26,7 @@ public abstract class object {
 		this.y = y;
 		this.w = w;
 		this.h = h;
+		hitbox = new Rectangle((int) x, (int) y, w, h);
 		dx = 0;
 		dy = 0;
 		this.c = c;
@@ -46,11 +48,17 @@ public abstract class object {
 		dx = Math.floor(dx * 10) / 10;
 		dy = Math.floor(dy * 10) / 10;
 	}
-
-	public Rectangle getHitBox() {
+	
+	public Rectangle updateHitbox() {
 		return new Rectangle((int) x, (int) y, w, h);
 	}
-
+	public Rectangle getHitBox() {
+		hitbox = updateHitbox();
+		return hitbox;
+	}
+	public void setNewHitbox(Rectangle newHitbox) {
+		hitbox = newHitbox;
+	}
 	public Rectangle getFutureHitBox() {
 		return new Rectangle((int) (x + dx), (int) (y + dy), w, h);
 	}

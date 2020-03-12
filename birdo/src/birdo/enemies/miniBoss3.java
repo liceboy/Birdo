@@ -1,6 +1,8 @@
 package birdo.enemies;
 
 import java.awt.Color;
+import java.awt.Shape;
+import java.awt.geom.AffineTransform;
 
 import birdo.utilities.enemy;
 import birdo.utilities.obstacle;
@@ -45,7 +47,7 @@ public class miniBoss3 extends enemy{
 					if (obstacles.size() == 0)
 						customObstacle("skyLaser");
 					else if (obstacles.size() > 0) {
-						//obstacles.clear();
+						obstacles.clear();
 						customShot("homing, slow, plasma", stats);
 					}
 					shotCount = 200;
@@ -53,7 +55,7 @@ public class miniBoss3 extends enemy{
 			}
 		}
 		else
-			//obstacles.clear();
+			obstacles.clear();
 
 		if (health <= maxHealth / 2) {
 			if (shotCount <= 0) {

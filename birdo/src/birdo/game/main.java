@@ -224,6 +224,8 @@ public class main extends JPanel implements ActionListener {
 					dev.createEnemy("explode");
 				if (key == KeyEvent.VK_BACK_SPACE)
 					dev.createEnemy("homing");
+				if (key == KeyEvent.VK_R)
+					dev.createPowerup("laser");
 				if (key == KeyEvent.VK_T)
 					dev.createPowerup("rapidFire");
 				if (key == KeyEvent.VK_Y)
