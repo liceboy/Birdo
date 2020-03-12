@@ -3,6 +3,7 @@ package birdo.levels;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.util.ArrayList;
 import java.util.Map;
 
@@ -54,6 +55,10 @@ public abstract class game {
 			o.p = player;
 			o.enemies = enemies;
 		}
+		
+		if (rules.contains("threeHits") && hits >= 3) {
+			player.health = 0;
+		}
 
 		// moving the enemies
 		for (enemy e : enemies) {
@@ -89,7 +94,7 @@ public abstract class game {
 		genPattern();
 	}
 
-	public void draw(Graphics g, assets a) {
+	public void draw(Graphics2D g, assets a) {
 		
 		// GAME OBJECTS
 		
@@ -156,7 +161,7 @@ public abstract class game {
 	
 	public void setRules(String rules) {
 		if (rules.equals("hard"))
-			rules = "hard, sparsePowerups";
+			rules = "hard, threeHits, sparsePowerups";
 		if (rules.equals("master"))
 			rules = "deathless, noPowerups";
 			

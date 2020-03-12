@@ -18,7 +18,7 @@ public class miniBoss3 extends enemy{
 	}
 
 	public void move() {
-		if (x < 700)
+		if (x < 750)
 			customMove("upDown");
 		super.move();
 		
@@ -28,7 +28,7 @@ public class miniBoss3 extends enemy{
 		int[] stats = {-1000, attack, 1};
 		
 		if (health > maxHealth / 2) {
-			if (x < 700) {
+			if (x < 750) {
 				if (shotCount == 150) {
 					if (obstacles.size() == 0)
 						customShot("homing, slow, stun", stats);
@@ -43,9 +43,9 @@ public class miniBoss3 extends enemy{
 				}
 				if (shotCount <= 0) {
 					if (obstacles.size() == 0)
-						customObstacle("laser");
+						customObstacle("skyLaser");
 					else if (obstacles.size() > 0) {
-						obstacles.clear();
+						//obstacles.clear();
 						customShot("homing, slow, plasma", stats);
 					}
 					shotCount = 200;
@@ -53,7 +53,7 @@ public class miniBoss3 extends enemy{
 			}
 		}
 		else
-			obstacles.clear();
+			//obstacles.clear();
 
 		if (health <= maxHealth / 2) {
 			if (shotCount <= 0) {

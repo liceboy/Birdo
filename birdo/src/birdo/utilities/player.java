@@ -2,6 +2,7 @@ package birdo.utilities;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -80,7 +81,7 @@ public class player extends object {
 		shotMultiplier = 0;
 	}
 
-	public void draw(Graphics g, assets a) {
+	public void draw(Graphics2D g, assets a) {
 		
 		g.setColor(Color.RED);
 		g.fillRect((int) x, (int) y - 10, w, 5);
@@ -566,6 +567,14 @@ public class player extends object {
 			o.lockY = 20;
 			toAdd.add(o);	
 		}
+		
+		if (type == "skyLaser") {
+			for (x = 20; x < 800; x+= 100) {
+				obstacle o = createObstacle(x, 0, 10, 525, 0);
+				o.isLaser = false;
+				toAdd.add(o);
+			}
+			}
 		
 		for (obstacle o : obstacles) {
 			System.out.println("here");

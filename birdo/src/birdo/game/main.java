@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.FontFormatException;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -71,13 +72,16 @@ public class main extends JPanel implements ActionListener {
 	}
 
 	public void paintComponent(Graphics g) {
-		super.paintComponent(g);
-		doDrawing(g);
+		
+		Graphics2D g2d = (Graphics2D)g;
+		
+		super.paintComponent(g2d);
+		doDrawing(g2d);
 
 		Toolkit.getDefaultToolkit().sync();
 	}
 
-	private void doDrawing(Graphics g) {
+	private void doDrawing(Graphics2D g) {
 
 		if (state == "title")
 			title.draw(g, assets);
