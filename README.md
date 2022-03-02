@@ -1,2 +1,2 @@
-# Simple 2d bullet hell demo made with Java. 
+# Simple 2d bullet hell game demo made with Java. 
 
